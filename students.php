@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+/*	when you edit this source please add your name and date here
+ *	1.	E.M.M.L Ekanayake		22-02-2014
+ * 	2.	
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -30,15 +38,15 @@
             <div class="container clearfix">
                 
                 <div id="logo">
-                    <a href="./index.html"><img src="img/logo.jpg" /></a>
+                    <a href="./index.php"><img src="img/logo.jpg" /></a>
                 </div>
                 
                 <div id="nav">
                     <ul class="clearfix">
-                        <li><u><a href="./students.html">Students</a></u></li>
-                        <li><a href="./sessions.html">Sessions</a></li>
-                        <li><a href="./research.html">Research</a></li>
-                        <li><a href="./events.html">Events</a></li>
+                        <li><u><a href="./students.php">Students</a></u></li>
+                        <li><a href="./sessions.php">Sessions</a></li>
+                        <li><a href="./research.php">Research</a></li>
+                        <li><a href="./events.php">Events</a></li>
                         <li><a href="">CodeGen</a></li>
                     </ul>
                 </div>                
@@ -69,7 +77,28 @@
                                 
                                 
                                <div id="accordion"> 
-                                 
+									
+									<h3 class="yellowColor clearfix">
+                                    	<div class="descriptionArea">
+                                        	<a href="#">Lasantha Ekanayake</a>
+                                    		<p>HTML5/CSS/JavaScript, PHP, Java, C, C++, Android, :D</p>
+                                        </div>
+                                        <div class="darkGray">
+                                        	<ul>
+                                            	<li class="endGPA">Endorsements: 67</li>
+                                                <li class="endGPA">GPA: 3.76</li>
+                                                <li class="linkedLink"><a href="asd.php">LinkedIn</a></li>
+                                            </ul>
+                                        </div>
+                                    </h3>  
+                                    <div class="contentData clearfix"> 
+                                    
+                                    	<img src="img/img6.jpg"/> 
+                                        <p>  
+                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
+                                        </p>  
+                                    </div> 
+									 
 									<h3 class="yellowColor clearfix">
                                     	<div class="descriptionArea">
                                         	<a href="#">Rashmika Navarathne</a>
@@ -79,7 +108,7 @@
                                         	<ul>
                                             	<li class="endGPA">Endorsements: 67</li>
                                                 <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="asd.html">LinkedIn</a></li>
+                                                <li class="linkedLink"><a href="asd.php">LinkedIn</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -191,7 +220,7 @@
                                         	<ul>
                                             	<li class="endGPA">Endorsements: 67</li>
                                                 <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="asd.html">LinkedIn</a></li>
+                                                <li class="linkedLink"><a href="asd.php">LinkedIn</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
