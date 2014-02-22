@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+<?php
+/*	when you edit this source please add your name and date here
+ *	1.	E.M.M.L Ekanayake		22-02-2014
+ * 	2.	
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -39,7 +47,7 @@
                     <ul class="clearfix">
                         <li><a href="">Partner Benefits</a></li>
                         <li><a href="">Current Partners</a></li>
-                        <li><a href="./events.html">Sign In</a></li>
+                        <li><a href="./events.php">Sign In</a></li>
                     </ul>
                 </div>                
             </div>

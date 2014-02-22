@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+/*	when you edit this source please add your name and date here
+ *	1.	E.M.M.L Ekanayake		22-02-2014
+ * 	2.	
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html lang="en">
     <head>
         <meta charset="utf-8">

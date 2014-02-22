@@ -1,4 +1,12 @@
-<!DOCTYPE html>
+<?php
+/*	when you edit this source please add your name and date here
+ *	1.	E.M.M.L Ekanayake		22-02-2014
+ * 	2.	
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -25,26 +33,25 @@
         <![endif]-->
 
         
-        
         <div id="header">
             <div class="container clearfix">
                 
                 <div id="logo">
-                    <a href="./index.html"><img src="img/logo.jpg" /></a>
+                    <a href="./index.php"><img src="img/logo.jpg" /></a>
                 </div>
                 
                 <div id="nav">
                     <ul class="clearfix">
-                        <li><u><a href="./students.html">Students</a></u></li>
-                        <li><a href="./sessions.html">Sessions</a></li>
-                        <li><a href="./research.html">Research</a></li>
-                        <li><a href="./events.html">Events</a></li>
+                        <li><a href="./students.php">Students</a></li>
+                        <li><a href="./sessions.php">Sessions</a></li>
+                        <li><u><a href="./research.php">Research</a></u></li>
+                        <li><a href="./events.php">Events</a></li>
                         <li><a href="">CodeGen</a></li>
                     </ul>
                 </div>                
             </div>
         </div>
-
+        
         
         <div class="container clearfix">
         	
@@ -54,8 +61,8 @@
                     <div id="example-two">
 					
                         <ul class="nav">
-                            <li class="nav-one"><a href="#featured2" class="current">Pending Internship</a></li>
-                            <li class="nav-two"><a href="#core2">Pending Graduation</a></li>
+                            <li class="nav-one"><a href="#featured2" class="current">3rd Year Proposals</a></li>
+                            <li class="nav-two"><a href="#core2">Final Year Proposals</a></li>
 
                         </ul>
                         
@@ -64,28 +71,27 @@
                             <div id="featured2">
                            		
                                 <p class="descriptionTab">
-                                	Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
+                                	Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                 </p>
                                 
                                 
                                <div id="accordion"> 
                                  
-									<h3 class="yellowColor clearfix">
+									<h3 class="greenColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Rashmika Navarathne</a>
-                                    		<p>HTML5/JavaScript (32), ASP.NET (14), SharePoint (3), Java (3), Ruby on Rails (5), PHP (2)</p>
+                                        	<a href="#">Fuel Management System </a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="asd.html">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> 99X Technology</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
-                                    <div class="contentData clearfix"> 
+                                    <div class="contentData research clearfix"> 
                                     
-                                    	<img src="img/img5.jpg"/> 
                                         <p>  
                                             Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                         </p>  
@@ -93,14 +99,14 @@
                                      
                                     <h3 class="yellowColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Kalana Kasun</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, Java, Ruby on Rails, PHP (Zend, Cake)</p>
+                                        	<a href="#">High Performance Event Bus</a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> MIT</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -112,16 +118,16 @@
                                         </p>  
                                     </div> 
                                      
-                                    <h3 class="orangeColor clearfix">
+                                    <h3 class="greenColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Suranga Bandara</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, SharePoint, Javon Rails, Cake</p>
+                                        	<a href="#">Fuzzy Logic based Geo Filtering</a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> CodeGen</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -135,14 +141,14 @@
                                     
                                     <h3 class="yellowColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Hashan Navarathne</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, SharePoint, Java, Ruby on Rails, PHP (Zend, Cake)</p>
+                                        	<a href="#">Social Media Management System </a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> WSO2</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -156,16 +162,16 @@
                                     
                                     <h3 class="yellowColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Nimal Silva</a>
-                                    		<p>ASP.NET, SharePoint, Java, Ruby on Rails, PHP (Zend, Cake)</p>
+                                        	<a href="#">Employee Performance Management System</a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> 99X Technology</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
-                                        </div>
+                                        </div> 
                                     </h3> 
                                     <div class="contentData clearfix"> 
                                     
@@ -182,22 +188,21 @@
                              <div id="core2" class="hide">
                                 <div id="accordion2"> 
                                  
-									<h3 class="yellowColor clearfix">
+									<h3 class="greenColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Rashmika Navarathne</a>
-                                    		<p>HTML5/JavaScript (32), ASP.NET (14), SharePoint (3), Java (3), Ruby on Rails (5), PHP (2)</p>
+                                        	<a href="#">Fuel Management System </a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="asd.html">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> 99X Technology</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
-                                    <div class="contentData clearfix"> 
+                                    <div class="contentData research clearfix"> 
                                     
-                                    	<img src="img/img5.jpg"/> 
                                         <p>  
                                             Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                         </p>  
@@ -205,14 +210,14 @@
                                      
                                     <h3 class="yellowColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Kalana Kasun</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, Java, Ruby on Rails, PHP (Zend, Cake)</p>
+                                        	<a href="#">High Performance Event Bus</a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> MIT</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -224,16 +229,16 @@
                                         </p>  
                                     </div> 
                                      
-                                    <h3 class="orangeColor clearfix">
+                                    <h3 class="greenColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Suranga Bandara</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, SharePoint, Javon Rails, Cake</p>
+                                        	<a href="#">Fuzzy Logic based Geo Filtering</a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> CodeGen</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -247,14 +252,14 @@
                                     
                                     <h3 class="yellowColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Hashan Navarathne</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, SharePoint, Java, Ruby on Rails, PHP (Zend, Cake)</p>
+                                        	<a href="#">Social Media Management System </a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> WSO2</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -268,16 +273,16 @@
                                     
                                     <h3 class="yellowColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Nimal Silva</a>
-                                    		<p>ASP.NET, SharePoint, Java, Ruby on Rails, PHP (Zend, Cake)</p>
+                                        	<a href="#">Employee Performance Management System</a>
+                                    		<p> HTML5/JavaScript, ASP.NET</p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
+                                            	<li class="endGPA"><span>Partner :</span> 99X Technology</li>
+                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
-                                        </div>
+                                        </div> 
                                     </h3> 
                                     <div class="contentData clearfix"> 
                                     
@@ -300,16 +305,21 @@
                 <div id="rightSide">
 				
                 	<ul id="legend">
-                    	<li class="cse clearfix">
+                    	<li class="greenBox clearfix">
                         	<span></span>
-                            <p>Student Specialty - CSE</p>
+                            <p>Project Selected by Students</p>
                         </li>
                         <li class="ice clearfix">
                         	<span></span>
-                            <p>Student Specialty - ICE</p>
+                            <p>Project not Selected yet</p>
                         </li>
                     </ul>
                 	
+                    <div id="addProject">
+                    	<a href="">
+                        	Propose a New Project
+                        </a>
+                    </div>
                     
                     <div class="componentContainer">
                     	<div class="heading">
@@ -330,15 +340,15 @@
                     
                     <div class="componentContainer">
                     	<div class="heading">
-                        	<p>Sort Students</p>
+                        	<p>Sort Research Projects</p>
                         </div>
                         
                         <div class="ccContainer">
                         	<ul>
-                            	<li><input type="checkbox"><label>By GPA</label></li>
-                                <li><input type="checkbox"><label>By Endorsements</label></li>
-                                <li><input type="checkbox"><label>By Specialty</label></li>
-                                <li><input type="checkbox"><label>By First Name</label></li>
+                            	<li><input type="checkbox"><label>By Published Date</label></li>
+                                <li><input type="checkbox"><label>By Estimated Hours</label></li>
+                                <li><input type="checkbox"><label>By Project Name</label></li>
+                                <li><input type="checkbox"><label>By Partner Company</label></li>
                             </ul>
                         </div>
                         
