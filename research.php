@@ -1,4 +1,12 @@
-﻿<!DOCTYPE html>
+<?php
+/*	when you edit this source please add your name and date here
+ *	1.	E.M.M.L Ekanayake		22-02-2014
+ * 	2.	
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -29,15 +37,15 @@
             <div class="container clearfix">
                 
                 <div id="logo">
-                    <a href="./index.html"><img src="img/logo.jpg" /></a>
+                    <a href="./index.php"><img src="img/logo.jpg" /></a>
                 </div>
                 
                 <div id="nav">
                     <ul class="clearfix">
-                        <li><a href="./students.html">Students</a></li>
-                        <li><a href="./sessions.html">Sessions</a></li>
-                        <li><u><a href="./research.html">Research</a></u></li>
-                        <li><a href="./events.html">Events</a></li>
+                        <li><a href="./students.php">Students</a></li>
+                        <li><a href="./sessions.php">Sessions</a></li>
+                        <li><u><a href="./research.php">Research</a></u></li>
+                        <li><a href="./events.php">Events</a></li>
                         <li><a href="">CodeGen</a></li>
                     </ul>
                 </div>                
@@ -78,7 +86,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> 99X Technology</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -98,7 +106,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> MIT</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -119,7 +127,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> CodeGen</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -140,7 +148,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> WSO2</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -161,7 +169,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> 99X Technology</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div> 
                                     </h3> 
@@ -189,7 +197,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> 99X Technology</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -209,7 +217,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> MIT</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -230,7 +238,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> CodeGen</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -251,7 +259,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> WSO2</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div>
                                     </h3>  
@@ -272,7 +280,7 @@
                                         	<ul>
                                             	<li class="endGPA"><span>Partner :</span> 99X Technology</li>
                                                 <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
+                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.php">Frank Warnakula</a></li>
                                             </ul>
                                         </div> 
                                     </h3> 
