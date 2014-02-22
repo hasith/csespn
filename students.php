@@ -93,7 +93,7 @@
                                     </h3>  
                                     <div class="contentData clearfix"> 
                                     
-                                    	<img src="img/img5.jpg"/> 
+                                    	<img src="img/img6.jpg"/> 
                                         <p>  
                                             Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                         </p>  
