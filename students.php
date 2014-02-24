@@ -30,15 +30,15 @@
             <div class="container clearfix">
                 
                 <div id="logo">
-                    <a href="./index.html"><img src="img/logo.jpg" /></a>
+                    <a href="./index.php"><img src="img/logo.jpg" /></a>
                 </div>
                 
                 <div id="nav">
                     <ul class="clearfix">
-                        <li><u><a href="./students.html">Students</a></u></li>
-                        <li><a href="./sessions.html">Sessions</a></li>
-                        <li><a href="./research.html">Research</a></li>
-                        <li><a href="./events.html">Events</a></li>
+                        <li><u><a href="./students.php">Students</a></u></li>
+                        <li><a href="./sessions.php">Sessions</a></li>
+                        <li><a href="./research.php">Research</a></li>
+                        <li><a href="./events.php">Events</a></li>
                         <li><a href="">CodeGen</a></li>
                     </ul>
                 </div>                

@@ -34,10 +34,10 @@
                 
                 <div id="nav">
                     <ul class="clearfix">
-                        <li><a href="./students.html">Students</a></li>
-                        <li><a href="./sessions.html">Sessions</a></li>
-                        <li><u><a href="./research.html">Research</a></u></li>
-                        <li><a href="./events.html">Events</a></li>
+                        <li><a href="./students.php">Students</a></li>
+                        <li><a href="./sessions.php">Sessions</a></li>
+                        <li><u><a href="./research.php">Research</a></u></li>
+                        <li><a href="./events.php">Events</a></li>
                         <li><a href="">CodeGen</a></li>
                     </ul>
                 </div>                
