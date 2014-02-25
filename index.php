@@ -39,7 +39,7 @@
                     <ul class="clearfix">
                         <li><a href="">Partner Benefits</a></li>
                         <li><a href="">Current Partners</a></li>
-                        <li><a href="./events.php">Sign In</a></li>
+                        <li><a href="./login.php">Sign In</a></li>
                     </ul>
                 </div>                
             </div>

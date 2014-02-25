@@ -1,43 +1,57 @@
 <?php
-//login.php
- 
-require_once 'includes/global.inc.php';
- 
-$error = "";
-$username = "";
-$password = "";
- 
-//check to see if they've submitted the login form
-if(isset($_POST['submit-login'])) { 
- 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
- 
-    $userTools = new UserTools();
-    if($userTools->login($username, $password)){
-        //successful login, redirect them to a page
-        header("Location: index.php");
-    }else{
-        $error = "Incorrect username or password. Please try again.";
-    }
+
+session_start();
+
+require_once dirname(__FILE__) . '/Google/Client.php';
+require_once dirname(__FILE__) . '/Google/Auth/OAuth2.php';
+
+/************************************************
+  Make an API request on behalf of a user. In
+  this case we need to have a valid OAuth 2.0
+  token for the user, so we need to send them
+  through a login flow. To do this we need some
+  information from our API console project.
+ ************************************************/
+$client = new Google_Client();
+$client->setApplicationName("CSE - Partner Nework");
+$client->setClientId('653040219437-io2als5ek0t0s3emn8ucgn0jjcqj90ii.apps.googleusercontent.com');
+$client->setClientSecret('VHILGukxSpsgthmbc8tgBDAC');
+$client->setRedirectUri('http://127.0.0.1/csespn/login.php');
+$client->setScopes(array('profile'));
+
+$oauth2 = new Google_Auth_OAuth2($client);
+
+if (isset($_GET['code'])) {
+  $client->authenticate($_GET['code']);
+  $_SESSION['token'] = $client->getAccessToken();
+  $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
+  header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
+  return;
+}
+
+if (isset($_SESSION['token'])) {
+ $client->setAccessToken($_SESSION['token']);
+}
+
+if (isset($_REQUEST['logout'])) {
+  unset($_SESSION['token']);
+  $client->revokeToken();
+}
+
+if ($client->getAccessToken()) {
+  $user = $oauth2->userinfo->get();
+
+  // These fields are currently filtered through the PHP sanitize filters.
+  // See http://www.php.net/manual/en/filter.filters.sanitize.php
+  $email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
+  $img = filter_var($user['picture'], FILTER_VALIDATE_URL);
+  $personMarkup = "$email<div><img src='$img?sz=50'></div>";
+
+  // The access token may have been updated lazily.
+  $_SESSION['token'] = $client->getAccessToken();
+} else {
+  $authUrl = $client->createAuthUrl();
+  header('Location: ' . $authUrl);
+  die;
 }
 ?>
- 
-<html>
-<head>
-    <title>Login</title>
-</head>
-<body>
-<?php
-if($error != "")
-{
-    echo $error."<br/>";
-}
-?>
-    <form action="login.php" method="post">
-        Username: <input type="text" name="username" value="<?php echo $username; ?>" /><br/>
-        Password: <input type="password" name="password" value="<?php echo $password; ?>" /><br/>
-        <input type="submit" value="Login" name="submit-login" />
-    </form>
-</body>
-</html>
