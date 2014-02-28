@@ -17,7 +17,7 @@ $client->setApplicationName("CSE - Partner Nework");
 $client->setClientId('653040219437-io2als5ek0t0s3emn8ucgn0jjcqj90ii.apps.googleusercontent.com');
 $client->setClientSecret('VHILGukxSpsgthmbc8tgBDAC');
 $client->setRedirectUri('http://127.0.0.1/csespn/login.php');
-$client->setScopes(array('profile'));
+$client->setScopes(array('https://www.googleapis.com/auth/plus.me'));
 
 $oauth2 = new Google_Auth_OAuth2($client);
 
