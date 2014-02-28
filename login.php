@@ -22,8 +22,8 @@ $client->setScopes(array('profile'));
 $oauth2 = new Google_Auth_OAuth2($client);
 
 if (isset($_GET['code'])) {
-  //$client->authenticate($_GET['code']);
-  //$_SESSION['token'] = $client->getAccessToken();
+  $client->authenticate($_GET['code']);
+  $_SESSION['token'] = $client->getAccessToken();
   $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
   header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
   return;
