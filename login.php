@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once dirname(__FILE__) . '/Google/Client.php';
-require_once dirname(__FILE__) . '/Google/Auth/OAuth2.php';
+require_once dirname(__FILE__) . '/google/Client.php';
+require_once dirname(__FILE__) . '/google/Auth/OAuth2.php';
 
 /************************************************
   Make an API request on behalf of a user. In
