@@ -22,8 +22,8 @@ $client->setScopes(array('https://www.googleapis.com/auth/plus.me'));
 $oauth2 = new Google_Auth_OAuth2($client);
 
 if (isset($_GET['code'])) {
-  //$client->authenticate($_GET['code']);
-  //$_SESSION['token'] = $client->getAccessToken();
+  $client->authenticate($_GET['code']);
+  $_SESSION['token'] = $client->getAccessToken();
   $redirect = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
   header('Location: ' . filter_var($redirect, FILTER_SANITIZE_URL));
   return;
@@ -39,7 +39,7 @@ if (isset($_REQUEST['logout'])) {
 }
 
 if ($client->getAccessToken()) {
-  $user = $oauth2->userinfo->get();
+  //$user = $oauth2->userinfo->get();
 
   // These fields are currently filtered through the PHP sanitize filters.
   // See http://www.php.net/manual/en/filter.filters.sanitize.php
