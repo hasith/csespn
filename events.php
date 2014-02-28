@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+<?php
+    session_start();
+    if(!isset($_SESSION['token'])){
+        header('Location: ' . '404.php');
+    }
+?>
+<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -39,7 +45,11 @@
                         <li><a href="./sessions.php">Sessions</a></li>
                         <li><a href="./research.php">Research</a></li>
                         <li><u><a href="./events.php">Events</a></u></li>
-                        <li><a href="">CodeGen</a></li>
+                        <?php
+                            if(isset($_SESSION['user_name'])){
+                                echo '<li><a href="">' . $_SESSION['user_name'] . '</a></li>';
+                            }
+                        ?>
                     </ul>
                 </div>                
             </div>

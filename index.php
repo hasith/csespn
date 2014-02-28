@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+<?php
+    session_start();
+?>﻿
+<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -39,7 +42,14 @@
                     <ul class="clearfix">
                         <li><a href="">Partner Benefits</a></li>
                         <li><a href="">Current Partners</a></li>
-                        <li><a href="./login.php">Sign In</a></li>
+                        <?php
+                            if(isset($_SESSION['user_name'])){
+                                echo '<li><a href="events.php">' . $_SESSION['user_name'] . '</a></li>';
+                                echo '<li><a href="./logout.php">Logout</a></li>';
+                            }else{
+                                echo '<li><a href="./login.php">Sign In</a></li>';
+                            }
+                        ?>                        
                     </ul>
                 </div>                
             </div>
