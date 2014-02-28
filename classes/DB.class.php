@@ -1,4 +1,5 @@
 <?php
+
 //DB.class.php
 
 class DB {
@@ -20,15 +21,13 @@ class DB {
     //takes a mysql row set and returns an associative array, where the keys
     //in the array are the column names in the row set. If singleRow is set to
     //true, then it will return a single row instead of an array of rows.
-    public function processRowSet($rowSet, $singleRow=false)
-    {
+    public function processRowSet($rowSet, $singleRow = false) {
         $resultArray = array();
-        while($row = mysql_fetch_assoc($rowSet))
-        {
+        while ($row = mysql_fetch_assoc($rowSet)) {
             array_push($resultArray, $row);
         }
 
-        if($singleRow === true)
+        if ($singleRow === true)
             return $resultArray[0];
 
         return $resultArray;
@@ -40,7 +39,7 @@ class DB {
     public function select($table, $where) {
         $sql = "SELECT * FROM $table WHERE $where";
         $result = mysql_query($sql);
-        if(mysql_num_rows($result) == 1)
+        if (mysql_num_rows($result) == 1)
             return $this->processRowSet($result, true);
 
         return $this->processRowSet($result);
@@ -80,18 +79,38 @@ class DB {
 
         //return the ID of the user in the database.
         return mysql_insert_id();
-
     }
-    
+
     //Updates database from sql file
-    public function update_db($file_name){
-        $link = mysqli_connect($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
-        $queries = file_get_contents($file_name);
-        /* execute multi query */
-        if (mysql_multi_query($link, $queries))
-            echo "Success";
-        else 
-            echo "Fail";
+    public function update_db($file_name) {
+        //Executing SQL queries using split_sql
+        return $this->split_sql($file_name);
+    }
+
+    //Function to split the SQL and execute one by one
+    private function split_sql($file, $delimiter = ';') {
+        set_time_limit(0);
+        if (is_file($file) === true) {
+            $file = fopen($file, 'r');
+            if (is_resource($file) === true) {
+                $query = array();
+                while (feof($file) === false) {
+                    $query[] = fgets($file);
+                    if (preg_match('~' . preg_quote($delimiter, '~') . '\s*$~iS', end($query)) === 1) {
+                        $query = trim(implode('', $query));
+                        mysql_query($query) or die(mysql_error());
+                        while (ob_get_level() > 0) {
+                            ob_end_flush();
+                        }
+                        flush();
+                    }
+                    if (is_string($query) === true) {
+                        $query = array();
+                    }
+                }
+                return fclose($file);
+            }
+        }
+        return false;
     }
 }
-?>
