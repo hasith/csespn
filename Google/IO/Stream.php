@@ -111,7 +111,7 @@ class Google_IO_Stream extends Google_IO_Abstract
     if (false === $response_data) {
       throw new Google_IO_Exception(
           sprintf(
-              "HTTP Error: Unable to connect: '%s'",
+              "HTTP Error: Unable to connect: '%s'" . $this->getHttpResponseCode($http_response_header),
               $respHttpCode
           ),
           $respHttpCode
