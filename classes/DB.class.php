@@ -80,37 +80,4 @@ class DB {
         //return the ID of the user in the database.
         return mysql_insert_id();
     }
-
-    //Updates database from sql file
-    public function update_db($file_name) {
-        //Executing SQL queries using split_sql
-        return $this->split_sql($file_name);
-    }
-
-    //Function to split the SQL and execute one by one
-    private function split_sql($file, $delimiter = ';') {
-        set_time_limit(0);
-        if (is_file($file) === true) {
-            $file = fopen($file, 'r');
-            if (is_resource($file) === true) {
-                $query = array();
-                while (feof($file) === false) {
-                    $query[] = fgets($file);
-                    if (preg_match('~' . preg_quote($delimiter, '~') . '\s*$~iS', end($query)) === 1) {
-                        $query = trim(implode('', $query));
-                        mysql_query($query) or die(mysql_error());
-                        while (ob_get_level() > 0) {
-                            ob_end_flush();
-                        }
-                        flush();
-                    }
-                    if (is_string($query) === true) {
-                        $query = array();
-                    }
-                }
-                return fclose($file);
-            }
-        }
-        return false;
-    }
 }

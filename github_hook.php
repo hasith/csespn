@@ -15,6 +15,6 @@ if (file_exists($LOCAL_REPO)) {
 echo shell_exec("cd {$LOCAL_ROOT} && git clone {$REMOTE_REPO} {$LOCAL_REPO_NAME} && cd {$LOCAL_REPO} && git checkout {$BRANCH}");
 
 // Updating database
-include './db_update.php';
+echo shell_exec("cd {$LOCAL_REPO} && cd database_backups && bash ./db_update.sh");
 
 die("done " . mktime());
