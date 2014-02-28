@@ -5,7 +5,7 @@ class DB {
 
     protected $db_name = 'cses';
     protected $db_user = 'root';
-    protected $db_pass = '';
+    protected $db_pass = 'intel@123';
     protected $db_host = 'localhost';
 
     //open a connection to the database. Make sure this is called
@@ -82,7 +82,16 @@ class DB {
         return mysql_insert_id();
 
     }
-
+    
+    //Updates database from sql file
+    public function update_db($file_name){
+        $link = mysqli_connect($this->db_host, $this->db_user, $this->db_pass, $this->db_name);
+        $queries = file_get_contents($file_name);
+        /* execute multi query */
+        if (mysql_multi_query($link, $queries))
+            echo "Success";
+        else 
+            echo "Fail";
+    }
 }
-
 ?>
