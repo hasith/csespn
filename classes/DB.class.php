@@ -4,7 +4,7 @@
 
 class DB {
 
-    protected $db_name = 'cses';
+    protected $db_name = 'csespn';
     protected $db_user = 'root';
     protected $db_pass = 'intel@123';
     protected $db_host = 'localhost';
