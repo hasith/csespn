@@ -66,7 +66,7 @@ session_start();
 $client = new Google_Client();
 $client->setApplicationName("CSE - Partner Nework");
 $client->setClientId('653040219437-io2als5ek0t0s3emn8ucgn0jjcqj90ii.apps.googleusercontent.com');
-$client->setClientSecret('CWovFOGBagmpNzWX_aG5kF-k');
+$client->setClientSecret('VHILGukxSpsgthmbc8tgBDAC');
 $client->setRedirectUri('http://127.0.0.1/csespn/login.php');
 $client->setDeveloperKey('AIzaSyDE2o-akjQrFc9IkXQfWGiDAp9KMIt5hPA');
 $oauth2 = new Google_Oauth2Service($client);
