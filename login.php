@@ -17,8 +17,7 @@ $client->setApplicationName("CSE - Partner Nework");
 $client->setClientId('653040219437-io2als5ek0t0s3emn8ucgn0jjcqj90ii.apps.googleusercontent.com');
 $client->setClientSecret('VHILGukxSpsgthmbc8tgBDAC');
 $client->setRedirectUri('http://dotitude.99xtechnology.com/csespn/login.php');
-$client->setDeveloperKey('AIzaSyDE2o-akjQrFc9IkXQfWGiDAp9KMIt5hPA');
-$client->setScopes(array('https://www.googleapis.com/auth/plus.me'));
+$client->setScopes(array('profile'));
 
 $oauth2 = new Google_Auth_OAuth2($client);
 
