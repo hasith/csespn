@@ -1,4 +1,5 @@
 <?php
+require_once './global.inc.php';
     session_start();
     if(!isset($_SESSION['token'])){
         header('Location: ' . '404.php');

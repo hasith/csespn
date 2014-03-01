@@ -47,9 +47,8 @@ session_start();
                         <li><a href="">Partner Benefits</a></li>
                         <li><a href="">Current Partners</a></li>
                         <?php
-                            if(isset($_SESSION['org'])){
-                                $org = $_SESSION['org'];
-                                echo '<li><a href="events.php">' . $org->name . '</a></li>';
+                            if(isset($_SESSION['user'])){
+                                echo '<li><a href="events.php">' . $_SESSION['user']->getOrganization()->name . '</a></li>';
                                 echo '<li><a href="./logout.php">Logout</a></li>';
                             }else{
                                 echo '<li><a href="./login.php">Sign In</a></li>';

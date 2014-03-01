@@ -88,10 +88,7 @@ class User {
         if (!empty($result)) {
             $user = new User($result);
             $_SESSION["user"] = $user;
-            
-            $org = Organization::get($user->org);
-            $_SESSION["org"] = $org;
-            
+                        
             $_SESSION["login_time"] = time();
             $_SESSION["logged_in"] = 1;
             

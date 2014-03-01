@@ -47,9 +47,8 @@
                         <li><a href="./research.php">Research</a></li>
                         <li><u><a href="./events.php">Events</a></u></li>
                         <?php
-                            if(isset($_SESSION['org'])){
-                                $org = $_SESSION['org'];
-                                echo '<li><a href="events.php">' . $org->name . '</a></li>';
+                            if(isset($_SESSION['user'])){
+                                echo '<li><a href="events.php">' . $_SESSION['user']->getOrganization()->name . '</a></li>';
                             }
                         ?>
                     </ul>
