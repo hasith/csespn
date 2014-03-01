@@ -4,7 +4,7 @@ $LOCAL_ROOT         = "/var/www/";
 $LOCAL_REPO_NAME    = "csespn";
 $LOCAL_REPO         = "{$LOCAL_ROOT}/{$LOCAL_REPO_NAME}";
 $REMOTE_REPO        = "https://github.com/scnakandala/csespn.git";
-$DESIRED_BRANCH     = "master";
+$BRANCH     = "master";
 
 // Delete local repo if it exists
 if (!file_exists($LOCAL_REPO)) {
