@@ -1,4 +1,5 @@
 #!/bin/bash          
-echo Start Executing SQL commands
-PWD="intel@123"
-mysql -h "localhost" "csespn" < "csespn.sql"
+echo Creating fresh empty csespn DB
+mysql -h "localhost" -u "root" -p "csespn" < "create_new_db.sql"
+echo Adding tables and data to the DB
+mysql -h "localhost" -u "root" -p "csespn" < "csespn.sql"

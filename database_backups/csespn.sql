@@ -20,12 +20,6 @@ SET time_zone = "+00:00";
 -- Database: `csespn`
 --
 
--- --------------------------------------------------------
-/*Drop the existing csespn databse and create new database*/
-DROP DATABASE IF EXISTS csespn;
-CREATE DATABASE csespn;
-USE csespn;
-
 --
 -- Table structure for table `users`
 --
