@@ -1,9 +1,13 @@
 <?php
 
+require_once './global.inc.php';
+
 session_start();
 
-require_once dirname(__FILE__) . '/google_api_php_client/src/Google_Client.php';
-require_once dirname(__FILE__) . '/google_api_php_client/src/contrib/Google_Oauth2Service.php';
+require_once ROOT_DIR . '/google_api_php_client/src/Google_Client.php';
+require_once ROOT_DIR . '/google_api_php_client/src/contrib/Google_Oauth2Service.php';
+
+require_once ROOT_DIR . '/classes/User.class.php';
 
 /* * **********************************************
   Make an API request on behalf of a user. In
@@ -51,18 +55,17 @@ if (isset($_SESSION['token']))
 if ($gClient->getAccessToken()) 
 {
       //For logged in user, get details from google using access token
-      $user                 = $google_oauthV2->userinfo->get();
-      $user_id              = $user['id'];
-      $user_name            = filter_var($user['name'], FILTER_SANITIZE_SPECIAL_CHARS);
-      $email                = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
-      $profile_url          = filter_var($user['link'], FILTER_VALIDATE_URL);
-      $profile_image_url    = filter_var($user['picture'], FILTER_VALIDATE_URL);
-      $personMarkup         = "$email<div><img src='$profile_image_url?sz=50'></div>";
-      $_SESSION['token']    = $gClient->getAccessToken();
-      
-      $_SESSION['user_name']    = $user_name;
-      
-      header('Location: ' . 'events.php');
+      $user = $google_oauthV2->userinfo->get();
+      $temp = User::login(filter_var($user['email'], FILTER_SANITIZE_EMAIL));
+      var_dump($temp);
+      if(!empty(User::login(filter_var($user['email'], FILTER_SANITIZE_EMAIL)))){
+          $_SESSION['token']    = $gClient->getAccessToken();
+          header('Location: ' . 'events.php');
+          return;
+      }else{
+          header('Location: ' . '404.php');
+          return;
+      }
 }
 else 
 {
@@ -71,4 +74,3 @@ else
     header('Location: ' . $authUrl);
     return;
 }
-?>

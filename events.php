@@ -1,4 +1,5 @@
 <?php
+    require_once './global.inc.php';
     session_start();
     if(!isset($_SESSION['token'])){
         header('Location: ' . '404.php');
@@ -46,8 +47,9 @@
                         <li><a href="./research.php">Research</a></li>
                         <li><u><a href="./events.php">Events</a></u></li>
                         <?php
-                            if(isset($_SESSION['user_name'])){
-                                echo '<li><a href="">' . $_SESSION['user_name'] . '</a></li>';
+                            if(isset($_SESSION['org'])){
+                                $org = $_SESSION['org'];
+                                echo '<li><a href="events.php">' . $org->name . '</a></li>';
                             }
                         ?>
                     </ul>

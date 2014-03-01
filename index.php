@@ -1,5 +1,9 @@
 <?php
-    session_start();
+
+require_once './global.inc.php';
+
+session_start();
+
 ?>﻿
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -43,8 +47,9 @@
                         <li><a href="">Partner Benefits</a></li>
                         <li><a href="">Current Partners</a></li>
                         <?php
-                            if(isset($_SESSION['user_name'])){
-                                echo '<li><a href="events.php">' . $_SESSION['user_name'] . '</a></li>';
+                            if(isset($_SESSION['org'])){
+                                $org = $_SESSION['org'];
+                                echo '<li><a href="events.php">' . $org->name . '</a></li>';
                                 echo '<li><a href="./logout.php">Logout</a></li>';
                             }else{
                                 echo '<li><a href="./login.php">Sign In</a></li>';

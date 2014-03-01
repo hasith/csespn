@@ -46,8 +46,9 @@
                         <li><a href="./research.php">Research</a></li>
                         <li><a href="./events.php">Events</a></li>
                         <?php
-                            if(isset($_SESSION['user_name'])){
-                                echo '<li><a href="">' . $_SESSION['user_name'] . '</a></li>';
+                           if(isset($_SESSION['user'])){
+                                $user = $_SESSION['user'];
+                                echo '<li><a href="">' . $user->getOrganization()->name . '</a></li>';
                             }
                         ?>
                     </ul>
