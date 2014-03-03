@@ -7,6 +7,7 @@ class User {
 
     public $id;
     public $name;
+    public $display_name;
     public $email;
     public $role;
     public $org;
@@ -16,6 +17,7 @@ class User {
     function __construct($data) {
         $this->id = (isset($data['id'])) ? $data['id'] : "";
         $this->name = (isset($data['name'])) ? $data['name'] : "";
+        $this->display_name = (isset($data['display_name'])) ? $data['display_name'] : "";
         $this->email = (isset($data['email'])) ? $data['email'] : "";
         $this->role = (isset($data['role'])) ? $data['role'] : "";
         $this->org = (isset($data['org'])) ? $data['org'] : "";
@@ -31,6 +33,7 @@ class User {
             //set the data array
             $data = array(
                 "name" => "'$this->name'",
+                "display_name" => "'$this->display_name'",
                 "email" => "'$this->email'",
                 "role" => "$this->role",
                 "org" => "$this->org"
@@ -42,6 +45,7 @@ class User {
             //if the user is being registered for the first time.
             $data = array(
                 "name" => "'$this->name'",
+                "display_name" => "'$this->display_name'",
                 "email" => "'$this->email'",
                 "role" => "$this->role",
                 "org" => "$this->org"
@@ -63,9 +67,14 @@ class User {
     public function getOrganization() {
         return Organization::get($this->org);
     }
+    
+    public function getRole() {
+        return Role::get($this->role);
+    }
 
     public static function checkUserExists($email) {
-        $result = mysql_query("select id from users where email='$email'");
+        $db = new DB();
+        $result = $db->select("users", "email='$email'");
         if (mysql_num_rows($result) == 0) {
             return false;
         } else {
@@ -78,8 +87,7 @@ class User {
     public static function get($id) {
         $db = new DB();
         $result = $db->select('users', "id = $id");
-
-        return new User($result);
+        return new User($result[0]);
     }
 
     public static function login($email) {

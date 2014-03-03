@@ -48,7 +48,7 @@
                         <li><u><a href="./events.php">Events</a></u></li>
                         <?php
                             if(isset($_SESSION['user'])){
-                                echo '<li><a href="events.php">' . $_SESSION['user']->getOrganization()->name . '</a></li>';
+                                echo '<li><a href="events.php">' . $_SESSION['user']->display_name . '</a></li>';
                             }
                         ?>
                     </ul>

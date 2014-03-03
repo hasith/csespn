@@ -41,9 +41,9 @@ class DB {
     public function select($table, $where) {
         $sql = "SELECT * FROM $table WHERE $where";
         $result = mysql_query($sql);
-        if (mysql_num_rows($result) == 1)
-            return $this->processRowSet($result, true);
-
+        //if (mysql_num_rows($result) == 1)
+        //    return $this->processRowSet($result, true);
+        
         return $this->processRowSet($result);
     }
 

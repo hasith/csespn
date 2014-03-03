@@ -4,6 +4,9 @@ require_once './global.inc.php';
     if(!isset($_SESSION['token'])){
         header('Location: ' . '404.php');
     }
+    
+    $studentTools = new StudentTools();
+    $students = $studentTools->getAllStudents();
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -29,13 +32,9 @@ require_once './global.inc.php';
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        
-        
+        <![endif]-->        
         <div id="header">
-            <div class="container clearfix">
-                
+            <div class="container clearfix">                
                 <div id="logo">
                     <a href="./index.php"><img src="img/logo.jpg" /></a>
                 </div>
@@ -49,269 +48,40 @@ require_once './global.inc.php';
                         <?php
                             if(isset($_SESSION['user'])){
                                 $user = $_SESSION['user'];
-                                echo '<li><a href="">' . $user->getOrganization()->name . '</a></li>';
+                                echo '<li><a href="">' . $user->display_name . '</a></li>';
                             }
                         ?>
                     </ul>
                 </div>                
             </div>
-        </div>
-
-        
-        <div class="container clearfix">
-        	
+        </div>        
+        <div class="container clearfix">        	
             <div id="bannerArea" class="clearfix">
-            	<div id="bannerLeft">
-					
-                    <div id="example-two">
-					
+            	<div id="bannerLeft">					
+                    <div id="example-two">					
                         <ul class="nav">
                             <li class="nav-one"><a href="#featured2" class="current">Pending Internship</a></li>
                             <li class="nav-two"><a href="#core2">Pending Graduation</a></li>
-
-                        </ul>
-                        
-                        <div class="list-wrap">
-                        	
-                            <div id="featured2">
-                           		
+                        </ul>                        
+                        <div class="list-wrap">                        	
+                            <div id="featured2">                           		
                                 <p class="descriptionTab">
                                 	Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                </p>
-                                
-                                
+                                </p>                                
                                <div id="accordion"> 
-                                 
-									<h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Rashmika Navarathne</a>
-                                    		<p>HTML5/JavaScript (32), ASP.NET (14), SharePoint (3), Java (3), Ruby on Rails (5), PHP (2)</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="asd.html">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div> 
-                                     
-                                    <h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Kalana Kasun</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, Java, Ruby on Rails, PHP (Zend, Cake)</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div> 
-                                     
-                                    <h3 class="orangeColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Suranga Bandara</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, SharePoint, Javon Rails, Cake</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>   
-                                    
-                                    <h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Hashan Navarathne</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, SharePoint, Java, Ruby on Rails, PHP (Zend, Cake)</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>   
-                                    
-                                    <h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Nimal Silva</a>
-                                    		<p>ASP.NET, SharePoint, Java, Ruby on Rails, PHP (Zend, Cake)</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3> 
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>  
-                                     
-                                </div>   
-                                
-                            </div>
-                             
+                                   <?php echo getHtmlForStudents($students);?>
+                               </div>                                   
+                            </div>                             
                              <div id="core2" class="hide">
                                 <div id="accordion2"> 
-                                 
-									<h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Rashmika Navarathne</a>
-                                    		<p>HTML5/JavaScript (32), ASP.NET (14), SharePoint (3), Java (3), Ruby on Rails (5), PHP (2)</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="asd.html">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div> 
-                                     
-                                    <h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Kalana Kasun</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, Java, Ruby on Rails, PHP (Zend, Cake)</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div> 
-                                     
-                                    <h3 class="orangeColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Suranga Bandara</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, SharePoint, Javon Rails, Cake</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>   
-                                    
-                                    <h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Hashan Navarathne</a>
-                                    		<p>HTML5/JavaScript, ASP.NET, SharePoint, Java, Ruby on Rails, PHP (Zend, Cake)</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>   
-                                    
-                                    <h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Nimal Silva</a>
-                                    		<p>ASP.NET, SharePoint, Java, Ruby on Rails, PHP (Zend, Cake)</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">Endorsements: 67</li>
-                                                <li class="endGPA">GPA: 3.76</li>
-                                                <li class="linkedLink"><a href="#">LinkedIn</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3> 
-                                    <div class="contentData clearfix"> 
-                                    
-                                    	<img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>  
-                                     
+                                   <?php echo getHtmlForStudents($students);?>  
                                 </div>
-                             </div>
-                             
-
-                             
-                         </div> <!-- END List Wrap -->
-                     
-                     </div>
-                       
+                             </div>                             
+                         </div> <!-- END List Wrap -->                     
+                     </div>                       
                 </div>
-                <div id="rightSide">
-				
-                	<ul id="legend">
+                <div id="rightSide">				
+                    <ul id="legend">
                     	<li class="cse clearfix">
                         	<span></span>
                             <p>Student Specialty - CSE</p>
@@ -320,14 +90,11 @@ require_once './global.inc.php';
                         	<span></span>
                             <p>Student Specialty - ICE</p>
                         </li>
-                    </ul>
-                	
-                    
+                    </ul>                	                    
                     <div class="componentContainer">
                     	<div class="heading">
                         	<p>Filter by Technology</p>
-                        </div>
-                        
+                        </div>                        
                         <div class="ccContainer">
                         	<div class="cloudArea"><img src="img/cloud.jpg" /></div>
                             <div class="cloudArea">
@@ -335,75 +102,46 @@ require_once './global.inc.php';
                                 	<option>Select Form</option>
                                 </select>
                             </div>
-                        </div>
-                        
-                        
-                    </div>
-                    
+                        </div>                        
+                    </div>                    
                     <div class="componentContainer">
                     	<div class="heading">
-                        	<p>Sort Students</p>
-                        </div>
-                        
+                            <p>Sort Students</p>
+                        </div>                        
                         <div class="ccContainer">
-                        	<ul>
+                            <ul>
                             	<li><input type="checkbox"><label>By GPA</label></li>
                                 <li><input type="checkbox"><label>By Endorsements</label></li>
                                 <li><input type="checkbox"><label>By Specialty</label></li>
                                 <li><input type="checkbox"><label>By First Name</label></li>
                             </ul>
-                        </div>
-                        
-                        
-                    </div>
-                    
-                    
-                
+                        </div>                                                
+                    </div>                                                        
                 </div>
-            </div>
-            
-            
-            
-
-            
-            
-            
+            </div>                                                                        
         </div>
         
-        
-        
-
         <script src="js/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
-
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-        
-		<script src="js/organictabs.jquery.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+	<script src="js/organictabs.jquery.js"></script>
         <script>
             $(function() {  
-
                 $("#example-two").organicTabs({
                     "speed": 200
-                });
-				
-				
-				$( "#accordion" ).accordion({
-					autoHeight: false,
-					navigation: true
-				});
-				$( "#accordion2" ).accordion({
-					autoHeight: false,
-					navigation: true
-				});
-				
-				
-				
-        
+                });								
+		$( "#accordion" ).accordion({
+                    autoHeight: false,
+                    navigation: true
+		});
+		$( "#accordion2" ).accordion({
+                    autoHeight: false,
+                    navigation: true
+		});       
             });
         </script>
-
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--<script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -415,3 +153,43 @@ require_once './global.inc.php';
         </script>-->
     </body>
 </html>
+
+<?php
+
+function getHtmlForStudents($students){
+    $html = "";
+    foreach ($students as $student){
+        $html = $html . getHtmlForStudent($student);
+    }
+    
+    return $html;
+}
+
+function getHtmlForStudent($student){
+    $color = $student->course === "CSE" ? 'yellowColor' : 'orangeColor'; //else ICE
+    $html = '<h3 class="' . $color . ' clearfix">';
+    $html = $html . '<div class="descriptionArea">';
+    $html = $html . '<a href="#">' . $student->getUser()->name . '</a>';
+    $html = $html . '<p>HTML5/JavaScript (32), ASP.NET (14), SharePoint (3), Java (3), Ruby on Rails (5), PHP (2)</p>';
+    $html = $html . '</div>';
+    $html = $html . '<div class="darkGray">';
+    $html = $html . '<ul>';
+    $html = $html . '<li class="endGPA">Endorsements: 67</li>';
+    $html = $html . '<li class="endGPA">GPA: ' . $student->gpa . '</li>';
+    $html = $html . '<li class="linkedLink"><a href="' . $student->linkedin_url . '">LinkedIn</a></li>';
+    $html = $html . '</ul>';
+    $html = $html . '</div>';
+    $html = $html . '</h3>';
+    $html = $html . '<div class="contentData clearfix">';
+    $html = $html . '<img src="img/' . $student->image_path . '"/>';
+    $html = $html . '<p>';
+    $html = $html . $student->description;
+    $html = $html . '</p>';
+    $html = $html . '</div>';       
+    return $html;
+}
+
+
+
+
+?>s

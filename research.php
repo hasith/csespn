@@ -48,7 +48,7 @@ require_once './global.inc.php';
                         <?php
                             if(isset($_SESSION['user'])){
                                 $user = $_SESSION['user'];
-                                echo '<li><a href="">' . $user->getOrganization()->name . '</a></li>';
+                                echo '<li><a href="">' . $user->display_name . '</a></li>';
                             }
                         ?>
                     </ul>
