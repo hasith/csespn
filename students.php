@@ -8,6 +8,34 @@ require_once './global.inc.php';
     $studentTools = new StudentTools();
     $pending_intern_students = $studentTools->getPendingInternshipStudents();
     $pending_grad_students = $studentTools->getPendingGraduationStudents();
+    
+    /***********************Sorting Students************************************/
+    if(isset($_GET['sort_by']) && $_GET['sort_by']=="gpa"){
+        usort($pending_intern_students, "gpa_sort");
+        usort($pending_grad_students, "gpa_sort");
+    }else if(isset($_GET['sort_by']) && $_GET['sort_by']=="endorsements"){
+        usort($pending_intern_students, "endorsements_sort");
+        usort($pending_grad_students, "endorsements_sort");
+    }else if(isset($_GET['sort_by']) && $_GET['sort_by']=="speciality"){
+        usort($pending_intern_students, "speciality_sort");
+        usort($pending_grad_students, "speciality_sort");
+    }else if(isset($_GET['sort_by']) && $_GET['sort_by']=="name"){
+        usort($pending_intern_students, "name_sort");
+        usort($pending_grad_students, "name_sort");
+    }        
+    function gpa_sort($student1, $student2){
+        return $student2->gpa-$student1->gpa;
+    }    
+    function endorsements_sort($student1, $student2){
+        return $student2->endorsements-$student1->endorsements;
+    }
+    function speciality_sort($student1, $student2){
+        return $student2->course-$student1->course;
+    }
+    function name_sort($student1, $student2){
+        return $student2->getUser()->name-$student1->getUser()->name;
+    }
+    /***************************************************************************/
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -175,7 +203,7 @@ function getHtmlForStudent($student){
     $html = $html . '</div>';
     $html = $html . '<div class="darkGray">';
     $html = $html . '<ul>';
-    $html = $html . '<li class="endGPA">Endorsements: ' . $student->getTotalEndorsements() . '</li>';
+    $html = $html . '<li class="endGPA">Endorsements: ' . $student->endorsements . '</li>';
     $html = $html . '<li class="endGPA">GPA: ' . $student->gpa . '</li>';
     $html = $html . '<li class="linkedLink"><a href="' . $student->linkedin_url . '">LinkedIn</a></li>';
     $html = $html . '</ul>';

@@ -11,6 +11,7 @@ class Student {
     public $description;
     public $pending_internship;
     public $pending_graduation;
+    public $endorsements;
     public $gpa;
     public $course;
     public $linkedin_url;
@@ -27,6 +28,8 @@ class Student {
         $this->gpa = (isset($data['gpa'])) ? $data['gpa'] : "";
         $this->course = (isset($data['course'])) ? $data['course'] : "";
         $this->linkedin_url = (isset($data['linkedin_url'])) ? $data['linkedin_url'] : "";
+        
+        $this->endorsements = $this->getTotalEndorsements();
     }
 
     public function save($isNewStudent = false) {
@@ -44,6 +47,7 @@ class Student {
                 "pending_internship" => "$this->pending_internship",
                 "pending_graduation" => "$this->pending_graduation",
                 "gpa" => "$this->gpa",
+                "endorsements" => "$this->endorsements",
                 "course"=>"$this->course",
                 "linkedin_url" => "$this->linkedin_url"
             );
@@ -59,6 +63,7 @@ class Student {
                 "pending_internship" => "$this->pending_internship",
                 "pending_graduation" => "$this->pending_graduation",
                 "gpa" => "$this->gpa",
+                "endorsements" => "$this->endorsements",
                 "course"=>"$this->course",
                 "linkedin_url" => "$this->linkedin_url"
             );
