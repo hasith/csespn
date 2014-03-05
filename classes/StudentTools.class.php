@@ -18,4 +18,22 @@ class StudentTools {
         }
         return $students;
     }
+    
+    public function getPendingInternshipStudents(){
+        $results = $this->db->select("students", "pending_internship=true");
+        $students = array();
+        foreach ($results as $result){
+            array_push($students, new Student($result));
+        }
+        return $students;
+    }
+    
+    public function getPendingGraduationStudents(){
+        $results = $this->db->select("students", "pending_graduation=true");
+        $students = array();
+        foreach ($results as $result){
+            array_push($students, new Student($result));
+        }
+        return $students;
+    }
 }

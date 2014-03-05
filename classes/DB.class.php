@@ -6,7 +6,7 @@ class DB {
     protected $db_user = 'root';
     protected $db_pass = '';
     protected $db_host = 'localhost';
-    
+
     function __construct() {
         $this->connect();
     }
@@ -40,6 +40,18 @@ class DB {
     //return value is an associative array with column names as keys.
     public function select($table, $where) {
         $sql = "SELECT * FROM $table WHERE $where";
+        $result = mysql_query($sql);
+        //if (mysql_num_rows($result) == 1)
+        //    return $this->processRowSet($result, true);
+
+        return $this->processRowSet($result);
+    }
+
+    //This is more complex select query
+    public function select2($columns, $table, $where, $group_by, $order_by) {
+        $group_by != "" ? $group_by = ' GROUP BY ' . $group_by : $group_by = "";
+        $order_by != "" ? $order_by = ' ORDER BY ' . $order_by : $order_by = "";
+        $sql = "SELECT $columns FROM $table WHERE $where $group_by $order_by";        
         $result = mysql_query($sql);
         //if (mysql_num_rows($result) == 1)
         //    return $this->processRowSet($result, true);
@@ -82,4 +94,5 @@ class DB {
         //return the ID of the user in the database.
         return mysql_insert_id();
     }
+
 }

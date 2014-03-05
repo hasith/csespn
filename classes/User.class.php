@@ -87,7 +87,7 @@ class User {
     public static function get($id) {
         $db = new DB();
         $result = $db->select('users', "id = $id");
-        return new User($result[0]);
+        return new User($result);
     }
 
     public static function login($email) {
@@ -104,6 +104,5 @@ class User {
         } else {
             return null;
         }
-    }
-
+    }    
 }

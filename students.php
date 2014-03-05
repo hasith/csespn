@@ -6,7 +6,8 @@ require_once './global.inc.php';
     }
     
     $studentTools = new StudentTools();
-    $students = $studentTools->getAllStudents();
+    $pending_intern_students = $studentTools->getPendingInternshipStudents();
+    $pending_grad_students = $studentTools->getPendingGraduationStudents();
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -69,12 +70,12 @@ require_once './global.inc.php';
                                 	Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                 </p>                                
                                <div id="accordion"> 
-                                   <?php echo getHtmlForStudents($students);?>
+                                   <?php echo getHtmlForStudents($pending_intern_students);?>
                                </div>                                   
                             </div>                             
                              <div id="core2" class="hide">
                                 <div id="accordion2"> 
-                                   <?php echo getHtmlForStudents($students);?>  
+                                   <?php echo getHtmlForStudents($pending_grad_students);?>  
                                 </div>
                              </div>                             
                          </div> <!-- END List Wrap -->                     
@@ -170,11 +171,11 @@ function getHtmlForStudent($student){
     $html = '<h3 class="' . $color . ' clearfix">';
     $html = $html . '<div class="descriptionArea">';
     $html = $html . '<a href="#">' . $student->getUser()->name . '</a>';
-    $html = $html . '<p>HTML5/JavaScript (32), ASP.NET (14), SharePoint (3), Java (3), Ruby on Rails (5), PHP (2)</p>';
+    $html = $html . '<p>' . getHtmlForStudentTechnologies($student) . '</p>';
     $html = $html . '</div>';
     $html = $html . '<div class="darkGray">';
     $html = $html . '<ul>';
-    $html = $html . '<li class="endGPA">Endorsements: 67</li>';
+    $html = $html . '<li class="endGPA">Endorsements: ' . $student->getTotalEndorsements() . '</li>';
     $html = $html . '<li class="endGPA">GPA: ' . $student->gpa . '</li>';
     $html = $html . '<li class="linkedLink"><a href="' . $student->linkedin_url . '">LinkedIn</a></li>';
     $html = $html . '</ul>';
@@ -189,7 +190,19 @@ function getHtmlForStudent($student){
     return $html;
 }
 
+function getHtmlForStudentTechnologies($student){
+    $technologies = $student->getCompetentTechnologies();
+    $html = "";
+    $count = 1;
+    foreach ($technologies as $key => $value) {
+        if($count == count($technologies)){
+            $html = $html . ' ' . $value[0]->name . ' ' .'('.$value[1].')';
+            break;
+        }
+        $html = $html . ' ' . $value[0]->name . ' ' .'('.$value[1].'),';
+    }
+    
+    return $html;
+}
 
-
-
-?>s
+?>
