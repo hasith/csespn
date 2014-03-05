@@ -14,13 +14,13 @@ class User {
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
-    function __construct($data) {
-        $this->id = (isset($data['id'])) ? $data['id'] : "";
-        $this->name = (isset($data['name'])) ? $data['name'] : "";
-        $this->display_name = (isset($data['display_name'])) ? $data['display_name'] : "";
-        $this->email = (isset($data['email'])) ? $data['email'] : "";
-        $this->role = (isset($data['role'])) ? $data['role'] : "";
-        $this->org = (isset($data['org'])) ? $data['org'] : "";
+    function __construct($data) {        
+        $this->id = (isset($data[0]['id'])) ? $data[0]['id'] : "";
+        $this->name = (isset($data[0]['name'])) ? $data[0]['name'] : "";
+        $this->display_name = (isset($data[0]['display_name'])) ? $data[0]['display_name'] : "";
+        $this->email = (isset($data[0]['email'])) ? $data[0]['email'] : "";
+        $this->role = (isset($data[0]['role'])) ? $data[0]['role'] : "";
+        $this->org = (isset($data[0]['org'])) ? $data[0]['org'] : "";
     }
 
     public function save($isNewUser = false) {
