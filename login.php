@@ -57,8 +57,8 @@ if ($gClient->getAccessToken())
       //For logged in user, get details from google using access token
       $user = $google_oauthV2->userinfo->get();
       $temp = User::login(filter_var($user['email'], FILTER_SANITIZE_EMAIL));
-      var_dump($temp);
-      if(!empty(User::login(filter_var($user['email'], FILTER_SANITIZE_EMAIL)))){
+      //var_dump($temp);
+      if(!empty($temp)){
           $_SESSION['token']    = $gClient->getAccessToken();
           header('Location: ' . 'events.php');
           return;

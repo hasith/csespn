@@ -307,7 +307,12 @@ require_once './global.inc.php';
                        
                 </div>
                 <div id="rightSide">
-				
+                    <div id="addProject">
+                    	<a href="">
+                        	Propose a New Project
+                        </a>
+                    </div>
+                    				
                 	<ul id="legend">
                     	<li class="greenBox clearfix">
                         	<span></span>
@@ -319,11 +324,7 @@ require_once './global.inc.php';
                         </li>
                     </ul>
                 	
-                    <div id="addProject">
-                    	<a href="">
-                        	Propose a New Project
-                        </a>
-                    </div>
+
                     
                     <div class="componentContainer">
                     	<div class="heading">

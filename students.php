@@ -109,7 +109,14 @@ require_once './global.inc.php';
                          </div> <!-- END List Wrap -->                     
                      </div>                       
                 </div>
-                <div id="rightSide">				
+                <div id="rightSide">	
+                	
+                    <div id="addProject">
+                    	<a href="">
+                        	Assemble a Team
+                        </a>
+                    </div>
+                    			
                     <ul id="legend">
                     	<li class="cse clearfix">
                         	<span></span>
