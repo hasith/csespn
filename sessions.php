@@ -4,6 +4,8 @@ require_once './global.inc.php';
     if(!isset($_SESSION['token'])){
         header('Location: ' . '404.php');
     }
+	
+	
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -75,7 +77,16 @@ require_once './global.inc.php';
                                 
                                 
                                <div id="sessionsList"> 
-                                 
+                                  
+<?php
+$sessionTools = new SessionTools();
+$sessions = $sessionTools->getAllSessions();
+
+foreach($sessions as $session) {
+	echo $session->title;
+}
+
+?>                                  
 									<h3 class="greenColor clearfix">
                                     	<div class="descriptionArea">
                                         	<a href="#">Go REST with ASP.NET Web API</a>
