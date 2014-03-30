@@ -1,7 +1,7 @@
 <?php
 require_once './global.inc.php';
     session_start();
-    if(!isset($_SESSION['token'])){
+    if(!oauth_session_exists()){
         header('Location: ' . '404.php');
     }
     
