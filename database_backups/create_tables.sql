@@ -125,8 +125,31 @@ CREATE TABLE `csespn`.`sessions` (
     REFERENCES `csespn`.`orgs` (`id`)
     ON DELETE SET NULL
     ON UPDATE CASCADE);
+    
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `batches`
+--
+    
+CREATE TABLE `csespn`.`batches` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `display_name` VARCHAR(45) NULL,
+  `year` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  UNIQUE INDEX `year_UNIQUE` (`year` ASC));
+    
+-- --------------------------------------------------------
 
+--
+-- Table structure for table `session_batchs`
+--
+CREATE TABLE `csespn`.`session_batchs` (
+  `session_id` INT NOT NULL,
+  `batch_id` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`session_id`, `batch_id`));
+  
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

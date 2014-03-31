@@ -4,7 +4,7 @@ echo Creating fresh empty csespn DB
 mysql -h "localhost" -u "root" -p < "create_new_db.sql"
 
 echo Adding tables and data to the DB
-mysql csespn -h "localhost" -u "root" -p < "csespn.sql"
+mysql csespn -h "localhost" -u "root" -p < "create_tables.sql"
 
 echo Adding base data to the DB
 mysql csespn -h "localhost" -u "root" -p < "seed_basedata.sql"
