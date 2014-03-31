@@ -1,6 +1,6 @@
 <?php
 
-require_once './global.inc.php';
+require_once('global.inc.php');
 
 session_start();
 
@@ -47,18 +47,17 @@ session_start();
                         <li><a href="">Partner Benefits</a></li>
                         <li><a href="">Current Partners</a></li>
                         <?php
-                            if(isset($_SESSION['user'])){
-                                echo '<li><a href="events.php">' . $_SESSION['user']->display_name . '</a></li>';
-                                echo '<li><a href="./logout.php">Logout</a></li>';
+                            if(oauth_session_exists()){
+                                echo '<li><a href="./events.php">' . 'Name' . '</a></li>';
+                                echo '<li><a href=' . "./login.php?lType=revoke" . ">Logout</a></li>";
                             }else{
-                                echo '<li><a href="./login.php">Sign In</a></li>';
+                                echo '<li><a href=' . "./login.php?lType=initiate" . ">Connect with LinkedIn</a></li>";
                             }
                         ?>                        
                     </ul>
                 </div>                
             </div>
         </div>
-        
         
         <div class="container clearfix">
         	
