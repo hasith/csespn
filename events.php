@@ -182,30 +182,8 @@
         </div>
         
         
-        
-
-        <script src="js/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-        
-		<script src="js/organictabs.jquery.js"></script>
-        <script>
-            $(function() {  
-
-                $("#example-two").organicTabs({
-                    "speed": 200
-                });
-				
-
-				
-				
-				
-        
-            });
-        </script>
+        <?php include_once 'scripts.inc.php'; ?>
+ ]
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--<script>

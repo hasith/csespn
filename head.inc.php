@@ -9,10 +9,7 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
-        
         <link rel="stylesheet" href="css/bjqs.css">
-        
         <link rel="stylesheet" href="css/style.css">
-        
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <script src="js/modernizr-2.6.2.min.js"></script>
     </head>

@@ -1,9 +1,11 @@
 <?php
 require_once './global.inc.php';
     session_start();
-    if(!isset($_SESSION['token'])){
+    if(!oauth_session_exists()){
         header('Location: ' . '404.php');
     }
+	
+	
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -319,55 +321,14 @@ require_once './global.inc.php';
                             </ul>
                         </div>
                         
-                        
                     </div>
-                    
-                    
                 
                 </div>
             </div>
             
-            
-            
-
-            
-            
-            
         </div>
         
-        
-        
-
-        <script src="js/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-        
-		<script src="js/organictabs.jquery.js"></script>
-        <script>
-            $(function() {  
-
-                $("#example-two").organicTabs({
-                    "speed": 200
-                });
-				
-				
-				$( "#accordion" ).accordion({
-					autoHeight: false,
-					navigation: true
-				});
-				$( "#accordion2" ).accordion({
-					autoHeight: false,
-					navigation: true
-				});
-				
-				
-				
-        
-            });
-        </script>
+		<?php include_once 'scripts.inc.php'; ?>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--<script>
