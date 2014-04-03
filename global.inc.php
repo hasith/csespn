@@ -19,3 +19,5 @@ function oauth_session_exists() {
     return FALSE;
   }
 }
+
+$pageName = strstr(basename($_SERVER["PHP_SELF"]),'.',true);

@@ -46,29 +46,10 @@ require_once './global.inc.php';
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->        
-        <div id="header">
-            <div class="container clearfix">                
-                <div id="logo">
-                    <a href="./index.php"><img src="img/logo.jpg" /></a>
-                </div>
-                
-                <div id="nav">
-                    <ul class="clearfix">
-                        <li><u><a href="./students.php">Students</a></u></li>
-                        <li><a href="./sessions.php">Sessions</a></li>
-                        <li><a href="./research.php">Research</a></li>
-                        <li><a href="./events.php">Events</a></li>
-                        <?php
-                            if(isset($_SESSION['user'])){
-                                $user = $_SESSION['user'];
-                                echo '<li><a href="">' . $user->display_name . '</a></li>';
-                            }
-                        ?>
-                    </ul>
-                </div>                
-            </div>
-        </div>        
+        <![endif]-->  
+              
+        <?php require_once './nav.inc.php'; ?>    
+          
         <div class="container clearfix">        	
             <div id="bannerArea" class="clearfix">
             	<div id="bannerLeft">					
