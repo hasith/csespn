@@ -329,7 +329,25 @@ require_once './global.inc.php';
         </div>
         
 		<?php include_once 'scripts.inc.php'; ?>
+        <script>
+            $(function() {  
 
+                $("#example-two").organicTabs({
+                    "speed": 200
+                });
+				
+				
+				$( "#accordion" ).accordion({
+					autoHeight: false,
+					navigation: true
+				});
+				$( "#accordion2" ).accordion({
+					autoHeight: false,
+					navigation: true
+				});
+        
+            });
+        </script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--<script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

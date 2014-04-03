@@ -2,3 +2,4 @@
         <script src="js/jquery-ui.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/organictabs.jquery.js"></script>

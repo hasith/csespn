@@ -124,7 +124,7 @@ require_once './global.inc.php';
         </div>
         
      	<?php include_once 'scripts.inc.php'; ?>
-		<script src="js/organictabs.jquery.js"></script>		
+				
         <script>
             $(function() {  
                 $("#example-two").organicTabs({
