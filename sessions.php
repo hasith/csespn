@@ -4,58 +4,21 @@ require_once './global.inc.php';
     if(!oauth_session_exists()){
         header('Location: ' . '404.php');
     }
+	
+	
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        
-        <link rel="stylesheet" href="css/style.css">
-        
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
+    <?php require_once './head.inc.php'; ?>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        
-        
-        <div id="header">
-            <div class="container clearfix">
-                
-                <div id="logo">
-                    <a href="./index.php"><img src="img/logo.jpg" /></a>
-                </div>
-                
-                <div id="nav">
-                    <ul class="clearfix">
-                        <li><a href="./students.php">Students</a></li>
-                        <li><u><a href="./sessions.php">Sessions</a></u></li>
-                        <li><a href="./research.php">Research</a></li>
-                        <li><a href="./events.php">Events</a></li>
-                        <?php
-                           if(isset($_SESSION['user'])){
-                                $user = $_SESSION['user'];
-                                echo '<li><a href="">' . $user->display_name . '</a></li>';
-                            }
-                        ?>
-                    </ul>
-                </div>                
-            </div>
-        </div>
+        <?php require_once './nav.inc.php'; ?>
 
         <div class="container clearfix">
         	
@@ -75,7 +38,16 @@ require_once './global.inc.php';
                                 
                                 
                                <div id="sessionsList"> 
-                                 
+                                  
+<?php
+$sessionTools = new SessionTools();
+$sessions = $sessionTools->getAllSessions();
+
+foreach($sessions as $session) {
+	echo $session->title;
+}
+
+?>                                  
 									<h3 class="greenColor clearfix">
                                     	<div class="descriptionArea">
                                         	<a href="#">Go REST with ASP.NET Web API</a>
@@ -170,7 +142,12 @@ require_once './global.inc.php';
                        
                 </div>
                 <div id="rightSide">
-				
+		            <div id="addProject">
+                    	<a href="">
+                        	Propose a New Session
+                        </a>
+                    </div>
+                    		
                 	<ul id="legend">
                     	<li class="greenBox clearfix">
                         	<span></span>
@@ -190,11 +167,7 @@ require_once './global.inc.php';
                         </li>
                     </ul>
                 	
-                    <div id="addProject">
-                    	<a href="">
-                        	Propose a New Project
-                        </a>
-                    </div>
+
                     
                     
                     <div class="componentContainer">
@@ -246,29 +219,7 @@ require_once './global.inc.php';
         
         
         
-
-        <script src="js/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-        
-		<script src="js/organictabs.jquery.js"></script>
-        <script>
-            $(function() {  
-
-                $("#example-two").organicTabs({
-                    "speed": 200
-                });
-				
-
-				
-				
-				
-        
-            });
-        </script>
+		<?php include_once 'scripts.inc.php'; ?>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--<script>

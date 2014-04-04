@@ -34,9 +34,12 @@
     padding: 0;
     margin: 0;
 }
+
 #nav ul li{
     float: left;
 }
+
+
 #nav ul li:last-child{
     margin-right: 0px !important;
 }
@@ -56,8 +59,12 @@
 	text-decoration:none !important;
 }
 #nav ul li a:hover{
-	text-decoration:underline;
+	text-shadow: 3px 3px 3px #FFFFFF;
 }
+#nav ul li.active{
+	text-decoration: underline;
+}
+
 #bannerArea{
 	width:1200px;
 	margin-top:35px;

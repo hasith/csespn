@@ -7,6 +7,8 @@ require_once ROOT_DIR . '/classes/Company.class.php';
 require_once ROOT_DIR . '/classes/Student.class.php';
 require_once ROOT_DIR . '/classes/StudentTools.class.php';
 require_once ROOT_DIR . '/classes/Technology.class.php';
+require_once ROOT_DIR . '/classes/Session.class.php';
+require_once ROOT_DIR . '/classes/SessionTools.class.php';
 
 
 function oauth_session_exists() {
@@ -16,3 +18,5 @@ function oauth_session_exists() {
     return FALSE;
   }
 }
+
+$pageName = strstr(basename($_SERVER["PHP_SELF"]),'.',true);

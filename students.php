@@ -42,48 +42,14 @@ require_once './global.inc.php';
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        
-        <link rel="stylesheet" href="css/style.css">
-        
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
+    <?php require_once './head.inc.php'; ?>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->        
-        <div id="header">
-            <div class="container clearfix">                
-                <div id="logo">
-                    <a href="./index.php"><img src="img/logo.jpg" /></a>
-                </div>
-                
-                <div id="nav">
-                    <ul class="clearfix">
-                        <li><u><a href="./students.php">Students</a></u></li>
-                        <li><a href="./sessions.php">Sessions</a></li>
-                        <li><a href="./research.php">Research</a></li>
-                        <li><a href="./events.php">Events</a></li>
-                        <?php
-                            if(isset($_SESSION['user'])){
-                                $user = $_SESSION['user'];
-                                echo '<li><a href="">' . $user->display_name . '</a></li>';
-                            }
-                        ?>
-                    </ul>
-                </div>                
-            </div>
-        </div>        
+        <![endif]-->  
+              
+        <?php require_once './nav.inc.php'; ?>    
+          
         <div class="container clearfix">        	
             <div id="bannerArea" class="clearfix">
             	<div id="bannerLeft">					
@@ -109,7 +75,14 @@ require_once './global.inc.php';
                          </div> <!-- END List Wrap -->                     
                      </div>                       
                 </div>
-                <div id="rightSide">				
+                <div id="rightSide">	
+                	
+                    <div id="addProject">
+                    	<a href="">
+                        	Assemble a Team
+                        </a>
+                    </div>
+                    			
                     <ul id="legend">
                     	<li class="cse clearfix">
                         	<span></span>
@@ -150,25 +123,21 @@ require_once './global.inc.php';
             </div>                                                                        
         </div>
         
-        <script src="js/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-        <script src="js/plugins.js"></script>
-        <script src="js/main.js"></script>
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
-	<script src="js/organictabs.jquery.js"></script>
+     	<?php include_once 'scripts.inc.php'; ?>
+				
         <script>
             $(function() {  
                 $("#example-two").organicTabs({
                     "speed": 200
                 });								
-		$( "#accordion" ).accordion({
-                    autoHeight: false,
-                    navigation: true
-		});
-		$( "#accordion2" ).accordion({
-                    autoHeight: false,
-                    navigation: true
-		});       
+			$( "#accordion" ).accordion({
+	                    autoHeight: false,
+	                    navigation: true
+			});
+			$( "#accordion2" ).accordion({
+	                    autoHeight: false,
+	                    navigation: true
+			});       
             });
         </script>
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
