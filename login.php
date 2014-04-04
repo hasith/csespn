@@ -1,12 +1,5 @@
 <?php
-
-function oauth_session_exists() {
-  if((is_array($_SESSION)) && (array_key_exists('oauth', $_SESSION))) {
-    return TRUE;
-  } else {
-    return FALSE;
-  }
-}
+require_once('global.inc.php');
 
 try {
   // include the LinkedIn class
@@ -33,14 +26,14 @@ try {
        */
         
       // check for the correct http protocol (i.e. is this script being served via http or https)
-      if($_SERVER['HTTPS'] == 'on') {
+      if(!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') {
         $protocol = 'https';
       } else {
         $protocol = 'http';
       }
       
       // set the callback url
-      $API_CONFIG['callbackUrl'] = $protocol . '://' . $_SERVER['SERVER_NAME'] . ((($_SERVER['SERVER_PORT'] != PORT_HTTP) || ($_SERVER['SERVER_PORT'] != PORT_HTTP_SSL)) ? ':' . $_SERVER['SERVER_PORT'] : '') . $_SERVER['PHP_SELF'] . '?' . LINKEDIN::_GET_TYPE . '=initiate&' . LINKEDIN::_GET_RESPONSE . '=1';
+      $API_CONFIG['callbackUrl'] = $protocol . '://' . $_SERVER['SERVER_NAME'] . ((isset($_SERVER['SERVER_PORT']) && ($_SERVER['SERVER_PORT'] != 'PORT_HTTP') || ($_SERVER['SERVER_PORT'] != PORT_HTTP_SSL)) ? ':' . $_SERVER['SERVER_PORT'] : '') . $_SERVER['PHP_SELF'] . '?' . LINKEDIN::_GET_TYPE . '=initiate&' . LINKEDIN::_GET_RESPONSE . '=1';
       $OBJ_linkedin = new LinkedIn($API_CONFIG);
       
       // check for response from LinkedIn
@@ -69,9 +62,18 @@ try {
           
           // set the user as authorized for future quick reference
           $_SESSION['oauth']['linkedin']['authorized'] = TRUE;
-            
+          
+          $OBJ_linkedin = new LinkedIn($API_CONFIG);
+          $OBJ_linkedin->setTokenAccess($_SESSION['oauth']['linkedin']['access']);
+          $OBJ_linkedin->setResponseFormat(LINKEDIN::_RESPONSE_XML);
+          $response = $OBJ_linkedin->profile('~:(id,first-name,last-name,picture-url,skills)');
+          
+          $result = new SimpleXMLElement($response['linkedin']);
+          
+          var_dump($result->{'first-name'} . " " . $result->{'last-name'});
+          exit;
           // redirect the user back to the demo page
-          header('Location: ' . $_SERVER['PHP_SELF']);
+          //header('Location: ' . $_SERVER['PHP_SELF']);
         } else {
           // bad token access
           echo "Access token retrieval failed:<br /><br />RESPONSE:<br /><br /><pre>" . print_r($response, TRUE) . "</pre><br /><br />LINKEDIN OBJ:<br /><br /><pre>" . print_r($OBJ_linkedin, TRUE) . "</pre>";
