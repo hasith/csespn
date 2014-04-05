@@ -9,6 +9,7 @@ require_once ROOT_DIR . '/classes/StudentTools.class.php';
 require_once ROOT_DIR . '/classes/Technology.class.php';
 require_once ROOT_DIR . '/classes/Session.class.php';
 require_once ROOT_DIR . '/classes/SessionTools.class.php';
+require_once ROOT_DIR . '/classes/Endorsement.class.php';
 
 
 function oauth_session_exists() {

@@ -47,4 +47,24 @@ class Company {
 
         return new Organization($result[0]);
     }
+    
+    public static function getUomStudentsId()
+    {
+        //has to come from the db
+        return "1";
+    }
+    
+    public static function getUomLecturersId()
+    {
+        //has to come from the db
+        return "2";
+    }
+    
+    
+    public static function getDummyComapnyId()
+    {
+        //has to come from the db
+        return "3";
+    }
+    
 }

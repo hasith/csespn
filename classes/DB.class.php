@@ -4,7 +4,7 @@ class DB {
 
     protected $db_name = 'csespn';
     protected $db_user = 'root';
-    protected $db_pass = 'Jewelcase';
+    protected $db_pass = '';
     protected $db_host = 'localhost';
 
     function __construct() {
@@ -41,21 +41,25 @@ class DB {
     public function select($table, $where) {
         $sql = "SELECT * FROM $table WHERE $where";
         $result = mysql_query($sql);
-        //if (mysql_num_rows($result) == 1)
-        //    return $this->processRowSet($result, true);
-
-        return $this->processRowSet($result);
+        if (!$result) {            
+            return false;
+        }else{
+            //if (mysql_num_rows($result) == 1) {
+            //    return $this->processRowSet($result, true);
+            //}
+            return $this->processRowSet($result);
+        }
     }
 
     //This is more complex select query
     public function select2($columns, $table, $where, $group_by, $order_by) {
         $group_by != "" ? $group_by = ' GROUP BY ' . $group_by : $group_by = "";
         $order_by != "" ? $order_by = ' ORDER BY ' . $order_by : $order_by = "";
-        $sql = "SELECT $columns FROM $table WHERE $where $group_by $order_by";        
+        $sql = "SELECT $columns FROM $table WHERE $where $group_by $order_by";
         $result = mysql_query($sql);
         //if (mysql_num_rows($result) == 1)
         //    return $this->processRowSet($result, true);
-        
+
         return $this->processRowSet($result);
     }
 
@@ -88,7 +92,7 @@ class DB {
         }
 
         $sql = "insert into $table ($columns) values ($values)";
-
+        
         mysql_query($sql) or die(mysql_error());
 
         //return the ID of the user in the database.
