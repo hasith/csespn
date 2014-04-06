@@ -20,6 +20,8 @@ class StudentTools {
     }
     
     public function getPendingInternshipStudents(){
+        //should do a join with the batches table and find the respective batch
+        //which is defined in a config file
         $results = $this->db->select("students", "true");
         $students = array();
         foreach ($results as $result){
@@ -29,10 +31,12 @@ class StudentTools {
     }
     
     public function getPendingGraduationStudents(){
+        //should do a join with the batches table and find the respective batch
+        //which is defined in a config file
         $results = $this->db->select("students", "true");
         $students = array();
         foreach ($results as $result){
-            array_push($students, new Student($result));
+            array_push($students, new Student(array($result)));
         }
         return $students;
     }

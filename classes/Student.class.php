@@ -68,7 +68,7 @@ class Student {
 
     public function getCompetentTechnologies() {
         $db = new DB();
-        $results = $db->select2("technologies.id AS id, technologies.name AS name, COUNT(*) AS count", "((endorsements join students on endorsements.student_id = students.id) join technologies on technologies.id = endorsements.technology_id)", "endorsements.student_id = $this->id", "name", "count");
+        $results = $db->select2("technologies.id AS id, technologies.name AS name, endorsements.COUNT AS count", "((endorsements join students on endorsements.student_id = students.id) join technologies on technologies.id = endorsements.technology_id)", "endorsements.student_id = $this->id", "name", "count");
         $technologies = array();
         foreach ($results as $key => $value) {
             array_push($technologies, array(new Technology(array($value)), $value['count']));
@@ -77,7 +77,8 @@ class Student {
     }
     
     public function getEndorsements() {
-        //has to come from the db
-        return "56";
+        $db = new DB();
+        $results = $db->select2("sum(endorsements.count) AS count", "((endorsements join students on endorsements.student_id = students.id) join technologies on technologies.id = endorsements.technology_id)", "endorsements.student_id = $this->id","","");
+        return $results[0]['count'];
     }
 }

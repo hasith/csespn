@@ -9,6 +9,7 @@ $studentTools = new StudentTools();
 $pending_intern_students = $studentTools->getPendingInternshipStudents();
 $pending_grad_students = $studentTools->getPendingGraduationStudents();
 
+
 /* * *********************Sorting Students*********************************** */
 if (isset($_GET['sort_by']) && $_GET['sort_by'] == "gpa") {
     usort($pending_intern_students, "gpa_sort");
@@ -25,15 +26,17 @@ if (isset($_GET['sort_by']) && $_GET['sort_by'] == "gpa") {
 }
 
 function gpa_sort($student1, $student2) {
-    return $student2->gpa - $student1->gpa;
+    return doubleval($student2->gpa) - doubleval($student1->gpa);
 }
 
 function endorsements_sort($student1, $student2) {
-    return $student2->endorsements - $student1->endorsements;
+    return intval($student2->getEndorsements()) - intval($student1->getEndorsements());
 }
 
 function speciality_sort($student1, $student2) {
-    return $student2->course - $student1->course;
+    //has to be done
+    //return $student2->course - $student1->course;
+    return 0;
 }
 
 function name_sort($student1, $student2) {
@@ -68,14 +71,13 @@ function name_sort($student1, $student2) {
                                 <p class="descriptionTab">
                                     Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                 </p>                                
-                                <div id="accordion"> 
-                                    <?php echo getHtmlForStudents($pending_intern_students); ?>
-                                </div>                                   
+                                <div id="accordion"><?php echo getHtmlForStudents($pending_intern_students); ?></div>                                   
                             </div>                             
                             <div id="core2" class="hide">
-                                <div id="accordion2"> 
-<?php echo getHtmlForStudents($pending_grad_students); ?>  
-                                </div>
+                                <p class="descriptionTab">
+                                    Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
+                                </p>
+                                <div id="accordion"> <?php echo getHtmlForStudents($pending_grad_students); ?>  </div>
                             </div>                             
                         </div> <!-- END List Wrap -->                     
                     </div>                       
