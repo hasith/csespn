@@ -39,15 +39,15 @@ require_once './global.inc.php';
                                 
                                <div id="sessionsList"> 
                                   
-<?php
-$sessionTools = new SessionTools();
-$sessions = $sessionTools->getAllSessions();
-
-foreach($sessions as $session) {
-	echo $session->title;
-}
-
-?>                                  
+									<?php
+									$sessionTools = new SessionTools();
+									$sessions = $sessionTools->getAllSessions();
+									
+									foreach($sessions as $session) {
+										echo $session->title;
+									}
+									
+									?>                                  
 									<h3 class="greenColor clearfix">
                                     	<div class="descriptionArea">
                                         	<a href="#">Go REST with ASP.NET Web API</a>
@@ -143,7 +143,7 @@ foreach($sessions as $session) {
                 </div>
                 <div id="rightSide">
 		            <div id="addProject">
-                    	<a href="">
+                    	<a href="" id="propose-session">
                         	Propose a New Session
                         </a>
                     </div>
@@ -200,26 +200,39 @@ foreach($sessions as $session) {
                                 <li><input type="checkbox"><label>By Partner</label></li>
                             </ul>
                         </div>
-                        
-                        
+                                                
                     </div>
-                    
-                    
-                
+               
                 </div>
             </div>
-            
-            
-            
-
-            
-            
-            
+               
         </div>
         
-        
+		<div id="dialog-form" title="Propose new session">
+		  <p class="validateTips">Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.</p>
+		 
+		  <form id="create_form" method="post" action="sessions.create.php">
+		  <fieldset>
+		    <label for="title">Title</label>
+		    <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all"><br/>
+		    <label for="description">Description</label>
+		    <textarea form="create_form" name="description" rows="4" cols="50"></textarea><br/>
+			<label for="batch">Target Batches</label>
+			<?php
+			$batchTools = new BatchTools();
+			$batches = $batchTools->getAllBatches();
+			
+			foreach($batches as $batch) {
+				echo '<input type="checkbox" name="batch[]" value="' . $batch->id . '">' . $batch->display_name . '</input><br>';
+			}
+			
+			?>   
+		  </fieldset>
+		  </form>
+		</div>        
         
 		<?php include_once 'scripts.inc.php'; ?>
+		<script type="text/javascript" src="js/session.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--<script>
