@@ -9,7 +9,13 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 
 
 INSERT INTO `csespn`.`batches` (`id`, `display_name`, `year`) VALUES
-(1, Batch 10, 2010),
-(2, Batch 11, 2011),
-(3, Batch 12, 2012),
-(4, Batch 13, 2013);
+(1, 'Batch 10', 2010),
+(2, 'Batch 11', 2011),
+(3, 'Batch 12', 2012),
+(4, 'Batch 13', 2013);
+
+
+INSERT INTO `companies` (`id`, `name`, `partner_type`) VALUES
+(1, 'UoM Students', 'Basic'),
+(2, 'UoM Lecturers', 'Premium'),
+(3, 'Unknown', 'Basic');
