@@ -9,9 +9,11 @@ class Technology {
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
-    function __construct($data) {        
-        $this->id = (isset($data[0]['id'])) ? $data[0]['id'] : "";
-        $this->name = (isset($data[0]['name'])) ? $data[0]['name'] : "";
+    function __construct($data = null) {        
+        if ($data != null) {
+            $this->id = (isset($data[0]['id'])) ? $data[0]['id'] : "";
+            $this->name = (isset($data[0]['name'])) ? $data[0]['name'] : "";
+        }
     }
 
     public function save($isNewUser = false) {
@@ -39,9 +41,26 @@ class Technology {
         return true;
     }
 
+    public static function checkTechnologyExists($tech) {
+        $db = new DB();
+        $result = $db->select("technologies", "name = '$tech'");
+        if ($result == false || sizeof($result) == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public static function get($id) {
         $db = new DB();
         $result = $db->select('technologies', "id = $id");
-        return new Technology($result[0]);
+        return new Technology($result);
     }
+
+    public static function getByName($technology_name) {
+        $db = new DB();
+        $result = $db->select('technologies', "name = '$technology_name'");
+        return new Technology($result);
+    }
+
 }

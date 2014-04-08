@@ -12,7 +12,7 @@ class StudentTools {
     
     public function getAllStudents(){
         $results = $this->db->select("students", "true");
-        $students = array();
+        $students = array();        
         foreach ($results as $result){
             array_push($students, new Student($result));
         }
@@ -20,19 +20,23 @@ class StudentTools {
     }
     
     public function getPendingInternshipStudents(){
-        $results = $this->db->select("students", "pending_internship=true");
+        //should do a join with the batches table and find the respective batch
+        //which is defined in a config file
+        $results = $this->db->select("students", "true");
         $students = array();
         foreach ($results as $result){
-            array_push($students, new Student($result));
+            array_push($students, new Student(array($result)));
         }
         return $students;
     }
     
     public function getPendingGraduationStudents(){
-        $results = $this->db->select("students", "pending_graduation=true");
+        //should do a join with the batches table and find the respective batch
+        //which is defined in a config file
+        $results = $this->db->select("students", "true");
         $students = array();
         foreach ($results as $result){
-            array_push($students, new Student($result));
+            array_push($students, new Student(array($result)));
         }
         return $students;
     }
