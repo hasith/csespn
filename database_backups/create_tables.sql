@@ -1,50 +1,68 @@
-
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
---
--- Database: `csespn`
---
 
--- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `batches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `display_name` varchar(45) DEFAULT NULL,
+  `year` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `year_UNIQUE` (`year`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
-
---
--- Table structure for table `companies`
---
 CREATE TABLE IF NOT EXISTS `companies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `partner_type` enum('Basic','Premium','','') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+CREATE TABLE IF NOT EXISTS `endorsements` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `technology_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=243 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `roles`
---
+CREATE TABLE IF NOT EXISTS `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `description` text,
+  `date` date DEFAULT NULL,
+  `time` time DEFAULT NULL,
+  `venue` varchar(100) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL COMMENT 'url of event fb page/web page',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=251 ;
 
 CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
+CREATE TABLE IF NOT EXISTS `sessions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `description` varchar(45) NOT NULL,
+  `timestamp` datetime DEFAULT NULL,
+  `org_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `session_org_idx` (`org_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `students`
---
+CREATE TABLE IF NOT EXISTS `session_batchs` (
+  `session_id` int(11) NOT NULL,
+  `batch_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`session_id`,`batch_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE IF NOT EXISTS `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -55,9 +73,11 @@ CREATE TABLE IF NOT EXISTS `students` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
-
--- --------------------------------------------------------
-
+CREATE TABLE IF NOT EXISTS `technologies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -67,76 +87,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `company_id` int(11) NOT NULL,
   `profile_url` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 
---
--- Table structure for table `technologies`
---
-
-CREATE TABLE IF NOT EXISTS `technologies` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
--- --------------------------------------------------------
---
--- Table structure for table `endorsements`
---
-
-CREATE TABLE IF NOT EXISTS `endorsements` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `technology_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `count` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=243 ;
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sessions`
---
-CREATE TABLE `csespn`.`sessions` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(100) NOT NULL,
-  `description` VARCHAR(45) NOT NULL,
-  `timestamp` DATETIME NULL,
-  `org_id` INT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `session_org_idx` (`org_id` ASC),
-  CONSTRAINT `session_org`
-    FOREIGN KEY (`org_id`)
-    REFERENCES `csespn`.`companies` (`id`)
-    ON DELETE SET NULL
-    ON UPDATE CASCADE);
-    
--- --------------------------------------------------------
-
---
--- Table structure for table `batches`
---
-    
-CREATE TABLE `csespn`.`batches` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `display_name` VARCHAR(45) NULL,
-  `year` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  UNIQUE INDEX `year_UNIQUE` (`year` ASC));
-    
--- --------------------------------------------------------
-
---
--- Table structure for table `session_batchs`
---
-CREATE TABLE `csespn`.`session_batchs` (
-  `session_id` INT NOT NULL,
-  `batch_id` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`session_id`, `batch_id`));
-  
+ALTER TABLE `sessions`
+  ADD CONSTRAINT `session_org` FOREIGN KEY (`org_id`) REFERENCES `companies` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
