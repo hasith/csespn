@@ -29,7 +29,9 @@ if (!oauth_session_exists()) {
                         <ul>
                             <?php
                             $eventTools = new EventTools();
+                            $sponsorshipTools = new SponsorshipTools();
                             $months = $eventTools->getGroupedEvents();
+                            $currentDate = new DateTime();
 
                             foreach ($months as $month) {
                                 echo '<li>';
@@ -38,8 +40,23 @@ if (!oauth_session_exists()) {
                                 $events = $month[key($month)];
                                 if (count($events) > 0) {
                                     foreach ($events as $event) {
+                                        
                                         $date = new DateTime($event->date);
-                                        echo '<p>';
+                                        $avail_sponsorships = $sponsorshipTools->getSponsorshipsByEvent($event->id, TRUE);
+                                        
+                                        if($currentDate > $date){
+                                            echo '<p>';
+                                        }
+                                        else{
+                                            if(count($avail_sponsorships) == 0){
+                                                echo '<p class="orangeText">';
+                                            }
+                                            else{
+                                                echo '<p class="greenText">';
+                                            }
+                                            
+                                        }
+                                        
                                         echo $event->title . " - <b>" . $date->format('dS') . "</b>";
                                         echo '</p>';
                                     }
@@ -51,86 +68,6 @@ if (!oauth_session_exists()) {
                             ?>
                         </ul>
                     </div>
-
-
-
-                    <!--                            <li>
-                                                    <h4>JAN</h4>
-                                                    <p>congue eget semper</p>
-                                                    <p>Decade of GSoC - 12th</p>
-                                                    <p>MOFA Festival - 17th</p>
-                                                    <p>Hit the Ground - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>FEB</h4>
-                                                    <p>Code Challenge - 12th</p>
-                                                    <p>Z Festival - 17th</p>
-                                                    <p>Robotic Challenge - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>MAR</h4>
-                                                    <p class="greenText">Drama Challenge - 12th</p>
-                                                    <p class="orangeText">Code Fest - 17th</p>
-                                                    <p class="greenText">Robotic Challenge - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>APR</h4>
-                                                    <p class="orangeText">Decade of GSoC - 12th</p>
-                                                    <p class="greenText">MOFA Festival - 17th</p>
-                                                    <p class="orangeText">Hit the Ground - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>MAY</h4>
-                                                    <p class="greenText">Decade of GSoC - 12th</p>
-                                                    <p class="orangeText">New Festival - 17th</p>
-                                                    <p class="orangeText">ABC Challenge - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>JUN</h4>
-                                                    <p class="greenText">Drama Challenge - 12th</p>
-                                                    <p class="orangeText">HAS Festival - 17th</p>
-                                                    <p class="greenText">PQR Challenge - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>JUL</h4>
-                                                    <p class="greenText">Decade of GSoC - 12th</p>
-                                                    <p class="orangeText">MOFA Festival - 17th</p>
-                                                    <p class="orangeText">Hit the Ground - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>AUG</h4>
-                                                    <p class="orangeText">Decade of GSoC - 12th</p>
-                                                    <p class="greenText">VCD Festival - 17th</p>
-                                                    <p class="orangeText">Robotic Challenge - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>SEP</h4>
-                                                    <p class="greenText">Drama Challenge - 12th</p>
-                                                    <p class="orangeText">Go Festival - 17th</p>
-                                                    <p class="greenText">Robotic Challenge - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>OCT</h4>
-                                                    <p>Decade of GSoC - 12th</p>
-                                                    <p class="orangeText">MOFA Festival - 17th</p>
-                                                    <p class="greenText">Hit the Ground - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>NOV</h4>
-                                                    <p>Decade of GSoC - 12th</p>
-                                                    <p class="orangeText">MOFA Festival - 17th</p>
-                                                    <p class="greenText">Hit the Ground - 27th</p>
-                                                </li>
-                                                <li>
-                                                    <h4>DEC</h4>
-                                                    <p>Decade of GSoC - 12th</p>
-                                                    <p class="orangeText">MOFA Festival - 17th</p>
-                                                    <p class="greenText">Hit the Ground - 27th</p>
-                                                </li>-->
-                    <!--</ul>-->
-                    <!--</div>-->  
-
-
                 </div>
                 <div id="rightSide">
 
@@ -144,7 +81,6 @@ if (!oauth_session_exists()) {
                             <p>All Sponsorship Opportunities Taken</p>
                         </li>
                     </ul>
-
 
                     <div class="componentContainer">
                         <div class="heading">
