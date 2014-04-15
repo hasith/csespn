@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `companies` (
   `name` varchar(255) NOT NULL,
   `partner_type` enum('Basic','Premium','','') NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
 
 CREATE TABLE IF NOT EXISTS `endorsements` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -64,6 +64,18 @@ CREATE TABLE IF NOT EXISTS `session_batchs` (
   PRIMARY KEY (`session_id`,`batch_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE IF NOT EXISTS `sponsorships` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `amount` decimal(10,2) NOT NULL,
+  `description` text,
+  `taken_by` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `event_id` (`event_id`),
+  KEY `taken_by` (`taken_by`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=402 ;
+
 CREATE TABLE IF NOT EXISTS `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `batch` int(11) NOT NULL,
@@ -92,6 +104,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 ALTER TABLE `sessions`
   ADD CONSTRAINT `session_org` FOREIGN KEY (`org_id`) REFERENCES `companies` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+ALTER TABLE `sponsorships`
+  ADD CONSTRAINT `taken_by` FOREIGN KEY (`taken_by`) REFERENCES `companies` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `event_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
