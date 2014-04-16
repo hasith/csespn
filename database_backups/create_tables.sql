@@ -1,3 +1,11 @@
+-- --------------------------------------------------------
+/*Drop the existing csespn databse and create new database*/
+DROP DATABASE csespn;
+CREATE DATABASE csespn;
+USE csespn;
+
+
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
