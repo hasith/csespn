@@ -1,6 +1,6 @@
 <?php
 
-require_once '../classes/DB.class.php';
+require_once ROOT_DIR . '/classes/DB.class.php';
 
 class SettingsTools {
     

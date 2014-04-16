@@ -6,23 +6,28 @@ if (!oauth_session_exists()) {
 }
 
 $studentTools = new StudentTools();
-$pending_intern_students = $studentTools->getPendingInternshipStudents();
-$pending_grad_students = $studentTools->getPendingGraduationStudents();
+$settingsTools = new SettingsTools();
+
+if (isset($_GET['batch']) && $_GET['batch'] == "level_1") {
+    $students = $studentTools->getStudents($settingsTools->getLevelOneId());
+} else if (isset($_GET['batch']) && $_GET['batch'] == "level_2") {
+    $students = $studentTools->getStudents($settingsTools->getLevelTwoId());
+} else if (isset($_GET['batch']) && $_GET['batch'] == "level_3") {
+    $students = $studentTools->getStudents($settingsTools->getLevelThreeId());
+} else {
+    $students = $studentTools->getStudents($settingsTools->getLevelFourId());
+}
 
 
 /* * *********************Sorting Students*********************************** */
 if (isset($_GET['sort_by']) && $_GET['sort_by'] == "gpa") {
-    usort($pending_intern_students, "gpa_sort");
-    usort($pending_grad_students, "gpa_sort");
+    usort($students, "gpa_sort");
 } else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "endorsements") {
-    usort($pending_intern_students, "endorsements_sort");
-    usort($pending_grad_students, "endorsements_sort");
+    usort($students, "endorsements_sort");
 } else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "speciality") {
-    usort($pending_intern_students, "speciality_sort");
-    usort($pending_grad_students, "speciality_sort");
+    usort($students, "speciality_sort");
 } else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "name") {
-    usort($pending_intern_students, "name_sort");
-    usort($pending_grad_students, "name_sort");
+    usort($students, "name_sort");
 }
 
 function gpa_sort($student1, $student2) {
@@ -63,21 +68,29 @@ function name_sort($student1, $student2) {
                 <div id="bannerLeft">					
                     <div id="example-two">					
                         <ul class="nav">
-                            <li class="nav-one"><a href="#featured2" class="current">Pending Internship</a></li>
-                            <li class="nav-two"><a href="#core2">Pending Graduation</a></li>
+                            <?php
+                                if(isset($_GET['batch']) && $_GET['batch']=="level_4"){
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" class="current">Pending Graduation</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3">Pending Internship</a></li>';
+                                    
+                                }else{
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4">Pending Graduation</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" class="current">Pending Internship</a></li>';
+                                }
+                            ?>                                                        
                         </ul>                        
                         <div class="list-wrap">                        	
                             <div id="featured2">                           		
                                 <p class="descriptionTab">
                                     Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                 </p>                                
-                                <div id="accordion"><?php echo getHtmlForStudents($pending_intern_students); ?></div>                                   
+                                <div id="accordion"><?php echo getHtmlForStudents($students); ?></div>                                   
                             </div>                             
                             <div id="core2" class="hide">
                                 <p class="descriptionTab">
                                     Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                 </p>
-                                <div id="accordion"> <?php echo getHtmlForStudents($pending_grad_students); ?>  </div>
+                                <div id="accordion"> <?php echo getHtmlForStudents($students); ?>  </div>
                             </div>                             
                         </div> <!-- END List Wrap -->                     
                     </div>                       

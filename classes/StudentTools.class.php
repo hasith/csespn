@@ -40,4 +40,13 @@ class StudentTools {
         }
         return $students;
     }
+    
+    public function getStudents($batchId) {
+        $results = $this->db->select("students", "`batch` = $batchId");
+        $students = array();
+        foreach ($results as $result){
+            array_push($students, new Student(array($result)));
+        }
+        return $students;
+    }
 }
