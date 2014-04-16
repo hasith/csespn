@@ -86,12 +86,6 @@ function name_sort($student1, $student2) {
                                 </p>                                
                                 <div id="accordion"><?php echo getHtmlForStudents($students); ?></div>                                   
                             </div>                             
-                            <div id="core2" class="hide">
-                                <p class="descriptionTab">
-                                    Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                </p>
-                                <div id="accordion"> <?php echo getHtmlForStudents($students); ?>  </div>
-                            </div>                             
                         </div> <!-- END List Wrap -->                     
                     </div>                       
                 </div>
