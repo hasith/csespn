@@ -19,3 +19,9 @@ INSERT INTO `companies` (`id`, `name`, `partner_type`) VALUES
 (1, 'UoM Students', 'Basic'),
 (2, 'UoM Lecturers', 'Premium'),
 (3, 'Unknown', 'Basic');
+
+INSERT INTO `settings` (`id`, `key`, `value`) VALUES
+(1, 'level_1', '4'),
+(2, 'level_2', '3'),
+(3, 'level_3', '2'),
+(4, 'level_4', '1');
