@@ -10,12 +10,16 @@ $settingsTools = new SettingsTools();
 
 if (isset($_GET['batch']) && $_GET['batch'] == "level_1") {
     $students = $studentTools->getStudents($settingsTools->getLevelOneId());
+    $batch = "level_1";
 } else if (isset($_GET['batch']) && $_GET['batch'] == "level_2") {
     $students = $studentTools->getStudents($settingsTools->getLevelTwoId());
+    $batch = "level_2";
 } else if (isset($_GET['batch']) && $_GET['batch'] == "level_3") {
     $students = $studentTools->getStudents($settingsTools->getLevelThreeId());
+    $batch = "level_3";
 } else {
     $students = $studentTools->getStudents($settingsTools->getLevelFourId());
+    $batch = "level_4";
 }
 
 
@@ -55,21 +59,20 @@ function name_sort($student1, $student2) {
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-        <?php require_once './head.inc.php'; ?>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->  
+<?php require_once './head.inc.php'; ?>
+<body>
+<!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->  
 
 <?php require_once './nav.inc.php'; ?>    
-
         <div class="container clearfix">        	
             <div id="bannerArea" class="clearfix">
                 <div id="bannerLeft">					
                     <div id="example-two">					
                         <ul class="nav">
                             <?php
-                                if(isset($_GET['batch']) && $_GET['batch']=="level_4"){
+                                if($batch == "level_4"){
                                     echo '<li class="nav-one"><a href="./students.php?batch=level_4" class="current">Pending Graduation</a></li>';
                                     echo '<li class="nav-two"><a href="./students.php?batch=level_3">Pending Internship</a></li>';
                                     
@@ -90,13 +93,11 @@ function name_sort($student1, $student2) {
                     </div>                       
                 </div>
                 <div id="rightSide">	
-
                     <div id="addProject">
                         <a href="">
                             Assemble a Team
                         </a>
                     </div>
-
                     <ul id="legend">
                         <li class="cse clearfix">
                             <span></span>
@@ -126,19 +127,17 @@ function name_sort($student1, $student2) {
                         </div>                        
                         <div class="ccContainer">
                             <ul>
-                                <li><input type="checkbox"><label>By GPA</label></li>
-                                <li><input type="checkbox"><label>By Endorsements</label></li>
-                                <li><input type="checkbox"><label>By Specialty</label></li>
-                                <li><input type="checkbox"><label>By First Name</label></li>
+                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=gpa">By GPA</a></li>
+                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=endorsements">By Endorsements</a></li>
+                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=speciality">By Specialty</a></li>
+                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=name">By First Name</a></li>
                             </ul>
                         </div>                                                
                     </div>                                                        
                 </div>
             </div>                                                                        
         </div>
-
 <?php include_once 'scripts.inc.php'; ?>
-
         <script>
             $(function() {
                 $("#example-two").organicTabs({
@@ -167,7 +166,6 @@ function name_sort($student1, $student2) {
 </html>
 
 <?php
-
 function getHtmlForStudents($students) {
     $html = "";
     foreach ($students as $student) {
