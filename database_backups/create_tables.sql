@@ -18,11 +18,13 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `batches` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `display_name` varchar(45) DEFAULT NULL,
+  `course` varchar(255) NOT NULL,
   `year` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `year_UNIQUE` (`year`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
 
 CREATE TABLE IF NOT EXISTS `companies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
