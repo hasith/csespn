@@ -24,7 +24,7 @@ if (!oauth_session_exists()) {
                 <div id="bannerLeft">
 
                     <p>Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek</p>
-
+                       <!-- comment -->
                     <div id="calendar">
                         <div style="display: none" id="event-dialog"></div>
                         <ul>
