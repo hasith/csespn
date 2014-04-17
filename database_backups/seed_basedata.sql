@@ -15,7 +15,7 @@ INSERT INTO `csespn`.`batches` (`id`, `display_name`, `year`) VALUES
 (4, 'Batch 13', 2013);
 
 
-INSERT INTO `companies` (`id`, `name`, `partner_type`) VALUES
-(1, 'UoM Students', 'Basic'),
-(2, 'UoM Lecturers', 'Premium'),
-(3, 'Unknown', 'Basic');
+INSERT INTO `companies` (`id`, `name`, `access_level`) VALUES
+(1, 'Public User', 1),
+(2, 'UoM Student', 2),
+(3, 'CSES Admin', 5);

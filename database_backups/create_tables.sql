@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `batches` (
 CREATE TABLE IF NOT EXISTS `companies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `partner_type` enum('Basic','Premium','','') NOT NULL,
+  `access_level` int(3) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
 
@@ -46,19 +46,23 @@ CREATE TABLE IF NOT EXISTS `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS `sessions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL,
-  `description` varchar(45) NOT NULL,
-  `timestamp` datetime DEFAULT NULL,
+  `description` varchar(256) NOT NULL,
+  `date` datetime DEFAULT NULL,
+  `start_time` char(10) DEFAULT NULL,
+  `duration` int(5) DEFAULT NULL,
+  `resp_name` varchar(50) DEFAULT NULL,
+  `resp_contact` varchar(10) DEFAULT NULL,
   `org_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `session_org_idx` (`org_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
-CREATE TABLE IF NOT EXISTS `session_batchs` (
+CREATE TABLE IF NOT EXISTS `session_batches` (
   `session_id` int(11) NOT NULL,
   `batch_id` varchar(45) NOT NULL,
   PRIMARY KEY (`session_id`,`batch_id`)

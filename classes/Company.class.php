@@ -48,23 +48,17 @@ class Company {
         return new Organization($result[0]);
     }
     
-    public static function getUomStudentsId()
-    {
-        //has to come from the db
-        return "1";
-    }
-    
-    public static function getUomLecturersId()
+    public static function getStudentCompanyId()
     {
         //has to come from the db
         return "2";
     }
     
     
-    public static function getDummyComapnyId()
+    public static function getPublicUserCompanyId()
     {
         //has to come from the db
-        return "3";
+        return "1";
     }
     
 }
