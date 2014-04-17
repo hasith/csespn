@@ -17,6 +17,7 @@ require_once ROOT_DIR . '/classes/Event.class.php';
 require_once ROOT_DIR . '/classes/EventTools.class.php';
 require_once ROOT_DIR . '/classes/Sponsorship.class.php';
 require_once ROOT_DIR . '/classes/SponsorshipTools.class.php';
+require_once ROOT_DIR . '/classes/SettingsTools.class.php';
 
 function oauth_session_exists() {
     if ((is_array($_SESSION)) && (array_key_exists('oauth', $_SESSION))) {

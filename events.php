@@ -24,8 +24,9 @@ if (!oauth_session_exists()) {
                 <div id="bannerLeft">
 
                     <p>Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek</p>
-
+                       <!-- comment -->
                     <div id="calendar">
+                        <div style="display: none" id="event-dialog"></div>
                         <ul>
                             <?php
                             $eventTools = new EventTools();
@@ -34,31 +35,31 @@ if (!oauth_session_exists()) {
                             $currentDate = new DateTime();
 
                             foreach ($months as $month) {
-                                echo '<li>';
+                                echo "<li>";
                                 echo "<h4>" . key($month) . "</h4>";
 
                                 $events = $month[key($month)];
                                 if (count($events) > 0) {
                                     foreach ($events as $event) {
-                                        
+
                                         $date = new DateTime($event->date);
                                         $avail_sponsorships = $sponsorshipTools->getSponsorshipsByEvent($event->id, TRUE);
-                                        
-                                        if($currentDate > $date){
-                                            echo '<p>';
-                                        }
-                                        else{
-                                            if(count($avail_sponsorships) == 0){
-                                                echo '<p class="orangeText">';
+
+                                        echo "<div class='calendar-entry'>";
+                                        echo "<input id='event-id' type='hidden' value='" . $event->id . "'/>";
+
+                                        if ($currentDate > $date) {
+                                            echo "<p class='clickable'>";
+                                        } else {
+                                            if (count($avail_sponsorships) == 0) {
+                                                echo "<p class='orangeText clickable'>";
+                                            } else {
+                                                echo "<p class='greenText clickable'>";
                                             }
-                                            else{
-                                                echo '<p class="greenText">';
-                                            }
-                                            
                                         }
-                                        
+
                                         echo $event->title . " - <b>" . $date->format('dS') . "</b>";
-                                        echo '</p>';
+                                        echo '</p></div>';
                                     }
                                 } else {
                                     echo "<p><b>No Scheduled Events</b></p>";
@@ -147,6 +148,7 @@ if (!oauth_session_exists()) {
 
 
         <?php include_once 'scripts.inc.php'; ?>
+        <script type="text/javascript" src="js/event.js"></script>
         ]
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

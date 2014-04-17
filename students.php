@@ -6,23 +6,32 @@ if (!oauth_session_exists()) {
 }
 
 $studentTools = new StudentTools();
-$pending_intern_students = $studentTools->getPendingInternshipStudents();
-$pending_grad_students = $studentTools->getPendingGraduationStudents();
+$settingsTools = new SettingsTools();
+
+if (isset($_GET['batch']) && $_GET['batch'] == "level_1") {
+    $students = $studentTools->getStudents($settingsTools->getLevelOneId());
+    $batch = "level_1";
+} else if (isset($_GET['batch']) && $_GET['batch'] == "level_2") {
+    $students = $studentTools->getStudents($settingsTools->getLevelTwoId());
+    $batch = "level_2";
+} else if (isset($_GET['batch']) && $_GET['batch'] == "level_3") {
+    $students = $studentTools->getStudents($settingsTools->getLevelThreeId());
+    $batch = "level_3";
+} else {
+    $students = $studentTools->getStudents($settingsTools->getLevelFourId());
+    $batch = "level_4";
+}
 
 
 /* * *********************Sorting Students*********************************** */
 if (isset($_GET['sort_by']) && $_GET['sort_by'] == "gpa") {
-    usort($pending_intern_students, "gpa_sort");
-    usort($pending_grad_students, "gpa_sort");
+    usort($students, "gpa_sort");
 } else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "endorsements") {
-    usort($pending_intern_students, "endorsements_sort");
-    usort($pending_grad_students, "endorsements_sort");
+    usort($students, "endorsements_sort");
 } else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "speciality") {
-    usort($pending_intern_students, "speciality_sort");
-    usort($pending_grad_students, "speciality_sort");
+    usort($students, "speciality_sort");
 } else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "name") {
-    usort($pending_intern_students, "name_sort");
-    usort($pending_grad_students, "name_sort");
+    usort($students, "name_sort");
 }
 
 function gpa_sort($student1, $student2) {
@@ -50,46 +59,45 @@ function name_sort($student1, $student2) {
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-        <?php require_once './head.inc.php'; ?>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->  
+<?php require_once './head.inc.php'; ?>
+<body>
+<!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->  
 
 <?php require_once './nav.inc.php'; ?>    
-
         <div class="container clearfix">        	
             <div id="bannerArea" class="clearfix">
                 <div id="bannerLeft">					
                     <div id="example-two">					
                         <ul class="nav">
-                            <li class="nav-one"><a href="#featured2" class="current">Pending Internship</a></li>
-                            <li class="nav-two"><a href="#core2">Pending Graduation</a></li>
+                            <?php
+                                if($batch == "level_4"){
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" class="current">Pending Graduation</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3">Pending Internship</a></li>';
+                                    
+                                }else{
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4">Pending Graduation</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" class="current">Pending Internship</a></li>';
+                                }
+                            ?>                                                        
                         </ul>                        
                         <div class="list-wrap">                        	
                             <div id="featured2">                           		
                                 <p class="descriptionTab">
                                     Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                 </p>                                
-                                <div id="accordion"><?php echo getHtmlForStudents($pending_intern_students); ?></div>                                   
-                            </div>                             
-                            <div id="core2" class="hide">
-                                <p class="descriptionTab">
-                                    Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                </p>
-                                <div id="accordion"> <?php echo getHtmlForStudents($pending_grad_students); ?>  </div>
+                                <div id="accordion"><?php echo getHtmlForStudents($students); ?></div>                                   
                             </div>                             
                         </div> <!-- END List Wrap -->                     
                     </div>                       
                 </div>
                 <div id="rightSide">	
-
                     <div id="addProject">
                         <a href="">
                             Assemble a Team
                         </a>
                     </div>
-
                     <ul id="legend">
                         <li class="cse clearfix">
                             <span></span>
@@ -119,19 +127,17 @@ function name_sort($student1, $student2) {
                         </div>                        
                         <div class="ccContainer">
                             <ul>
-                                <li><input type="checkbox"><label>By GPA</label></li>
-                                <li><input type="checkbox"><label>By Endorsements</label></li>
-                                <li><input type="checkbox"><label>By Specialty</label></li>
-                                <li><input type="checkbox"><label>By First Name</label></li>
+                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=gpa">By GPA</a></li>
+                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=endorsements">By Endorsements</a></li>
+                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=speciality">By Specialty</a></li>
+                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=name">By First Name</a></li>
                             </ul>
                         </div>                                                
                     </div>                                                        
                 </div>
             </div>                                                                        
         </div>
-
 <?php include_once 'scripts.inc.php'; ?>
-
         <script>
             $(function() {
                 $("#example-two").organicTabs({
@@ -160,7 +166,6 @@ function name_sort($student1, $student2) {
 </html>
 
 <?php
-
 function getHtmlForStudents($students) {
     $html = "";
     foreach ($students as $student) {

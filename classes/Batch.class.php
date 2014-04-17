@@ -6,6 +6,7 @@ class Batch {
 
     public $id;
     public $year;
+    public $course;
     public $display_name;
 
 
@@ -14,6 +15,7 @@ class Batch {
     function __construct($data) {
         $this->id = (isset($data['id'])) ? $data['id'] : "";
         $this->year = (isset($data['year'])) ? $data['year'] : "";
+        $this->course = (isset($data['course'])) ? $data['course'] : "";
         $this->display_name = (isset($data['display_name'])) ? $data['display_name'] : "";
     }
 
@@ -27,6 +29,7 @@ class Batch {
             //set the data array
             $data = array(
                 "year" => "'$this->year'",
+                "course" => "'$this->course'",
                 "display_name" => "'$this->display_name'"
             );
 
@@ -36,6 +39,7 @@ class Batch {
             //if being registered for the first time.
             $data = array(
                 "year" => "'$this->year'",
+                "course" => "'$this->course'",
                 "display_name" => "'$this->display_name'"
             );
 
@@ -43,14 +47,4 @@ class Batch {
         }
         return true;
     }
-
-
-    //get a user
-    //returns a User object. Takes the users id as an input
-    public static function get($id) {
-        $db = new DB();
-        $result = $db->select('users', "id = $id");
-        return new User($result);
-    }
-
 }
