@@ -75,7 +75,7 @@ class Student {
         $results = $db->select2("technologies.id AS id, technologies.name AS name, endorsements.COUNT AS count", "((endorsements join students on endorsements.student_id = students.id) join technologies on technologies.id = endorsements.technology_id)", "endorsements.student_id = $this->id", "name", "count");
         $technologies = array();
         foreach ($results as $key => $value) {
-            array_push($technologies, array(new Technology(array($value)), $value['count']));
+            array_push($technologies, array(new Technology($value), $value['count']));
         }
         return $technologies;
     }
