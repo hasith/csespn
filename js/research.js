@@ -73,12 +73,13 @@ function highlightElement(element, color) {
  */
 function submit() {
     if (validate()) {
+        title=$("#titleTxt").val();
         estimation = $("#estimatedTimeTxt").val();
         technologiesVal = $("#technologyVals").val();
         partner = $('#partnerCombo').find(":selected").val();
         lead = $('#leadCombo').find(":selected").val();
         description = $('#descriptionTxt').val();
-        sendRequest(partner,estimation,lead,technologiesVal,description);
+        sendRequest(title,partner,estimation,lead,technologiesVal,description);
     }
     
 }
@@ -94,11 +95,20 @@ function validate() {
     partnerInput = $('#partnerCombo');
     leadInput = $('#leadCombo');
     descriptionInput = $('#descriptionTxt');
+    titleInput=$("#titleTxt");
 
     var validated = true;
 
     highlightElement(partnerInput, 'green');
     highlightElement(leadInput, 'green');
+    
+    //title
+    if(titleInput.val()===''){
+        highlightElement(titleInput,'red');
+        validated=false;
+    }else{
+        highlightElement(titleInput,'green');
+    }
 
     //estimated time
     if (estimationInput.val() === "") {
@@ -168,12 +178,14 @@ $(function() {
 
 });
 
-function sendRequest(partner, estimation, lead, technos, description) {
+
+//send post request
+function sendRequest(title,partner, estimation, lead, technos, description) {
 
     $.ajax({
         url: "./research.php",
         type: 'POST',
-        data: {valid: true, partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description},
+        data: {valid: true,title:title ,partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description},
         success: function(data) {
             alert(data);
             if(data==='true'){
