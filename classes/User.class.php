@@ -103,12 +103,11 @@ class User {
         $db = new DB();
         $result = $db->select('users', "linkedin_id = '$linkedin_id'");
         if (!empty($result)) {
-            $user = new User($result);
+            $user = new User($result[0]);
             $_SESSION["user"] = $user;
 
             $_SESSION["login_time"] = time();
             $_SESSION["logged_in"] = 1;
-
             return $_SESSION['user'];
         } else {
             return null;
