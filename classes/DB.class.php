@@ -4,7 +4,7 @@ class DB {
 
     protected $db_name = 'csespn';
     protected $db_user = 'root';
-    protected $db_pass = 'Jewelcase';
+    protected $db_pass = '';
     protected $db_host = 'localhost';
 
     function __construct() {
@@ -63,14 +63,24 @@ class DB {
         return $this->processRowSet($result);
     }
 
+    /**
+     * Function to execute a custom sql command
+     * 
+     * @param type $sql
+     */
     public function execute($sql) {
         mysql_query($sql) or die(mysql_error());
     }
 
-	public function query($sql){
-		$result = mysql_query($sql);
+    /*
+     * Function to execute a custom sql command and get the results
+     */
+    public function query($sql){
+	$result = mysql_query($sql);
         return $this->processRowSet($result);
-	}
+    }
+    
+    
     //Updates a current row in the database.
     //takes an array of data, where the keys in the array are the column names
     //and the values are the data that will be inserted into those columns.
@@ -88,10 +98,9 @@ class DB {
     //and the values are the data that will be inserted into those columns.
     //$table is the name of the table.
     public function insert($data, $table) {
-
         $columns = "";
         $values = "";
-
+        
         foreach ($data as $column => $value) {
             $columns .= ($columns == "") ? "" : ", ";
             $columns .= $column;
@@ -138,5 +147,4 @@ class DB {
             return $this->processRowSet($result);
         }
     }
-
 }
