@@ -10,12 +10,13 @@ if (!oauth_session_exists()) {
 if (isset($_POST['valid'])) {
     //$user = $_SESSION['user'];
     $userId = 4;
+    $title=$_POST['title'];
     $partner = $_POST['partner'];
     $leader = $_POST['lead'];
     $estimation = $_POST['estimation'];
     $technos = $_POST['technologies'];
     $description = $_POST['description'];
-    echo $partner . $leader . $estimation . $technos . $description;
+    echo $title.$partner . $leader . $estimation . $technos . $description;
     return;
 }
 ?>
@@ -337,10 +338,10 @@ if (isset($_POST['valid'])) {
 
                         <div class="ccContainer">
                             <ul>
-                                <li><input type="checkbox"><label>By Published Date</label></li>
-                                <li><input type="checkbox"><label>By Estimated Hours</label></li>
-                                <li><input type="checkbox"><label>By Project Name</label></li>
-                                <li><input type="checkbox"><label>By Partner Company</label></li>
+                                <li><input name="sort" type="radio" value="date" id="sortDateRadio" checked><label for="sortDateRadio">By Published Date</label></li>
+                                <li><input name="sort" type="radio" value="hour"  id="sortHourRadio" ><label for="sortHourRadio">By Estimated Hours</label></li>
+                                <li><input name="sort" type="radio" value="name" id="sortNameRadio" ><label for="sortNameRadio">By Project Name</label></li>
+                                <li><input name="sort" type="radio" value="company"  id="sortCompanyRadio"><label for="sortCompanyRadio">By Partner Company</label></li>
                             </ul>
                         </div>
 
@@ -356,9 +357,8 @@ if (isset($_POST['valid'])) {
                 position: fixed;
                 width: 100%;
                 height: 100%;
-                background: rgba(0,0,0,0.3);
+                background: rgba(0,0,0,0.6);
                 top: 0px;
-
                 left: -999999px;
             }
 
@@ -366,10 +366,10 @@ if (isset($_POST['valid'])) {
                 position: relative;
                 width: 450px;
                 border: solid 1px #41719C;
-                height: 500px;
+                height: 550px;
                 top:50%;
                 margin-left: -225px;
-                margin-top: -250px;
+                margin-top: -275px;
                 left: 50%;
                 background: white;
                 padding: 15px;
@@ -414,8 +414,18 @@ if (isset($_POST['valid'])) {
                     <table>
                         <tr>
                             <td>
+                                <label for="titleTxt">Title</label>
+                            </td>
+                            <td class="formInput">
+                                <input type="text" id="titleTxt" name="title">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <label for="partnerCombo">Partner</label>
                             </td>
+
+
                             <td class="formInput">
                                 <select name="partner" id="partnerCombo">
                                     <?php
