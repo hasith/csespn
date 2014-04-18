@@ -1,10 +1,4 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 var technologies = new Array();
-
 
 $(document).ready(function() {
 
@@ -69,8 +63,8 @@ $(document).ready(function() {
  * @param {type} elementId
  * @returns {undefined}
  */
-function highlightElement(elementId) {
-    $('#' + elementId).css('border', '1px solid red');
+function highlightElement(element, color) {
+    element.css('border', '1px solid ' + color);
 }
 
 /*
@@ -78,7 +72,15 @@ function highlightElement(elementId) {
  * @returns {undefined}
  */
 function submit() {
-
+    if (validate()) {
+        estimation = $("#estimatedTimeTxt").val();
+        technologiesVal = $("#technologyVals").val();
+        partner = $('#partnerCombo').find(":selected").val();
+        lead = $('#leadCombo').find(":selected").val();
+        description = $('#descriptionTxt').val();
+        sendRequest(partner,estimation,lead,technologiesVal,description);
+    }
+    
 }
 
 /*
@@ -86,7 +88,51 @@ function submit() {
  * @returns {undefined}
  */
 function validate() {
+    estimationInput = $("#estimatedTimeTxt");
+    technologiesInput = $("#technologyTxt");
+    technologiesValInput = $("#technologyVals");
+    partnerInput = $('#partnerCombo');
+    leadInput = $('#leadCombo');
+    descriptionInput = $('#descriptionTxt');
 
+    var validated = true;
+
+    highlightElement(partnerInput, 'green');
+    highlightElement(leadInput, 'green');
+
+    //estimated time
+    if (estimationInput.val() === "") {
+        highlightElement(estimationInput, 'red');
+        validated = false;
+    } else if (isNaN(estimationInput.val())) {
+        highlightElement(estimationInput, 'red');
+        validated = false;
+    } else {
+        highlightElement(estimationInput, 'green');
+    }
+
+    //description
+    if (descriptionInput.val() === '') {
+        highlightElement(descriptionInput, 'red');
+        validated = false;
+    } else {
+        highlightElement(descriptionInput, 'green');
+    }
+
+    //technologies
+    if (split(technologiesInput.val()).length !== split(technologiesValInput.val()).length) {
+        highlightElement(technologiesInput, 'red');
+        technologiesInput.val('');
+        technologiesValInput.val('');
+        validated = false;
+    } else if (technologiesInput.val() === '') {
+        highlightElement(technologiesInput, 'red');
+        validated = false;
+    } else {
+        highlightElement(technologiesInput, 'green');
+    }
+
+    return validated;
 }
 
 /**
@@ -121,6 +167,23 @@ $(function() {
     });
 
 });
+
+function sendRequest(partner, estimation, lead, technos, description) {
+
+    $.ajax({
+        url: "./research.php",
+        type: 'POST',
+        data: {valid: true, partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description},
+        success: function(data) {
+            alert(data);
+            if(data==='true'){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    });
+}
 
 
 
