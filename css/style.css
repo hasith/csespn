@@ -549,6 +549,11 @@ p.bjqs-caption{
     text-decoration: underline;
 }
 
+.clickable-li:hover{
+    cursor: pointer;
+    background-color: #eee;
+}
+
 /* add this css class to omit titlebar of jquery dialogs*/
 .noTitleDialog .ui-dialog-titlebar {
     display:none

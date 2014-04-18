@@ -24,7 +24,7 @@ if (!oauth_session_exists()) {
                 <div id="bannerLeft">
 
                     <p>Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek</p>
-                       <!-- comment -->
+                    <!-- comment -->
                     <div id="calendar">
                         <div style="display: none" id="event-dialog"></div>
                         <ul>
@@ -83,26 +83,25 @@ if (!oauth_session_exists()) {
                         </li>
                     </ul>
 
-                    <div class="componentContainer">
-                        <div class="heading">
-                            <p>CodeGen sponsorships</p>
-                        </div>
-
-                        <div class="ccContainer lastList">
-                            <ul>
-                                <li>
-                                    <h3>Robotic Challenge – <span>27th Mar</span></h3>
-                                    <p>Silver Sponsorship (50,000)</p>
-                                </li>
-                                <li>
-                                    <h3>Go Festival - <span>17th Sep</span></h3>
-                                    <p>T-shirt Sponsorship (150,000)</p>
-                                </li>
-                            </ul>
-                        </div>
-
-
-                    </div>
+                    <!-- Following component is excluded from first release -->
+                    <!--                    <div class="componentContainer">
+                                            <div class="heading">
+                                                <p>CodeGen sponsorships</p>
+                                            </div>
+                    
+                                            <div class="ccContainer lastList">
+                                                <ul>
+                                                    <li>
+                                                        <h3>Robotic Challenge – <span>27th Mar</span></h3>
+                                                        <p>Silver Sponsorship (50,000)</p>
+                                                    </li>
+                                                    <li>
+                                                        <h3>Go Festival - <span>17th Sep</span></h3>
+                                                        <p>T-shirt Sponsorship (150,000)</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>-->
 
                     <div class="componentContainer">
                         <div class="heading">
@@ -111,22 +110,24 @@ if (!oauth_session_exists()) {
 
                         <div class="ccContainer lastList lastListWithScroll">
                             <ul>
-                                <li>
-                                    <h3>Code Challenge – <span>27th Mar</span></h3>
-                                    <p>Silver Sponsorship (50,000)</p>
-                                </li>
-                                <li>
-                                    <h3>Drama Festival - <span>17th Sep</span></h3>
-                                    <p>Silver Sponsorship (50,000)</p>
-                                </li>
-                                <li>
-                                    <h3>Field Challenge – <span>27th Mar</span></h3>
-                                    <p>Silver Sponsorship (50,000)</p>
-                                </li>
-                                <li>
-                                    <h3>GSoC Meet-up - <span>17th Sep</span></h3>
-                                    <p>Silver Sponsorship (50,000)</p>
-                                </li>
+                                <?php
+                                $openSponsorships = $sponsorshipTools->getAllOpenSponsorships();
+
+                                foreach ($openSponsorships as $openS) {
+                                    $event = Event::get($openS->event_id);
+                                    $event_date = new DateTime($event->date);
+
+                                    echo "<li class='clickable-li open-sponsorship-entry'>";
+                                    echo "<input id='sponsorship-id' type='hidden' value='" . $openS->id . "'/>";
+                                    echo "<h3>";
+                                    echo $event->title . "</br><span>" . $event_date->format("dS M") . "</span>";
+                                    echo "</h3>";
+                                    echo "<p>";
+                                    echo $openS->name . " (Rs." . $openS->amount . ")";
+                                    echo "</p>";
+                                    echo "</li>";
+                                }
+                                ?>                                
                             </ul>
                         </div>
 
