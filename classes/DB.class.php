@@ -41,9 +41,9 @@ class DB {
     public function select($table, $where) {
         $sql = "SELECT * FROM $table WHERE $where";
         $result = mysql_query($sql);
-        if (!$result) {            
+        if (!$result) {
             return false;
-        }else{
+        } else {
             //if (mysql_num_rows($result) == 1) {
             //    return $this->processRowSet($result, true);
             //}
@@ -62,10 +62,10 @@ class DB {
 
         return $this->processRowSet($result);
     }
-	
-	public function execute($sql){
-		mysql_query($sql) or die(mysql_error());		
-	}
+
+    public function execute($sql) {
+        mysql_query($sql) or die(mysql_error());
+    }
 
     //Updates a current row in the database.
     //takes an array of data, where the keys in the array are the column names
@@ -102,8 +102,37 @@ class DB {
         return mysql_insert_id();
     }
 
-	public function delete($ids, $table) {
-		$commaList = implode(', ', $ids);
-		$sql = "delete from  $table where id in ($commaList)";
-	}
+    public function delete($ids, $table) {
+        $commaList = implode(', ', $ids);
+        $sql = "delete from  $table where id in ($commaList)";
+    }
+
+    /**
+     * 
+     * @param type $table1 left table to join
+     * @param type $table2 right table to join
+     * @param type $table1 Index field from left table to compare when joining
+     * @param type $table2 Index field from right table to compare when joining
+     * @param type $where filter results
+     * @param type $results 1->rows only from left table // 2-> rows only from table 2
+     * @return boolean
+     */
+    public function innerJoin($table1, $table2, $table1Index, $table2Index, $where, $results = 0) {
+        $sql = "SELECT * FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where";
+        if ($results == 1) {
+            $sql = "SELECT $table1.* FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where";
+        } else if ($results == 2) {
+            $sql = "SELECT $table2.* FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where";
+        }
+        $result = mysql_query($sql);
+        if (!$result) {
+            return false;
+        } else {
+            //if (mysql_num_rows($result) == 1) {
+            //    return $this->processRowSet($result, true);
+            //}
+            return $this->processRowSet($result);
+        }
+    }
+
 }
