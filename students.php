@@ -93,11 +93,12 @@ function name_sort($student1, $student2) {
                     </div>                       
                 </div>
                 <div id="rightSide">	
-                    <div id="addProject">
+                    <!--Not in this release-->
+                    <!--<div id="addProject">
                         <a href="">
                             Assemble a Team
                         </a>
-                    </div>
+                    </div>-->
                     <ul id="legend">
                         <li class="cse clearfix">
                             <span></span>
@@ -107,8 +108,9 @@ function name_sort($student1, $student2) {
                             <span></span>
                             <p>Student Specialty - ICE</p>
                         </li>
-                    </ul>                	                    
-                    <div class="componentContainer">
+                    </ul>
+                    <!--Not in this release-->
+                    <!--<div class="componentContainer">
                         <div class="heading">
                             <p>Filter by Technology</p>
                         </div>                        
@@ -120,7 +122,7 @@ function name_sort($student1, $student2) {
                                 </select>
                             </div>
                         </div>                        
-                    </div>                    
+                    </div>-->                    
                     <div class="componentContainer">
                         <div class="heading">
                             <p>Sort Students</p>
