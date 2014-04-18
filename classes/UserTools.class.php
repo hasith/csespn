@@ -16,5 +16,16 @@ class UserTools{
         
         return $leads;
     }
+	
+	function getAll(){
+		$db = new DB();
+        $results = $db->select("users", "true");
+        $users = array();
+        foreach ($results as $result) {
+            array_push($users, new User($result));
+        }
+        
+        return $users;
+    }
 }
 
