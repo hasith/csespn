@@ -67,6 +67,10 @@ class DB {
 		mysql_query($sql) or die(mysql_error());		
 	}
 
+	public function query($sql){
+		$result = mysql_query($sql);
+        return $this->processRowSet($result);
+	}
     //Updates a current row in the database.
     //takes an array of data, where the keys in the array are the column names
     //and the values are the data that will be inserted into those columns.

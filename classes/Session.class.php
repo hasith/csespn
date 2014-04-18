@@ -6,15 +6,15 @@ class Session {
 
 	//protected $entity = array();
 	
-	protected $id;
-	protected $title;
-	protected $description;
-	protected $date;
-	protected $start_time;
-	protected $duration;
-	protected $resp_name;
-	protected $resp_contact;
-	protected $org_id;
+	public $id;
+	public $title;
+	public $description;
+	public $date;
+	public $start_time;
+	public $duration;
+	public $resp_name;
+	public $resp_contact;
+	public $org_id;
 	
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
@@ -63,7 +63,8 @@ class Session {
 	
 	public function getBatches() {
 		$db = new DB();
-		return $db->select("session_batches", "session_id=$this->id");
+		$sql = "SELECT batches.* FROM session_batches left outer join batches on (session_batches.batch_id = batches.id) where session_batches.session_id = $this->id";
+		return $db->query($sql);
 	}
 
     
@@ -115,6 +116,10 @@ class Session {
         }
         return true;
     }
+	
+	public function toJson() {
+		return json_encode($this);
+	}
 
     public static function fetch($id) {
         $db = new DB();
@@ -142,5 +147,7 @@ class Session {
             return true;
         }
     }
+	
+	
         
 }

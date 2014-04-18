@@ -1,15 +1,15 @@
-create sessions
 <?php
 	require_once './global.inc.php';	
 ?>
 <?php 
 
 	$id = $_POST["id"];
+	$isNew = is_numeric($id) && $id > 0?false:true;
 	
-	if (!Session::checkExists($id)) {
-        $session = new Session($_POST);
-        $session->save(TRUE);
-		$session->setBatches($_POST["batch"]);
-    }
+    $session = new Session($_POST);
+    $session->save($isNew);
+	$session->setBatches($_POST["batch"]);
 
+	header("Location: sessions.php");
+	die();
 ?>

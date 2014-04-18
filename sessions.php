@@ -51,6 +51,7 @@ require_once './global.inc.php';
                                     		<p><?php echo $session->get("description"); ?></p>
                                         </div>
                                         <div class="darkGray">
+                                        	<a href="#" class="session_edit" data-id="<?= $session->get("id") ?>">edit</a>
                                         	<ul>
                                                 <?php 
                                                 	if(!is_null($session->get("date"))) {
@@ -59,8 +60,17 @@ require_once './global.inc.php';
                                                 		echo '<li class="endGPA">Date not agreed</li>';
                                                 	}
                                                 ?>                               		
-                                                <li class="endGPA"><span>Level 2 Students</li>
+                                                <li class="endGPA">
+													<?php 
+														$batches = $session->getBatches();
+														foreach ($batches as $batch) {
+															echo $batch["display_name"].",";
+														}
+													?>
+												</li>
+                                                	
                                                 <?php 
+                                                	
                                                 	if(!is_null($session->get("org_id"))) {
                                                 		echo '<li class="endGPA"><span>'.$session->get("org_id").'</li>';
                                                 	} else {
@@ -228,6 +238,7 @@ require_once './global.inc.php';
 		 
 		  <form id="create_form" method="post" action="sessions.create.php">
 		  <fieldset>
+		  	<input type="hidden" name="id" />
 		    <label for="title">Title</label>
 		    <input type="text" name="title" size="60" minlength="10" maxlength="50" required><br/>
 		    
