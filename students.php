@@ -24,35 +24,18 @@ if (isset($_GET['batch']) && $_GET['batch'] == "level_1") {
 
 
 /* * *********************Sorting Students*********************************** */
-if (isset($_GET['sort_by']) && $_GET['sort_by'] == "gpa") {
+if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
     usort($students, "gpa_sort");
-} else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "endorsements") {
+} else if (isset($_GET['sort_by']) && $_GET['order_by'] == "endorsements") {
     usort($students, "endorsements_sort");
-} else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "speciality") {
+} else if (isset($_GET['order_by']) && $_GET['order_by'] == "speciality") {
     usort($students, "speciality_sort");
-} else if (isset($_GET['sort_by']) && $_GET['sort_by'] == "name") {
+} else if (isset($_GET['order_by']) && $_GET['order_by'] == "name") {
     usort($students, "name_sort");
 }
-
-function gpa_sort($student1, $student2) {
-    return doubleval($student2->gpa) - doubleval($student1->gpa);
-}
-
-function endorsements_sort($student1, $student2) {
-    return intval($student2->getEndorsements()) - intval($student1->getEndorsements());
-}
-
-function speciality_sort($student1, $student2) {
-    //has to be done
-    //return $student2->course - $student1->course;
-    return 0;
-}
-
-function name_sort($student1, $student2) {
-    return $student2->getUser()->name - $student1->getUser()->name;
-}
-
 /* * ************************************************************************ */
+
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -198,5 +181,25 @@ function getHtmlForStudentTechnologies($student) {
         $count++;
     }
     return $html;
+}
+
+
+/**
+ * Helper functions for different sort operations
+ */
+function gpa_sort($student1, $student2) {
+    return doubleval($student1->gpa) - doubleval($student2->gpa);
+}
+
+function endorsements_sort($student1, $student2) {
+    return intval($student2->getEndorsements()) - intval($student1->getEndorsements());
+}
+
+function speciality_sort($student1, $student2) {
+    return strcmp($student2->course,$student1->course);
+}
+
+function name_sort($student1, $student2) {
+    return $student2->getUser()->name - $student1->getUser()->name;
 }
 ?>
