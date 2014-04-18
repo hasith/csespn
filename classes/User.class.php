@@ -96,7 +96,7 @@ class User {
     public static function getFromLinkedinId($linkedin_id) {
         $db = new DB();
         $result = $db->select('users', "linkedin_id = '$linkedin_id'");
-        return new User($result);
+        return new User($result[0]);
     }
 
     public static function login($linkedin_id) {
