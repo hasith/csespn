@@ -7,8 +7,8 @@
 
         <div id="nav">
             <ul class="clearfix">
-                <li><a href="">Partner Benefits</a></li>
-                         <li><a href="">Current Partners</a></li>
+                <li><a href="./benifits.php">Partner Benefits</a></li>
+                <li><a href="./partners.php">Current Partners</a></li>
                          <?php
                              if(oauth_session_exists()){
                                  echo '<li><a href="./events.php">' . 'Portal' . '</a></li>';
