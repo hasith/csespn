@@ -244,7 +244,7 @@ p.bjqs-caption{
 
 }
 #accordion .ui-accordion-content,#accordion2 .ui-accordion-content {
-	width: 100%;
+	//width: 100%;
 	background-color: #f3f3f3;
 	color: #777;
 	font-size: 10pt;
@@ -298,7 +298,7 @@ p.bjqs-caption{
 
 .descriptionArea{
 	float:left;
-	width:570px;
+	//width:570px;
 	margin-left:15px;
 }
 .descriptionArea a{
@@ -316,6 +316,7 @@ p.bjqs-caption{
 	float:right;
 	background:#d0cece;
 	padding:5px 20px; 
+        min-width: 250px;
 }
 .linkedLink a,.linkedLink{
 	font-size:15px !important;
@@ -353,7 +354,7 @@ p.bjqs-caption{
 	width:600px;
 }
 .research p{
-	width:770px !important;
+	//width:770px !important;
 	margin-left:20px !important;
 }
 .descriptionTab{
@@ -541,4 +542,19 @@ p.bjqs-caption{
 .greenText{
 	color:#548235 !important;
 	font-weight:bold !important;
+}
+
+.clickable:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.clickable-li:hover{
+    cursor: pointer;
+    background-color: #eee;
+}
+
+/* add this css class to omit titlebar of jquery dialogs*/
+.noTitleDialog .ui-dialog-titlebar {
+    display:none
 }

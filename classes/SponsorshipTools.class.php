@@ -10,13 +10,13 @@ class SponsorshipTools {
         $this->db = new DB();
     }
     
-    //returns available/not_available sponsorships for an event
-    function getSponsorshipsByEvent($event_id, $available){
+    //returns open/not_open sponsorships for an event
+    function getSponsorshipsByEvent($event_id, $isOpen){
         
         $sponsorships = array();
         
         $wherePedicate = "event_id = '" . $event_id . "'";
-        if($available){
+        if($isOpen){
             $wherePedicate = $wherePedicate.(" AND taken_by IS NULL");
         }
         else{
@@ -37,6 +37,19 @@ class SponsorshipTools {
         $sponsorships = array();
         
         $wherePedicate = "event_id = '" . $event_id . "'";        
+        $results = $this->db->select("sponsorships", $wherePedicate);
+        
+        foreach($results as $result){
+            array_push($sponsorships, new Sponsorship($result));
+        }
+
+        return $sponsorships;
+    }
+    
+    function getAllOpenSponsorships(){
+        $sponsorships = array();
+        
+        $wherePedicate = "taken_by IS NULL";
         $results = $this->db->select("sponsorships", $wherePedicate);
         
         foreach($results as $result){

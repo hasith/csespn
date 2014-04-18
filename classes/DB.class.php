@@ -4,7 +4,7 @@ class DB {
 
     protected $db_name = 'csespn';
     protected $db_user = 'root';
-    protected $db_pass = 'Jewelcase';
+    protected $db_pass = '';
     protected $db_host = 'localhost';
 
     function __construct() {
