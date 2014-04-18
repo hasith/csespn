@@ -10,6 +10,9 @@ class Student {
     public $linkedin_id;
     public $gpa;
     public $description;
+    
+    //This is fetched from the batches table.course
+    public $course;
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
@@ -19,6 +22,7 @@ class Student {
         $this->linkedin_id = (isset($data[0]['linkedin_id'])) ? $data[0]['linkedin_id'] : "";
         $this->gpa = (isset($data[0]['gpa'])) ? $data[0]['gpa'] : "";
         $this->description = (isset($data[0]['description'])) ? $data[0]['description'] : "";
+        $this->course = (isset($data[0]['course'])) ? $data[0]['course'] : "";
     }
 
     public function save($isNewStudent = false) {

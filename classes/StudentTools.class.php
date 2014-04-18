@@ -42,7 +42,7 @@ class StudentTools {
     }
     
     public function getStudents($batchId) {
-        $results = $this->db->select("students", "`batch` = $batchId");
+        $results = $this->db->naturalJoin("students.id as id, batch, gpa, linkedin_id, description, course", "students", "batches" ,"`batch` = $batchId");
         $students = array();
         foreach ($results as $result){
             array_push($students, new Student(array($result)));

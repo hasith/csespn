@@ -115,6 +115,12 @@ class DB {
         return mysql_insert_id();
     }
 
+    /**
+     * Function to delete a row
+     * 
+     * @param string $ids
+     * @param string $table
+     */
     public function delete($ids, $table) {
         $commaList = implode(', ', $ids);
         $sql = "delete from  $table where id in ($commaList)";
@@ -137,6 +143,27 @@ class DB {
         } else if ($results == 2) {
             $sql = "SELECT $table2.* FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where";
         }
+        $result = mysql_query($sql);
+        if (!$result) {
+            return false;
+        } else {
+            //if (mysql_num_rows($result) == 1) {
+            //    return $this->processRowSet($result, true);
+            //}
+            return $this->processRowSet($result);
+        }
+    }
+    
+    /**
+     * Function to get results from a natural join of two tables
+     * 
+     * @param string $columns
+     * @param string $table1
+     * @param string $table2
+     * @param string $where
+     */
+    public function naturalJoin($columns,$table1,$table2,$where){
+        $sql = "SELECT $columns  FROM $table1 NATURAL JOIN $table2 WHERE $where";
         $result = mysql_query($sql);
         if (!$result) {
             return false;
