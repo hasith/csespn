@@ -176,8 +176,7 @@ function getHtmlForStudents($students) {
 }
 
 function getHtmlForStudent($student) {
-    //$color = $student->course === "CSE" ? 'yellowColor' : 'orangeColor'; //else ICE
-    $color = 'yellowColor';
+    $color = $student->course === "CSE" ? 'yellowColor' : 'orangeColor'; //else ICE
     $html = '<h3 class="' . $color . ' clearfix">';
     $html = $html . '<div class="descriptionArea">';
     $html = $html . '<a href="#">' . $student->getUser()->name . '</a>';
