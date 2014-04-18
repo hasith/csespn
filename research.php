@@ -10,14 +10,27 @@ if (!oauth_session_exists()) {
 if (isset($_POST['valid'])) {
     //$user = $_SESSION['user'];
     $userId = 4;
-    $title=$_POST['title'];
+    $title = $_POST['title'];
     $partner = $_POST['partner'];
     $leader = $_POST['lead'];
     $estimation = $_POST['estimation'];
     $technos = $_POST['technologies'];
     $description = $_POST['description'];
-    echo $title.$partner . $leader . $estimation . $technos . $description;
-    return;
+    $category=$_POST['category'];
+    $data = array(
+        "title" => $title,
+        "author_id" => $userId,
+        "lead_id" => $leader,
+        "company_id" => $partner,
+        "time" => $estimation,
+        "description" => $description,
+        "category" => $category,
+        "technologies"=>$technos
+    );
+
+    $research = new Research($data);
+    $research->save();
+    return 'true';
 }
 ?>
 <!DOCTYPE html>
