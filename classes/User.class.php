@@ -16,12 +16,12 @@ class User {
     //Takes an associative array with the DB row as an argument.
     function __construct($data = null) {
         if ($data != null) {
-            $this->id = (isset($data[0]['id'])) ? $data[0]['id'] : "";
-            $this->name = (isset($data[0]['name'])) ? $data[0]['name'] : "";
-            $this->linkedin_id = (isset($data[0]['linkedin_id'])) ? $data[0]['linkedin_id'] : "";
-            $this->pic_url = (isset($data[0]['pic_url'])) ? $data[0]['pic_url'] : "";
-            $this->company_id = (isset($data[0]['company_id'])) ? $data[0]['company_id'] : "";
-            $this->profile_url = (isset($data[0]['profile_url'])) ? $data[0]['profile_url'] : "";
+            $this->id = (isset($data['id'])) ? $data['id'] : "";
+            $this->name = (isset($data['name'])) ? $data['name'] : "";
+            $this->linkedin_id = (isset($data['linkedin_id'])) ? $data['linkedin_id'] : "";
+            $this->pic_url = (isset($data['pic_url'])) ? $data['pic_url'] : "";
+            $this->company_id = (isset($data['company_id'])) ? $data['company_id'] : "";
+            $this->profile_url = (isset($data['profile_url'])) ? $data['profile_url'] : "";
         }
     }
 
