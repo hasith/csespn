@@ -4,7 +4,7 @@ class DB {
 
     protected $db_name = 'csespn';
     protected $db_user = 'root';
-    protected $db_pass = '';
+    protected $db_pass = 'Jewelcase';
     protected $db_host = 'localhost';
 
     function __construct() {
@@ -96,7 +96,6 @@ class DB {
         }
 
         $sql = "insert into $table ($columns) values ($values)";
-        echo $sql;
         mysql_query($sql) or die(mysql_error());
 
         //return the ID of the user in the database.
