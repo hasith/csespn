@@ -98,5 +98,35 @@ class DB {
         //return the ID of the user in the database.
         return mysql_insert_id();
     }
+    
+    /**
+     * 
+     * @param type $table1 first table to join
+     * @param type $table2 second table to join
+     * @param type $table1Key key from first table to compare when joining
+     * @param type $table2Key key from second table to compare when joining
+     * @param type $where fiter teh results
+     * @param type $return $return=0 -> return rows from both tables/ 1->return rows only from 1st table / 2-> return rows only from second table
+     * @return boolean
+     */
+    public function innerJoin($table1,$table2,$table1Key,$table2Key,$where,$return=0){
+        $sql = "SELECT * FROM $table1 INNER JOIN $table2 ON $table1.$table1Key=$table2.$table2Key WHERE $where";
+        if($return==1){
+            $sql = "SELECT $table1.* FROM $table1 INNER JOIN $table2 ON $table1.$table1Key=$table2.$table2Key WHERE $where";
+        }else if($return==2){
+            $sql = "SELECT $table2.* FROM $table1 INNER JOIN $table2 ON $table1.$table1Key=$table2.$table2Key WHERE $where";
+        }
+        
+        $result = mysql_query($sql);
+        if (!$result) {            
+            return false;
+        }else{
+            //if (mysql_num_rows($result) == 1) {
+            //    return $this->processRowSet($result, true);
+            //}
+            return $this->processRowSet($result);
+        }
+    }
+    
 
 }
