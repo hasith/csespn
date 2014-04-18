@@ -8,7 +8,7 @@ if (!oauth_session_exists()) {
 <?php
 //data feeding to the database
 if (isset($_POST['valid'])) {
-    //$user = $_SESSION['user'];
+//$user = $_SESSION['user']->id;
     $userId = 23;
     $title = $_POST['title'];
     $partner = $_POST['partner'];
@@ -71,45 +71,58 @@ if (isset($_POST['valid'])) {
 
                                 <div id="accordion">  
                                     <?php
+                                    $orderBy = "published";
+                                    $techoFilter = 0;
+                                    if (isset($_POST['sorter'])) {
+                                        $orderBy = $_POST['sorter'];
+                                    }
+
                                     $researchTools = new ResearchTools();
-                                    $allResearches = $researchTools->getAllResearches("time");
+                                    $allResearches = $researchTools->getAllResearches($orderBy);
+                                    if (isset($_POST['techFilter']) && $_POST['techFilter'] != 0) {
+                                        $techoFilter=$_POST['techFilter'];
+                                        $allResearches = $researchTools->getResearchByTech($techoFilter, $orderBy);
+                                    }
+                                    //$allResearches = $researchTools->getResearchByTech(30, $orderBy);
                                     foreach ($allResearches as $research) {
-                                        ?>
-                                        <h3 class="greenColor clearfix">
-                                            <div class="descriptionArea">
-                                                <a href="#"><?php echo $research->title ?></a>
-                                                <p> 
-                                                    <?php
-                                                    foreach ($research->technologies as $researchTechId) {
-                                                        echo Technology::get($researchTechId)->name . ",";
-                                                    }
-                                                    ?>
-                                                </p>
-                                            </div>
-                                            <div class="darkGray">
-                                                <ul>
-                                                    <li class="endGPA"><span>Partner :</span><?php
-                                                        $company = Company::get($research->company_id);
-                                                        echo $company->name
-                                                        ?></li>
-                                                    <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
-                                                    <li class="linkedLink"><span>Lead :</span> <a href="asd.html"><?php
-                                                            $leader = User::get($research->lead_id);
-                                                            echo $leader->name;
-                                                            ?></a></li>
-                                                </ul>
-                                            </div>
-                                        </h3>  
-                                        <div class="contentData clearfix"> 
+                                        if ($research->category == 0) {
+                                            ?>                                    
+                                            <h3 class="greenColor clearfix">
+                                                <div class="descriptionArea">
+                                                    <a href="#"><?php echo $research->title ?></a>
+                                                    <p> 
+                                                        <?php
+                                                        foreach ($research->technologies as $researchTechId) {
+                                                            echo Technology::get($researchTechId)->name . ",";
+                                                        }
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <div class="darkGray">
+                                                    <ul>
+                                                        <li class="endGPA"><span>Partner :</span><?php
+                                                            $company = Company::get($research->company_id);
+                                                            echo $company->name
+                                                            ?></li>
+                                                        <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
+                                                        <li class="linkedLink"><span>Lead :</span> <a href="asd.html"><?php
+                                                                $leader = User::get($research->lead_id);
+                                                                echo $leader->name;
+                                                                ?></a></li>
+                                                    </ul>
+                                                </div>
+                                            </h3>  
+                                            <div class="contentData clearfix"> 
+                                                <?php
+                                                $proposedUser = User::get($research->author_id);
+                                                ?>
+                                                <img src="<?php echo $proposedUser->pic_url ?>"/> 
+                                                <p>  
+                                                    <?php echo $research->description; ?>    
+                                                </p>  
+                                            </div> 
                                             <?php
-                                            $proposedUser = User::get($research->author_id);
-                                            ?>
-                                            <img src="<?php echo $proposedUser->pic_url ?>"/> 
-                                            <p>  
-                                                <?php echo $research->description; ?>    
-                                            </p>  
-                                        </div> 
-                                        <?php
+                                        }
                                     }
                                     ?>
                                 </div>   
@@ -118,120 +131,52 @@ if (isset($_POST['valid'])) {
 
                             <div id="finalYear" class="hide">
                                 <div id="accordion2"> 
-
-                                    <h3 class="greenColor clearfix">
-                                        <div class="descriptionArea">
-                                            <a href="#">Fuel Management System </a>
-                                            <p> HTML5/JavaScript, ASP.NET</p>
-                                        </div>
-                                        <div class="darkGray">
-                                            <ul>
-                                                <li class="endGPA"><span>Partner :</span> 99X Technology</li>
-                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData research clearfix"> 
-
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div> 
-
-                                    <h3 class="yellowColor clearfix">
-                                        <div class="descriptionArea">
-                                            <a href="#">High Performance Event Bus</a>
-                                            <p> HTML5/JavaScript, ASP.NET</p>
-                                        </div>
-                                        <div class="darkGray">
-                                            <ul>
-                                                <li class="endGPA"><span>Partner :</span> MIT</li>
-                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-
-                                        <img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div> 
-
-                                    <h3 class="greenColor clearfix">
-                                        <div class="descriptionArea">
-                                            <a href="#">Fuzzy Logic based Geo Filtering</a>
-                                            <p> HTML5/JavaScript, ASP.NET</p>
-                                        </div>
-                                        <div class="darkGray">
-                                            <ul>
-                                                <li class="endGPA"><span>Partner :</span> CodeGen</li>
-                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-
-                                        <img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>   
-
-                                    <h3 class="yellowColor clearfix">
-                                        <div class="descriptionArea">
-                                            <a href="#">Social Media Management System </a>
-                                            <p> HTML5/JavaScript, ASP.NET</p>
-                                        </div>
-                                        <div class="darkGray">
-                                            <ul>
-                                                <li class="endGPA"><span>Partner :</span> WSO2</li>
-                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-                                    <div class="contentData clearfix"> 
-
-                                        <img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>   
-
-                                    <h3 class="yellowColor clearfix">
-                                        <div class="descriptionArea">
-                                            <a href="#">Employee Performance Management System</a>
-                                            <p> HTML5/JavaScript, ASP.NET</p>
-                                        </div>
-                                        <div class="darkGray">
-                                            <ul>
-                                                <li class="endGPA"><span>Partner :</span> 99X Technology</li>
-                                                <li class="endGPA"><span>Estimation :</span> 230 hours</li>
-                                                <li class="linkedLink"><span>Lead :</span> <a href="asd.html">Frank Warnakula</a></li>
-                                            </ul>
-                                        </div> 
-                                    </h3> 
-                                    <div class="contentData clearfix"> 
-
-                                        <img src="img/img5.jpg"/> 
-                                        <p>  
-                                            Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                        </p>  
-                                    </div>  
-
+                                    <?php
+                                    foreach ($allResearches as $research) {
+                                        if ($research->category == 1) {
+                                            ?>
+                                            <h3 class="greenColor clearfix">
+                                                <div class="descriptionArea">
+                                                    <a href="#"><?php echo $research->title ?></a>
+                                                    <p> 
+                                                        <?php
+                                                        foreach ($research->technologies as $researchTechId) {
+                                                            echo Technology::get($researchTechId)->name . ",";
+                                                        }
+                                                        ?>
+                                                    </p>
+                                                </div>
+                                                <div class="darkGray">
+                                                    <ul>
+                                                        <li class="endGPA"><span>Partner :</span><?php
+                                                            $company = Company::get($research->company_id);
+                                                            echo $company->name
+                                                            ?></li>
+                                                        <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
+                                                        <li class="linkedLink"><span>Lead :</span> <a href="asd.html"><?php
+                                                                $leader = User::get($research->lead_id);
+                                                                echo $leader->name;
+                                                                ?></a></li>
+                                                    </ul>
+                                                </div>
+                                            </h3>  
+                                            <div class="contentData clearfix"> 
+                                                <?php
+                                                $proposedUser = User::get($research->author_id);
+                                                ?>
+                                                <img src="<?php echo $proposedUser->pic_url ?>"/> 
+                                                <p>  
+                                                    <?php echo $research->description; ?>    
+                                                </p>  
+                                            </div> 
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                 </div>
                             </div>
-
-
-
                         </div> <!-- END List Wrap -->
-
                     </div>
-
                 </div>
                 <div id="rightSide">
                     <div id="addProject">
@@ -252,7 +197,10 @@ if (isset($_POST['valid'])) {
                     </ul>
 
 
-
+                    <form action="" method="POST" id="sortForm">
+                        <input name="sorter" type="hidden" id="sorterHiddenInput" value="<?php echo $orderBy;?>">
+                        <input name="techFilter" type="hidden" id="techFilterHiddenInput" value="0">                        
+                    </form>
                     <div class="componentContainer">
                         <div class="heading">
                             <p>Filter by Technology</p>
@@ -262,17 +210,18 @@ if (isset($_POST['valid'])) {
                             <div class="cloudArea"><img src="img/cloud.jpg" /></div>
                             <div class="cloudArea">
 
-
-                                <select>
-                                    <option>Select Technology</option>
+                                <select name="technology" id="technoFilterCombo">
+                                    <option value="0">Any Technology</option>
                                     <?php
                                     $tecs = new TechnologyTools();
                                     $arr = $tecs->getAlltechnologies();
                                     foreach ($arr as $value) {
-                                        echo "<option value='$value->id'>$value->name</option>";
+                                        $selected=$techoFilter==$value->id?"selected":"";
+                                        echo "<option value='$value->id' $selected>$value->name</option>";
                                     }
                                     ?>
                                 </select>
+                                </form>
                             </div>
                         </div>
 
@@ -285,15 +234,33 @@ if (isset($_POST['valid'])) {
                         </div>
 
                         <div class="ccContainer">
-                            <ul>
-                                <li><input name="sort" type="radio" value="date" id="sortDateRadio" checked><label for="sortDateRadio">By Published Date</label></li>
-                                <li><input name="sort" type="radio" value="hour"  id="sortHourRadio" ><label for="sortHourRadio">By Estimated Hours</label></li>
-                                <li><input name="sort" type="radio" value="name" id="sortNameRadio" ><label for="sortNameRadio">By Project Name</label></li>
-                                <li><input name="sort" type="radio" value="company"  id="sortCompanyRadio"><label for="sortCompanyRadio">By Partner Company</label></li>
+                            <ul> 
+                                <li><input name="sort" type="radio" value="published" id="sortDateRadio" <?php
+                                    if (strcmp($orderBy, "published") == "0") {
+                                        echo"checked";
+                                    }
+                                    ?>><label for="sortDateRadio">By Published Date</label></li>
+                                <li><input name="sort" type="radio" value="time"  id="sortHourRadio"  <?php
+                                    if (strcmp($orderBy, "time") == "0") {
+                                        echo"checked";
+                                    }
+                                    ?>><label for="sortHourRadio">By Estimated Hours</label></li>
+                                <li><input name="sort" type="radio" value="title" id="sortNameRadio"  <?php
+                                    if (strcmp($orderBy, "title") == "0") {
+                                        echo"checked";
+                                    }
+                                    ?>><label for="sortNameRadio">By Project Name</label></li>
+                                <li><input name="sort" type="radio" value="company_id"  id="sortCompanyRadio"  <?php
+                                    if (strcmp($orderBy, "company_id") == 0) {
+                                        echo"checked";
+                                    }
+                                    ?>><label for="sortCompanyRadio">By Partner Company</label></li>
+
                             </ul>
                         </div>
 
                     </div>
+
 
                 </div>
             </div>
@@ -374,8 +341,9 @@ if (isset($_POST['valid'])) {
                             </td>
                             <td class="formInput">
                                 <select name="category" id="categoryCombo">
-                                    <option value="0">final year project</option>
-                                    <option value="1">3rd year project</option>
+                                    <option value="0">3rd year project</option>
+                                    <option value="1">final year project</option>
+                                    
                                 </select>
                             </td>
                         </tr>
