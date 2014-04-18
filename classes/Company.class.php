@@ -45,7 +45,7 @@ class Company {
         $db = new DB();
         $result = $db->select('companies', "id = $id");
 
-        return new Organization($result[0]);
+        return new Company($result[0]);
     }
     
     public static function getStudentCompanyId()
