@@ -1,16 +1,24 @@
 var technologies = new Array();
 
+function showForm(){
+     $('#projectApplicationWrapper').css('left', 0);
+}
+
+function hideForm(){
+    $('#projectApplicationWrapper').css('left', -99999);
+}
+
 $(document).ready(function() {
 
 //displaing the form on request
     $("#addProject").click(function() {
-        $('#projectApplicationWrapper').css('left', 0);
+        showForm();
     });
 
 //hiding the form on request(background click)
     $('#projectApplicationWrapper').click(function(evt) {
         if ($(evt.target).attr('id') === $(this).attr('id')) {
-            $('#projectApplicationWrapper').css('left', -99999);
+            hideForm();
         }
     });
 
@@ -79,7 +87,9 @@ function submit() {
         partner = $('#partnerCombo').find(":selected").val();
         lead = $('#leadCombo').find(":selected").val();
         description = $('#descriptionTxt').val();
-        sendRequest(title,partner,estimation,lead,technologiesVal,description);
+        category=$('#categoryCombo').find(":selected").val();
+        sendRequest(title,partner,estimation,lead,technologiesVal,description,category);
+        hideForm();
     }
     
 }
@@ -180,14 +190,12 @@ $(function() {
 
 
 //send post request
-function sendRequest(title,partner, estimation, lead, technos, description) {
-
+function sendRequest(title,partner, estimation, lead, technos, description,category) {
     $.ajax({
         url: "./research.php",
         type: 'POST',
-        data: {valid: true,title:title ,partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description},
+        data: {valid: true,title:title ,partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description,category:category},
         success: function(data) {
-            alert(data);
             if(data==='true'){
                 return true;
             }else{
