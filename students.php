@@ -160,27 +160,7 @@ function getHtmlForStudents($students) {
 }
 
 function getHtmlForStudent($student) {
-      $color = $student->course === "CSE" ? 'yellowColor' : 'orangeColor'; //else ICE
-//    $html = "<h3 class='$color clearfix'>";
-//    $html = $html . "<div class='descriptionArea'>";
-//    $html = $html . "<a href='#'>" . $student->getUser()->name . "</a>";
-//    $html = $html . "<p>" . getHtmlForStudentTechnologies($student) . "</p>";
-//    $html = $html . "</div>";
-//    $html = $html . "<div class='darkGray'>";
-//    $html = $html . "<ul>";
-//    $html = $html . "<li class='endGPA'><span>Endorsements: </span>" . $student->getEndorsements() . "</li>";
-//    $html = $html . "<li class='endGPA'><span>GPA: </span>" . $student->gpa . "</li>";
-//    $html = $html . "<li class='linkedLink'><span><a href='" . $student->getUser()->profile_url . "'>LinkedIn</a></span></li>";
-//    $html = $html . "</ul>";
-//    $html = $html . "</div>";
-//    $html = $html . "</h3>";
-//    $html = $html . "<div class='contentData clearfix'>";
-//    $html = $html . "<img src='" . $student->getUser()->pic_url . "'/>";
-//    $html = $html . "<p>";
-//    $html = $html . $student->description;
-//    $html = $html . "</p>";
-//    $html = $html . "</div>";
-//    return $html;
+    $color = $student->course === "CSE" ? 'yellowColor' : 'orangeColor'; //else ICE
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
     $html = $html . '<a href="#">' . $student->getUser()->name . '</a>';
