@@ -8,7 +8,7 @@ if (!oauth_session_exists()) {
 <?php
 //data feeding to the database
 if (isset($_POST['valid'])) {
-//$user = $_SESSION['user'];
+//$user = $_SESSION['user']->id;
     $userId = 23;
     $title = $_POST['title'];
     $partner = $_POST['partner'];
@@ -234,11 +234,7 @@ if (isset($_POST['valid'])) {
                         </div>
 
                         <div class="ccContainer">
-                            <ul>     
-                                <?php
-                                echo "<p>$orderBy</p>";
-                                ?>
-
+                            <ul> 
                                 <li><input name="sort" type="radio" value="published" id="sortDateRadio" <?php
                                     if (strcmp($orderBy, "published") == "0") {
                                         echo"checked";
