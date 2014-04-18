@@ -10,7 +10,7 @@ require_once ROOT_DIR . '/classes/StudentTools.class.php';
 require_once ROOT_DIR . '/classes/Technology.class.php';
 require_once ROOT_DIR . '/classes/TechnologyTools.class.php';
 require_once ROOT_DIR . '/classes/Session.class.php';
-require_once ROOT_DIR . '/classes/SessionTools.class.php';
+//require_once ROOT_DIR . '/classes/SessionTools.class.php';
 require_once ROOT_DIR . '/classes/Batch.class.php';
 require_once ROOT_DIR . '/classes/BatchTools.class.php';
 require_once ROOT_DIR . '/classes/Endorsement.class.php';
@@ -19,6 +19,8 @@ require_once ROOT_DIR . '/classes/EventTools.class.php';
 require_once ROOT_DIR . '/classes/Sponsorship.class.php';
 require_once ROOT_DIR . '/classes/SponsorshipTools.class.php';
 require_once ROOT_DIR . '/classes/SettingsTools.class.php';
+
+date_default_timezone_set('Asia/Colombo');
 
 function oauth_session_exists() {
     if ((is_array($_SESSION)) && (array_key_exists('oauth', $_SESSION))) {

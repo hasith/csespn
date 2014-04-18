@@ -77,7 +77,7 @@ try {
                             $user->linkedin_id = $result->{'id'};
                             $user->pic_url = $result->{'picture-url'};
                             $user->profile_url = $result->{'public-profile-url'};
-                            $user->company_id = Company::getUomStudentsId();
+                            $user->company_id = Company::getStudentCompanyId();
                             $user->save(TRUE);
                         }
                         //adding the student skills and description
@@ -109,7 +109,7 @@ try {
                             $user->name = $result->{'first-name'} . " " . $result->{'last-name'};
                             $user->linkedin_id = $result->{'id'};
                             $user->pic_url = $result->{'picture-url'};
-                            $user->company_id = Company::getDummyComapnyId();
+                            $user->company_id = Company::getPublicUserCompanyId();
                             $user->save(TRUE);
                         }
                     }

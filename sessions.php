@@ -40,28 +40,43 @@ require_once './global.inc.php';
                                <div id="sessionsList"> 
                                   
 									<?php
-									$sessionTools = new SessionTools();
-									$sessions = $sessionTools->getAllSessions();
+									$sessions = Session::fetchAll();
 									
 									foreach($sessions as $session) {
-										echo $session->title;
-									}
+									?>
 									
-									?>                                  
 									<h3 class="greenColor clearfix">
                                     	<div class="descriptionArea">
-                                        	<a href="#">Go REST with ASP.NET Web API</a>
-                                    		<p>Lorem ipsum dolor sit amet, congue massa sem vivamus nisl donec augue, nunc nonummy eget elit commodo odio, eros porta augue, eu natoque nec sit. Id mattis et molestie dolor augue.
-</p>
+                                        	<a href="#"><?php echo $session->get("title"); ?></a>
+                                    		<p><?php echo $session->get("description"); ?></p>
                                         </div>
                                         <div class="darkGray">
                                         	<ul>
-                                            	<li class="endGPA">24th March 2014</li>
+                                                <?php 
+                                                	if(!is_null($session->get("date"))) {
+                                                		echo '<li class="endGPA">'.date("j F Y", strtotime($session->get("date"))).'</li>';
+                                                	} else {
+                                                		echo '<li class="endGPA">Date not agreed</li>';
+                                                	}
+                                                ?>                               		
                                                 <li class="endGPA"><span>Level 2 Students</li>
-                                                <li class="linkedLink"><a href="">Take this Session</a></li>
+                                                <?php 
+                                                	if(!is_null($session->get("org_id"))) {
+                                                		echo '<li class="endGPA"><span>'.$session->get("org_id").'</li>';
+                                                	} else {
+                                                		echo'<li class="linkedLink"><a href="">Take this Session</a></li>';
+                                                	}
+                                                ?>
+                                                
                                             </ul>
                                         </div>
                                     </h3>  
+									
+									<?php
+									}
+									
+									?>                                  
+
 
                                      
                                     <h3 class="yellowColor clearfix">
@@ -208,25 +223,40 @@ require_once './global.inc.php';
                
         </div>
         
-		<div id="dialog-form" title="Propose new session">
+		<div id="dialog-form" title="Session Details">
 		  <p class="validateTips">Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.</p>
 		 
 		  <form id="create_form" method="post" action="sessions.create.php">
 		  <fieldset>
 		    <label for="title">Title</label>
-		    <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all"><br/>
+		    <input type="text" name="title" size="60" minlength="10" maxlength="50" required><br/>
+		    
 		    <label for="description">Description</label>
-		    <textarea form="create_form" name="description" rows="4" cols="50"></textarea><br/>
-			<label for="batch">Target Batches</label>
+		    <textarea form="create_form" name="description" minlength="100" maxlength="256" rows="4" cols="70" required></textarea><br/>
+		    
+		    <label for="date">Date</label>
+		    <input type="text" id="datepicker" name="date"><br/>
+		    <label for="start_time">Start Time</label>
+		    <select name="start_time">
+			  <option value="7:00 am">7:00 am</option>
+			  <option value="7:30 am">7:30 am</option>
+			  <option value="8:00 am">8:00 am</option>
+			  <option value="8:30 am">8:30 am</option>
+			</select>
+		    <label for="duration">Duration</label><input type="text"  size="6" name="duration"> mins<br/>
+			
+			<label for="resp_name">Responsible Person</label> Name: <input type="text" maxlength="50" name="resp_name">
+			Phone: <input type="text" maxlength="10" size="12" name="resp_contact"><br/>
+			
+			<label for="batch">Target Batches: </label>
 			<?php
 			$batchTools = new BatchTools();
 			$batches = $batchTools->getAllBatches();
-			
 			foreach($batches as $batch) {
-				echo '<input type="checkbox" name="batch[]" value="' . $batch->id . '">' . $batch->display_name . '</input><br>';
+				echo '<input type="checkbox" name="batch[]" value="' . $batch->id . '">' . $batch->display_name . '</input>';
 			}
 			
-			?>   
+			?>  
 		  </fieldset>
 		  </form>
 		</div>        

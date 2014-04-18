@@ -41,6 +41,31 @@ $(document).on("click", ".calendar-entry", function(e) {
             });
 });
 
+$(document).on("click", ".open-sponsorship-entry", function(e) {
+    e.preventDefault();
+    var id = $("#sponsorship-id", this).val();
+    
+    console.log(id);
+
+//    $.ajax(
+//            {
+//                url: "events.details.php",
+//                type: "POST",
+//                data: "event_id=" + id,
+//                success: function(data, textStatus, jqXHR)
+//                {
+//                    var event = JSON.parse(data);
+//                    $("#event-dialog").html(getDialogContent(event, false));
+//                    $("#event-dialog").dialog("open");
+//                },
+//                error: function(jqXHR, textStatus, errorThrown)
+//                {
+//                    $("#event-dialog").html(getDialogContent("", true));
+//                    $("#event-dialog").dialog("open");
+//                }
+//            });
+});
+
 function getDialogContent(event, isError) {
 
     if (isError) {

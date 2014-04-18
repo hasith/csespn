@@ -4,7 +4,7 @@ class DB {
 
     protected $db_name = 'csespn';
     protected $db_user = 'root';
-    protected $db_pass = '';
+    protected $db_pass = 'Jewelcase';
     protected $db_host = 'localhost';
 
     function __construct() {
@@ -62,6 +62,10 @@ class DB {
 
         return $this->processRowSet($result);
     }
+	
+	public function execute($sql){
+		mysql_query($sql) or die(mysql_error());		
+	}
 
     //Updates a current row in the database.
     //takes an array of data, where the keys in the array are the column names
@@ -92,11 +96,14 @@ class DB {
         }
 
         $sql = "insert into $table ($columns) values ($values)";
-        
         mysql_query($sql) or die(mysql_error());
 
         //return the ID of the user in the database.
         return mysql_insert_id();
     }
 
+	public function delete($ids, $table) {
+		$commaList = implode(', ', $ids);
+		$sql = "delete from  $table where id in ($commaList)";
+	}
 }
