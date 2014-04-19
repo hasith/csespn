@@ -100,19 +100,18 @@ class User {
     public static function getFromLinkedinId($linkedin_id) {
         $db = new DB();
         $result = $db->select('users', "linkedin_id = '$linkedin_id'");
-        return new User($result);
+        return new User($result[0]);
     }
 
     public static function login($linkedin_id) {
         $db = new DB();
         $result = $db->select('users', "linkedin_id = '$linkedin_id'");
         if (!empty($result)) {
-            $user = new User($result);
+            $user = new User($result[0]);
             $_SESSION["user"] = $user;
 
             $_SESSION["login_time"] = time();
             $_SESSION["logged_in"] = 1;
-
             return $_SESSION['user'];
         } else {
             return null;

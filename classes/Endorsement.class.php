@@ -58,7 +58,7 @@ class Endorsement {
     public static function checkEndorsementExists($tech_id, $student_id) {
         $db = new DB();
         $result = $db->select("endorsements", "technology_id = $tech_id and student_id='$student_id'");
-        if ($result == false || mysql_num_rows($result) == 0) {
+        if ($result == false || count($result) == 0) {
             return false;
         } else {
             return true;

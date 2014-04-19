@@ -19,9 +19,15 @@ class ResearchTools {
         }
         return $research;
     }
-
+      
     function getResearchByTech($technologyId, $orderBy) {
-        
+        $db=new DB();
+        $results=$db->innerJoin("research", "research_tech__map", "id", "research_id", "research_tech__map.technology_id=$technologyId", $orderBy);
+        $research = array();
+        foreach ($results as $result) {
+            array_push($research, new Research($result));
+        }
+        return $research;
     }
 
 }

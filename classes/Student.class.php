@@ -10,6 +10,9 @@ class Student {
     public $linkedin_id;
     public $gpa;
     public $description;
+    
+    //This is fetched from the batches table.course
+    public $course;
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
@@ -19,6 +22,7 @@ class Student {
         $this->linkedin_id = (isset($data[0]['linkedin_id'])) ? $data[0]['linkedin_id'] : "";
         $this->gpa = (isset($data[0]['gpa'])) ? $data[0]['gpa'] : "";
         $this->description = (isset($data[0]['description'])) ? $data[0]['description'] : "";
+        $this->course = (isset($data[0]['course'])) ? $data[0]['course'] : "";
     }
 
     public function save($isNewStudent = false) {
@@ -71,7 +75,7 @@ class Student {
         $results = $db->select2("technologies.id AS id, technologies.name AS name, endorsements.COUNT AS count", "((endorsements join students on endorsements.student_id = students.id) join technologies on technologies.id = endorsements.technology_id)", "endorsements.student_id = $this->id", "name", "count");
         $technologies = array();
         foreach ($results as $key => $value) {
-            array_push($technologies, array(new Technology(array($value)), $value['count']));
+            array_push($technologies, array(new Technology($value), $value['count']));
         }
         return $technologies;
     }

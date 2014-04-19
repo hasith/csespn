@@ -103,8 +103,8 @@ try {
                             }
                         }            
                     } else {
-                        //User is a visitor
-                        if (!User::checkUserExists($result->{'id'})) {
+                        if (!User::checkUserExists($result->{'id'})) {                            
+                            //User is a new visitor
                             $user = new User();
                             $user->name = $result->{'first-name'} . " " . $result->{'last-name'};
                             $user->linkedin_id = $result->{'id'};
@@ -112,8 +112,8 @@ try {
                             $user->company_id = Company::getPublicUserCompanyId();
                             $user->save(TRUE);
                         }
-                    }
-
+                    }                    
+                    User::login($result->{'id'});                                        
                     // redirect the user back to the demo page
                     header('Location: ' . $_SERVER['PHP_SELF']);
                 } else {

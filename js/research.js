@@ -1,14 +1,29 @@
 var technologies = new Array();
 
-function showForm(){
-     $('#projectApplicationWrapper').css('left', 0);
+function showForm() {
+    $('#projectApplicationWrapper').css('left', 0);
 }
 
-function hideForm(){
+function hideForm() {
     $('#projectApplicationWrapper').css('left', -99999);
 }
 
 $(document).ready(function() {
+
+    //submit sort form
+    $('input[name=sort]').change(function() {
+        $("#sorterHiddenInput").val($('input[name=sort]:radio:checked').val());
+        $("#techFilterHiddenInput").val($('#technoFilterCombo').find(":selected").val());
+        $('#sortForm').submit();
+    });
+
+    $('#technoFilterCombo').change(function() {
+        $("#sorterHiddenInput").val($('input[name=sort]:radio:checked').val());
+        $("#techFilterHiddenInput").val($('#technoFilterCombo').find(":selected").val());
+        $('#sortForm').submit();
+    });
+
+
 
 //displaing the form on request
     $("#addProject").click(function() {
@@ -81,17 +96,18 @@ function highlightElement(element, color) {
  */
 function submit() {
     if (validate()) {
-        title=$("#titleTxt").val();
+        title = $("#titleTxt").val();
         estimation = $("#estimatedTimeTxt").val();
         technologiesVal = $("#technologyVals").val();
         partner = $('#partnerCombo').find(":selected").val();
         lead = $('#leadCombo').find(":selected").val();
         description = $('#descriptionTxt').val();
-        category=$('#categoryCombo').find(":selected").val();
-        sendRequest(title,partner,estimation,lead,technologiesVal,description,category);
+        category = $('#categoryCombo').find(":selected").val();
+        sendRequest(title, partner, estimation, lead, technologiesVal, description, category);
         hideForm();
+        location.reload();
     }
-    
+
 }
 
 /*
@@ -105,19 +121,19 @@ function validate() {
     partnerInput = $('#partnerCombo');
     leadInput = $('#leadCombo');
     descriptionInput = $('#descriptionTxt');
-    titleInput=$("#titleTxt");
+    titleInput = $("#titleTxt");
 
     var validated = true;
 
     highlightElement(partnerInput, 'green');
     highlightElement(leadInput, 'green');
-    
+
     //title
-    if(titleInput.val()===''){
-        highlightElement(titleInput,'red');
-        validated=false;
-    }else{
-        highlightElement(titleInput,'green');
+    if (titleInput.val() === '') {
+        highlightElement(titleInput, 'red');
+        validated = false;
+    } else {
+        highlightElement(titleInput, 'green');
     }
 
     //estimated time
@@ -190,15 +206,15 @@ $(function() {
 
 
 //send post request
-function sendRequest(title,partner, estimation, lead, technos, description,category) {
+function sendRequest(title, partner, estimation, lead, technos, description, category) {
     $.ajax({
         url: "./research.php",
         type: 'POST',
-        data: {valid: true,title:title ,partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description,category:category},
+        data: {valid: true, title: title, partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description, category: category},
         success: function(data) {
-            if(data==='true'){
+            if (data === 'true') {
                 return true;
-            }else{
+            } else {
                 return false;
             }
         }

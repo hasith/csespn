@@ -4,7 +4,7 @@ class DB {
 
     protected $db_name = 'csespn';
     protected $db_user = 'root';
-    protected $db_pass = 'Jewelcase';
+    protected $db_pass = '';
     protected $db_host = 'localhost';
 
     function __construct() {
@@ -63,14 +63,24 @@ class DB {
         return $this->processRowSet($result);
     }
 
+    /**
+     * Function to execute a custom sql command
+     * 
+     * @param type $sql
+     */
     public function execute($sql) {
         mysql_query($sql) or die(mysql_error());
     }
 
-	public function query($sql){
-		$result = mysql_query($sql);
+    /*
+     * Function to execute a custom sql command and get the results
+     */
+    public function query($sql){
+	$result = mysql_query($sql);
         return $this->processRowSet($result);
-	}
+    }
+    
+    
     //Updates a current row in the database.
     //takes an array of data, where the keys in the array are the column names
     //and the values are the data that will be inserted into those columns.
@@ -88,10 +98,9 @@ class DB {
     //and the values are the data that will be inserted into those columns.
     //$table is the name of the table.
     public function insert($data, $table) {
-
         $columns = "";
         $values = "";
-
+        
         foreach ($data as $column => $value) {
             $columns .= ($columns == "") ? "" : ", ";
             $columns .= $column;
@@ -106,6 +115,12 @@ class DB {
         return mysql_insert_id();
     }
 
+    /**
+     * Function to delete a row
+     * 
+     * @param string $ids
+     * @param string $table
+     */
     public function delete($ids, $table) {
         $commaList = implode(', ', $ids);
         $sql = "delete from  $table where id in ($commaList)";
@@ -138,5 +153,25 @@ class DB {
             return $this->processRowSet($result);
         }
     }
-
+    
+    /**
+     * Function to get results from a natural join of two tables
+     * 
+     * @param string $columns
+     * @param string $table1
+     * @param string $table2
+     * @param string $where
+     */
+    public function naturalJoin($columns,$table1,$table2,$where){
+        $sql = "SELECT $columns  FROM $table1 NATURAL JOIN $table2 WHERE $where";
+        $result = mysql_query($sql);
+        if (!$result) {
+            return false;
+        } else {
+            //if (mysql_num_rows($result) == 1) {
+            //    return $this->processRowSet($result, true);
+            //}
+            return $this->processRowSet($result);
+        }
+    }
 }
