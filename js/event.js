@@ -24,18 +24,18 @@ $(document).on("click", ".calendar-entry", function(e) {
 
     $.ajax(
             {
-                url: "events.details.php",
+                url: "events.get.php",
                 type: "POST",
                 data: "event_id=" + id,
                 success: function(data, textStatus, jqXHR)
                 {
                     var event = JSON.parse(data);
-                    $("#event-dialog").html(getDialogContent(event, false));
+                    $("#event-dialog").html(getEventDialogContent(event, false));
                     $("#event-dialog").dialog("open");
                 },
                 error: function(jqXHR, textStatus, errorThrown)
                 {
-                    $("#event-dialog").html(getDialogContent("", true));
+                    $("#event-dialog").html(getEventDialogContent("", true));
                     $("#event-dialog").dialog("open");
                 }
             });
@@ -47,26 +47,26 @@ $(document).on("click", ".open-sponsorship-entry", function(e) {
     
     console.log(id);
 
-//    $.ajax(
-//            {
-//                url: "events.details.php",
-//                type: "POST",
-//                data: "event_id=" + id,
-//                success: function(data, textStatus, jqXHR)
-//                {
-//                    var event = JSON.parse(data);
-//                    $("#event-dialog").html(getDialogContent(event, false));
-//                    $("#event-dialog").dialog("open");
-//                },
-//                error: function(jqXHR, textStatus, errorThrown)
-//                {
-//                    $("#event-dialog").html(getDialogContent("", true));
-//                    $("#event-dialog").dialog("open");
-//                }
-//            });
+    $.ajax(
+            {
+                url: "sponsorships.get.php",
+                type: "POST",
+                data: "sponsorship_id=" + id,
+                success: function(data, textStatus, jqXHR)
+                {
+                    var event = JSON.parse(data);
+                    $("#event-dialog").html(getSponsDialogContent(event, false));
+                    $("#event-dialog").dialog("open");
+                },
+                error: function(jqXHR, textStatus, errorThrown)
+                {
+                    $("#event-dialog").html(getSponsDialogContent("", true));
+                    $("#event-dialog").dialog("open");
+                }
+            });
 });
 
-function getDialogContent(event, isError) {
+function getEventDialogContent(event, isError) {
 
     if (isError) {
         return "<h3>An Error Occurred! :(</h3>";
@@ -96,6 +96,26 @@ function getDialogContent(event, isError) {
         htmlContent += "</p>";
     }
 
+    return htmlContent;
+}
+
+function getSponsDialogContent(sponsorship, isError) {
+
+    if (isError) {
+        return "<h3>An Error Occurred! :(</h3>";
+    }
+
+    var htmlContent = "";
+
+    htmlContent += "<h2>" + sponsorship.name + "</h2>";
+    htmlContent += "<p><b>Amount: </b>Rs. " + sponsorship.amount + "</p>";
+
+    if (sponsorship.description) {
+        htmlContent += "<p>" + sponsorship.description + "</p>";
+    }
+    
+    //temparary line
+    htmlContent += "<p><i>(Please contact Department of CSE to take this sponsorship.)</i></p>";
     return htmlContent;
 }
 
