@@ -5,3 +5,4 @@
         <script src="js/organictabs.jquery.js"></script>
         <script src="js/jquery.validate.min.js"></script>
         <script src="js/jquery.populate.js"></script>
+        <script src="js/jquery.dataTables.min.js"></script>

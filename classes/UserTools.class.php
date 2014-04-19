@@ -8,7 +8,7 @@ class UserTools{
     }
     
     function getAllLeads(){
-        $results = $this->db->innerJoin("users","companies","company_id","id","companies.partner_type='Premium'",1);
+        $results = $this->db->innerJoin("users","companies","company_id","id","companies.access_level=4",1);
         $leads = array();
         foreach ($results as $result) {
             array_push($leads, new User($result));
@@ -18,8 +18,7 @@ class UserTools{
     }
 	
 	function getAll(){
-		$db = new DB();
-        $results = $db->select("users", "true");
+        $results = $this->db->select("users", "1=1");
         $users = array();
         foreach ($results as $result) {
             array_push($users, new User($result));

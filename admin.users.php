@@ -32,7 +32,7 @@ require_once './global.inc.php';
                         	
                             <div id="featured2">
 
-                                <table id="table_id">
+                                <table id="usertable">
 								    <thead>
 								        <tr>
 								            <th>Id</th>
@@ -51,7 +51,7 @@ require_once './global.inc.php';
 								            <td><?=$user->id?></td>
 								            <td><?=$user->name?></td>
 								            <td><?=$user->linkedin_id?></td>
-								            <td><?=$user->company_id?></td>
+								            <td><a href="" class="companylink" data-companyid="<?=$user->company_id?>" data-id="<?= $user->id ?>" ><?=$user->getCompany()->name?></a></td>
 								        </tr>									
 									<?php
 										}
@@ -87,10 +87,27 @@ require_once './global.inc.php';
                
         </div>
         
-      
+		<div id="dialog-form" title="Change Company">
+		 
+		  <form id="create_form" method="post" action="user.create.php">
+		  <fieldset>
+		  	<input id="userId" name="userId" type="hidden" />
+			<select name="companyId" id="companylist" size="10" style="width:100%" >
+				<?php 
+					$companyTools = new CompanyTools();
+					$companies = $companyTools->getAllCompanies();
+					foreach ($companies as $company) {
+						echo '<option value="'.$company->id.'">'.$company->name.'</option>';
+					}
+				?>
+			 </select> 
+
+		  </fieldset>
+		  </form>
+		</div>        
         
 		<?php include_once 'scripts.inc.php'; ?>
-		<script type="text/javascript" src="js/session.js"></script>
+		<script type="text/javascript" src="js/admin.user.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
         <!--<script>

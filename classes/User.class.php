@@ -25,6 +25,10 @@ class User {
         }
     }
 
+	public function getCompany() {
+		return Company::get($this->company_id);		
+	}
+
     public function save($isNewUser = false) {
         //create a new database object.
         $db = new DB();

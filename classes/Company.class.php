@@ -5,14 +5,14 @@ require_once ROOT_DIR . '/classes/DB.class.php';
 class Company {
     public $id;
     public $name;
-    public $partner_type;
+    public $access_level;
     
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
     function __construct($data) {
         $this->id = (isset($data['id'])) ? $data['id'] : "";
         $this->name = (isset($data['name'])) ? $data['name'] : "";
-        $this->partner_type = (isset($data['partner_type'])) ? $data['partner_type'] : "";
+        $this->partner_type = (isset($data['access_level'])) ? $data['access_level'] : null;
     }
 
     public function save($isNewOrg = false) {
@@ -23,7 +23,7 @@ class Company {
             //set the data array
             $data = array(
                 "name" => "'$this->name'",
-                "partner_type" => "'$this->partner_type'"
+                "access_level" => "'$this->access_level'"
             );
 
             //update the row in the database
@@ -32,7 +32,7 @@ class Company {
         //if the user is being registered for the first time.
             $data = array(
                 "name" => "'$this->name'",
-                "partner_type" => "'$this->partner_type'"
+                "access_level" => "'$this->access_level'"
             );
 
             $this->id = $db->insert($data, 'companies');

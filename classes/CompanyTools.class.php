@@ -2,7 +2,7 @@
 require_once ROOT_DIR . '/classes/DB.class.php';
 
 
-class CompnayTools{
+class CompanyTools{
      private $db;
     
     function __construct() {
@@ -10,7 +10,7 @@ class CompnayTools{
     }
     
     function getAllCompanies(){
-        $results = $this->db->select("companies", "true");
+        $results = $this->db->select("companies", "1=1");
         $companies = array();
         foreach ($results as $result){
             array_push($companies, new Company($result));
