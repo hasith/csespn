@@ -51,7 +51,7 @@ require_once './global.inc.php';
 								            <td><?=$user->id?></td>
 								            <td><?=$user->name?></td>
 								            <td><?=$user->linkedin_id?></td>
-								            <td><a href="" class="companylink" data-companyid="<?=$user->company_id?>" data-id="<?= $user->id ?>" ><?=$user->getCompany()->name?></a></td>
+								            <td><a href="" class="companylink" data-companyid="<?=$user->company_id?>" data-id="<?= $user->id ?>" ><?=$user->getOrganization()->name?></a></td>
 								        </tr>									
 									<?php
 										}

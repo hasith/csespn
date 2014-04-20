@@ -14,9 +14,11 @@
                         <li class="<?php if($pageName=='research'){echo 'active';}?>"><a href="./research.php">Research</a></li>
                         <li class="<?php if($pageName=='events'){echo 'active';}?>"><a href="./events.php">Events</a></li>  
                         <li class="<?php if($pageName== 'admin') {echo 'active';}?>"><a href="./admin.users.php">Admin</a></li>                     
-                <?php                        
-                        echo '<li><a href=' . "./login.php?lType=revoke" . ">Logout</a></li>";
+                <?php     
+                		$user = User::currentUser();                   
+                        echo '<li title="'.$user->name.' as '.$user->getOrganization()->name.'"><a href=' . "./login.php?lType=revoke" . ">Logout</a></li>";
                     }else{
+                    	
                         echo '<li><a href=' . "./login.php?lType=initiate" . ">Connect with LinkedIn</a></li>";
                     }
                 ?>

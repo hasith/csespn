@@ -11,6 +11,9 @@ class User {
     public $pic_url;
     public $company_id;
     public $profile_url;
+	
+	//related entities
+	public $organization;
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
@@ -25,9 +28,6 @@ class User {
         }
     }
 
-	public function getCompany() {
-		return Company::get($this->company_id);		
-	}
 
     public function save($isNewUser = false) {
         //create a new database object.
@@ -71,11 +71,14 @@ class User {
     }
 
     public function getOrganization() {
-        if ($this->company_id !== null) {
-            return Company::get($this->company_id);
-        } else {
-            return null;
-        }
+    	if ($this->company_id === null) {
+			return null;
+		} else if ($this->organization === null) {
+			//let's cache org entity
+    		$this->organization = Company::get($this->company_id);
+    	} 
+		
+		return $this->organization;
     }
 
     public static function checkUserExists($linkedin_id) {
@@ -108,6 +111,7 @@ class User {
         $result = $db->select('users', "linkedin_id = '$linkedin_id'");
         if (!empty($result)) {
             $user = new User($result[0]);
+			$user->organization = $user->getOrganization();
             $_SESSION["user"] = $user;
 
             $_SESSION["login_time"] = time();
@@ -117,5 +121,9 @@ class User {
             return null;
         }
     }
+	
+	public static function currentUser(){
+		return $_SESSION['user'];
+	}
 
 }
