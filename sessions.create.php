@@ -2,7 +2,6 @@
 	require_once './global.inc.php';	
 ?>
 <?php 
-
 	$id = $_POST["id"];
 	$isNew = is_numeric($id) && $id > 0?false:true;
 	

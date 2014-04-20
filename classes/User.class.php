@@ -13,7 +13,7 @@ class User {
     public $profile_url;
 	
 	//related entities
-	public $organization;
+	protected $organization;
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.

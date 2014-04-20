@@ -19,7 +19,7 @@ class CompanyTools{
     }
     
     function getAllPremiumCompanies(){
-        $results = $this->db->select("companies", "partner_type='Premium'");
+        $results = $this->db->select("companies", "access_level=4");
         $companies = array();
         foreach ($results as $result){
             array_push($companies, new Company($result));

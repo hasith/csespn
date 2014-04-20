@@ -37,4 +37,27 @@ $(document).ready(function(){
 	    	return false;
 		});
 	});
+	
+	$("#dialog-confirmation").dialog({
+	  autoOpen: false,
+	  height: 300,
+	  width: 650,
+	  modal: true,
+	  buttons: {
+	    "Confirm Facilitation": function() {
+	    	$("#confirmation_form").submit();
+	    },
+	    "No, May be Later": function() {
+	      $( this ).dialog( "close" );
+	    }
+	  }
+	});
+	
+	$(".takeSession").click(function(){
+		$("#confirmation_form :input[name='sessionId']").val($(this).data("id"));
+		$("#dialog-confirmation").dialog( "open" );
+		return false;
+	});
+
+
 });

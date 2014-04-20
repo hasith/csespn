@@ -12,7 +12,7 @@ class Company {
     function __construct($data) {
         $this->id = (isset($data['id'])) ? $data['id'] : "";
         $this->name = (isset($data['name'])) ? $data['name'] : "";
-        $this->partner_type = (isset($data['access_level'])) ? $data['access_level'] : null;
+        $this->access_level = (isset($data['access_level'])) ? $data['access_level'] : null;
     }
 
     public function save($isNewOrg = false) {

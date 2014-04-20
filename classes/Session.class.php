@@ -29,7 +29,7 @@ class Session {
 		$this->duration = isset($data["duration"])? $data["duration"]: null;
 		$this->resp_name = isset($data["resp_name"])? $data["resp_name"]: null;
 		$this->resp_contact = isset($data["resp_contact"])? $data["resp_contact"]: null;
-		$this->org_id = isset($data["org_id"])? $data["org_id"]: null;
+		$this->org_id = isset($data["org_id"]) && is_numeric($data["org_id"]) && $data["org_id"] >0? $data["org_id"]: null;
 		/*
     	if($this->notEmpty($data['id'])) {
     		$this->id = $data['id'];

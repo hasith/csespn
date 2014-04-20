@@ -5,7 +5,12 @@ require_once './global.inc.php';
         header('Location: ' . '404.php');
     }
 	
-	
+	function haveAccess($session) {
+		if(User::currentUser()->getOrganization()->access_level > 4 || $session->get("org_id") === User::currentUser()->company_id) {
+			return true;
+		}
+		return false;
+	};
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -51,7 +56,12 @@ require_once './global.inc.php';
                                     		<p><?php echo $session->get("description"); ?></p>
                                         </div>
                                         <div class="darkGray">
-                                        	<a href="#" class="session_edit" data-id="<?= $session->get("id") ?>">edit</a>
+                                        	<?php 
+                                        		// edit available only for user's sessions OR by the admin
+                                        		if(haveAccess($session)) {
+                                        			echo '<a href="#" class="session_edit" data-id="'.$session->get("id").'">edit</a>';
+                                        		}
+                                        	?>
                                         	<ul>
                                                 <?php 
                                                 	if(!is_null($session->get("date"))) {
@@ -72,9 +82,10 @@ require_once './global.inc.php';
                                                 <?php 
                                                 	
                                                 	if(!is_null($session->get("org_id"))) {
-                                                		echo '<li class="endGPA"><span>'.$session->get("org_id").'</li>';
+                                                		$company = Company::get($session->get("org_id"));
+														echo '<li class="linkedLink" >'.$company->name.'</li>';
                                                 	} else {
-                                                		echo'<li class="linkedLink"><a href="">Take this Session</a></li>';
+                                                		echo'<li data-id="'.$session->id.'" class="linkedLink takeSession"><a href="">Take this Session</a></li>';
                                                 	}
                                                 ?>
                                                 
@@ -266,12 +277,38 @@ require_once './global.inc.php';
 			foreach($batches as $batch) {
 				echo '<input type="checkbox" name="batch[]" value="' . $batch->id . '">' . $batch->display_name . '</input>';
 			}
-			
-			?>  
+			?><br/>
+			<label for="company">Assigned To: </label>
+			<select name="org_id" >
+				<option value="-1"> - Unassign - </option>
+				<?php 
+					$companyTools = new CompanyTools();
+					$companies = $companyTools->getAllCompanies();
+					foreach ($companies as $company) {
+						if(User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $company->id) {
+							echo '<option value="'.$company->id.'">'.$company->name.'</option>';
+						}
+						
+					}
+				?>				
+			</select> 
 		  </fieldset>
 		  </form>
-		</div>        
-        
+		</div> 
+		   
+		<div id="dialog-confirmation" title="Confirm Facilitation of this Session">
+		  <form id="confirmation_form" method="post" action="sessions.facilitate.php">
+		  <fieldset>
+		  	<p>Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
+			 session details where you may fill in contact person details, etc. 
+			 We will get in touch with you soon.</p>
+		  	 <input type="hidden" name="orgId" value="<?= User::currentUser()->company_id ?>" />
+		  	 <input type="hidden" name="sessionId" />
+		  </fieldset>
+		  </form>
+		</div>      
+
+		        
 		<?php include_once 'scripts.inc.php'; ?>
 		<script type="text/javascript" src="js/session.js"></script>
 
