@@ -12,7 +12,7 @@
                          <?php
                              if(oauth_session_exists()){
                                  echo '<li><a href="./events.php">' . 'Portal' . '</a></li>';
-                                 echo '<li><a href=' . "./login.php?lType=revoke" . ">Logout</a></li>";
+                                 echo '<li><a href=' . "./logout.php" . ">Logout</a></li>";
                              }else{
                                  echo '<li><a href=' . "./login.php?lType=initiate" . ">Connect with LinkedIn</a></li>";
                              }

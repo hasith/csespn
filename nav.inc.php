@@ -16,7 +16,7 @@
                         <li class="<?php if($pageName== 'admin') {echo 'active';}?>"><a href="./admin.users.php">Admin</a></li>                     
                 <?php     
                 		$user = User::currentUser();                   
-                        echo '<li title="'.$user->name.' as '.$user->getOrganization()->name.'"><a href=' . "./login.php?lType=revoke" . ">Logout</a></li>";
+                        echo '<li title="'.$user->name.' as '.$user->getOrganization()->name.'"><a href=' . "./logout.php" . ">Logout</a></li>";
                     }else{
                     	
                         echo '<li><a href=' . "./login.php?lType=initiate" . ">Connect with LinkedIn</a></li>";
