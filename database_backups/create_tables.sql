@@ -94,10 +94,14 @@ CREATE TABLE IF NOT EXISTS `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `batch` int(11) NOT NULL,
   `linkedin_id` varchar(255) NOT NULL,
+  `profile_url` varchar(255) NOT NULL,
+  `oauth_token` varchar(255) NOT NULL,
+  `oauth_token_secret` varchar(255) NOT NULL,
   `gpa` varchar(255) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
 
 CREATE TABLE IF NOT EXISTS `technologies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

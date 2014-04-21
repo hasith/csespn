@@ -8,6 +8,8 @@ class Student {
     public $id;
     public $batch;
     public $linkedin_id;
+    public $profile_url;
+    public $oauth_token;
     public $gpa;
     public $description;
     
@@ -20,6 +22,9 @@ class Student {
         $this->id = (isset($data[0]['id'])) ? $data[0]['id'] : "";
         $this->batch = (isset($data[0]['batch'])) ? $data[0]['batch'] : "";
         $this->linkedin_id = (isset($data[0]['linkedin_id'])) ? $data[0]['linkedin_id'] : "";
+        $this->profile_url = (isset($data[0]['profile_url'])) ? $data[0]['profile_url'] : "";
+        $this->oauth_token = (isset($data[0]['oauth_token'])) ? $data[0]['oauth_token'] : "";
+        $this->oauth_token_secret = (isset($data[0]['oauth_token_secret'])) ? $data[0]['oauth_token_secret'] : "";
         $this->gpa = (isset($data[0]['gpa'])) ? $data[0]['gpa'] : "";
         $this->description = (isset($data[0]['description'])) ? $data[0]['description'] : "";
         $this->course = (isset($data[0]['course'])) ? $data[0]['course'] : "";
@@ -36,6 +41,9 @@ class Student {
             $data = array(
                 "batch" => "'$this->batch'",
                 "linkedin_id" => "'$this->linkedin_id'",
+                "profile_url" => "'$this->profile_url'",
+                "oauth_token" => "'$this->oauth_token'",
+                "oauth_token_secret" => "'$this->oauth_token_secret'",
                 "gpa" => "'$this->gpa'",
                 "description" => "'$this->description'"
             );
@@ -47,6 +55,9 @@ class Student {
             $data = array(
                 "batch" => "'$this->batch'",
                 "linkedin_id" => "'$this->linkedin_id'",
+                "profile_url" => "'$this->profile_url'",
+                "oauth_token" => "'$this->oauth_token'",
+                "oauth_token_secret" => "'$this->oauth_token_secret'",
                 "gpa" => "'$this->gpa'",
                 "description" => "'$this->description'"
             );
@@ -60,9 +71,9 @@ class Student {
         return User::getFromLinkedinId($this->linkedin_id);
     }
 
-    public static function getStudent($linkedin_id) {
+    public static function getStudent($profile_url) {
         $db = new DB();
-        $result = $db->select('students', "linkedin_id = '$linkedin_id'");
+        $result = $db->select('students', "profile_url = '$profile_url'");
         if (!$result) {            
             return null;
         }else{

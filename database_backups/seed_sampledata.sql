@@ -11,8 +11,8 @@ INSERT INTO `users` (`id`, `name`, `linkedin_id`, `pic_url`, `company_id`, `prof
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id`, `batch`, `linkedin_id`, `gpa`, `description`) VALUES
-(1, 2, '0I2andtpA7', '0.0', 'I am a third year undergraduate from the Department of Computer Science & Engineering, University of Moratuwa. My goal is to develop knowledge and competence in the field of information technology, share my knowledge and to provide the leadership.');
+INSERT INTO `students` (`id`, `batch`, `linkedin_id`, `profile_url`, `oauth_token`, `oauth_token_secret`, `gpa`, `description`) VALUES
+(1, 2, '0I2andtpA7', 'http://www.linkedin.com/pub/supun-nakandala/58/210/36', '35d96ddb-dd9b-4961-8a12-b59462dafb5e', '9f383855-0a0f-40a7-8f29-321a99f65509', '0.0', 'I am a third year undergraduate from the Department of Computer Science & Engineering, University of Moratuwa. My goal is to develop knowledge and competence in the field of information technology, share my knowledge and to provide the leadership.');
 
 
 --

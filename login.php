@@ -69,7 +69,7 @@ try {
 
                     $result = new SimpleXMLElement($response['linkedin']);
                     
-                    if (Student::getStudent($result->{'id'}) !== null) {
+                    if (Student::getStudent($result->{'public-profile-url'}) !== null) {
                         //User is a student
                         if (!User::checkUserExists($result->{'id'})) {
                             $user = new User();
@@ -81,8 +81,11 @@ try {
                             $user->save(TRUE);
                         }
                         //adding the student skills and description
-                        $student = Student::getStudent($result->{'id'});
+                        $student = Student::getStudent($result->{'public-profile-url'});
                         $student->description = $result->{'summary'};
+                        $student->linkedin_id = $result->{'id'};
+                        $student->oauth_token = $_SESSION['oauth']['linkedin']['access']['oauth_token'];
+                        $student->oauth_token_secret = $_SESSION['oauth']['linkedin']['access']['oauth_token_secret'];
                         $student->save();
                     
                         $tech_count = intval($result->{'skills'}->attributes()->total);
@@ -113,7 +116,7 @@ try {
                             $user->save(TRUE);
                         }
                     }                    
-                    User::login($result->{'id'});                                        
+                    User::login($result->{'id'});
                     // redirect the user back to the demo page
                     header('Location: ' . $_SERVER['PHP_SELF']);
                 } else {
