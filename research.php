@@ -80,7 +80,7 @@ if (isset($_POST['valid'])) {
                                     $researchTools = new ResearchTools();
                                     $allResearches = $researchTools->getAllResearches($orderBy);
                                     if (isset($_POST['techFilter']) && $_POST['techFilter'] != 0) {
-                                        $techoFilter=$_POST['techFilter'];
+                                        $techoFilter = $_POST['techFilter'];
                                         $allResearches = $researchTools->getResearchByTech($techoFilter, $orderBy);
                                     }
                                     //$allResearches = $researchTools->getResearchByTech(30, $orderBy);
@@ -198,7 +198,7 @@ if (isset($_POST['valid'])) {
 
 
                     <form action="" method="POST" id="sortForm">
-                        <input name="sorter" type="hidden" id="sorterHiddenInput" value="<?php echo $orderBy;?>">
+                        <input name="sorter" type="hidden" id="sorterHiddenInput" value="<?php echo $orderBy; ?>">
                         <input name="techFilter" type="hidden" id="techFilterHiddenInput" value="0">                        
                     </form>
                     <div class="componentContainer">
@@ -216,7 +216,7 @@ if (isset($_POST['valid'])) {
                                     $tecs = new TechnologyTools();
                                     $arr = $tecs->getAlltechnologies();
                                     foreach ($arr as $value) {
-                                        $selected=$techoFilter==$value->id?"selected":"";
+                                        $selected = $techoFilter == $value->id ? "selected" : "";
                                         echo "<option value='$value->id' $selected>$value->name</option>";
                                     }
                                     ?>
@@ -343,7 +343,7 @@ if (isset($_POST['valid'])) {
                                 <select name="category" id="categoryCombo">
                                     <option value="0">3rd year project</option>
                                     <option value="1">final year project</option>
-                                    
+
                                 </select>
                             </td>
                         </tr>
@@ -356,7 +356,7 @@ if (isset($_POST['valid'])) {
                             <td class="formInput">
                                 <select name="partner" id="partnerCombo">
                                     <?php
-                                    $companyTools = new CompnayTools();
+                                    $companyTools = new CompanyTools();
                                     $companyArray = $companyTools->getAllPremiumCompanies();
                                     $company = new Company(null);
                                     foreach ($companyArray as $company) {
