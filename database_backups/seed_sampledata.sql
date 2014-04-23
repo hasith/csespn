@@ -121,7 +121,7 @@ INSERT INTO `events` (`id`, `title`, `description`, `date`, `time`, `venue`, `ur
 (20, 'Farenheit 12', 'Award Ceremony for high achivers at the first semester exam.', '2014-06-09', '10:00:00', 'Civil Auditorium', 'https://www.facebook.com/ComputerScienceAndEngineeringSociety'),
 (21, 'Google Developer Group Meetup', 'The first session was conducted by the newly appointed Google Student Ambassadors, the second\nwas about Meteor JS which was done by Arunoda Susiripala, the System Architect at Freelancer. The third was on Google MapMaker by the Google MapMaker team who showed how to edit, add new places, roads.\nhttps://drive.google.com/file/d/0B1ND7M3X2GhucXZNNTdNZWdYT2swdWNEOWJOM1VEVWhSclJv/edit?usp=sharing', '2014-02-18', '09:00:00', 'CSE Seminar Room', 'https://www.facebook.com/ComputerScienceAndEngineeringSociety'),
 (22, 'GSoC Meetup', 'http://digit.lk/event/gsoc-sri-lanka-meetup-2013/', '2014-10-07', '11:00:00', 'CSE Seminar Room', 'https://www.facebook.com/ComputerScienceAndEngineeringSociety'),
-(23, 'GSoC Mentoring Program', 'Mentor UoM students to make them ready for GSoC 2014.\nhttps://www.facebook.com/UoMGSoC2014Mentoring', '2014-03-04', '15:00:00', 'CSE Advanced Lab', 'https://www.facebook.com/ComputerScienceAndEngineeringSociety'),
+(23, 'GSoC Mentoring Program', 'Mentor UoM students to make them ready for GSoC 2014.\nhttps://www.facebook.com/UoMGSoC2014Mentoring', '2014-03-04', '15:00:00', 'CSE Advanced Lab', 'https://www.facebook.com/ComputerScienceAndEngineeringSociety');
 
 INSERT INTO `companies` (`id`, `name`, `access_level`) VALUES
 (4, 'WSO2', 4),
