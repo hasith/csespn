@@ -11,6 +11,10 @@ require_once './global.inc.php';
 		}
 		return false;
 	};
+	
+	$filter = $_GET['filter'];
+	$sort = $_GET['sort'];
+	
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -45,7 +49,7 @@ require_once './global.inc.php';
                                <div id="sessionsList"> 
                                   
 									<?php
-									$sessions = Session::fetchAll();
+									$sessions = Session::fetchAll($filter);
 									
 									foreach($sessions as $session) {
 									?>
@@ -84,7 +88,7 @@ require_once './global.inc.php';
                                                 	if(!is_null($session->get("org_id"))) {
                                                 		$company = Company::get($session->get("org_id"));
 														echo '<li class="linkedLink" >'.$company->name.'</li>';
-                                                	} else {
+                                                	} else if(User::currentUser()->getOrganization()->access_level >= 3){
                                                 		echo'<li data-id="'.$session->id.'" class="linkedLink takeSession"><a href="">Take this Session</a></li>';
                                                 	}
                                                 ?>
@@ -98,71 +102,6 @@ require_once './global.inc.php';
 									
 									?>                                  
 
-
-                                     
-                                    <h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">MV* in Large Scale Java Script Development</a>
-                                    		<p>Lorem ipsum dolor sit amet, congue massa sem vivamus nisl donec augue, nunc nonummy eget elit commodo odio, eros porta augue, eu natoque nec sit. Id mattis et molestie dolor augue.
-</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">24th March 2014</li>
-                                                <li class="endGPA"><span>Level 2 Students</li>
-                                                <li class="linkedLink"><a href="">Take this Session</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-
-                                     
-                                    <h3 class="greenColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Java Script Development with Cloud Services</a>
-                                    		<p>Lorem ipsum dolor sit amet, congue massa sem vivamus nisl donec augue, nunc nonummy eget elit commodo odio, eros porta augue, eu natoque nec sit. Id mattis et molestie dolor augue.
-</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">24th March 2014</li>
-                                                <li class="endGPA"><span>Level 2 Students</li>
-                                                <li class="linkedLink"><a href="">Take this Session</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
-
-                                    
-                                    <h3 class="redColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Java Script Development with Cloud Services <span class="dangerLab">[Not Finalized]</span></a>
-                                    		<p>Lorem ipsum dolor sit amet, congue massa sem vivamus nisl donec augue, nunc nonummy eget elit commodo odio, eros porta augue, eu natoque nec sit. Id mattis et molestie dolor augue.
-</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">24th March 2014</li>
-                                                <li class="endGPA"><span>Level 2 Students</li>
-                                                <li class="linkedLink"><a href="">Take this Session</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3>  
- 
-                                    
-                                    <h3 class="yellowColor clearfix">
-                                    	<div class="descriptionArea">
-                                        	<a href="#">Go REST with ASP.NET Web API</a>
-                                    		<p>Lorem ipsum dolor sit amet, congue massa sem vivamus nisl donec augue, nunc nonummy eget elit commodo odio, eros porta augue, eu natoque nec sit. Id mattis et molestie dolor augue.
-</p>
-                                        </div>
-                                        <div class="darkGray">
-                                        	<ul>
-                                            	<li class="endGPA">24th March 2014</li>
-                                                <li class="endGPA"><span>Level 2 Students</li>
-                                                <li class="linkedLink"><a href="">Take this Session</a></li>
-                                            </ul>
-                                        </div>
-                                    </h3> 
- 
                                      
                                 </div>   
                                 
@@ -178,28 +117,30 @@ require_once './global.inc.php';
                        
                 </div>
                 <div id="rightSide">
+                	<?php if (User::currentUser()->getOrganization()->access_level >= 3) {  ?>
 		            <div id="addProject">
-                    	<a href="" id="propose-session">
+                    	<a href="" id="propose-session" >
                         	Propose a New Session
                         </a>
                     </div>
+                    <?php } ?>
                     		
                 	<ul id="legend">
                     	<li class="greenBox clearfix">
                         	<span></span>
-                            <p>Open for a Partner to Take</p>
+                            <p>Finalized future sessions</p>
                         </li>
                         <li class="ice clearfix">
                         	<span></span>
-                            <p>Already Finalized</p>
+                            <p>Proposed, but not finalized</p>
                         </li>
                         <li class="redBox clearfix">
                         	<span></span>
-                            <p>Proposed, but not Finalized</p>
-                        </li>
+                            <p>Needs a facilitating company</p>
+                        </li>                        
                         <li class="grayBox clearfix">
                         	<span></span>
-                            <p>Event occurred in Past</p>
+                            <p>Sessions happened in Past</p>
                         </li>
                     </ul>
                 	
@@ -213,10 +154,10 @@ require_once './global.inc.php';
                         
                         <div class="ccContainer">
                         	<ul>
-                            	<li><input type="checkbox"><label>Only future Sessions</label></li>
-                                <li><input type="checkbox"><label>All Sessions</label></li>
-                                <li><input type="checkbox"><label>CodeGen Sessions</label></li>
-                                <li><input type="checkbox"><label>Open to Take</label></li>
+                            	<li><label><input type="radio" name="filterby" value="future" checked="true"> Sessions planned for future</label></li>
+                                <li><label><input type="radio" name="filterby" value="past"> Sessions happned in past</label></li>
+                                <li><label><input type="radio" name="filterby" value="my"> Sessions by my company</label></li>
+                                <li><label><input type="radio" name="filterby" value="open"> Sessions open to take</label></li>
                             </ul>
                         </div>
                         
@@ -225,15 +166,14 @@ require_once './global.inc.php';
                     
                     <div class="componentContainer">
                     	<div class="heading">
-                        	<p>Sort Sessions</p>
+                        	<p>Sort Sessions By</p>
                         </div>
                         
                         <div class="ccContainer">
                         	<ul>
-                            	<li><input type="checkbox"><label>By Status</label></li>
-                                <li><input type="checkbox"><label>By Student Level</label></li>
-                                <li><input type="checkbox"><label>By Date</label></li>
-                                <li><input type="checkbox"><label>By Partner</label></li>
+                            	<li><label><input type="radio" name="sortby" checked="true"> Recently modified</label></input></li>
+                                <li><label><input type="radio" name="sortby"> Session date</label></input></li>
+                                <li><label><input type="radio" name="sortby"> Session title</label></input></li>
                             </ul>
                         </div>
                                                 

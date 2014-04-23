@@ -59,5 +59,11 @@ $(document).ready(function(){
 		return false;
 	});
 
+	$("input[name='filterby'][value=" + qs['filter'] + "]").prop('checked', true);
+	//$("input[name='filterby']:checked").
 
+	$("input[name='filterby']").change(function(){
+		var filter = $("input[name='filterby']:checked").val();
+		updateQueryString("filter", filter);	
+	});
 });

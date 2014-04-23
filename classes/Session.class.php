@@ -128,9 +128,17 @@ class Session {
         return new Session($result[0]);
     }
 		
-    public static function fetchAll(){
+    public static function fetchAll($filterStr){
+    	
+		$filters = array(
+			"past" => "date < now()", 
+			"future" => "date IS NULL OR date > now()", 
+			"my" => "org_id = ".User::currentUser()->getOrganization()->id, 
+			"open" =>"org_id IS NULL");
+		$where = isset($filters[$filterStr])?$filters[$filterStr]:$filters["future"];
+		
     	$db = new DB();
-        $results = $db->select("sessions", "true");
+        $results = $db->select("sessions", $where);
         $sessions = array();
         foreach ($results as $result){
             array_push($sessions, new Session($result));
