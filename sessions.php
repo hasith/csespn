@@ -69,11 +69,19 @@ require_once './global.inc.php';
                                         	<ul>
                                                 <?php 
                                                 	if(!is_null($session->get("date"))) {
-                                                		echo '<li class="endGPA">'.date("j F Y", strtotime($session->get("date"))).'</li>';
+                                                		echo '<li class="endGPA">Date: '.date("j F Y", strtotime($session->get("date"))).'</li>';
                                                 	} else {
                                                 		echo '<li class="endGPA">Date not agreed</li>';
                                                 	}
                                                 ?>                               		
+                                                <?php 
+                                                	if(!is_null($session->get("duration"))) {
+                                                		echo '<li class="endGPA">Duration: '.$session->get("duration").' mins</li>';
+                                                	} else {
+                                                		echo '<li class="endGPA">Duration: not agreed</li>';
+                                                	}
+                                                ?>                               		
+
                                                 <li class="endGPA">
 													<?php 
 														$batches = $session->getBatches();
@@ -125,7 +133,7 @@ require_once './global.inc.php';
                     </div>
                     <?php } ?>
                     		
-                	<ul id="legend">
+                	<!--ul id="legend">
                     	<li class="greenBox clearfix">
                         	<span></span>
                             <p>Finalized future sessions</p>
@@ -142,7 +150,7 @@ require_once './global.inc.php';
                         	<span></span>
                             <p>Sessions happened in Past</p>
                         </li>
-                    </ul>
+                    </ul-->
                 	
 
                     
@@ -175,7 +183,7 @@ require_once './global.inc.php';
                             	<li><label><input type="radio" name="sortby" value="created"> Recently created</label></input></li>
                                 <li><label><input type="radio" name="sortby" value="date"> Session date</label></input></li>
                                 <li><label><input type="radio" name="sortby" value="title"> Session title</label></input></li>
-                                <li><label><input type="radio" name="sortby" value="duration"> Session longest duration</label></input></li>
+                                <li><label><input type="radio" name="sortby" value="duration"> Session duration</label></input></li>
                             </ul>
                         </div>
                                                 
