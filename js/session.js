@@ -15,6 +15,7 @@ $(document).ready(function(){
 	  modal: true,
 	  buttons: {
 	    "Save": function() {
+	      $("input[name='queryString']").val(location.search);
 	      $('#create_form').submit();
 	    },
 	    Cancel: function() {
@@ -45,6 +46,7 @@ $(document).ready(function(){
 	  modal: true,
 	  buttons: {
 	    "Confirm Facilitation": function() {
+	    	$("input[name='queryString']").val(location.search);
 	    	$("#confirmation_form").submit();
 	    },
 	    "No, May be Later": function() {
@@ -60,10 +62,16 @@ $(document).ready(function(){
 	});
 
 	$("input[name='filterby'][value=" + qs['filter'] + "]").prop('checked', true);
-	//$("input[name='filterby']:checked").
 
 	$("input[name='filterby']").change(function(){
 		var filter = $("input[name='filterby']:checked").val();
 		updateQueryString("filter", filter);	
+	});
+	
+	$("input[name='sortby'][value=" + qs['sort'] + "]").prop('checked', true);
+
+	$("input[name='sortby']").change(function(){
+		var filter = $("input[name='sortby']:checked").val();
+		updateQueryString("sort", filter);	
 	});
 });

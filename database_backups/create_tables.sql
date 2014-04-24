@@ -68,6 +68,8 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `resp_name` varchar(50) DEFAULT NULL,
   `resp_contact` varchar(10) DEFAULT NULL,
   `org_id` int(11) DEFAULT NULL,
+  `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  `updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `session_org_idx` (`org_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

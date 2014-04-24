@@ -128,7 +128,7 @@ class Session {
         return new Session($result[0]);
     }
 		
-    public static function fetchAll($filterStr){
+    public static function fetchAll($filterStr, $sortStr){
     	
 		$filters = array(
 			"past" => "date < now()", 
@@ -137,8 +137,16 @@ class Session {
 			"open" =>"org_id IS NULL");
 		$where = isset($filters[$filterStr])?$filters[$filterStr]:$filters["future"];
 		
+		$sorters = array(
+			"date" => "date DESC", 
+			"duration" => "duration DESC", 
+			"updated" => "updated DESC", 
+			"created" => "created DESC",
+			"title" =>"title asc");
+		$orderBy = isset($sorters[$sortStr])?$sorters[$sortStr]:$sorters["updated"];
+		
     	$db = new DB();
-        $results = $db->select("sessions", $where);
+        $results = $db->select2("*", "sessions", $where, "", $orderBy);
         $sessions = array();
         foreach ($results as $result){
             array_push($sessions, new Session($result));

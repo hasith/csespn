@@ -224,3 +224,25 @@ INSERT INTO `sponsorships` (`id`, `event_id`, `name`, `amount`, `description`, `
 (65, 23, 'Silver Sponsorship', '100000.00', 'CSE department web site will recognize them as a sponsor for the event. CSE Resurgenz official Facebook page and the official project banners will display the logo of the sponsor and recognize them a sponsor. Display 6 promotional banners of the company around university premises. Distribute promotional materials.', NULL),
 (66, 23, 'Bronze Sponsorship', '50000.00', 'CSE department web site will recognize them as a sponsor for the event. CSE Resurgenz official Facebook page and the official project banners will display the logo of the sponsor and recognize them a sponsor. Display a promotional banner of the company around University Premises. Distribute promotional materials.', 31);
 
+
+
+INSERT INTO `sessions` 
+(`id`,
+`title`,
+`description`,
+`date`,
+`start_time`,
+`duration`,
+`resp_name`,
+`resp_contact`,
+`org_id`) VALUES
+(1,'brand new session for asp.net','on you would like to carryout to CSE syudents. We will get back to you regarding the posson you would like to carryout to CSE syudents. We will get back to you regarding the poss',NULL,'7:30 am',133,'wsfsf','13331',5),
+(2,'Has a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.','2014-04-20 00:00:00','7:00 am',NULL,NULL,NULL,5),
+(3,'ws02 a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.',NULL,'7:00 am',NULL,NULL,NULL,4),
+(4,'new e a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.','2014-05-14 00:00:00','7:00 am',NULL,NULL,NULL,NULL),
+(5,'11new e a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.',NULL,'7:00 am',NULL,NULL,NULL,NULL),
+(6,'bbbbose a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possib',NULL,'7:00 am',NULL,NULL,NULL,NULL),
+(7,'Test  a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible daPropose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible daPropose a session you would like t','2014-04-06 00:00:00','8:00 am',150,'Udith','9489028490',NULL),
+(8,'new new session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.','2014-04-28 00:00:00','8:00 am',124,NULL,NULL,NULL),
+(9,'Session for testing the functionality','session you would like to carryout to CSE syudents. We will get back to you regarding the possible session you would like to carryout to CSE syudents. We will get back to you regarding the possible','2014-06-07 00:00:00','8:30 am',120,'Hasith','0714819556',11);
+

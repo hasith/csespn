@@ -49,7 +49,7 @@ require_once './global.inc.php';
                                <div id="sessionsList"> 
                                   
 									<?php
-									$sessions = Session::fetchAll($filter);
+									$sessions = Session::fetchAll($filter, $sort);
 									
 									foreach($sessions as $session) {
 									?>
@@ -171,9 +171,11 @@ require_once './global.inc.php';
                         
                         <div class="ccContainer">
                         	<ul>
-                            	<li><label><input type="radio" name="sortby" checked="true"> Recently modified</label></input></li>
-                                <li><label><input type="radio" name="sortby"> Session date</label></input></li>
-                                <li><label><input type="radio" name="sortby"> Session title</label></input></li>
+                            	<li><label><input type="radio" name="sortby" value="updated" checked="true"> Recently modified</label></input></li>
+                            	<li><label><input type="radio" name="sortby" value="created"> Recently created</label></input></li>
+                                <li><label><input type="radio" name="sortby" value="date"> Session date</label></input></li>
+                                <li><label><input type="radio" name="sortby" value="title"> Session title</label></input></li>
+                                <li><label><input type="radio" name="sortby" value="duration"> Session longest duration</label></input></li>
                             </ul>
                         </div>
                                                 
@@ -190,6 +192,7 @@ require_once './global.inc.php';
 		  <form id="create_form" method="post" action="sessions.create.php">
 		  <fieldset>
 		  	<input type="hidden" name="id" />
+		  	<input type="hidden" name="queryString"/>
 		    <label for="title">Title</label>
 		    <input type="text" name="title" size="60" minlength="10" maxlength="50" required><br/>
 		    
@@ -244,6 +247,7 @@ require_once './global.inc.php';
 			 We will get in touch with you soon.</p>
 		  	 <input type="hidden" name="orgId" value="<?= User::currentUser()->company_id ?>" />
 		  	 <input type="hidden" name="sessionId" />
+		  	 <input type="hidden" name="queryString"/>
 		  </fieldset>
 		  </form>
 		</div>      

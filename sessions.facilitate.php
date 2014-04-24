@@ -4,6 +4,7 @@
 <?php 
 	$sessionId = $_POST["sessionId"];
 	$orgId = $_POST["orgId"];
+	$queryString = $_POST["queryString"];
 	
     $session = Session::fetch($sessionId);
 	
@@ -11,6 +12,6 @@
 	
 	$session->save(false);
 
-	header("Location: sessions.php");
+	header("Location: sessions.php".$queryString);
 	die();
 ?>
