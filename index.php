@@ -39,9 +39,13 @@ session_start();
                 	<div id="banner-fade">
                         <!-- start Basic Jquery Slider -->
                         <ul class="bjqs">
-                          <li><img src="img/banner01.jpg" title="Automatically generated caption"></li>
-                          <li><img src="img/banner02.jpg" title="Automatically generated caption"></li>
-                          <li><img src="img/banner03.jpg" title="Automatically generated caption"></li>
+                          <li><img src="img/banner/global_presence.jpg" title="CS&ES helps to create a global impact through the achievements of the Sri Lankan university students"></li>
+                          <li><img src="img/banner/helpstudents.jpg" title="We assist university undergraduates to be participative and competitive at the same capacity"></li>
+                          <li><img src="img/banner/share.jpg" title="We promote a culture of giving back, through knowledge sharing ans social activities in the industry"></li>
+                          <li><img src="img/banner/achivers.jpg" title="Join hands with CS&ES to celebrate the accomplishments of Sri Lankan IT industry achievers"></li>
+                          <li><img src="img/banner/curriculum.jpg" title="Partner us to shape-up the CSE curriculum to deliver better with the modern IT industry"></li>
+                          <li><img src="img/banner/gettoknow.jpg" title="We help the industry to get to know CSE students better through collaboration "></li>
+
                         </ul>
                         <!-- end Basic jQuery Slider -->                
                    </div>                
