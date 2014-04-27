@@ -9,7 +9,7 @@ if (!oauth_session_exists()) {
 //data feeding to the database
 if (isset($_POST['valid'])) {
 //$user = $_SESSION['user']->id;
-    $userId = 23;
+    $userId = $_SESSION['user']->id;
     $title = $_POST['title'];
     $partner = $_POST['partner'];
     $leader = $_POST['lead'];
