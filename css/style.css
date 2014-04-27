@@ -10,6 +10,53 @@
 
 }
 
+#footer  {
+	padding-bottom: 30px;
+	text-align: center;
+	font-size: 12px;
+}
+
+#benefits {
+	margin-left: 20px;
+	
+}
+
+#benefits div.topic {
+	padding-bottom: 10px;
+}
+
+#benefits div {
+	position: relative;
+	left: 100px;
+	top: -50px;
+	width: 90%;
+}
+
+#benefits img {
+	position: relative;
+	top: 20px;
+	width: 50px;
+	height: 50px;
+}
+
+.hd {
+	margin-top: 55px;
+	font-family:open_sansregular;
+}
+
+.hd hr {
+	margin-left: 200px;
+	margin-top: 40px;
+	margin-right: 50px;
+	top: 35px;
+	position: relative;
+}
+
+.hd h3 {
+	
+	
+	margin-left: 20px;
+}
 
 #header{
     width: 100%;
@@ -77,19 +124,20 @@
 ul.bjqs-controls.v-centered li a{
 	display:block;
 	padding:10px;
-	background:#fff;
-	color:#000;
+	background:#203864;
+	color:#fff;
 	text-decoration: none;
 }
 
 ul.bjqs-controls.v-centered li a:hover{
-	background:#000;
-	color:#fff;
+
+	background:#fff;
+	color:#203864;	
 }
 
 ol.bjqs-markers li a{
 	padding:5px 10px;
-	background:#000;
+	background:#203864;
 	color:#fff;
 	margin:5px;
 	text-decoration: none;
@@ -101,7 +149,9 @@ ol.bjqs-markers li a:hover{
 }
 
 p.bjqs-caption{
-	background: rgba(255,255,255,0.5);
+	background: #203864;
+	text-align:center;
+	font-family:fantasy;
 }
 
 #bannerRight{
@@ -134,7 +184,7 @@ p.bjqs-caption{
 	padding:6px 15px;
 	border:1px solid #41719c;
 	color:#FFF;
-	width:60px;
+	width:180px;
 	text-align:center;
 }
 .linkNormal{
@@ -159,7 +209,7 @@ p.bjqs-caption{
 	margin:0;
 	padding:0;
 }
-#contactDetails h6{
+.details_topic{
 	font-size:18px;
 	font-weight:bold;
 	color:#203864;
@@ -173,17 +223,18 @@ p.bjqs-caption{
 }
 #signMessage{
 	font-family:open_sansregular;
-	font-size:16px;
-	line-height:26px;
-	margin-top:25px !important;
+	font-size:14px;
+	line-height:20px;
+	margin-top:15px !important;
 	color:#205aac;
+	
 }
 #signMessage span{
 	font-weight:bold;
 }
 
 #boxesArea{
-	margin-top:35px;
+	margin-top:75px;
 }
 #boxesArea ul{
 	list-style:none;
