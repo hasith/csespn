@@ -72,7 +72,7 @@ session_start();
                 </div>
             </div>  
             
-            <div class="hd"><hr><h3>Partner Benifits</h3>  
+            <div id="benefits" class="hd"><hr><h3>Partner Benifits</h3>  
             	<div>
             		<div>image</div>
             		<div>content</div>
