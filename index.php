@@ -39,12 +39,12 @@ session_start();
                 	<div id="banner-fade">
                         <!-- start Basic Jquery Slider -->
                         <ul class="bjqs">
-                          <li><img src="img/banner/global_presence.jpg" title="CS&ES helps to create a global impact through the achievements of the Sri Lankan university students"></li>
-                          <li><img src="img/banner/helpstudents.jpg" title="We assist university undergraduates to be participative and competitive at the same capacity"></li>
-                          <li><img src="img/banner/share.jpg" title="We promote a culture of giving back, through knowledge sharing ans social activities in the industry"></li>
-                          <li><img src="img/banner/achivers.jpg" title="Join hands with CS&ES to celebrate the accomplishments of Sri Lankan IT industry achievers"></li>
-                          <li><img src="img/banner/curriculum.jpg" title="Partner us to shape-up the CSE curriculum to deliver better with the modern IT industry"></li>
-                          <li><img src="img/banner/gettoknow.jpg" title="We help the industry to get to know CSE students better through collaboration "></li>
+                          <li><img src="img/banner/global_presence.jpg" title="Make a global impact through achievements of Sri Lankan university students"></li>
+                          <li><img src="img/banner/helpstudents.jpg" title="Help Sri Lankan undergraduates to be participative and competitive"></li>
+                          <li><img src="img/banner/share.jpg" title="Promote the culture of giving back, through sharing and socializing"></li>
+                          <li><img src="img/banner/achivers.jpg" title="Recognize the accomplishments of high achievers of our industry "></li>
+                          <li><img src="img/banner/curriculum.jpg" title="Shape-up the uni curriculum to deliver for the modern IT industry"></li>
+                          <li><img src="img/banner/gettoknow.jpg" title="Help the industry and students to become closer through collaboration "></li>
 
                         </ul>
                         <!-- end Basic jQuery Slider -->                
@@ -52,14 +52,13 @@ session_start();
                 </div>
                 <div id="bannerRight">
                 	<div class="clearfix signInArea">
-                    	<p>Already a Partner?</p>
-                        <a class="buttonEffect" href="">Sign In</a>
-                        <a class="linkNormal" href="">Renew Membership</a>
-                    </div>
-                    <div class="clearfix signInArea">
-                    	<p>New to Partner Network?</p>
-                        <a class="buttonEffect" href="">Join</a>
-                        <a class="linkNormal" href="">Learn More</a>
+                    	<p>We are Open!</p><p id="signMessage">
+                    	CSE Partner Network is a program that helps organizations to grow through an effective affiliation with the department of Computer Science & Engineering at 
+                    	<span></span>University of Moratuwa.</span>
+                    	<br/><a class="buttonEffect" href="">Connect with LinkedIn</a><br/><br/><br/>
+                    	We are an open network and you may simply connect us by sign-in. 
+                    	<br/><br/>To fully embrase the portal functionality one needs a premium partner account which can be obtained by contacting us.
+                    	</p>                      
                     </div>
                     <div id="contactUs" class="clearfix">
                     	<img src="img/contactUs.jpg" />
@@ -69,12 +68,16 @@ session_start();
                             	Dr. Gamage<br/>Tel: 0112640381-3101
                             </p>
                         </div>
-                    </div>                    
-                    <p id="signMessage">
-                    	CSE Partner Network is a program that helps organizations to grow their business through effective affiliation with the department of Computer Science & Engineering – <span>University of Moratuwa</span>.
-                    </p>                    
+                    </div>                     
                 </div>
-            </div>                                                
+            </div>  
+            
+            <div class="hd"><hr><h3>Partner Benifits</h3>  
+            	<div>
+            		<div>image</div>
+            		<div>content</div>
+            	</div>
+            </div>                                              
             <div id="boxesArea">            	
                 <ul>
                     <li>
@@ -106,7 +109,12 @@ session_start();
           $('#banner-fade').bjqs({
             height      : 520,
             width       : 820,
-            responsive  : true
+            responsive  : true,
+            animtype : 'fade', // accepts 'fade' or 'slide'
+			animduration : 2000, // how fast the animation are
+			animspeed : 8000, // the delay between each slide
+			automatic : true, // automatic
+
           });
 
         });
