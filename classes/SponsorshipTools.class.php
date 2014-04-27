@@ -59,4 +59,12 @@ class SponsorshipTools {
 
         return $sponsorships;
     }
+    
+    function takeSponsorship($sp_id, $org_id, $con_name, $con_phn){
+        $data['taken_by'] = $org_id;
+        $wherePedicate = "id='".$sp_id."'";
+        
+        $result = $this->db->update($data, "sponsorships", $wherePedicate);
+        return $result;
+    }
 }
