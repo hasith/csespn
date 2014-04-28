@@ -129,6 +129,23 @@ CREATE TABLE IF NOT EXISTS `settings` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
+CREATE TABLE IF NOT EXISTS `research` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `lead_id` int(11) NOT NULL,
+  `company_id` int(11) NOT NULL,
+  `time` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `category` int(11) NOT NULL,
+  `published` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+CREATE TABLE IF NOT EXISTS `research_tech__map` (
+  `research_id` int(11) NOT NULL,
+  `technology_id` int(11) NOT NULL
+);
 
 ALTER TABLE `sessions`
   ADD CONSTRAINT `session_org` FOREIGN KEY (`org_id`) REFERENCES `companies` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
