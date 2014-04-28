@@ -136,7 +136,7 @@ ul.bjqs-controls.v-centered li a:hover{
 }
 
 ol.bjqs-markers li a{
-	padding:5px 10px;
+	padding:5px 5px;
 	background:#203864;
 	color:#fff;
 	margin:5px;
@@ -151,7 +151,7 @@ ol.bjqs-markers li a:hover{
 p.bjqs-caption{
 	background: #203864;
 	text-align:center;
-	font-family:fantasy;
+	font-family:inherit;
 }
 
 #bannerRight{

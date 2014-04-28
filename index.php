@@ -53,8 +53,8 @@ session_start();
                 <div id="bannerRight">
                 	<div class="clearfix signInArea">
                     	<p>We are Open!</p><p id="signMessage">
-                    	CSE Partner Network is a program that helps organizations to grow through an effective affiliation with the department of Computer Science & Engineering at 
-                    	<span></span>University of Moratuwa.</span>
+                    	CSE Partner Network is a program that helps organizations to grow with an effective affiliation with the department 
+                    	of Computer Science & Engineering at <span></span>University of Moratuwa.</span>
                     	<?php if(oauth_session_exists()){
                                  echo '<a class="buttonEffect" href="./landing.php">Access the Portal</a>';
                              }else{
@@ -62,8 +62,9 @@ session_start();
                              }
                         ?>
                     	<br/><br/><br/><br/>
-                    	We are an open network and you may simply connect us by sign-in. 
-                    	<br/><br/>To fully embrase the portal functionality one needs a premium partner account which can be obtained by contacting us.
+                    	We are an open network, simply sign-in to connect us. 
+                    	<br/><br/>To fully embrase the portal functionality you will need a premium corporate account that can 
+                    	be obtained by contacting us.
                     	</p>                      
                     </div>
                     <div id="contactUs" class="clearfix">
@@ -80,35 +81,59 @@ session_start();
             <div id="benefit_bookmark"/>
             <div  class="hd"><hr><h3>Partner Benifits</h3> </div>
             <div id="benefits">
-            		<img src="http://lempnet.itcilo.org/images/icon-pax-profile/image_preview" />
+            		<img src="./img/benefits/profiles.jpeg" />
             		<div class="topic details_topic">Access Student Profiles</div>
-            		<div class="text">CSE premium partners will get access to the student registry of all CSE batches. Student profiles are comprises of a brief introduction, competencies, LinkedIn profile, etc. </div>
+            		<div class="text">
+            			CSE premium partners will get access to the student registry of all batches. 
+            			The student profiles will comprise of brief introductions about the student, competencies, LinkedIn profiles, etc.
+					</div>
             </div>                                              
             <div id="benefits">
-            		<img src="https://developer.qualcomm.com/sites/default/files/distribute-60px.png" />
+            		<img src="./img/benefits/team.png" />
             		<div class="topic details_topic">Assemble a Team</div>
-            		<div class="text">Premium partners will be able to assemble a team of students to assist in their organizational activities such as event organization, CSR work, software development, etc.</div>
+            		<div class="text">
+            			Premium partners are able to assemble a team of students to engage them 
+            			in organizational activities such as event planning, CSR, 
+            			software development, etc.
+					</div>
             </div>  
             <div id="benefits">
-            		<img src="http://medicine.mytau.org/attali/wp-content/uploads/2011/09/Lab-Icon-150x150.png" />
+            		<img src="./img/benefits/research.png" />
             		<div class="topic details_topic">Participate in Research </div>
-            		<div class="text">Partner companies will be able to propose research projects (both Final Year and 3rd Year Projects) to be carried out by the students. In addition, partners will be able to follow the research work already happenning in the department to make use of such.</div>
+            		<div class="text">
+            			Partner companies can propose research projects (for Final Year and 3rd Year Projects) to be carried out by the students. 
+            			In addition, partners will be able to follow the research work being carried out in the 
+            			department to make use of such.
+					</div>
             </div>  
             <div id="benefits">
-            		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTARPqWLr44-bHqa099FZaqMKw51ERCYcwMj7YryKGP7vUqnlcR" />
+            		<img src="./img/benefits/sessions.jpeg" />
             		<div class="topic details_topic">Conduct University Sessions</div>
-            		<div class="text">University needs for external sessions (technical as well as softskills) are listed through this portal. Partner are able to pick the sessions of their interest to facilitate. This is an excellent oppotunity for the organizations of collaborate with the students. In addition partners are able to propose new sessions to be carried out for the students. </div>
+            		<div class="text">
+            			Students needs for external sessions (technical as well as softskills) are listed through this portal. 
+            			Partners get the oppertunity to facilitate sessions of their interests, which in turn will be 
+            			an opening to enhance the collaboration with the students. In addition, partners can too propose new sessions that 
+            			they think as useful to students.
+            		</div>
+            		
             </div>                          
        
             <div id="benefits">
-            		<img src="http://funny-days.com/wp-content/uploads/2014/03/2014-holiday-calendar-good_1395596625.jpg" />
+            		<img src="./img/benefits/events.jpg" />
             		<div class="topic details_topic">Plan for Events</div>
-            		<div class="text">Partners will get the access to department event calandar. This will help the organizations to pre-plan the events to participate and sponsor to recieve the optimum benefits through student interactions. </div>
+            		<div class="text">
+            			Partners will get access to the department's event calandar. This will help the organizations to pre-plan 
+            			participation to the events and offer sponsorships to recieve the optimum benefits through engagement activities.
+					</div>
             </div>  
             <div id="benefits">
-            		<img src="https://developer.qualcomm.com/sites/default/files/discuss-60px.png" />
+            		<img src="./img/benefits/curriculum.png" />
             		<div class="topic details_topic">Shape-up the Curriculum</div>
-            		<div class="text">Partners are invited for planning meeting of the department activities. This is an oppotunity for the organizations to make a positive impact to the academic curriculum and other event lineup of the department.</div>
+            		<div class="text">
+            			Partners will be invited for planning meetings of the department activities. 
+            			This is an oppotunity for the organizations to make a positive impact to the academic 
+            			curriculum and other event lineup of the department.
+					</div>
             </div> 
         <div id="footer">
         	<hr/>
