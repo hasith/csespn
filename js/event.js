@@ -1,11 +1,76 @@
 $(document).ready(function() {
     $("#event-dialog").dialog({
         autoOpen: false,
-        width: 500,
+        width: 600,
         modal: true,
-        dialogClass: 'noTitleDialog',
         buttons: {
             Close: function() {
+                $(this).dialog("close");
+            }
+        },
+        show: {
+            effect: "fade",
+            duration: 200
+        },
+        hide: {
+            effect: "fade",
+            duration: 200
+        }
+    });
+
+    $("#sponsorships-dialog").dialog({
+        autoOpen: false,
+        width: 600,
+        modal: true,
+        buttons: {
+            "Take Sponsorship": function() {
+                var id = $("#sp-dialog-id").val();
+                var access_level = $("#user-level").val();
+                $(this).dialog("close");
+                showTakeSposorshipDialog(id, access_level);
+            },
+            Close: function() {
+                $(this).dialog("close");
+            }
+        },
+        show: {
+            effect: "fade",
+            duration: 200
+        },
+        hide: {
+            effect: "fade",
+            duration: 200
+        }
+    });
+
+    $("#sp-confirm-dialog").dialog({
+        autoOpen: false,
+        width: 500,
+        modal: true,
+        buttons: {
+            "Confirm": function() {
+                takeSponsorship();
+            },
+            "Cancel": function() {
+                $(this).dialog("close");
+            }
+        },
+        show: {
+            effect: "fade",
+            duration: 200
+        },
+        hide: {
+            effect: "fade",
+            duration: 200
+        }
+    });
+
+    $("#message-dialog").dialog({
+        autoOpen: false,
+        width: 500,
+        modal: true,
+        buttons: {
+            Ok: function() {
                 $(this).dialog("close");
             }
         },
@@ -22,7 +87,23 @@ $(document).ready(function() {
     $(document).on("click", ".calendar-entry", function(e) {
         e.preventDefault();
         var id = $("#event-id", this).val();
+        showEventDetails(id);
+    });
 
+    $(document).on("click", ".open-sponsorship-entry", function(e) {
+        e.preventDefault();
+        var id = $("#sponsorship-id", this).val();
+        showSponsorshipDetails(id);
+    });
+
+    $(document).on("click", ".sp-more-det", function(e) {
+        e.preventDefault();
+        var id = $(this).val();
+//        $("#event-dialog").dialog("close");
+        showSponsorshipDetails(id);
+    });
+
+    function showEventDetails(id) {
         $.ajax(
                 {
                     url: "events.get.php",
@@ -31,23 +112,18 @@ $(document).ready(function() {
                     success: function(data, textStatus, jqXHR)
                     {
                         var event = JSON.parse(data);
-                        $("#event-dialog").html(getEventDialogContent(event, false));
+                        setEventDialogContent(event, false);
                         $("#event-dialog").dialog("open");
                     },
                     error: function(jqXHR, textStatus, errorThrown)
                     {
-                        $("#event-dialog").html(getEventDialogContent("", true));
+                        setEventDialogContent("", true);
                         $("#event-dialog").dialog("open");
                     }
                 });
-    });
+    }
 
-    $(document).on("click", ".open-sponsorship-entry", function(e) {
-        e.preventDefault();
-        var id = $("#sponsorship-id", this).val();
-
-        console.log(id);
-
+    function showSponsorshipDetails(id) {
         $.ajax(
                 {
                     url: "sponsorships.get.php",
@@ -55,68 +131,174 @@ $(document).ready(function() {
                     data: "sponsorship_id=" + id,
                     success: function(data, textStatus, jqXHR)
                     {
-                        var event = JSON.parse(data);
-                        $("#event-dialog").html(getSponsDialogContent(event, false));
-                        $("#event-dialog").dialog("open");
+                        var sponsorship = JSON.parse(data);
+                        $("#sponsorships-dialog").dialog('option', 'title', "Sponsorship Details");
+                        $("#sponsorships-dialog").html(setSponsDialogContent(sponsorship, false));
+                        $("#sponsorships-dialog").dialog("open");
                     },
                     error: function(jqXHR, textStatus, errorThrown)
                     {
-                        $("#event-dialog").html(getSponsDialogContent("", true));
-                        $("#event-dialog").dialog("open");
+                        $("#sponsorships-dialog").dialog('option', 'title', "Sponsorship Details");
+                        $("#sponsorships-dialog").html(setSponsDialogContent("", true));
+                        $("#sponsorships-dialog").dialog("open");
                     }
                 });
-    });
+    }
 
-    function getEventDialogContent(event, isError) {
+    function setEventDialogContent(event, isError) {
+
+        var eventDetails = event[0];
+        var sponsorships = event[1];
 
         if (isError) {
-            return "<h3>An Error Occurred! :(</h3>";
+            $("#event-dialog-title").html("An Error Occurred! :(");
+            return;
         }
 
         var htmlContent = "";
 
-        htmlContent += "<h2>" + event.title + "</h2>";
+        $("#event-dialog-title").html(eventDetails.title);
 
-        if (event.description) {
-            htmlContent += "<p>" + event.description + "</p>";
+        if (eventDetails.description) {
+            $("#event-dialog-desc").html(eventDetails.description);
+        }
+        else {
+            $("#event-dialog-desc").html("");
         }
 
-        htmlContent += "<p><b>Date: </b>" + event.date + "</p>";
+        $("#event-dialog-date").html(eventDetails.date);
 
-        if (event.time) {
-            htmlContent += "<p><b>Time: </b>" + event.time.substring(0, event.time.lastIndexOf(":")) + "</p>";
+        if (eventDetails.time) {
+            $("#event-dialog-time-label").show();
+            $("#event-dialog-time").html(eventDetails.time.substring(0, eventDetails.time.lastIndexOf(":")));
+        }
+        else {
+            $("#event-dialog-time-label").hide();
+            $("#event-dialog-time").html("");
         }
 
-        if (event.venue) {
-            htmlContent += "<p><b>Venue: </b>" + event.venue + "</p>";
+        if (eventDetails.venue) {
+            $("#event-dialog-venue-label").show();
+            $("#event-dialog-venue").html(eventDetails.venue);
+        }
+        else {
+            $("#event-dialog-venue-label").hide();
+            $("#event-dialog-venue").html("");
         }
 
-        if (event.url) {
-            htmlContent += "<p><b>More info: </b></br>";
-            htmlContent += "<a href='" + event.url + "' target='_blank'>" + event.url + "</a>";
-            htmlContent += "</p>";
+        if (eventDetails.url) {
+            $("#event-dialog-url-label").show();
+            $("#event-dialog-url").attr("href", eventDetails.url);
+            $("#event-dialog-url").html(eventDetails.url);
+        }
+        else {
+            $("#event-dialog-url-label").hide();
+            $("#event-dialog-url").attr("href", "#");
+            $("#event-dialog-url").html("");
+        }
+
+        if (sponsorships.length > 0) {
+            $("#event-dialog-sp-label").show();
+            $("#event-dialog-sp").html(getSponsorshipDetails(sponsorships, ((new Date(eventDetails.date)) <= (new Date()))));
+        }
+        else {
+            $("#event-dialog-sp-label").hide();
+        }
+//        $("#event-dialog").html(htmlContent);
+    }
+
+    function getSponsorshipDetails(sponsorships, isPastEvent) {
+        var htmlContent = "";
+
+        for (var i = 0; i < sponsorships.length; i++) {
+
+            sponsorship = sponsorships[i][0];
+            company = sponsorships[i][1];
+
+            htmlContent += "<li>";
+            htmlContent += "<p>" + sponsorship.name + " (Rs. " + sponsorship.amount + ")</p>";
+
+            if (sponsorship.taken_by !== "") {
+                htmlContent += "<p>" + company.name + "</p>";
+            }
+            else if (!isPastEvent) {
+                htmlContent += "<p>";
+                htmlContent += "<b>Sponsorship is open to take</b>  ";
+                htmlContent += "<button class='sp-more-det' value='" + sponsorship.id + "'>More details...</button>";
+                htmlContent += "</p>";
+            }
+            htmlContent += "</li>";
         }
 
         return htmlContent;
     }
 
-    function getSponsDialogContent(sponsorship, isError) {
+    function setSponsDialogContent(sponsorship, isError) {
 
         if (isError) {
-            return "<h3>An Error Occurred! :(</h3>";
+            $("#sp-dialog-name").html("An Error Occurred! :(");
+            return;
         }
 
-        var htmlContent = "";
-
-        htmlContent += "<h2>" + sponsorship.name + "</h2>";
-        htmlContent += "<p><b>Amount: </b>Rs. " + sponsorship.amount + "</p>";
+        $("#sp-dialog-id").val(sponsorship.id);
+        $("#sp-dialog-name").html(sponsorship.name);
+        $("#sp-dialog-amount").html(sponsorship.amount);
 
         if (sponsorship.description) {
-            htmlContent += "<p>" + sponsorship.description + "</p>";
+            $("#sp-dialog-desc").html(sponsorship.description);
+        }
+    }
+
+    function showTakeSposorshipDialog(id, access_level) {
+        if (access_level < 3) {
+            $("#message-dialog-content").html("Sorry,<br>Only Basic and Premium Partners can apply for sponsorships.");
+            $("#message-dialog").dialog("open");
+        }
+        else {
+            $("#sp-apply-form").find("#sp-id").val(id);
+            $("#error-message").hide();
+            $("#sp-confirm-dialog").dialog("open");
+        }
+    }
+
+    function takeSponsorship() {
+        var dataObj = $("#sp-apply-form").serializeArray();
+
+        for (var i = 0; i < dataObj.length; i++) {
+            if (dataObj[i]['value'] === "") {
+                $("#error-message").show();
+                return;
+            }
         }
 
-        //temparary line
-        htmlContent += "<p><i>(Please contact Department of CSE to take this sponsorship.)</i></p>";
-        return htmlContent;
+        var dataString = $("#sp-apply-form").serialize();
+
+        $.ajax(
+                {
+                    url: "sponsorships.take.php",
+                    type: "POST",
+                    data: dataString,
+                    beforeSend: function() {
+                        $("#sp-confirm-dialog").dialog("close");
+                        $("#event-dialog").dialog("close");
+                        $("#message-dialog-content").html("Please wait...");
+                        $("#message-dialog").dialog("open");
+                    },
+                    success: function(data, textStatus, jqXHR)
+                    {
+                        if (JSON.parse(data)) {
+                            $("#message-dialog-content").html("Operation Successful. Thank You!");
+                        }
+                        else {
+                            $("#message-dialog-content").html("Some error occured. Please try again.");
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown)
+                    {
+                        $("#message-dialog-content").html("Some error occured. Please try again.");
+                    }
+                });
+
+        console.log(dataString);
     }
 });

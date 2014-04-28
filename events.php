@@ -27,7 +27,73 @@ if (!oauth_session_exists()) {
                         Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                     </p>
                     <div id="calendar">
-                        <div style="display: none" id="event-dialog"></div>
+                        <div style="display: none" id="event-dialog" title="Event Details">
+                            <h2 id="event-dialog-title"></h2>
+                            <p id="event-dialog-desc"></p>
+                            <p>
+                                <span id="event-dialog-date-label"><b>Date:</b> </span>
+                                <span id="event-dialog-date"></span>
+                            </p>
+                            <p>
+                                <span id="event-dialog-time-label"><b>Time:</b> </span>
+                                <span id="event-dialog-time"></span>
+                            </p>
+                            <p>
+                                <span id="event-dialog-venue-label"><b>Venue:</b> </span>
+                                <span id="event-dialog-venue"></span>
+                            </p>
+                            <p>
+                                <span id="event-dialog-url-label"><b>More info: </b></span>
+                                <a id="event-dialog-url" href="" target='_blank'></a>
+                            </p>
+                            <p>
+                                <span id="event-dialog-sp-label"><b>Sponsorships</b></span>
+                            <ul id="event-dialog-sp"></ul>
+                            </p>
+                        </div>
+                        <div style="display: none" id="sponsorships-dialog" title="Sponsorship Details">
+                            <input type="hidden" id="sp-dialog-id"/>
+                            <input type="hidden" id="user-level" value="<?php echo User::currentUser()->getOrganization()->access_level; ?>"/>
+                            <h2 id="sp-dialog-name"></h2>
+                            <p>
+                                <b>Amount: </b>Rs.&nbsp;
+                                <span id="sp-dialog-amount"></span>
+                            </p>
+                            <p id="sp-dialog-desc"></p>
+                        </div>
+                        <div  style="display: none" id="sp-confirm-dialog" title="Confirm">                            
+                            <form id="sp-apply-form" method="post" action="sponsorships.take.php">
+                                <fieldset>
+                                    <input type="hidden" name="sp_id" id="sp-id" />
+                                    <p>
+                                        <label for="org_id">Company </label>
+                                        <select name="org_id" id="org_id" >
+                                            <?php
+                                            $companyTools = new CompanyTools();
+                                            $companies = $companyTools->getAllCompanies();
+                                            foreach ($companies as $company) {
+                                                if (User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $company->id) {
+                                                    echo '<option value="' . $company->id . '">' . $company->name . '</option>';
+                                                }
+                                            }
+                                            ?>				
+                                        </select> 
+                                    </p>
+                                    <p>
+                                        <label for="contact_name">Contact Person</label>
+                                        <input type="text" maxlength="50" name="contact_name" id="contact_name">
+                                    </p>
+                                    <p>
+                                        <label for="contact_phone">Phone</label>
+                                        <input type="text" maxlength="10" size="12" name="contact_phone" id="contact_phone">
+                                    </p>
+                                </fieldset>
+                            </form>
+                            <p id="error-message">Some form fields are empty</p>
+                        </div> 
+                        <div style="display: none" id="message-dialog">                            
+                            <p id="message-dialog-content"></p>
+                        </div>
                         <ul>
                             <?php
                             $eventTools = new EventTools();
