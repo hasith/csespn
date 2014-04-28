@@ -17,4 +17,4 @@ Contributors
    uditharosha@gmail.com
    
 4) Chathura Widanage
-   chathura.12@cse.mrt.ac.lk
+   chathurawidanage@gmail.com
