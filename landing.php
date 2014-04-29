@@ -20,15 +20,37 @@ if (!oauth_session_exists()) {
 
         <div class="container clearfix">
 
-            <div id="bannerArea" class="clearfix">
-                <div id="bannerLeft">
+            <div id="bannerArea" class="clearfix signInArea">
+            	<p style="font-size: 30px">Welcome to the CSE Partner Portal</p>
+            	<div style="padding-bottom: 30px">You have signed-in as  
+            		<?php 
+            			$org = User::currentUser()->getOrganization();
+            			if($org->access_level == 1) {
+            				echo "a Public User";
+            			} else if($org->access_level == 2) {
+            				echo "a Student";
+            			} else if ($org->access_level == 3) {
+            				echo "a <i>'Corporate Account'</i> under <i>'".$org->name."'</i>";
+            			} else if ($org->access_level == 4) {
+            				echo "a <i>'Premium Corporate Account'</i> under <i>'".$org->name."'</i>";
+            			} else if ($org->access_level == 5) {
+            				echo "an Admin User";
+            			}
+            		?>
+            		
+            	</div>
+            	<img src="./img/cse_logo_shirt.png" width="600px"/>
+                <div style="position: relative; top: -350px; left: 650px; width: 40%">
+					Public users and students may view university-sessions, research-projects and department-events through this portal. 
+					In order to contribute with content (suggest sessions, suggest projects, assemble teams, sponsor events, etc.), 
+					you need to have a corporate account with us. <br/><br/>
 
-                    <p class="descriptionTab">
-                        Welcome!
-                    </p>
-                    
+					If your company has no corporate account but wish to open a one, please contact the department of Computer Science and Engineering 
+					(CSE), University of Moratuwa. <br/><br/>
+					
+					Now it's time to use the navigation menu above to explore the partner portal !
                 </div>
-                <div id="rightSide">
+                <div id="">
 
                     
 

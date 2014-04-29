@@ -118,7 +118,7 @@ try {
                     }                    
                     User::login($result->{'id'});
                     // redirect the user back to the demo page
-                    header('Location: ' . $_SERVER['PHP_SELF']);
+                    header('Location: ./landing.php');
                 } else {
                     // bad token access
                     echo "Access token retrieval failed:<br /><br />RESPONSE:<br /><br /><pre>" . print_r($response, TRUE) . "</pre><br /><br />LINKEDIN OBJ:<br /><br /><pre>" . print_r($OBJ_linkedin, TRUE) . "</pre>";

@@ -39,12 +39,12 @@ session_start();
                 	<div id="banner-fade">
                         <!-- start Basic Jquery Slider -->
                         <ul class="bjqs">
-                          <li><img src="img/banner/global_presence.jpg" title="Make a global impact through achievements of Sri Lankan university students"></li>
+                          <li><img src="img/banner/global_presence.jpg" title="Make a global impression through student achievements"></li>
                           <li><img src="img/banner/helpstudents.jpg" title="Help Sri Lankan undergraduates to be participative and competitive"></li>
                           <li><img src="img/banner/share.jpg" title="Promote the culture of giving back, through sharing and socializing"></li>
-                          <li><img src="img/banner/achivers.jpg" title="Recognize the accomplishments of high achievers of our industry "></li>
-                          <li><img src="img/banner/curriculum.jpg" title="Shape-up the uni curriculum to deliver for the modern IT industry"></li>
-                          <li><img src="img/banner/gettoknow.jpg" title="Help the industry and students to become closer through collaboration "></li>
+                          <li><img src="img/banner/achivers.jpg" title="Recognize the accomplishments of high achievers of the IT industry"></li>
+                          <li><img src="img/banner/curriculum.jpg" title="Shape-up the uni curriculum to cater to the modern IT industry"></li>
+                          <li><img src="img/banner/gettoknow.jpg" title="Help the industry and students to collaborate through engagement"></li>
 
                         </ul>
                         <!-- end Basic jQuery Slider -->                
@@ -63,8 +63,8 @@ session_start();
                         ?>
                     	<br/><br/><br/><br/>
                     	We are an open network, simply sign-in to connect us. 
-                    	<br/><br/>To fully embrase the portal functionality you will need a premium corporate account that can 
-                    	be obtained by contacting us.
+                    	<br/><br/>To fully embrase the portal functionality you need a premium 
+                    	corporate account which can be obtained by contacting us.
                     	</p>                      
                     </div>
                     <div id="contactUs" class="clearfix">
@@ -110,10 +110,10 @@ session_start();
             		<img src="./img/benefits/sessions.jpeg" />
             		<div class="topic details_topic">Conduct University Sessions</div>
             		<div class="text">
-            			Students needs for external sessions (technical as well as softskills) are listed through this portal. 
-            			Partners get the oppertunity to facilitate sessions of their interests, which in turn will be 
-            			an opening to enhance the collaboration with the students. In addition, partners can too propose new sessions that 
-            			they think as useful to students.
+            			Students needs for external sessions (technical as well as soft skills) are listed through this portal. 
+            			Partners get the opportunity to facilitate sessions of their interests, which in turn will be an opening
+            			 to enhance the collaboration with the students. In addition, partners can also propose new 
+            			 sessions which they think will be useful to students.
             		</div>
             		
             </div>                          
