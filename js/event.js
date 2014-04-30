@@ -255,11 +255,12 @@ $(document).ready(function() {
     function setSponsDialogContent(sponsorship, isError) {
 
         if (isError) {
-            $("#sp-dialog-name").html("An Error Occurred! :(");
+            $("#sponsorships-dialog").dialog('option', 'title', "An Error Occurred! :(");
             return;
         }
 
         $("#sp-dialog-id").val(sponsorship.id);
+        $("#sponsorships-dialog").dialog('option', 'title', sponsorship.name);
         $("#sp-dialog-name").html(sponsorship.name);
         $("#sp-dialog-amount").html(sponsorship.amount);
 

@@ -50,10 +50,10 @@ if (!oauth_session_exists()) {
                             <ul id="event-dialog-sp"></ul>
                             </p>
                         </div>
-                        <div style="display: none" id="sponsorships-dialog" title="Sponsorship Details">
+                        <div style="display: none" id="sponsorships-dialog" title="">
                             <input type="hidden" id="sp-dialog-id"/>
                             <input type="hidden" id="user-level" value="<?php echo User::currentUser()->getOrganization()->access_level; ?>"/>
-                            <h2 id="sp-dialog-name"></h2>
+                           
                             <p>
                                 <b>Amount: </b>Rs.&nbsp;
                                 <span id="sp-dialog-amount"></span>
