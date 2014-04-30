@@ -91,8 +91,12 @@ if (!oauth_session_exists()) {
                             </form>
                             <p id="error-message">Some form fields are empty</p>
                         </div> 
-                        <div style="display: none" id="message-dialog">                            
+                        <div style="display: none" id="message-dialog">     
+                            <input type="hidden" id="reload-at-ok" value="" />
                             <p id="message-dialog-content"></p>
+                        </div>
+                        <div style="display: none" id="wait-dialog">                            
+                            <img src="img/ajax-loader.gif" alt="wait..."/>
                         </div>
                         <ul>
                             <?php
@@ -127,8 +131,8 @@ if (!oauth_session_exists()) {
                                         }
 
                                         $dateStr = "";
-                                        if($event->date_confirmed){
-                                            $dateStr = "(".$date->format('dS').")";                                            
+                                        if ($event->date_confirmed) {
+                                            $dateStr = "(" . $date->format('dS') . ")";
                                         }
                                         echo $event->title . "<b> " . $dateStr . "</b>";
                                         echo '</p></div>';
