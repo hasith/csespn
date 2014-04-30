@@ -153,7 +153,7 @@ function getHtmlForStudent($student) {
     $html = $html . '<ul>';
     //$html = $html . '<li class="endGPA"><span>Endorsements :</span>' . $student->getEndorsements() . '</li>';
     //$html = $html . '<li class="endGPA"><span>GPA :</span>' . $student->gpa . '</li>';
-    $html = $html . '<li class="linkedLink"><a href="' . $student->getUser()->profile_url . '">LinkedIn</a></li>';
+    $html = $html . '<li class="linkedLink"><a target="_blank" href="' . $student->getUser()->profile_url . '">LinkedIn</a></li>';
     $html = $html . '</ul>';
     $html = $html . '</div>';
     $html = $html . '</h3>';

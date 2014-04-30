@@ -322,19 +322,19 @@ p.bjqs-caption{
 }
 
 .orangeColor{
-	border-left:10px solid #ed7d31;
+	border-left:10px solid #ed7d31 !important;
 }
 .yellowColor{
-	border-left:10px solid #ffd966;
+	border-left:10px solid #ffd966 !important;
 }
 .greenColor{
-	border-left:10px solid #70ad47;
+	border-left:10px solid #70ad47 !important;
 }
 .redColor{
-	border-left:10px solid #c00000;
+	border-left:10px solid #c00000 !important;
 }
 .grayColor{
-	border-left:10px solid #7f7f7f;
+	border-left:10px solid #7f7f7f !important;
 }
 
 .greenBox span{
@@ -349,7 +349,7 @@ p.bjqs-caption{
 
 .descriptionArea{
 	float:left;
-	width:450px;
+	width:400px;
 	margin-left:15px;
 }
 .descriptionArea a{
