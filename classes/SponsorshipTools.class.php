@@ -62,6 +62,8 @@ class SponsorshipTools {
     
     function takeSponsorship($sp_id, $org_id, $con_name, $con_phn){
         $data['taken_by'] = $org_id;
+        $data['contact_name'] = "'".$con_name."'";
+        $data['contact_phone'] = "'".$con_phn."'";
         $wherePedicate = "id='".$sp_id."'";
         
         $result = $this->db->update($data, "sponsorships", $wherePedicate);
