@@ -119,6 +119,10 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
             navigation: true
         });
     });
+    $(document).on("click", ".linkedLink a", function(e) {
+        e.preventDefault();
+        window.open($(this).attr("href"), '_blank');;
+    });
 </script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <!--<script>
@@ -173,7 +177,7 @@ function getHtmlForStudentTechnologies($student) {
     $count = 0;
     foreach ($technologies as $key => $value) {        
         //max display is 3 - should come from a config file
-        if ($count == count($technologies) || $count == 4) {
+        if ($count == count($technologies) || $count == 10) {
             $html = $html . " " . $value[0]->name ;//. " " . "(" . $value[1] . ")";
             break;
         }
