@@ -27,8 +27,7 @@ if (!oauth_session_exists()) {
                         Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                     </p>
                     <div id="calendar">
-                        <div style="display: none" id="event-dialog" title="Event Details">
-                            <h2 id="event-dialog-title"></h2>
+                        <div style="display: none" id="event-dialog" title="">
                             <p id="event-dialog-desc"></p>
                             <p>
                                 <span id="event-dialog-date-label"><b>Date:</b> </span>

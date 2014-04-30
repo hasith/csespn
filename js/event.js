@@ -170,13 +170,13 @@ $(document).ready(function() {
         var sponsorships = event[1];
 
         if (isError) {
-            $("#event-dialog-title").html("An Error Occurred! :(");
+            $("#event-dialog-desc").html("An Error Occurred! :(");
             return;
         }
 
         var htmlContent = "";
 
-        $("#event-dialog-title").html(eventDetails.title);
+        $("#event-dialog").dialog('option', 'title', eventDetails.title);
 
         if (eventDetails.description) {
             $("#event-dialog-desc").html(eventDetails.description);
