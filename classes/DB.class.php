@@ -163,7 +163,20 @@ class DB {
      * @param string $where
      */
     public function naturalJoin($columns,$table1,$table2,$where){
-        $sql = "SELECT $columns  FROM $table1 NATURAL JOIN $table2 WHERE $where";
+        $sql = "SELECT $columns  FROM $table1 LEFT JOIN $table2 WHERE $where";
+        $result = mysql_query($sql);
+        if (!$result) {
+            return false;
+        } else {
+            //if (mysql_num_rows($result) == 1) {
+            //    return $this->processRowSet($result, true);
+            //}
+            return $this->processRowSet($result);
+        }
+    }
+    
+    public function leftJoin($columns,$table1,$table2,$where,$leftCol, $rightCol){
+        $sql = "SELECT $columns  FROM $table1 LEFT JOIN $table2 ON $table1.$leftCol= $table2.$rightCol WHERE $where";
         $result = mysql_query($sql);
         if (!$result) {
             return false;

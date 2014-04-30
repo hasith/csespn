@@ -91,12 +91,14 @@ try {
                         $tech_count = intval($result->{'skills'}->attributes()->total);
                         for($i=0;$i<$tech_count;$i++){                            
                             $tech = $result->{'skills'}->{'skill'}[$i]->{'skill'}->{'name'} . "";
+                           
                             if(!Technology::checkTechnologyExists($tech)){
-                                $technology = new Technology();
+                                $technology = new Technology();                                
                                 $technology->name = $tech;
                                 $technology->save(TRUE);
                             }
                             $technology = Technology::getByName($tech);
+                            
                             if(!Endorsement::checkEndorsementExists($technology->id, $student->id)){
                                 $endorsement = new Endorsement();
                                 $endorsement->student_id = $student->id;
@@ -104,7 +106,7 @@ try {
                                 $endorsement->count = 1;
                                 $endorsement->save(TRUE);
                             }
-                        }            
+                        }
                     } else {
                         if (!User::checkUserExists($result->{'id'})) {                            
                             //User is a new visitor

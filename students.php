@@ -94,8 +94,8 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
                         </div>                        
                         <div class="ccContainer">
                             <ul>
-                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=gpa">By GPA</a></li>
-                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=endorsements">By Endorsements</a></li>
+                                <!--<li><a href="./students.php?batch=<?php //echo $batch ?>&order_by=gpa">By GPA</a></li>-->
+                                <!--<li><a href="./students.php?batch=<?php // echo $batch ?>&order_by=endorsements">By Endorsements</a></li>-->
                                 <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=speciality">By Specialty</a></li>
                                 <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=name">By First Name</a></li>
                             </ul>
@@ -151,8 +151,8 @@ function getHtmlForStudent($student) {
     $html = $html . '</div>';
     $html = $html . '<div class="darkGray" style="float:right">';
     $html = $html . '<ul>';
-    $html = $html . '<li class="endGPA"><span>Endorsements :</span>' . $student->getEndorsements() . '</li>';
-    $html = $html . '<li class="endGPA"><span>GPA :</span>' . $student->gpa . '</li>';
+    //$html = $html . '<li class="endGPA"><span>Endorsements :</span>' . $student->getEndorsements() . '</li>';
+    //$html = $html . '<li class="endGPA"><span>GPA :</span>' . $student->gpa . '</li>';
     $html = $html . '<li class="linkedLink"><a href="' . $student->getUser()->profile_url . '">LinkedIn</a></li>';
     $html = $html . '</ul>';
     $html = $html . '</div>';
@@ -173,11 +173,11 @@ function getHtmlForStudentTechnologies($student) {
     $count = 0;
     foreach ($technologies as $key => $value) {        
         //max display is 3 - should come from a config file
-        if ($count == count($technologies) || $count == 2) {
-            $html = $html . " " . $value[0]->name . " " . "(" . $value[1] . ")";
+        if ($count == count($technologies) || $count == 4) {
+            $html = $html . " " . $value[0]->name ;//. " " . "(" . $value[1] . ")";
             break;
         }
-        $html = $html . " " . $value[0]->name . " " . "(" . $value[1] . "),";
+        $html = $html . " " . $value[0]->name . ", ";// . "(" . $value[1] . "),";
         $count++;
     }
     return $html;

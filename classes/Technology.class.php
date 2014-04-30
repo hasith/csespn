@@ -60,7 +60,7 @@ class Technology {
     public static function getByName($technology_name) {
         $db = new DB();
         $result = $db->select('technologies', "name = '$technology_name'");
-        return new Technology($result);
+        return new Technology($result[0]);
     }
 
 }
