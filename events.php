@@ -107,6 +107,7 @@ if (!oauth_session_exists()) {
 
                             foreach ($months as $month) {
                                 echo "<li>";
+								echo "<div class='curl'></div>";
                                 echo "<h4>" . key($month) . "</h4>";
 
                                 $events = $month[key($month)];
@@ -195,7 +196,7 @@ if (!oauth_session_exists()) {
                                     echo "<li class='clickable-li open-sponsorship-entry'>";
                                     echo "<input id='sponsorship-id' type='hidden' value='" . $openS->id . "'/>";
                                     echo "<h3>";
-                                    echo $event->title . "</br><span>" . $event_date->format("dS M") . "</span>";
+                                    echo $event->title . "<span>" . $event_date->format("dS M") . "</span>";
                                     echo "</h3>";
                                     echo "<p>";
                                     echo $openS->name . " (Rs." . $openS->amount . ")";
