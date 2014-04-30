@@ -247,11 +247,11 @@ INSERT INTO `sessions`
 (9,'Session for testing the functionality','session you would like to carryout to CSE syudents. We will get back to you regarding the possible session you would like to carryout to CSE syudents. We will get back to you regarding the possible','2014-06-07 00:00:00','8:30 am',120,'Hasith','0714819556',11);
 
 INSERT INTO `research` (`id`, `title`, `author_id`, `lead_id`, `company_id`, `time`, `description`, `category`, `published`) VALUES
-(1, 'Hotel Managment System', 22, 22, 10, 120, 'Manages hotel Bla bla', 0, '2014-04-22 11:11:55'),
-(2, 'Car reservation system', 22, 22, 11, 150, 'A hotel is an establishment that provides lodging paid on a short-term basis. The provision of basic accommodation, in times past, consisting only of a room with a bed, a cupboard, a small table and a washstand has largely been replaced by rooms with modern facilities, including en-suite bathrooms and air conditioning or climate control. Additional common features found in hotel rooms are a telephone, an alarm clock, a television, a safe, a mini-bar with snack foods and drinks, and facilities for making tea and coffee. Luxury features include bathrobes and slippers, a pillow menu, twin-sink vanities, and jacuzzi bathtubs. Larger hotels may provide additional guest facilities such as a swimming pool, fitness center, business center, childcare, conference facilities and social function services.', 0, '2014-04-22 11:11:55'),
-(3, 'Test Project', 22, 22, 12, 50, 'desc', 0, '2014-04-22 11:11:55'),
-(4, 'Test2', 22, 22, 20, 56, 'test', 1, '2014-04-22 11:11:55'),
-(5, 'Test3', 22, 22, 21, 25, 'desc', 0, '2014-04-22 11:11:55');
+(1, 'Hotel Managment System', 22, 22, 10, 120, 'Manages hotel Bla bla', 3, '2014-04-22 11:11:55'),
+(2, 'Car reservation system', 22, 22, 11, 150, 'A hotel is an establishment that provides lodging paid on a short-term basis. The provision of basic accommodation, in times past, consisting only of a room with a bed, a cupboard, a small table and a washstand has largely been replaced by rooms with modern facilities, including en-suite bathrooms and air conditioning or climate control. Additional common features found in hotel rooms are a telephone, an alarm clock, a television, a safe, a mini-bar with snack foods and drinks, and facilities for making tea and coffee. Luxury features include bathrobes and slippers, a pillow menu, twin-sink vanities, and jacuzzi bathtubs. Larger hotels may provide additional guest facilities such as a swimming pool, fitness center, business center, childcare, conference facilities and social function services.', 3, '2014-04-22 11:11:55'),
+(3, 'Test Project', 22, 22, 12, 50, 'desc', 3, '2014-04-22 11:11:55'),
+(4, 'Test2', 22, 22, 20, 56, 'test', 4, '2014-04-22 11:11:55'),
+(5, 'Test3', 22, 22, 21, 25, 'desc', 4, '2014-04-22 11:11:55');
 
 INSERT INTO `research_tech__map` (`research_id`, `technology_id`) VALUES
 (1, 1),

@@ -124,28 +124,6 @@ $sort = $_GET['sort'];
                         </div>
                     <?php } ?>
 
-                    <ul id="legend">
-                        <li class="greenBox clearfix">
-                            <span></span>
-                            <p>Finalized future sessions</p>
-                        </li>
-                        <li class="ice clearfix">
-                            <span></span>
-                            <p>Proposed, but not finalized</p>
-                        </li>
-                        <li class="redBox clearfix">
-                            <span></span>
-                            <p>Needs a facilitating company</p>
-                        </li>                        
-                        <li class="grayBox clearfix">
-                            <span></span>
-                            <p>Sessions happened in Past</p>
-                        </li>
-                    </ul>
-
-
-
-
                     <div class="componentContainer">
                         <div class="heading">
                             <p>Filter Sessions</p>

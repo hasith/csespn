@@ -85,7 +85,7 @@ if (isset($_POST['valid'])) {
                                     }
                                     //$allResearches = $researchTools->getResearchByTech(30, $orderBy);
                                     foreach ($allResearches as $research) {
-                                        if ($research->category == 0) {
+                                        if ($research->category == 3) {
                                             ?>                                    
                                             <h3 class="greenColor clearfix">
                                                 <div class="descriptionArea">
@@ -100,15 +100,15 @@ if (isset($_POST['valid'])) {
                                                 </div>
                                                 <div class="darkGray">
                                                     <ul>
-                                                        <li class="endGPA"><span>Partner :</span><?php
+                                                        <li class="endGPA"><span>Proposed by: </span><?php
                                                             $company = Company::get($research->company_id);
                                                             echo $company->name
                                                             ?></li>
                                                         <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
-                                                        <li class="linkedLink"><span>Lead :</span> <a href="asd.html"><?php
+                                                        <li class="linkedLink"><span>Supervisor: </span> <?php
                                                                 $leader = User::get($research->lead_id);
                                                                 echo $leader->name;
-                                                                ?></a></li>
+                                                                ?></li>
                                                     </ul>
                                                 </div>
                                             </h3>  
@@ -133,7 +133,7 @@ if (isset($_POST['valid'])) {
                                 <div id="accordion2"> 
                                     <?php
                                     foreach ($allResearches as $research) {
-                                        if ($research->category == 1) {
+                                        if ($research->category == 4) {
                                             ?>
                                             <h3 class="greenColor clearfix">
                                                 <div class="descriptionArea">
@@ -324,12 +324,12 @@ if (isset($_POST['valid'])) {
 
         <div id="projectApplicationWrapper">
             <div id="projectApplication">
-                <h2>New project proposal</h2>
+                <h2>Project Proposal</h2>
                 <div id="projectForm">
                     <table>
                         <tr>
                             <td>
-                                <label for="titleTxt">Title</label>
+                                <label for="titleTxt">Project Name</label>
                             </td>
                             <td class="formInput">
                                 <input type="text" id="titleTxt" name="title">
@@ -337,13 +337,12 @@ if (isset($_POST['valid'])) {
                         </tr>
                         <tr>
                             <td>
-                                <label for="categoryCombo">Category</label>
+                                <label for="categoryCombo">Targeted Batch</label>
                             </td>
                             <td class="formInput">
                                 <select name="category" id="categoryCombo">
-                                    <option value="0">3rd year project</option>
-                                    <option value="1">final year project</option>
-
+                                    <option value="3">3rd year project</option>
+                                    <option value="4">final year project</option>
                                 </select>
                             </td>
                         </tr>
@@ -430,13 +429,13 @@ if (isset($_POST['valid'])) {
 
         <script src="js/research.js" type="text/javascript"></script>
         <script>
-                                    //loading batches till technologies ae implemented:dummy
-                                    var json = '<?php echo json_encode($arr); ?>';
-                                    tempArray = new Array();
-                                    tempArray = JSON.parse(json);
-                                    for (i = 0; i < tempArray.length; i++) {
-                                        technologies.push({value: "" + tempArray[i].id.toString(), label: "" + tempArray[i].name.toString()});
-                                    }
+		    //loading batches till technologies ae implemented:dummy
+		    var json = '<?php echo json_encode($arr); ?>';
+		    tempArray = new Array();
+		    tempArray = JSON.parse(json);
+		    for (i = 0; i < tempArray.length; i++) {
+		        technologies.push({value: "" + tempArray[i].id.toString(), label: "" + tempArray[i].name.toString()});
+		    }
         </script>
 
 

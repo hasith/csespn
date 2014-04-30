@@ -138,6 +138,8 @@ CREATE TABLE IF NOT EXISTS `research` (
   `time` int(11) NOT NULL,
   `description` text NOT NULL,
   `category` int(11) NOT NULL,
+  `resp_name` varchar(50) DEFAULT NULL,
+  `resp_contact` varchar(10) DEFAULT NULL,  
   `published` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
