@@ -8,6 +8,7 @@ class Event {
     public $title;
     public $description;
     public $date;
+    public $date_confirmed;
     public $time;
     public $venue;
     public $url;
@@ -17,6 +18,7 @@ class Event {
         $this->title = (isset($data['title'])) ? $data['title'] : "";
         $this->description = (isset($data['description'])) ? $data['description'] : "";
         $this->date = (isset($data['date'])) ? $data['date'] : "";
+        $this->date_confirmed = (isset($data['date_confirmed'])) ? $data['date_confirmed'] : "";
         $this->time = (isset($data['time'])) ? $data['time'] : "";
         $this->venue = (isset($data['venue'])) ? $data['venue'] : "";
         $this->url = (isset($data['url'])) ? $data['url'] : "";

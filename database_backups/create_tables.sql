@@ -46,6 +46,7 @@ CREATE TABLE IF NOT EXISTS `events` (
   `title` varchar(100) NOT NULL,
   `description` text,
   `date` date DEFAULT NULL,
+  `date_confirmed` tinyint(1) NOT NULL,
   `time` time DEFAULT NULL,
   `venue` varchar(100) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL COMMENT 'url of event fb page/web page',

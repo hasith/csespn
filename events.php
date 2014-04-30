@@ -125,7 +125,11 @@ if (!oauth_session_exists()) {
                                             }
                                         }
 
-                                        echo $event->title . " - <b>" . $date->format('dS') . "</b>";
+                                        $dateStr = "";
+                                        if($event->date_confirmed){
+                                            $dateStr = "(".$date->format('dS').")";                                            
+                                        }
+                                        echo $event->title . "<b> " . $dateStr . "</b>";
                                         echo '</p></div>';
                                     }
                                 } else {
