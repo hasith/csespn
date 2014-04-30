@@ -160,7 +160,7 @@ if (isset($_POST['valid'])) {
                                                     </ul>
                                                 </div>
                                             </h3>  
-                                            <div class="contentData clearfix"> 
+                                            <div class="contentData contentHeight clearfix"> 
                                                 <?php
                                                 $proposedUser = User::get($research->author_id);
                                                 ?>
