@@ -100,15 +100,15 @@ if (isset($_POST['valid'])) {
                                                 </div>
                                                 <div class="darkGray">
                                                     <ul>
-                                                        <li class="endGPA"><span>Proposed by: </span><?php
+                                                        <li class="endGPA"><span>Partner :</span><?php
                                                             $company = Company::get($research->company_id);
                                                             echo $company->name
                                                             ?></li>
                                                         <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
-                                                        <li class="linkedLink"><span>Supervisor: </span> <?php
+                                                        <li class="linkedLink"><span>Lead :</span> <a href="asd.html"><?php
                                                                 $leader = User::get($research->lead_id);
                                                                 echo $leader->name;
-                                                                ?></li>
+                                                                ?></a></li>
                                                     </ul>
                                                 </div>
                                             </h3>  
@@ -160,7 +160,7 @@ if (isset($_POST['valid'])) {
                                                     </ul>
                                                 </div>
                                             </h3>  
-                                            <div class="contentData clearfix"> 
+                                            <div class="contentData contentHeight clearfix"> 
                                                 <?php
                                                 $proposedUser = User::get($research->author_id);
                                                 ?>
@@ -324,12 +324,12 @@ if (isset($_POST['valid'])) {
 
         <div id="projectApplicationWrapper">
             <div id="projectApplication">
-                <h2>Project Proposal</h2>
+                <h2>New project proposal</h2>
                 <div id="projectForm">
                     <table>
                         <tr>
                             <td>
-                                <label for="titleTxt">Project Name</label>
+                                <label for="titleTxt">Title</label>
                             </td>
                             <td class="formInput">
                                 <input type="text" id="titleTxt" name="title">
@@ -337,12 +337,13 @@ if (isset($_POST['valid'])) {
                         </tr>
                         <tr>
                             <td>
-                                <label for="categoryCombo">Targeted Batch</label>
+                                <label for="categoryCombo">Category</label>
                             </td>
                             <td class="formInput">
                                 <select name="category" id="categoryCombo">
-                                    <option value="3">3rd year project</option>
-                                    <option value="4">final year project</option>
+                                    <option value="0">3rd year project</option>
+                                    <option value="1">final year project</option>
+
                                 </select>
                             </td>
                         </tr>
@@ -429,13 +430,13 @@ if (isset($_POST['valid'])) {
 
         <script src="js/research.js" type="text/javascript"></script>
         <script>
-		    //loading batches till technologies ae implemented:dummy
-		    var json = '<?php echo json_encode($arr); ?>';
-		    tempArray = new Array();
-		    tempArray = JSON.parse(json);
-		    for (i = 0; i < tempArray.length; i++) {
-		        technologies.push({value: "" + tempArray[i].id.toString(), label: "" + tempArray[i].name.toString()});
-		    }
+                                    //loading batches till technologies ae implemented:dummy
+                                    var json = '<?php echo json_encode($arr); ?>';
+                                    tempArray = new Array();
+                                    tempArray = JSON.parse(json);
+                                    for (i = 0; i < tempArray.length; i++) {
+                                        technologies.push({value: "" + tempArray[i].id.toString(), label: "" + tempArray[i].name.toString()});
+                                    }
         </script>
 
 

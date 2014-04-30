@@ -27,8 +27,7 @@ if (!oauth_session_exists()) {
                         Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                     </p>
                     <div id="calendar">
-                        <div style="display: none" id="event-dialog" title="Event Details">
-                            <h2 id="event-dialog-title"></h2>
+                        <div style="display: none" id="event-dialog" title="">
                             <p id="event-dialog-desc"></p>
                             <p>
                                 <span id="event-dialog-date-label"><b>Date:</b> </span>
@@ -51,10 +50,10 @@ if (!oauth_session_exists()) {
                             <ul id="event-dialog-sp"></ul>
                             </p>
                         </div>
-                        <div style="display: none" id="sponsorships-dialog" title="Sponsorship Details">
+                        <div style="display: none" id="sponsorships-dialog" title="">
                             <input type="hidden" id="sp-dialog-id"/>
                             <input type="hidden" id="user-level" value="<?php echo User::currentUser()->getOrganization()->access_level; ?>"/>
-                            <h2 id="sp-dialog-name"></h2>
+                           
                             <p>
                                 <b>Amount: </b>Rs.&nbsp;
                                 <span id="sp-dialog-amount"></span>
@@ -91,8 +90,12 @@ if (!oauth_session_exists()) {
                             </form>
                             <p id="error-message">Some form fields are empty</p>
                         </div> 
-                        <div style="display: none" id="message-dialog">                            
+                        <div style="display: none" id="message-dialog">     
+                            <input type="hidden" id="reload-at-ok" value="" />
                             <p id="message-dialog-content"></p>
+                        </div>
+                        <div style="display: none" id="wait-dialog">                            
+                            <img src="img/ajax-loader.gif" alt="wait..."/>
                         </div>
                         <ul>
                             <?php
@@ -103,6 +106,7 @@ if (!oauth_session_exists()) {
 
                             foreach ($months as $month) {
                                 echo "<li>";
+								echo "<div class='curl'></div>";
                                 echo "<h4>" . key($month) . "</h4>";
 
                                 $events = $month[key($month)];
@@ -125,7 +129,11 @@ if (!oauth_session_exists()) {
                                             }
                                         }
 
-                                        echo $event->title . " - <b>" . $date->format('dS') . "</b>";
+                                        $dateStr = "";
+                                        if ($event->date_confirmed) {
+                                            $dateStr = "(" . $date->format('dS') . ")";
+                                        }
+                                        echo $event->title . "<b> " . $dateStr . "</b>";
                                         echo '</p></div>';
                                     }
                                 } else {
@@ -187,7 +195,7 @@ if (!oauth_session_exists()) {
                                     echo "<li class='clickable-li open-sponsorship-entry'>";
                                     echo "<input id='sponsorship-id' type='hidden' value='" . $openS->id . "'/>";
                                     echo "<h3>";
-                                    echo $event->title . "</br><span>" . $event_date->format("dS M") . "</span>";
+                                    echo $event->title . "<span>" . $event_date->format("dS M") . "</span>";
                                     echo "</h3>";
                                     echo "<p>";
                                     echo $openS->name . " (Rs." . $openS->amount . ")";

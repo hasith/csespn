@@ -45,7 +45,7 @@ class Student {
                 "oauth_token" => "'$this->oauth_token'",
                 "oauth_token_secret" => "'$this->oauth_token_secret'",
                 "gpa" => "'$this->gpa'",
-                "description" => "'$this->description'"
+                "description" => "'".mysql_real_escape_string($this->description)."'"
             );
 
             //update the row in the database
@@ -59,7 +59,7 @@ class Student {
                 "oauth_token" => "'$this->oauth_token'",
                 "oauth_token_secret" => "'$this->oauth_token_secret'",
                 "gpa" => "'$this->gpa'",
-                "description" => "'$this->description'"
+                "description" => "'".mysql_real_escape_string($this->description)."'"
             );
 
             $this->id = $db->insert($data, 'students');
