@@ -71,9 +71,28 @@ $(document).ready(function() {
         modal: true,
         buttons: {
             Ok: function() {
+                if($(this).find("#reload-at-ok").val() === "true"){
+                    location.reload();
+                }
                 $(this).dialog("close");
             }
         },
+        show: {
+            effect: "fade",
+            duration: 200
+        },
+        hide: {
+            effect: "fade",
+            duration: 200
+        }
+    });
+    
+    $("#wait-dialog").dialog({
+        autoOpen: false,
+        dialogClass: "noTitleDialog",
+        width: 100,
+        height: 100,
+        modal: true,
         show: {
             effect: "fade",
             duration: 200
@@ -251,6 +270,7 @@ $(document).ready(function() {
 
     function showTakeSposorshipDialog(id, access_level) {
         if (access_level < 3) {
+            $("#reload-at-ok").val(false);
             $("#message-dialog-content").html("Sorry,<br>Only Basic and Premium Partners can apply for sponsorships.");
             $("#message-dialog").dialog("open");
         }
@@ -281,24 +301,27 @@ $(document).ready(function() {
                     beforeSend: function() {
                         $("#sp-confirm-dialog").dialog("close");
                         $("#event-dialog").dialog("close");
-                        $("#message-dialog-content").html("Please wait...");
-                        $("#message-dialog").dialog("open");
+                        $("#wait-dialog").dialog("open");
                     },
                     success: function(data, textStatus, jqXHR)
                     {
+                        $("#wait-dialog").dialog("close");
                         if (JSON.parse(data)) {
+                            $("#reload-at-ok").val(true);
                             $("#message-dialog-content").html("Operation Successful. Thank You!");
+                            $("#message-dialog").dialog("open");
                         }
                         else {
                             $("#message-dialog-content").html("Some error occured. Please try again.");
+                            $("#message-dialog").dialog("open");
                         }
                     },
                     error: function(jqXHR, textStatus, errorThrown)
                     {
+                        $("#wait-dialog").dialog("close");
                         $("#message-dialog-content").html("Some error occured. Please try again.");
+                        $("#message-dialog").dialog("open");
                     }
                 });
-
-        console.log(dataString);
     }
 });
