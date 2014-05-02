@@ -10,6 +10,18 @@ class EventTools {
         $this->db = new DB();
     }
 
+    function getAllEvents(){
+        $events = array();
+        
+        $results = $this->db->select2("*", "events", "true", "true", "date,time desc");
+        
+        foreach($results as $result){
+            array_push($events, new Event($result));
+        }
+
+        return $events;
+    }
+    
     //returns all the events of the given month of current year
     function getEventsByMonth($month) {
         $currentYear = date("Y");

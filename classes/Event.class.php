@@ -29,5 +29,17 @@ class Event {
         $result = $db->select('events', "id = $id");
         return new Event($result[0]);
     }
+    
+    public static function delete($id){
+        $db = new DB();
+        $spTools = new SponsorshipTools();
+        $result = $spTools->deleteSponsorshipsByEvent($id);
+        
+        if($result){
+            $result = $db->delete(array($id), "events");
+        }        
+        
+        return $result;
+    }
 
 }

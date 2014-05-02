@@ -29,4 +29,10 @@ class Sponsorship {
         $result = $db->select('sponsorships', "id = $id");
         return new Sponsorship($result[0]);
     }
+    
+    public static function delete($id){
+        $db = new DB();
+        $result = $db->delete($id, "sponsorships");
+        return $result;
+    }
 }

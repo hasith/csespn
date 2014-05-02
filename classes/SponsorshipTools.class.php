@@ -69,4 +69,10 @@ class SponsorshipTools {
         $result = $this->db->update($data, "sponsorships", $wherePedicate);
         return $result;
     }
+    
+    function deleteSponsorshipsByEvent($event_id){
+        $wherePredicate = "event_id = '$event_id'";
+        $result = $this->db->deleteWhere("sponsorships", $wherePredicate);
+        return $result;
+    }
 }

@@ -72,7 +72,7 @@ $(document).ready(function() {
         buttons: {
             Ok: function() {
                 if($(this).find("#reload-at-ok").val() === "true"){
-                    location.reload();
+                    location.reload(true);
                 }
                 $(this).dialog("close");
             }

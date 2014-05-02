@@ -6,6 +6,7 @@
         <script src="js/jquery.validate.min.js"></script>
         <script src="js/jquery.populate.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
+        <script src="js/jquery.timepicker.min.js"></script>
         <script>
        		$(function() {
 		    	$(document).tooltip();

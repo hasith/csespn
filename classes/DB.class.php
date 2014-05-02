@@ -124,6 +124,14 @@ class DB {
     public function delete($ids, $table) {
         $commaList = implode(', ', $ids);
         $sql = "delete from  $table where id in ($commaList)";
+        $result = mysql_query($sql);
+        return $result;
+    }
+    
+    public function deleteWhere($table, $where) {
+        $sql = "delete from $table where $where";
+        $result = mysql_query($sql);
+        return $result;
     }
 
     /**
