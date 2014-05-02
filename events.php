@@ -29,34 +29,35 @@ if (!oauth_session_exists()) {
                     <div id="calendar">
                         <div style="display: none" id="event-dialog" title="">
                             <p id="event-dialog-desc"></p>
-                            <p>
-                                <span id="event-dialog-date-label"><b>Date:</b> </span>
-                                <span id="event-dialog-date"></span>
-                            </p>
-                            <p>
-                                <span id="event-dialog-time-label"><b>Time:</b> </span>
-                                <span id="event-dialog-time"></span>
-                            </p>
-                            <p>
-                                <span id="event-dialog-venue-label"><b>Venue:</b> </span>
+                            <div id="date-details" class="clearfix">
+                            	<p class="clearfix">
+                                    <span id="event-dialog-date-label"></span>
+                                    <span id="event-dialog-date"></span>
+                                </p>
+                                <p class="clearfix">
+                                    <span id="event-dialog-time-label"></span>
+                                    <span id="event-dialog-time"></span>
+                                </p>
+                            </div>
+                            <p id="venue-details" class="clearfix">
+                                <span id="event-dialog-venue-label"></span>
                                 <span id="event-dialog-venue"></span>
                             </p>
-                            <p>
+                            <p id="more-info">
                                 <span id="event-dialog-url-label"><b>More info: </b></span>
                                 <a id="event-dialog-url" href="" target='_blank'></a>
                             </p>
-                            <p>
+                            <div id="sponsor-ship">
                                 <span id="event-dialog-sp-label"><b>Sponsorships</b></span>
-                            <ul id="event-dialog-sp"></ul>
-                            </p>
+                            	<ul id="event-dialog-sp"></ul>
+                            </div>
                         </div>
                         <div style="display: none" id="sponsorships-dialog" title="">
                             <input type="hidden" id="sp-dialog-id"/>
                             <input type="hidden" id="user-level" value="<?php echo User::currentUser()->getOrganization()->access_level; ?>"/>
                            
-                            <p>
-                                <b>Amount: </b>Rs.&nbsp;
-                                <span id="sp-dialog-amount"></span>
+                            <p id="amount-details">
+                                <b>Amount: </b>Rs.<span id="sp-dialog-amount"></span>
                             </p>
                             <p id="sp-dialog-desc"></p>
                         </div>
@@ -64,7 +65,7 @@ if (!oauth_session_exists()) {
                             <form id="sp-apply-form" method="post" action="sponsorships.take.php">
                                 <fieldset>
                                     <input type="hidden" name="sp_id" id="sp-id" />
-                                    <p>
+                                    <p id="company-name">
                                         <label for="org_id">Company </label>
                                         <select name="org_id" id="org_id" >
                                             <?php
@@ -78,11 +79,11 @@ if (!oauth_session_exists()) {
                                             ?>				
                                         </select> 
                                     </p>
-                                    <p>
+                                    <p class="contact-person">
                                         <label for="contact_name">Contact Person</label>
                                         <input type="text" maxlength="50" name="contact_name" id="contact_name">
                                     </p>
-                                    <p>
+                                    <p class="contact-person">
                                         <label for="contact_phone">Phone</label>
                                         <input type="text" maxlength="10" size="12" name="contact_phone" id="contact_phone">
                                     </p>

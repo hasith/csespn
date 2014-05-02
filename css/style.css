@@ -718,3 +718,118 @@ p.bjqs-caption{
 .ui-dialog .ui-dialog-buttonpane{
 	background:#eeeeee;
 }
+
+.ui-dialog-title{
+	font-weight:normal;
+	font-size:24px;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#event-dialog-desc{
+	font-size:14px;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	width:564px;
+	word-break:break-all;
+	line-height:24px;
+}
+#date-details p{
+	float:left;
+	width:50%;
+	margin:25px 0 0;
+}
+#date-details p span{
+	float:left;
+	margin-right:10px;
+	font-size:14px;
+	font-weight:bold;
+}
+#event-dialog-date-label{
+	background:url(../img/calendar.png) no-repeat;
+	display:block;
+	width:21px;
+	height:21px;
+}
+#event-dialog-time-label{
+	background:url(../img/clock.png) no-repeat;
+	display:block;
+	width:22px;
+	height:22px;
+}
+#event-dialog-venue-label{
+	background:url(../img/venue.png) no-repeat;
+	display:block;
+	width:22px;
+	height:22px;
+	float:left;
+	margin-right:10px;
+}
+#event-dialog-venue{
+	float:left;
+	font-size:14px;
+	font-weight:bold;
+}
+#venue-details{
+	margin:15px 0 25px;
+}
+#more-info{
+	font-size:12px;
+	margin-bottom:30px;
+}
+#more-info span{
+	font-size:14px;
+	margin-right:10px;
+}
+#more-info a{
+	color:#5b9bd5;
+}
+
+#sponsor-ship span{
+	font-size:16px;
+	color:#5b9bd5;
+	font-weight:bold;
+}
+#sponsor-ship ul{
+	margin-top:5px;
+}
+#sponsor-ship ul li{
+	margin-bottom:8px;
+}
+#sponsor-ship ul li p{
+	font-size:14px;
+	margin:0;
+	line-height:25px;
+}
+
+#amount-details{
+	font-size:16px;
+}
+#amount-details span{
+	font-size:16px;
+	color:#5b9bd5;
+	font-weight:bold;
+}
+#sp-dialog-desc{
+	font-size:14px;
+	line-height:25px;
+}
+#company-name label{
+	font-size:14px;
+	display:block;
+	font-weight:bold;
+}
+#company-name select{
+	margin-top:7px;
+	font-size:16px;
+	padding:5px;
+	width:100%;
+}
+.contact-person label{
+	font-size:14px;
+	display:block;
+	font-weight:bold;
+}
+.contact-person input[type=text]{
+	margin-top:7px;
+	font-size:16px;
+	padding:5px;
+	width:97%;
+}
