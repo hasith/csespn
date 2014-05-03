@@ -73,14 +73,14 @@ if (isset($_POST['valid'])) {
                                     <?php
                                     $orderBy = "published";
                                     $techoFilter = 0;
-                                    if (isset($_POST['sorter'])) {
-                                        $orderBy = $_POST['sorter'];
+                                    if (isset($_GET['sorter'])) {
+                                        $orderBy = $_GET['sorter'];
                                     }
 
                                     $researchTools = new ResearchTools();
                                     $allResearches = $researchTools->getAllResearches($orderBy);
-                                    if (isset($_POST['techFilter']) && $_POST['techFilter'] != 0) {
-                                        $techoFilter = $_POST['techFilter'];
+                                    if (isset($_GET['techFilter']) && $_GET['techFilter'] != 0) {
+                                        $techoFilter = $_GET['techFilter'];
                                         $allResearches = $researchTools->getResearchByTech($techoFilter, $orderBy);
                                     }
                                     //$allResearches = $researchTools->getResearchByTech(30, $orderBy);
@@ -179,11 +179,13 @@ if (isset($_POST['valid'])) {
                     </div>
                 </div>
                 <div id="rightSide">
-                    <div id="addProject">
-                        <a href="javascript: void(0)">
-                            Propose a New Project
-                        </a>
-                    </div>
+                    <?php if (User::currentUser()->getOrganization()->access_level >= 3) { ?>
+                        <div id="addProject">
+                            <a href="javascript: void(0)">
+                                Propose a New Project
+                            </a>
+                        </div>
+                    <?php } ?>
 
                     <ul id="legend">
                         <li class="greenBox clearfix">
@@ -197,7 +199,7 @@ if (isset($_POST['valid'])) {
                     </ul>
 
 
-                    <form action="" method="POST" id="sortForm">
+                    <form action="" method="GET" id="sortForm">
                         <input name="sorter" type="hidden" id="sorterHiddenInput" value="<?php echo $orderBy; ?>">
                         <input name="techFilter" type="hidden" id="techFilterHiddenInput" value="0">                        
                     </form>
@@ -207,10 +209,10 @@ if (isset($_POST['valid'])) {
                         </div>
 
                         <div class="ccContainer">
-                            <div class="cloudArea"><img src="img/cloud.jpg" /></div>
+                            <!--<div class="cloudArea"><img src="img/cloud.jpg" /></div>-->
                             <div class="cloudArea">
 
-                                <select name="technology" id="technoFilterCombo">
+                                <select name="technology" id="technoFilterCombo" size="10">
                                     <option value="0">Any Technology</option>
                                     <?php
                                     $tecs = new TechnologyTools();
@@ -354,15 +356,31 @@ if (isset($_POST['valid'])) {
 
 
                             <td class="formInput">
-                                <select name="partner" id="partnerCombo">
-                                    <?php
-                                    $companyTools = new CompanyTools();
-                                    $companyArray = $companyTools->getAllPremiumCompanies();
-                                    $company = new Company(null);
-                                    foreach ($companyArray as $company) {
+                                <?php
+                                $userIsAdmin = true;
+                                $userCompany = User::currentUser()->getOrganization();
+
+                                if ($userCompany->access_level < 5) {
+                                    $organizaion_id = User::currentUser()->getOrganization()->id;
+                                    $userIsAdmin = false;
+                                }
+                                ?>
+
+                                <select name="partner" id="partnerCombo" contenteditable="<?php echo $userIsAdmin ?>">
+                                    <?php if (!$userIsAdmin) { ?>
+                                        <option value="<?php echo $userCompany->id; ?>"><?php echo $userCompany->name; ?></option>
+                                    <?php } else {
                                         ?>
-                                        <option value="<?php echo $company->id; ?>"><?php echo $company->name; ?></option>
+
                                         <?php
+                                        $companyTools = new CompanyTools();
+                                        $companyArray = $companyTools->getAllPremiumCompanies();
+                                        $company = new Company(null);
+                                        foreach ($companyArray as $company) {
+                                            ?>
+                                            <option value="<?php echo $company->id; ?>"><?php echo $company->name; ?></option>
+                                            <?php
+                                        }
                                     }
                                     ?>
                                 </select>
