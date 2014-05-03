@@ -144,7 +144,7 @@ class DB {
      * @param type $results 1->rows only from left table // 2-> rows only from table 2
      * @return boolean
      */
-    public function innerJoin($table1, $table2, $table1Index, $table2Index, $where, $order_by,$results = 0) {
+    public function innerJoinOrderBy($table1, $table2, $table1Index, $table2Index, $where, $order_by,$results = 0) {
         $sql = "SELECT * FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where ORDER BY ".$order_by;
         if ($results == 1) {
             $sql = "SELECT $table1.* FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where ORDER BY ".$order_by;
@@ -161,6 +161,24 @@ class DB {
             return $this->processRowSet($result);
         }
     }
+    public function innerJoin($table1, $table2, $table1Index, $table2Index, $where,$results = 0) {
+        $sql = "SELECT * FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where";
+        if ($results == 1) {
+            $sql = "SELECT $table1.* FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where";
+        } else if ($results == 2) {
+            $sql = "SELECT $table2.* FROM $table1 INNER JOIN $table2 ON $table1.$table1Index=$table2.$table2Index WHERE $where";
+        }
+        $result = mysql_query($sql);
+        if (!$result) {
+            return false;
+        } else {
+            //if (mysql_num_rows($result) == 1) {
+            //    return $this->processRowSet($result, true);
+            //}
+            return $this->processRowSet($result);
+        }
+    }
+    
     
     /**
      * Function to get results from a natural join of two tables
