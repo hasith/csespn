@@ -81,7 +81,7 @@ if (isset($_POST['valid'])) {
                                     $allResearches = $researchTools->getAllResearches($orderBy);
                                     if (isset($_GET['techFilter']) && $_GET['techFilter'] != 0) {
                                         $techoFilter = $_GET['techFilter'];
-                                        $allResearches = $researchTools->getResearchByTech($techoFilter, $orderBy);
+                                        $allResearches = $researchTools->getResearchByTech($techoFilter, "research.".$orderBy);
                                     }
                                     //$allResearches = $researchTools->getResearchByTech(30, $orderBy);
                                     foreach ($allResearches as $research) {
