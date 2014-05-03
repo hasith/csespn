@@ -102,31 +102,36 @@ if (!oauth_session_exists()) {
                     <p id="op-result"></p>
                 </div>
                 <div style="display: none" id="event-dialog" title="">
-                    <input type="hidden" id="event-id"/>
-                    <p id="event-dialog-desc">
-                        <label for="event-dialog-title" id="event-dialog-title-label"><b>Event Title </b></label>
-                        <input id="event-dialog-title" size="60" type="text"/>
-                    </p>
-                    <p id="event-dialog-desc">
-                        <label for="event-dialog-desc" id="event-dialog-desc-label"><b>Description </b></label>
-                        <textarea id="event-dialog-description" cols="80"></textarea>
-                    </p>
-                    <p class="clearfix">
-                        <label for="event-dialog-date" id="event-dialog-date-label"></label>
-                        <input id="event-dialog-date" type="text"/>
-                    </p>
-                    <p class="clearfix">
-                        <label for="event-dialog-time" id="event-dialog-time-label"></label>
-                        <input id="event-dialog-time" type="text"/>
-                    </p>
-                    <p id="venue-details" class="clearfix">
-                        <label for="event-dialog-venue" id="event-dialog-venue-label"></label>
-                        <input id="event-dialog-venue" size="40" type="text"/>
-                    </p>
-                    <p id="more-info">
-                        <label for="event-dialog-url" id="event-dialog-url-label"><b>More info </b></label>
-                        <input id="event-dialog-url" size="80" type="url"/>
-                    </p>
+                    <form id="event-edit-form">
+                        <input type="hidden" id="event-id" name="id"/>
+                        <p id="event-dialog-desc">
+                            <label for="event-dialog-title" id="event-dialog-title-label"><b>Event Title </b></label>
+                            <input id="event-dialog-title" size="60" type="text" name="title"/>
+                        </p>
+                        <p id="event-dialog-desc">
+                            <label for="event-dialog-desc" id="event-dialog-desc-label"><b>Description </b></label>
+                            <textarea id="event-dialog-description" cols="80" name="description"></textarea>
+                        </p>
+                        <p class="clearfix">
+                            <label for="event-dialog-date" id="event-dialog-date-label"></label>
+                            <input id="event-dialog-date" type="text" name="date"/>
+                            <label for="event-dialog-date-conf" id="event-dialog-date-conf-label">Confirmed</label>
+                            <input id="event-dialog-date-conf" type="checkbox" name="date_confirmed"/>
+                        </p>
+                        <p class="clearfix">
+                            <label for="event-dialog-time" id="event-dialog-time-label"></label>
+                            <input id="event-dialog-time" type="text" name="time"/>
+                        </p>
+                        <p id="venue-details" class="clearfix">
+                            <label for="event-dialog-venue" id="event-dialog-venue-label"></label>
+                            <input id="event-dialog-venue" size="40" type="text" name="venue"/>
+                        </p>
+                        <p id="more-info">
+                            <label for="event-dialog-url" id="event-dialog-url-label"><b>More info </b></label>
+                            <input id="event-dialog-url" size="80" type="url" name="url"/>
+                        </p>
+                        <p id="error-message">Event title and date cannot be empty</p>
+                    </form>
                 </div>
             </div>
 

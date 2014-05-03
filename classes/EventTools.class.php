@@ -13,7 +13,7 @@ class EventTools {
     function getAllEvents(){
         $events = array();
         
-        $results = $this->db->select2("*", "events", "true", "true", "date,time desc");
+        $results = $this->db->select2("*", "events", "true", "true", "date desc");
         
         foreach($results as $result){
             array_push($events, new Event($result));
