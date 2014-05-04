@@ -12,10 +12,9 @@ function haveAccess($session) {
     return false;
 }
 
-;
+$filter = (isset($_GET['filter'])) ? $_GET['filter'] : "future";
+$sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 
-$filter = $_GET['filter'];
-$sort = $_GET['sort'];
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -239,7 +238,7 @@ $sort = $_GET['sort'];
                             </td>
                         </tr>
                     </table>
-                    
+
                 </fieldset>
             </form>
         </div> 
