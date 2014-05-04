@@ -22,13 +22,13 @@ $sort = $_GET['sort'];
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<?php require_once './head.inc.php'; ?>
+    <?php require_once './head.inc.php'; ?>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-<?php require_once './nav.inc.php'; ?>
+        <?php require_once './nav.inc.php'; ?>
 
         <div class="container clearfix">
 
@@ -164,53 +164,82 @@ $sort = $_GET['sort'];
         </div>
 
         <div id="dialog-form" title="Session Details">
-            <p class="validateTips">Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.</p>
+            <p class="validateTips">Propose a session you would like to carryout to CSE students. We will get back to you regarding the possible dates for that.</p>
 
             <form id="create_form" method="post" action="sessions.create.php">
                 <fieldset>
                     <input type="hidden" name="id" />
                     <input type="hidden" name="queryString"/>
-                    <label for="title">Title</label>
-                    <input type="text" name="title" size="60" minlength="10" maxlength="50" required><br/>
-
-                    <label for="description">Description</label>
-                    <textarea form="create_form" name="description" minlength="100" maxlength="256" rows="4" cols="70" required></textarea><br/>
-
-                    <label for="date">Date</label>
-                    <input type="text" id="datepicker" name="date"><br/>
-                    <label for="start_time">Start Time</label>
-                    <select name="start_time">
-                        <option value="7:00 am">7:00 am</option>
-                        <option value="7:30 am">7:30 am</option>
-                        <option value="8:00 am">8:00 am</option>
-                        <option value="8:30 am">8:30 am</option>
-                    </select>
-                    <label for="duration">Duration</label><input type="text"  size="6" name="duration"> mins<br/>
-
-                    <label for="resp_name">Responsible Person</label> Name: <input type="text" maxlength="50" name="resp_name">
-                    Phone: <input type="text" maxlength="10" size="12" name="resp_contact"><br/>
-
-                    <label for="batch">Target Batches: </label>
-                    <?php
-                    $batchTools = new BatchTools();
-                    $batches = $batchTools->getAllBatches();
-                    foreach ($batches as $batch) {
-                        echo '<input type="checkbox" name="batch[]" value="' . $batch->id . '">' . $batch->display_name . '</input>';
-                    }
-                    ?><br/>
-                    <label for="company">Assigned To: </label>
-                    <select name="org_id" >
-                        <option value="-1"> - Unassign - </option>
-                        <?php
-                        $companyTools = new CompanyTools();
-                        $companies = $companyTools->getAllCompanies();
-                        foreach ($companies as $company) {
-                            if (User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $company->id) {
-                                echo '<option value="' . $company->id . '">' . $company->name . '</option>';
-                            }
-                        }
-                        ?>				
-                    </select> 
+                    <table>
+                        <tr>
+                            <td><label for="title" class="input-label">Title</label></td>
+                            <td><input type="text" id="title" name="title" size="60" minlength="10" maxlength="50" required><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="description">Description</label></td>
+                            <td><textarea form="create_form" id="description" name="description" minlength="100" maxlength="256" rows="4" cols="70" required></textarea><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="datepicker">Date</label></td>
+                            <td><input type="text" id="datepicker" name="date"><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="start_time">Start Time</label></td>
+                            <td>
+                                <select id="start_time" name="start_time">
+                                    <option value="7:00 am">7:00 am</option>
+                                    <option value="7:30 am">7:30 am</option>
+                                    <option value="8:00 am">8:00 am</option>
+                                    <option value="8:30 am">8:30 am</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="duration">Duration</label></td>
+                            <td><input type="text"  size="6" id="duration" name="duration"> mins<br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="resp_name">Responsible Person</label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="resp_name">&nbsp;&nbsp;&nbsp;&nbsp;Name</label></td>
+                            <td><input type="text" maxlength="50" name="resp_name" id="resp_name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="resp_contact">&nbsp;&nbsp;&nbsp;&nbsp;Phone</label></td>
+                            <td><input type="text" maxlength="10" size="12" id="resp_contact" name="resp_contact"><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="batch">Target Batches: </label></td>
+                            <td>
+                                <?php
+                                $batchTools = new BatchTools();
+                                $batches = $batchTools->getAllBatches();
+                                foreach ($batches as $batch) {
+                                    echo '<input type="checkbox" name="batch[]" value="' . $batch->id . '">' . $batch->display_name . '</input>&nbsp;&nbsp;';
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="company">Assigned To: </label></td>
+                            <td>
+                                <select name="org_id" id="company" >
+                                    <option value="-1"> - Unassign - </option>
+                                    <?php
+                                    $companyTools = new CompanyTools();
+                                    $companies = $companyTools->getAllCompanies();
+                                    foreach ($companies as $company) {
+                                        if (User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $company->id) {
+                                            echo '<option value="' . $company->id . '">' . $company->name . '</option>';
+                                        }
+                                    }
+                                    ?>				
+                                </select> 
+                            </td>
+                        </tr>
+                    </table>
+                    
                 </fieldset>
             </form>
         </div> 
@@ -218,7 +247,7 @@ $sort = $_GET['sort'];
         <div id="dialog-confirmation" title="Confirm Facilitation of this Session">
             <form id="confirmation_form" method="post" action="sessions.facilitate.php">
                 <fieldset>
-                    <p>Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
+                    <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
                         session details where you may fill in contact person details, etc. 
                         We will get in touch with you soon.</p>
                     <input type="hidden" name="orgId" value="<?= User::currentUser()->company_id ?>" />
@@ -229,7 +258,7 @@ $sort = $_GET['sort'];
         </div>      
 
 
-<?php include_once 'scripts.inc.php'; ?>
+        <?php include_once 'scripts.inc.php'; ?>
         <script type="text/javascript" src="js/session.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

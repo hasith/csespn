@@ -10,7 +10,7 @@ $(document).ready(function(){
 	
 	$( "#dialog-form" ).dialog({
 	  autoOpen: false,
-	  height: 500,
+	  height: 580,
 	  width: 850,
 	  modal: true,
 	  buttons: {
@@ -41,7 +41,7 @@ $(document).ready(function(){
 	
 	$("#dialog-confirmation").dialog({
 	  autoOpen: false,
-	  height: 300,
+	  height: 250,
 	  width: 650,
 	  modal: true,
 	  buttons: {
