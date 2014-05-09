@@ -74,7 +74,7 @@ if (!oauth_session_exists()) {
                             <a href="admin.company.php">Manage Companies</a>
                         </li>
                         <li class=" clearfix">
-                            <a href="#">Manage Batches</a>
+                            <a href="admin.batches.php">Manage Batches</a>
                         </li>
                         <li class=" clearfix">
                             <a href="admin.events.php">Manage Events</a>
