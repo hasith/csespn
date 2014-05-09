@@ -73,7 +73,7 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
                                 </p>                                
                                 <div id="accordion">
                                     <?php echo getHtmlForStudents($students);
-										  echo "*************";	
+										  
 									?>
                                 </div>                                   
                             </div>                             
