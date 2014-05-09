@@ -75,7 +75,7 @@ if (!oauth_session_exists()) {
                             <a href="#">Manage Users</a>
                         </li>
                         <li class=" clearfix">
-                            <a href="#">Manage Companies</a>
+                            <a href="admin.company.php">Manage Companies</a>
                         </li>
                         <li class=" clearfix">
                             <a href="#">Manage Batches</a>
@@ -91,13 +91,15 @@ if (!oauth_session_exists()) {
             </div>
 
         </div>
-
+ 
         <div id="dialog-form" title="Change Company">
 		
             <form id="create_form" method="post" action="user.create.php">
                 <fieldset>
                     <input id="userId" name="userId" type="hidden" />
-                    <select name="companyId" id="companylist" size="10" style="width:100%" >
+    	 <select name="companyId" id="companylist" size="10" style="width:100%" > 
+		 
+
 <?php
 $companyTools = new CompanyTools();
 $companies = $companyTools->getAllCompanies();
