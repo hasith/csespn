@@ -34,26 +34,26 @@ if (!oauth_session_exists()) {
                                     <thead>
                                         <tr>
                                             <th>Id</th>
-                                            <th>Name</th>
-                                            <th>LinkedIn Id</th>
-                                            <th>Company</th>
+                                            <th>Display Name</th>
+                                            <th>Course</th>
+                                            <th>Year</th>
                                         </tr>
                                     </thead>
                                     <tbody>
 									<?php
-									$userTools = new UserTools();
-									$users = $userTools->getAll();
+									$batchTools = new BatchTools();
+									$batches = $batchTools->getAllBatches();
 									
-									foreach ($users as $user) 
+									foreach ($batches as $batch) 
 									
 							
 									{
 									?>
                                            <tr>
-                                                <td><?= $user->id ?></td>
-                                                <td><?= $user->name ?></td>
-                                                <td><?= $user->linkedin_id ?></td>
-                                                <td><a href="" class="companylink" data-companyid="<?= $user->company_id ?>" data-id="<?= $user->id ?>" ><?= $user->getOrganization()->name ?></a></td>
+                                                <td><?= $batch->id?></td>
+                                                <td><?= $batch->year?></td>
+                                                <td><?= $batch->course?></td>
+                                                <td><?= $batch->display_name?></td>
                                             </tr>						
     <?php
 }
@@ -72,13 +72,13 @@ if (!oauth_session_exists()) {
 
                     <ul id="legend">
                         <li class=" clearfix">
-                            <a href="#">Manage Users</a>
+                            <a href="admin.users.php">Manage Users</a>
                         </li>
                         <li class=" clearfix">
                             <a href="#">Manage Companies</a>
                         </li>
                         <li class=" clearfix">
-                            <a href="admin.batches.php">Manage Batches</a>
+                            <a href="#">Manage Batches</a>
                         </li>
                         <li class=" clearfix">
                             <a href="admin.events.php">Manage Events</a>
@@ -92,25 +92,7 @@ if (!oauth_session_exists()) {
 
         </div>
 
-        <div id="dialog-form" title="Change Company">
-		
-            <form id="create_form" method="post" action="user.create.php">
-                <fieldset>
-                    <input id="userId" name="userId" type="hidden" />
-                    <select name="companyId" id="companylist" size="10" style="width:100%" >
-<?php
-$companyTools = new CompanyTools();
-$companies = $companyTools->getAllCompanies();
-foreach ($companies as $company)
- {
-    echo '<option value="' . $company->id . '">' . $company->name . '</option>';
-}
-?>
-                    </select> 
-
-                </fieldset>
-            </form>
-        </div>        
+        
 
 <?php include_once 'scripts.inc.php'; ?>
         <script type="text/javascript" src="js/admin.user.js"></script>
