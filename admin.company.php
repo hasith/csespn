@@ -29,7 +29,8 @@ if (!oauth_session_exists()) {
                         <div class="list-wrap noborder">
 
                             <div id="featured2">
-							<table id="usertable">
+							
+								<table id="usertable" >
                                     <thead>
                                         <tr>
                                             <th>Id</th>
@@ -62,9 +63,33 @@ if (!oauth_session_exists()) {
                     </div>
 
                 </div>
+				
+				  <div id="rightSide">
+
+                    <ul id="legend">
+                        <li class=" clearfix">
+                            <a href="admin.users.php">Manage Users</a>
+                        </li>
+                        <li class=" clearfix">
+                            <a href="admin.company.php">Manage Companies</a>
+                        </li>
+                        <li class=" clearfix">
+                            <a href="#">Manage Batches</a>
+                        </li>
+                        <li class=" clearfix">
+                            <a href="admin.events.php">Manage Events</a>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+            </div>
+
+        </div>
 <?php include_once 'scripts.inc.php'; ?>
 
- <!--<script type="text/javascript" src="js/admin.company.js"></script>-->
+ <script type="text/javascript" src="js/admin.user.js"></script>
 
  </body>
 </html>
