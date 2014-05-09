@@ -13,6 +13,7 @@ if (isset($_GET['batch']) && $_GET['batch'] == "level_1") {
     $batch = "level_1";
 } else if (isset($_GET['batch']) && $_GET['batch'] == "level_2") {
     $students = $studentTools->getStudents($settingsTools->getLevelTwoId());
+	
     $batch = "level_2";
 } else if (isset($_GET['batch']) && $_GET['batch'] == "level_3") {
     $students = $studentTools->getStudents($settingsTools->getLevelThreeId());
@@ -71,7 +72,9 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
                                     Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
                                 </p>                                
                                 <div id="accordion">
-                                    <?php echo getHtmlForStudents($students); ?>
+                                    <?php echo getHtmlForStudents($students);
+										  echo "*************";	
+									?>
                                 </div>                                   
                             </div>                             
                         </div> <!-- END List Wrap -->                     

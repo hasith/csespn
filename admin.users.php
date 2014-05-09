@@ -40,17 +40,21 @@ if (!oauth_session_exists()) {
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php
-$userTools = new UserTools();
-$users = $userTools->getAll();
-foreach ($users as $user) {
-    ?>
-                                            <tr>
+									<?php
+									$userTools = new UserTools();
+									$users = $userTools->getAll();
+									
+									foreach ($users as $user) 
+									
+							
+									{
+									?>
+                                           <tr>
                                                 <td><?= $user->id ?></td>
                                                 <td><?= $user->name ?></td>
                                                 <td><?= $user->linkedin_id ?></td>
                                                 <td><a href="" class="companylink" data-companyid="<?= $user->company_id ?>" data-id="<?= $user->id ?>" ><?= $user->getOrganization()->name ?></a></td>
-                                            </tr>									
+                                            </tr>						
     <?php
 }
 ?>								    	
@@ -89,7 +93,7 @@ foreach ($users as $user) {
         </div>
 
         <div id="dialog-form" title="Change Company">
-
+		
             <form id="create_form" method="post" action="user.create.php">
                 <fieldset>
                     <input id="userId" name="userId" type="hidden" />
@@ -97,7 +101,8 @@ foreach ($users as $user) {
 <?php
 $companyTools = new CompanyTools();
 $companies = $companyTools->getAllCompanies();
-foreach ($companies as $company) {
+foreach ($companies as $company)
+ {
     echo '<option value="' . $company->id . '">' . $company->name . '</option>';
 }
 ?>
