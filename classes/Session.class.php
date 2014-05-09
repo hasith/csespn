@@ -77,7 +77,7 @@ class Session {
 	
 	protected function stringify($value) {
 		if(isset($value) && !is_null($value) && !empty($value)) {
-			return "'".mysql_escape_string($value)."'";
+			return "'".mysql_real_escape_string($value)."'";
 		} else {
 			return "NULL";
 		}		
