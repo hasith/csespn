@@ -53,7 +53,7 @@ class SponsorshipTools {
         $wherePedicate = "taken_by IS NULL AND date > '".$currentDate."'";
         $results = $this->db->innerJoin("sponsorships", "events", "event_id", "id", $wherePedicate, 1);
         
-        foreach($sponsorships as $result){
+        foreach($results as $result){
             array_push($sponsorships, new Sponsorship($result));
         }
 

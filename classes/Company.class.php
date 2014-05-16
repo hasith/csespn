@@ -60,5 +60,15 @@ class Company {
         //has to come from the db
         return "1";
     }
+	
+	public static function delete($id){
+        $db = new DB();
+        $company = new Company();
+      //  $result = $spTools->deleteSponsorshipsByEvent($id);
+            $result = $db->delete(array($id), "companies");
+               
+        
+        return $result;
+    }
     
 }

@@ -25,7 +25,7 @@ if (!oauth_session_exists()) {
 
                     <div id="example-two">
 
-
+						<button id="add-event"><span style="display: inline-block;" class='ui-icon ui-icon-circle-plus'></span> Add Company</button>
                         <div class="list-wrap noborder">
 
                             <div id="featured2">
@@ -35,6 +35,8 @@ if (!oauth_session_exists()) {
                                         <tr>
                                             <th>Id</th>
                                             <th>Name</th>
+											<th>Access Level</th>
+											<th>Settings</th>
                                             
                                         </tr>
                                     </thead>
@@ -49,11 +51,16 @@ if (!oauth_session_exists()) {
                                            <tr>
                                                 <td><?= $company->id ?></td>
                                                 <td><?= $company->name ?></td>
+												<td><?= $company->access_level?></td>
+												<td>
+												<button id="edit-event" co_id="<?= $company->id ?>"><span class='ui-icon ui-icon-pencil'></span></button>
+                                                <button id="del-event" co_id="<?= $company->id ?>"><span class='ui-icon ui-icon-trash'></span></button>  
+												</td> 
                                              
 										   </tr>						
-    <?php
-}
-?>		
+   											 <?php
+								}
+								?>		
 							 </tbody>
                                 </table>
                             </div>
@@ -87,10 +94,39 @@ if (!oauth_session_exists()) {
             </div>
 
         </div>
+        
+        <div id="delete-dialog" title="Confirm Delete">
+                    <input type="hidden" id="company_id" />
+                    <p id="delete-dialog-text">Do you really want to remove this company?</p>
+                </div>
+                <div id="result-dialog" title="Status">
+                    <p id="op-result"></p>
+                </div>
+                <div style="display: none" id="event-dialog" title="Add new Company">
+                    <form id="event-edit-form">
+                        <input type="hidden" id="company-id" name="id"/>
+                        <p id="event-dialog-desc">
+                            <label for="event-dialog-title" id="event-dialog-title-label"><b>Company Name </b></label>
+                            <input id="event-dialog-title" size="60" type="text" name="title"/>
+                        </p>
+                        <p id="event-dialog-accesslevel">
+                            <label for="event-dialog-accesslevel" id="event-dialog-access-label"><b>Access Level </b></label>
+                            <input id="event-dialog-accesslevel" size="60" type="text" name="access level"></textarea>
+                        </p>
+   
+                        <p id="error-message">Company name and accesslevel cannot be empty</p>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        
+        
+        
 <?php include_once 'scripts.inc.php'; ?>
 
- <script type="text/javascript" src="js/admin.user.js"></script>
-
+ <!--<script type="text/javascript" src="js/admin.company.js"></script>-->
+ <script type="text/javascript" src="js/admin.event.js"></script>-->	
  </body>
 </html>
 							

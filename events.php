@@ -187,7 +187,7 @@ if (!oauth_session_exists()) {
                         <div class="ccContainer lastList lastListWithScroll">
                             <ul>
                                 <?php
-                                $openSponsorships = $sponsorshipTools->getAllOpenSponsorships();
+                                $openSponsorships = $SponsorshipTools->getAllOpenSponsorships();
 
                                 foreach ($openSponsorships as $openS) {
                                     $event = Event::get($openS->event_id);
