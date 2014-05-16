@@ -86,7 +86,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                     <?php
                                                     if (!is_null($session->get("org_id"))) {
                                                         $company = Company::get($session->get("org_id"));
-                                                        echo '<li class="linkedLink" >' . $company->name . '</li>';
+                                                        echo '<li class="linkedLink company-name" >' . $company->name . '</li>';
                                                     } else if (User::currentUser()->getOrganization()->access_level >= 3) {
                                                         echo'<li data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Take this Session</a></li>';
                                                     }

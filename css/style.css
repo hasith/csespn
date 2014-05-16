@@ -350,7 +350,11 @@ p.bjqs-caption{
 .descriptionArea{
     float:left;
     width:400px;
-    margin-left:15px;
+    padding-left:15px;
+	background:#f2f2f2;
+	padding-right:15px;
+	min-height:116px;
+	padding-bottom:15px;
 }
 .descriptionArea a{
     margin-top:10px;
@@ -367,7 +371,7 @@ p.bjqs-caption{
     float:right;
     background:#d0cece;
     padding:5px 20px; 
-    min-width: 250px;
+    min-width: 335px;
 }
 .linkedLink a,.linkedLink{
     font-size:15px !important;
@@ -515,7 +519,7 @@ p.bjqs-caption{
 }
 
 #sessionsList h3{
-    background:#f2f2f2
+    background:#d0cece
 }
 #sessionsList h3 .descriptionArea a{
     color: #1f4e79;
@@ -862,4 +866,17 @@ label.error{
     font-weight: normal;
     font-size: 10px;
     color: #cd0a0a;
+}
+
+.session_edit{
+	text-decoration:none;
+	color:#0476C1;
+	font-weight:normal;
+	font-size:16px;
+}
+.session_edit:hover{
+	text-decoration:underline;
+}
+#sessionsList .darkGray .company-name{
+	padding:0 !important;	
 }
