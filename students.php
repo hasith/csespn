@@ -150,6 +150,9 @@ function getHtmlForStudents($students) {
 }
 
 function getHtmlForStudent($student) {
+    if($student->getUser() == null){
+        return;
+    }
     $color = $student->course === "CSE" ? 'yellowColor' : 'orangeColor'; //else ICE
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';

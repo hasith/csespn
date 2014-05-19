@@ -103,6 +103,9 @@ class User {
     public static function getFromLinkedinId($linkedin_id) {
         $db = new DB();
         $result = $db->select('users', "linkedin_id = '$linkedin_id'");
+        if(empty($result[0])){
+            return null;
+        }
         return new User($result[0]);
     }
 
