@@ -269,66 +269,18 @@ if (isset($_POST['valid'])) {
 
         </div>
         <!--application form-->
-        <style type="text/css">
-            #projectApplicationWrapper{
-                position: fixed;
-                width: 100%;
-                height: 100%;
-                background: rgba(0,0,0,0.6);
-                top: 0px;
-                left: -999999px;
-            }
 
-            #projectApplication{
-                position: relative;
-                width: 450px;
-                border: solid 1px #41719C;
-                height: 600px;
-                top:50%;
-                margin-left: -225px;
-                margin-top: -300px;
-                left: 50%;
-                background: white;
-                padding: 15px;
-            }
-
-            #projectForm td{
-                padding: 10px;
-            }
-
-            .formInput{
-                width: 100%;
-            }
-
-            .formInput select,.formInput input,.formInput textarea{
-                width: 100%;
-            }
-
-            .formInput textArea{
-                height: 150px;
-            }
-
-            #formControls{                
-                text-align: right;
-            }
-            #formControls button{                
-                display: block;
-                background: none repeat scroll 0% 0% #5B9BD5;
-                border: 1px solid #41719C;
-                padding: 10px;
-                font-size: 18px;
-                color: #FFF;
-                text-align: center;
-                text-decoration: none;
-                width: 150px;
-            }
-        </style>
 
         <div id="projectApplicationWrapper">
-            <div id="projectApplication">
-                <h2>New project proposal</h2>
+            <div id="projectApplication" class="researchPopUp">
+            	
+                <div class="heading">
+                	<h2>New project proposal</h2>
+                </div>
+                
+                
                 <div id="projectForm">
-                    <table>
+                    <table style="border-collapse:collapse;">
                         <tr>
                             <td>
                                 <label for="titleTxt">Title</label>
@@ -431,14 +383,11 @@ if (isset($_POST['valid'])) {
                                 <textarea id="descriptionTxt" name="description"></textarea>
                             </td>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td id="formControls">
-                                <button type="button" onclick="submit()">Add</button>
-                            </td>
-                        </tr>
                     </table>
 
+                </div>
+                <div id="formControls" class="clearfix">
+                	<button type="button" onclick="submit()">Add</button>
                 </div>
             </div>
         </div>

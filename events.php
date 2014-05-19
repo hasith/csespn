@@ -184,7 +184,7 @@ if (!oauth_session_exists()) {
                             <p>Sponsorships open to take</p>
                         </div>
 
-                        <div class="ccContainer lastList lastListWithScroll">
+                        <div class="ccContainer lastList lastListWithScroll eventListArea">
                             <ul>
                                 <?php
                                 $openSponsorships = $sponsorshipTools->getAllOpenSponsorships();
@@ -196,8 +196,8 @@ if (!oauth_session_exists()) {
                                     echo "<li class='clickable-li open-sponsorship-entry'>";
                                     echo "<input id='sponsorship-id' type='hidden' value='" . $openS->id . "'/>";
                                     echo "<h3>";
-                                    echo $event->title . "<span>" . $event_date->format("dS M") . "</span>";
-                                    echo "</h3>";
+                                    echo $event->title;
+                                    echo "</h3>"."<span>" . $event_date->format("dS M") . "</span>";
                                     echo "<p>";
                                     echo $openS->name . " (Rs." . $openS->amount . ")";
                                     echo "</p>";

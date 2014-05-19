@@ -155,14 +155,7 @@ function getHtmlForStudent($student) {
     $html = $html . '<div class="descriptionArea">';
     $html = $html . '<a href="#">' . $student->getUser()->name . '</a>';
     $html = $html . '<p>'. getHtmlForStudentTechnologies($student) .'</p>';
-    $html = $html . '</div>';
-    $html = $html . '<div class="darkGray" style="float:right">';
-    $html = $html . '<ul>';
-    //$html = $html . '<li class="endGPA"><span>Endorsements :</span>' . $student->getEndorsements() . '</li>';
-    //$html = $html . '<li class="endGPA"><span>GPA :</span>' . $student->gpa . '</li>';
-    $html = $html . '<li class="linkedLink"><a target="_blank" href="' . $student->getUser()->profile_url . '">LinkedIn</a></li>';
-    $html = $html . '</ul>';
-    $html = $html . '</div>';
+    $html = $html . '<a class="linkedInImg" target="_blank" href="' . $student->getUser()->profile_url . '"></a></div>';
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
     $html = $html . '<img height="79" width="65" src="'. $student->getUser()->pic_url .'"/>';

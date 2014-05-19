@@ -55,44 +55,49 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                         ?>
 
                                         <h3 class="greenColor clearfix">
-                                            <div class="descriptionArea">
+                                            <div class="descriptionArea sessionDescription">
                                                 <a href="#"><?php echo $session->get("title"); ?></a>
                                                 <p><?php echo $session->get("description"); ?></p>
-                                            </div>
-                                            <div class="darkGray">
-                                                <?php
-                                                // edit available only for user's sessions OR by the admin
-                                                if (haveAccess($session)) {
-                                                    echo '<a href="#" class="session_edit" data-id="' . $session->get("id") . '">edit</a>';
-                                                }
-                                                ?>
-                                                <ul>
-                                                    <?php
-                                                    if (!is_null($session->get("date"))) {
-                                                        echo '<li class="endGPA">' . date("j F Y", strtotime($session->get("date"))) . '</li>';
-                                                    } else {
-                                                        echo '<li class="endGPA">Date not agreed</li>';
-                                                    }
-                                                    ?>                               		
-                                                    <li class="endGPA">
+                                                
+                                                <div class="sessionDetails">
+                                                	<div class="dateIcon">
+                                                    	<?php
+														if (!is_null($session->get("date"))) {
+															echo '<div class="endGPA">' . date("j F Y", strtotime($session->get("date"))) . '</div>';
+														} else {
+															echo '<div class="endGPA">Date not agreed</div>';
+														}
+														?> 
+                                                    </div>                              		
+                                                    <div class="endGPA">
                                                         <?php
                                                         $batches = $session->getBatches();
                                                         foreach ($batches as $batch) {
                                                             echo $batch["display_name"] . ",";
                                                         }
                                                         ?>
-                                                    </li>
+                                                    </div>
 
-                                                    <?php
-                                                    if (!is_null($session->get("org_id"))) {
-                                                        $company = Company::get($session->get("org_id"));
-                                                        echo '<li class="linkedLink company-name" >' . $company->name . '</li>';
-                                                    } else if (User::currentUser()->getOrganization()->access_level >= 3) {
-                                                        echo'<li data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Take this Session</a></li>';
-                                                    }
-                                                    ?>
-
-                                                </ul>
+                                                    <div class="companyIcon">
+                                                    	<?php
+														if (!is_null($session->get("org_id"))) {
+															$company = Company::get($session->get("org_id"));
+															echo '<div class="linkedLink company-name" >' . $company->name . '</div>';
+														} else if (User::currentUser()->getOrganization()->access_level >= 3) {
+															echo'<div data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Take this Session</a></div>';
+														}
+														?>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="darkGray">
+                                                <?php
+                                                // edit available only for user's sessions OR by the admin
+                                                if (haveAccess($session)) {
+                                                    echo '<a href="#" class="session_edit" data-id="' . $session->get("id") . '"></a>';
+                                                }
+                                                ?>
                                             </div>
                                         </h3>  
 
