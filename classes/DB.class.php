@@ -107,7 +107,7 @@ class DB {
         
 		foreach ($data as $column => $value) {
             $sql = "UPDATE $table SET $column = $value WHERE $where";
-            mysqli_query($this->getConnection(),$sql) or die($sql." : ".mysqli_error());
+            mysqli_query($this->getConnection(),$sql) or die($sql." : ".mysqli_error($this->getConnection()));
         }
         return true;
     }
@@ -131,10 +131,11 @@ class DB {
         }
 
         $sql = "insert into $table ($columns) values ($values)";
-        mysqli_query($this->getConnection(),$sql) or die($sql." : ".mysqli_error());
+        $conn = $this->getConnection();
+        mysqli_query($conn,$sql) or die($sql." : ".mysqli_error($conn));
 
         //return the ID of the user in the database.
-        return mysqli_insert_id();
+        return mysqli_insert_id($conn);
     }
 
     /**
