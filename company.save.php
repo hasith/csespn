@@ -22,5 +22,8 @@ if ($id >= 0) {
 
     $result = $db->insert($data, "companies");
 }
-echo $result;
+
+
+//echo $result;
+echo json_encode($result);
 

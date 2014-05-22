@@ -124,7 +124,7 @@ function showEditDialog(id) {
 
 function showAddDialog() {
     $("#comapny-dialog").dialog("option", "name", "Add New Company");
-    $("#Company-dialog").find("#company-id").val(1);
+    $("#Company-dialog").find("#company-id").val(-1);
     $("#company-dialog").find("#company-dialog-name").html("");
     $("#company-dialog").find("#company-dialog-accesslevel").html("");
 
@@ -153,7 +153,7 @@ function saveCompany() {
             success: function(data, textStatus, jqXHR)
             {
                 console.log(data);
-                if (data> 0) {   
+                if (JSON.parse(data)) {   
                    
                     $("#result-dialog").find("#op-result").html("Company Saved Successfully");
                 }

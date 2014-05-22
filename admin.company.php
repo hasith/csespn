@@ -112,8 +112,14 @@ if (!oauth_session_exists()) {
                 </p>
                 <p id="company-dialog-desc">
                     <label for="company-dialog-accesslevel" id="company-dialog-access-label"><b>Access Level </b></label>
-                    <input id="company-dialog-accesslevel" size="60" type="text" name="accesslevel">
-                   
+                    
+                    <select name = "accesslevel" style="width: 50px">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
                 </p>
 
                 <p id="error-message">

@@ -72,9 +72,15 @@ class Student {
     }
 
     public static function getStudent($profile_url) {
+        
+        //lets take the last part of the URL for a LIKE comparison
+       // $profile_url = substr($profile_url, strrpos($profile_url, "linkedin.com"));
+        
         $db = new DB();
+        //$result = $db->select('students', "profile_url LIKE '%$profile_url'");
         $result = $db->select('students', "profile_url = '$profile_url'");
-        if (!$result) {            
+        if (!$result) {   
+            //die();
             return null;
         }else{
             return new Student($result);
