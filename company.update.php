@@ -13,14 +13,8 @@ if ($id >= 0) {
     $data['access_level'] = "'" . $accesslevel . "'";
     
 
- // $result = $db->update($data, "companies", "id='$id'");
-    $result = $db->insert($data, "companies");
-} else {
-    $data['name'] = "'" . $name . "'";
-    $data['access_level'] = "'" . $accesslevel . "'";
-    
-
-    $result = $db->insert($data, "companies");
+  $result = $db->update($data, "companies", "id='$id'");
+  //  $result = $db->insert($data, "companies");
 }
 
 

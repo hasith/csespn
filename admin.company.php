@@ -104,7 +104,7 @@ if (!oauth_session_exists()) {
             <p id="op-result"></p>
         </div>
         <div style="display: none" id="company-dialog">
-            <form id="company-edit-form">
+            <form id="company-update-edit-form">
                 <input type="hidden" id="company-id" name="id"/>
                 <p id="company-dialog-desc">
                     <label for="company-dialog-name" id="company-dialog-title-label"><b>Company Name </b></label>
@@ -123,6 +123,31 @@ if (!oauth_session_exists()) {
                 </p>
 
                 <p id="error-message">
+                    Company name and accesslevel cannot be empty
+                </p>
+            </form>
+        </div>
+        
+        <div style="display: none" id="company-add-dialog">
+            <form id="company-add-edit-form">
+                <input type="hidden" id="company-id" name="id"/>
+                <p id="company-dialog-desc">
+                    <label for="company-dialog-name" id="company-dialog-title-label"><b>Company Name </b></label>
+                    <input id="company-dialog-name" size="60" type="text" name="name"/>
+                </p>
+                <p id="company-dialog-desc">
+                    <label for="company-dialog-accesslevel" id="company-dialog-access-label"><b>Access Level </b></label>
+                    
+                    <select name = "accesslevel" style="width: 50px">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </p>
+
+                <p id="add-error-message">
                     Company name and accesslevel cannot be empty
                 </p>
             </form>

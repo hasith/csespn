@@ -35,7 +35,7 @@ $(document).ready(function() {
         }
     });
 
-    $("#company-dialog").dialog({
+    $("#company-add-dialog").dialog({
     autoOpen: false,
             width: 700,
             modal: true,
@@ -44,6 +44,22 @@ $(document).ready(function() {
                 
                 //alert("This is a save button");
                 saveCompany();
+            },
+                    Cancel: function() {
+                    $(this).dialog("close");
+                    }
+            }
+});
+
+   $("#company-dialog").dialog({
+    autoOpen: false,
+            width: 700,
+            modal: true,
+            buttons: {
+            "Update": function() {
+                
+                //alert("This is a save button");
+                updateCompany();
             },
                     Cancel: function() {
                     $(this).dialog("close");
@@ -123,28 +139,66 @@ function showEditDialog(id) {
 }
 
 function showAddDialog() {
-    $("#comapny-dialog").dialog("option", "name", "Add New Company");
-    $("#Company-dialog").find("#company-id").val(-1);
-    $("#company-dialog").find("#company-dialog-name").html("");
-    $("#company-dialog").find("#company-dialog-accesslevel").html("");
+    $("#comapny-add-dialog").dialog("option", "name", "Add New Company");
+    $("#Company-add-dialog").find("#company-id").val(1);
+    $("#company-add-dialog").find("#company-dialog-name").html("");
+    $("#company-add-dialog").find("#company-dialog-accesslevel").html("");
 
 
-    $("#error-message").hide();
-    $("#company-dialog").dialog("open");
+    $("#add-error-message").hide();
+    $("#company-add-dialog").dialog("open");
 }
 
 function saveCompany() {
-    var companyObj = $("#company-edit-form").serializeArray();
+    var companyObj = $("#company-add-edit-form").serializeArray();
     if ((companyObj[1]['value'] === "") || (companyObj[2]['value'] === "")) {
         $("#error-message").show();
         return;
     }
 
-    var companyString = $("#company-edit-form").serialize();
+    var companyString = $("#company-add-edit-form").serialize();
 
     $.ajax(
     {
-    url: "company.save.php",
+            url: "company.save.php",
+            type: "POST",
+            data: companyString,
+            beforeSend: function() {
+                $("#company-add-dialog").dialog("close");
+            },
+            success: function(data, textStatus, jqXHR)
+            {
+                console.log(data);
+                if (JSON.parse(data)) {   
+                   
+                    $("#result-dialog").find("#op-result").html("Company Saved Successfully");
+                }
+                else {
+                    $("#result-dialog").find("#op-result").html("Some error occured! :(");
+                }
+                $("#result-dialog").dialog("open");
+            },
+            error: function(jqXHR, textStatus, errorThrown)
+            {
+                $("#result-dialog").find("#op-result").html("Some error occured! :(");
+                $("#result-dialog").dialog("open");
+            }
+    });
+    }
+    
+    
+    function updateCompany(){
+        var companyObj = $("#company-update-edit-form").serializeArray();
+        if ((companyObj[1]['value'] === "") || (companyObj[2]['value'] === "")) {
+        $("#error-message").show();
+        return;
+    }
+
+    var companyString = $("#company-update-edit-form").serialize();
+
+    $.ajax(
+    {
+            url: "company.update.php",
             type: "POST",
             data: companyString,
             beforeSend: function() {
@@ -155,7 +209,7 @@ function saveCompany() {
                 console.log(data);
                 if (JSON.parse(data)) {   
                    
-                    $("#result-dialog").find("#op-result").html("Company Saved Successfully");
+                    $("#result-dialog").find("#op-result").html("Company Updated Successfully");
                 }
                 else {
                     $("#result-dialog").find("#op-result").html("Some error occured! :(");
