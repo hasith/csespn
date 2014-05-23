@@ -13,10 +13,10 @@ class Batch {
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
     function __construct($data) {
-        $this->id = (isset($data['id'])) ? $data['id'] : "";
-        $this->year = (isset($data['year'])) ? $data['year'] : "";
-        $this->course = (isset($data['course'])) ? $data['course'] : "";
-        $this->display_name = (isset($data['display_name'])) ? $data['display_name'] : "";
+        $this->id = (isset($data['id']) ? $data['id'] : "");
+        $this->year = (isset($data['year']) ? $data['year'] : "");
+        $this->course = (isset($data['course']) ? $data['course'] : "");
+        $this->display_name = (isset($data['display_name']) ? $data['display_name'] : "");
     }
 
     public function save($isNew = false) {
@@ -46,5 +46,24 @@ class Batch {
             $this->id = $db->insert($data, 'batches');
         }
         return true;
+    }
+	
+	public static function get($id) {
+        $db = new DB();
+        $result = $db->select("batches", "id = $id");
+        return new Batch($result[0]);
+    }
+	
+	
+	public static function delete($id){
+        $db = new DB();
+        $bTools = new BatchTools();
+        $result = $bTools->deleteBatches($id);
+        
+        if($result){
+            $result = $db->delete(array($id), "batches");
+        }        
+        
+        return $result;
     }
 }

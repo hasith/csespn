@@ -19,5 +19,13 @@ class BatchTools {
         }
         return $batches;
     }
+	
+	 
+	
+	function deleteBatches($id){
+        $wherePredicate = "id = '$id'";
+        $result = $this->db->deleteWhere("batches", $wherePredicate);
+        return $result;
+    }
     
 }

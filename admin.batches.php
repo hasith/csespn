@@ -24,6 +24,7 @@ if (!oauth_session_exists()) {
                 <div id="bannerLeft">
 
                     <div id="example-two">
+					<button id="add-batches"><span style="display: inline-block;" class='ui-icon ui-icon-circle-plus'></span> Add Batches</button>
 
 
                         <div class="list-wrap noborder">
@@ -37,6 +38,7 @@ if (!oauth_session_exists()) {
                                             <th>Display Name</th>
                                             <th>Course</th>
                                             <th>Year</th>
+											<th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -51,13 +53,17 @@ if (!oauth_session_exists()) {
 									?>
                                            <tr>
                                                 <td><?= $batch->id?></td>
+												 <td><?= $batch->display_name?></td>
+												 <td><?= $batch->course?></td>
                                                 <td><?= $batch->year?></td>
-                                                <td><?= $batch->course?></td>
-                                                <td><?= $batch->display_name?></td>
+                                                <td> 
+												<button id="del-batch" bt_id="<?= $batch->id ?>"><span class='ui-icon ui-icon-trash'></span></button>
+												<button id="edit-batch" bt_id="<?= $batch->id ?>"><span class='ui-icon ui-icon-pencil'></span></button>
+												</td>
                                             </tr>						
-    <?php
-}
-?>								    	
+    							    	<?php
+                                          }
+                                         ?>	
 
                                     </tbody>
                                 </table>
@@ -66,8 +72,7 @@ if (!oauth_session_exists()) {
                         </div> <!-- END List Wrap -->
 
                     </div>
-
-                </div>
+					</div>
                 <div id="rightSide">
 
                     <ul id="legend">
@@ -88,16 +93,49 @@ if (!oauth_session_exists()) {
 
 
                 </div>
+				
+				<div id="delete-dialog" title="Confirm Delete">
+                    <input type="hidden" id="batch_id" />
+                    <p id="delete-dialog-text">Do you really want to remove this event?</p>
+                </div>
+                <div id="result-dialog" title="Status">
+                    <p id="op-result"></p>
+                </div>
+		
+		
+                <div style="display: none" id="batch-dialog" title="">
+                    <form id="batch-add-form">
+                        <input type="hidden" id="batch-id" name="id"/>
+                        <p id="batch-dialog-name_desc">
+                            <label for="batches-dialog-name" id="batch-dialog-name-label"><b>Display Name </b></label>
+                            <input id="batches-dialog-name" size="60" type="text" name="title"/>
+                        </p>
+                        <p id="batch-dialog-course_desc">
+                            <label for="batches-dialog-course" id="batch-dialog-course-label"><b>Course</b></label>
+                            <input id="batches-dialog-course" size="60" type="text" name="course"/>
+                        </p>
+                        <p id="year">
+                            <label for="batches-dialog-year" id="batch-dialog-year-label"><b>Year </b></label>
+                            <input id="batches-dialog-year" size="60" type="text" name="year"/>
+                        </p>
+						
+						<p id="error-message">Event title and date cannot be empty</p>
+                    </form>
+                </div>
             </div>
 
         </div>
+		
+		
+		
+		
 
         
 
 <?php include_once 'scripts.inc.php'; ?>
-        <script type="text/javascript" src="js/admin.user.js"></script>
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script type="text/javascript" src="js/admin.batches.js"></script>
+         
+        
         <!--<script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
             function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
