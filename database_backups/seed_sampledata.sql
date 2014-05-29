@@ -409,3 +409,191 @@ INSERT INTO `students` (`id`, `batch`, `linkedin_id`, `profile_url`, `oauth_toke
 (145, 11, '', 'lk.linkedin.com/pub/dumindu-buddhika/5b/aa3/167', '', '', '', ''),
 (146, 11, '', 'http://www.linkedin.com/in/nurangika', '', '', '', ''),
 (147, 11, '', 'lk.linkedin.com/pub/dulitha-kularathne/60/498/4a7', '', '', '', '');
+(148, 11, '', 'lk.linkedin.com/pub/hiran-chathura-kulasekara/8a/19b/33b/', '', '', '', ''),
+(149, 11, '', 'lk.linkedin.com/in/nishada', '', '', '', ''),
+(150, 11, '', 'lk.linkedin.com/pub/thilina-madumal/59/914/763', '', '', '', ''),
+(151, 11, '', 'http://www.linkedin.com/pub/danushka-madusanka/56/58a/7ab', '', '', '', ''),
+(152, 11, '', 'lk.linkedin.com/pub/shan-mahanama/77/2a2/741', '', '', '', ''),
+(153, 11, '', 'http://www.linkedin.com/in/malakagl', '', '', '', ''),
+(154, 11, '', 'lk.linkedin.com/pub/dulsara-manupriyal/5b/aa1/4aa', '', '', '', ''),
+(155, 11, '', 'http://www.linkedin.com/pub/kaveendra-gayan-mettananda/55/55/bba', '', '', '', ''),
+(156, 11, '', 'lk.linkedin.com/pub/mokanarangan-thayaparan/75/704/853', '', '', '', ''),
+(157, 11, '', 'lk.linkedin.com/pub/vidura-mudalige/76/54/969', '', '', '', ''),
+(158, 11, '', 'http://www.linkedin.com/pub/tharindu-munasinghe/75/7b5/330', '', '', '', ''),
+(159, 11, '', 'http://lk.linkedin.com/pub/nuwan-prabhath/62/40b/ba3/', '', '', '', ''),
+(160, 11, '', 'lk.linkedin.com/pub/sameera-nandasiri/25/628/908', '', '', '', ''),
+(161, 11, '', 'http://www.linkedin.com/profile/view?id=224144816&trk=nav_responsive_tab_profile', '', '', '', ''),
+(162, 11, '', 'lk.linkedin.com/pub/nilusija-nadarasamoorthy/4a/22a/299', '', '', '', ''),
+(163, 11, '', 'http://www.linkedin.com/pub/nirosh-jayaratnam/75/2b/314', '', '', '', ''),
+(164, 11, '', 'http://www.linkedin.com/in/nisalaniroshana', '', '', '', ''),
+(165, 11, '', 'lk.linkedin.com/pub/rathakrishnan-nirushan/91/203/162', '', '', '', ''),
+(166, 11, '', 'lk.linkedin.com/pub/harshani-nisansala/88/b5b/136', '', '', '', ''),
+(167, 11, '', 'http://www.linkedin.com/pub/sabra-ossen/68/a2b/395', '', '', '', ''),
+(168, 11, '', 'lk.linkedin.com/pub/ruba-panchendrarajan/57/759/2b4', '', '', '', ''),
+(169, 11, '', 'lk.linkedin.com/pub/sivakumar-prakhash/66/a42/1b8', '', '', '', ''),
+(170, 11, '', 'http://lk.linkedin.com/in/pranavant/', '', '', '', ''),
+(171, 11, '', 'http://lk.linkedin.com/in/chathurangarajapaksha/', '', '', '', ''),
+(172, 11, '', 'lk.linkedin.com/in/sankarasnayaka/', '', '', '', ''),
+(173, 11, '', 'http://lk.linkedin.com/in/achinthareemal/', '', '', '', ''),
+(174, 11, '', 'http://lk.linkedin.com/in/rajind', '', '', '', ''),
+(175, 11, '', 'http://linkedin.com/in/shenalsenarath', '', '', '', ''),
+(176, 11, '', 'http://www.linkedin.com/pub/sachith-seneviratne/57/6a9/b8', '', '', '', ''),
+(177, 11, '', 'http://www.linkedin.com/in/rshariffdeen', '', '', '', ''),
+(178, 11, '', 'lk.linkedin.com/pub/sirojan-tharmakulasingam/89/861/760', '', '', '', ''),
+(179, 11, '', 'lk.linkedin.com/pub/shobiga-shanmugathasan/8a/183/371/', '', '', '', ''),
+(180, 11, '', 'http://lk.linkedin.com/in/madawasoysa/', '', '', '', ''),
+(181, 11, '', 'http://www.linkedin.com/pub/srishiyamalan-ratnavel/57/750/198', '', '', '', ''),
+(182, 11, '', 'http://www.linkedin.com/pub/sudharma-subasinghe/58/417/260', '', '', '', ''),
+(183, 11, '', 'http://www.linkedin.com/pub/aruna-tebel/80/267/800', '', '', '', ''),
+(184, 11, '', 'http://www.linkedin.com/pub/megala-uthayakumar/38/691/33', '', '', '', ''),
+(185, 11, '', 'lk.linkedin.com/in/rajithv/', '', '', '', ''),
+(186, 11, '', 'lk.linkedin.com/pub/dulaj-viduranga/62/aaa/46', '', '', '', ''),
+(187, 11, '', 'lk.linkedin.com/pub/thiyagarajah-vinojan/78/418/a19', '', '', '', ''),
+(188, 11, '', 'lk.linkedin.com/in/vishnuvathsan/', '', '', '', ''),
+(189, 11, '', 'http://lk.linkedin.com/in/theekshana/', '', '', '', ''),
+(190, 11, '', 'lk.linkedin.com/pub/sujathani-warnakulasuriya/89/885/a95', '', '', '', ''),
+(191, 11, '', 'http://www.linkedin.com/in/vimukthiweerasiri', '', '', '', ''),
+(192, 11, '', 'lk.linkedin.com/pub/akshika-wijesundara/65/a24/431', '', '', '', ''),
+(193, 12, '', 'http://lk.linkedin.com/in/mirageabeysekara', '', '', '', ''),
+(194, 12, '', 'http://lk.linkedin.com/pub/sudaraka-abeywardena/95/540/341', '', '', '', ''),
+(195, 12, '', 'http://www.linkedin.com/pub/upekka-anuruddhi/90/56a/82a', '', '', '', ''),
+(196, 12, '', 'http://www.linkedin.com/pub/dilini-mampitiya-arachchi/95/537/a9b', '', '', '', ''),
+(197, 12, '', 'http://lk.linkedin.com/pub/yasiru-kassapa/55/344/b82', '', '', '', ''),
+(198, 12, '', 'http://www.linkedin.com/in/damindabalasooriya', '', '', '', ''),
+(199, 12, '', 'http://www.linkedin.com/pub/chinthoorie-yogalingam/95/53b/219', '', '', '', ''),
+(200, 12, '', 'http://www.linkedin.com/pub/kandauda-amila-de-zoysa-karunathilaka/95/679/430', '', '', '', ''),
+(201, 12, '', 'http://www.linkedin.com/pub/tharindu-de-silva/61/783/2a0', '', '', '', ''),
+(202, 12, '', 'http://lk.linkedin.com/in/dilushan/', '', '', '', ''),
+(203, 12, '', 'https://www.linkedin.com/in/suchiradharmawardhana', '', '', '', ''),
+(204, 12, '', 'http://www.linkedin.com/pub/yasara-dissanayake/57/825/a32/', '', '', '', ''),
+(205, 12, '', 'http://www.linkedin.com/in/dinushadissanayake', '', '', '', ''),
+(206, 12, '', 'http://www.linkedin.com/pub/amitha-bandara-dissanayake/37/b4/27a', '', '', '', ''),
+(207, 12, '', 'http://lk.linkedin.com/in/kasundissanayake/', '', '', '', ''),
+(208, 12, '', 'http://www.linkedin.com/pub/lasantha-ekanayake/91/568/261', '', '', '', ''),
+(209, 12, '', 'http://www.linkedin.com/pub/chamil-elladeniya/95/561/ba8', '', '', '', ''),
+(210, 12, '', 'http://www.linkedin.com/in/pubuduf', '', '', '', ''),
+(211, 12, '', 'http://www.linkedin.com/in/chathurika', '', '', '', ''),
+(212, 12, '', 'http://www.linkedin.com/in/minudika/', '', '', '', ''),
+(213, 12, '', 'http://lk.linkedin.com/pub/malaka-gangananda/95/392/30a/', '', '', '', ''),
+(214, 12, '', 'http://lk.linkedin.com/in/dilannuwantha', '', '', '', ''),
+(215, 12, '', 'http://www.linkedin.com/in/anjanagunasekara', '', '', '', ''),
+(216, 12, '', 'http://www.linkedin.com/pub/pulasthi-harasgama/5a/959/a31', '', '', '', ''),
+(217, 12, '', 'http://lk.linkedin.com/pub/thilina-hettiarachchi/92/3a1/b70/', '', '', '', ''),
+(218, 12, '', 'https://www.linkedin.com/pub/anusha-ihalapathirana/91/1a6/368', '', '', '', ''),
+(219, 12, '', 'http://www.linkedin.com/pub/nandula-jayamaha/43/625/647', '', '', '', ''),
+(220, 12, '', 'http://www.linkedin.com/in/madushanachala/', '', '', '', ''),
+(221, 12, '', 'http://lk.linkedin.com/pub/ishadi-jayasinghe/89/163/836/', '', '', '', ''),
+(222, 12, '', 'http://lk.linkedin.com/pub/thilina-samiddhi/95/5b6/78a/', '', '', '', ''),
+(223, 12, '', 'http://www.linkedin.com/in/yasanka', '', '', '', ''),
+(224, 12, '', 'http://www.linkedin.com/in/malithjayaweera', '', '', '', ''),
+(225, 12, '', 'http://www.linkedin.com/in/pasindujw', '', '', '', ''),
+(226, 12, '', 'http://www.linkedin.com/in/hasangithathsarani', '', '', '', ''),
+(227, 12, '', 'http://www.linkedin.com/in/gayathrikalani', '', '', '', ''),
+(228, 12, '', 'http://www.linkedin.com/pub/buwaneka-kalansuriya/95/563/77', '', '', '', ''),
+(229, 12, '', 'http://www.linkedin.com/pub/tharindu-kalubowila/95/561/811', '', '', '', ''),
+(230, 12, '', 'http://www.linkedin.com/pub/dilshan-kanchana/95/5b7/b2/', '', '', '', ''),
+(231, 12, '', 'http://www.linkedin.com/in/diliptharuka', '', '', '', ''),
+(232, 12, '', 'http://www.linkedin.com/in/nishadikirielle', '', '', '', ''),
+(233, 12, '', 'http://www.linkedin.com/pub/kanagaratnam-kokulan/81/130/385/', '', '', '', ''),
+(234, 12, '', 'http://www.linkedin.com/pub/samadhi-kumarasinghe/95/5aa/36', '', '', '', ''),
+(235, 12, '', 'http://www.linkedin.com/pub/linganesan-mani/73/724/aa5', '', '', '', ''),
+(236, 12, '', 'http://www.linkedin.com/pub/nipuna-sankalpa/91/57/63', '', '', '', ''),
+(237, 12, '', 'http://www.linkedin.com/in/adieshaliyanage', '', '', '', ''),
+(238, 12, '', 'http://www.linkedin.com/pub/sasini-madhumali/95/581/b44', '', '', '', ''),
+(239, 12, '', 'lk.linkedin.com/pub/lakshitha-madhusankha/91/3a/420', '', '', '', ''),
+(240, 12, '', 'https://www.linkedin.com/in/prasadmaduranga', '', '', '', ''),
+(241, 12, '', 'http://lk.linkedin.com/pub/harsha-madushanka/95/793/678/', '', '', '', ''),
+(242, 12, '', 'http://lk.linkedin.com/pub/pubudu-meththananda/95/561/b02', '', '', '', ''),
+(243, 12, '', 'http://www.linkedin.com/pub/safwan-mohammed/50/a56/648', '', '', '', ''),
+(244, 12, '', 'http://www.linkedin.com/pub/nifras-mohamed/95/53b/985', '', '', '', ''),
+(245, 12, '', 'http://lk.linkedin.com/pub/nadeeshani-p/91/329/524/', '', '', '', ''),
+(246, 12, '', 'http://www.linkedin.com/in/rnavagamuwa', '', '', '', ''),
+(247, 12, '', 'http://www.linkedin.com/pub/nanduni-nimalsiri/95/659/9b8/', '', '', '', ''),
+(248, 12, '', 'http://www.linkedin.com/pub/neethirajah-nirojan/75/857/568', '', '', '', ''),
+(249, 12, '', 'http://www.linkedin.com/in/dinindunissanka', '', '', '', ''),
+(250, 12, '', 'http://www.linkedin.com/in/samithapalihawadana', '', '', '', ''),
+(251, 12, '', 'http://lk.linkedin.com/pub/naduni-pamudika/91/63/b61/', '', '', '', ''),
+(252, 12, '', 'http://lk.linkedin.com/pub/sachithra-pathiraja/95/654/4b4/', '', '', '', ''),
+(253, 12, '', 'http://www.linkedin.com/in/dulajrajitha', '', '', '', ''),
+(254, 12, '', 'http://lk.linkedin.com/pub/thilini-perera/78/92b/887/', '', '', '', ''),
+(255, 12, '', 'http://www.linkedin.com/pub/pravinda-perera/91/448/95', '', '', '', ''),
+(256, 12, '', 'http://www.linkedin.com/in/krvperera', '', '', '', ''),
+(257, 12, '', 'https://www.linkedin.com/in/chamilprabodha', '', '', '', ''),
+(258, 12, '', 'http://www.linkedin.com/pub/nipuna-prashan/91/55/84a', '', '', '', ''),
+(259, 12, '', 'http://www.linkedin.com/in/aselapriyadarshana', '', '', '', ''),
+(260, 12, '', 'http://www.linkedin.com/in/niveathika', '', '', '', ''),
+(261, 12, '', 'http://lk.linkedin.com/pub/lochana-ranaweera/88/445/4b0/', '', '', '', ''),
+(262, 12, '', 'http://www.linkedin.com/in/hasintha', '', '', '', ''),
+(263, 12, '', 'http://www.linkedin.com/pub/riyafa-abdul-hameed/84/7a8/a20', '', '', '', ''),
+(264, 12, '', 'http://www.linkedin.com/in/mohamedjawadhsalihrifath', '', '', '', ''),
+(265, 12, '', 'http://www.linkedin.com/in/heshanisamarasekara', '', '', '', ''),
+(266, 12, '', 'http://www.linkedin.com/pub/namesh-sanjitha/95/786/284/', '', '', '', ''),
+(267, 12, '', 'lk.linkedin.com/pub/anutharsha-selvarasa/91/261/b1a', '', '', '', ''),
+(268, 12, '', 'http://lk.linkedin.com/pub/udeesha-shehan/91/65/866/', '', '', '', ''),
+(269, 12, '', 'http://www.linkedin.com/pub/menaka-sirisena/3a/121/b1b', '', '', '', ''),
+(270, 12, '', 'http://www.linkedin.com/in/harshasiriwardana', '', '', '', ''),
+(271, 12, '', 'http://www.linkedin.com/in/ccmsiriwardhana', '', '', '', ''),
+(272, 12, '', 'http://lk.linkedin.com/in/dilantharaka/', '', '', '', ''),
+(273, 12, '', 'http://lk.linkedin.com/pub/ivan-udakara/91/446/278/', '', '', '', ''),
+(274, 12, '', 'http://www.linkedin.com/pub/ruchindra-vithanage/68/b3a/533', '', '', '', ''),
+(275, 12, '', 'http://www.linkedin.com/in/vithulamv', '', '', '', ''),
+(276, 12, '', 'http://www.linkedin.com/in/anuradhawelivita', '', '', '', ''),
+(277, 12, '', 'http://www.linkedin.com/in/ruchirangawickramasinghe', '', '', '', ''),
+(278, 12, '', 'http://www.linkedin.com/pub/theekshana-wijesinghe/91/569/6a1', '', '', '', ''),
+(279, 12, '', 'http://www.linkedin.com/pub/indika-wijesooriya/47/bb2/201', '', '', '', ''),
+(280, 12, '', 'http://www.linkedin.com/in/damithwijewardana', '', '', '', ''),
+(281, 12, '', 'http://www.linkedin.com/pub/thamali-wijewardhana/95/651/5a5', '', '', '', ''),
+(282, 12, '', 'http://www.linkedin.com/pub/sathya-bandara/95/581/6b1', '', '', '', '');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+http://www.linkedin.com/pub/sathya-bandara/95/581/6b1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
