@@ -56,14 +56,32 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
                     <div id="example-two">					
                         <ul class="nav">
                             <?php
-                                if($batch == "level_4"){
+                                
+                                    if($batch =="level_4"){
                                     echo '<li class="nav-one"><a href="./students.php?batch=level_4" class="current">Pending Graduation</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3">Pending Internship</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Pending Internship</a></li>';
+                                    echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
+                                    }
                                     
-                                }else{
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4">Pending Graduation</a></li>';
+                                    else if($batch =="level_3"){
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Pending Graduation</a></li>';
                                     echo '<li class="nav-two"><a href="./students.php?batch=level_3" class="current">Pending Internship</a></li>';
-                                }
+                                    echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
+                                    }
+                                    else if($batch =="level_2"){
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Pending Graduation</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Pending Internship</a></li>';
+                                    echo '<li class="nav-three"><a href="./students.php?batch=level_2" class="current">Level 2</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
+                                    }
+                                    else if($batch =="level_1"){
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Pending Graduation</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Pending Internship</a></li>';
+                                    echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_1" class="current">Level 1</a></li>';
+                               }
                             ?>                                                        
                         </ul>                        
                         <div class="list-wrap">                        	
@@ -80,7 +98,7 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
                         </div> <!-- END List Wrap -->                     
                     </div>                       
                 </div>
-                <div id="rightSide">	
+               <!--<div id="rightSide">	
                     <ul id="legend">
                         <li class="cse clearfix">
                             <span></span>
@@ -97,14 +115,14 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
                         </div>                        
                         <div class="ccContainer">
                             <ul>
-                                <!--<li><a href="./students.php?batch=<?php //echo $batch ?>&order_by=gpa">By GPA</a></li>-->
-                                <!--<li><a href="./students.php?batch=<?php // echo $batch ?>&order_by=endorsements">By Endorsements</a></li>-->
+                                <!--<li><a href="./students.php?batch=<?php //echo $batch ?>&order_by=gpa">By GPA</a></li>
+                                <!--<li><a href="./students.php?batch=<?php // echo $batch ?>&order_by=endorsements">By Endorsements</a></li>
                                 <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=speciality">By Specialty</a></li>
                                 <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=name">By First Name</a></li>
                             </ul>
                         </div>                                                
                     </div>                                                        
-                </div>
+               d </div> -->
             </div>                                                                        
         </div>
 <?php include_once 'scripts.inc.php'; ?>
@@ -151,9 +169,25 @@ function getHtmlForStudents($students) {
 
 function getHtmlForStudent($student) {
     if($student->getUser() == null){
-        return;
+        
+       
+    $color = 'orangeColor'; 
+    $html = '<h3 class="'.$color.' clearfix">';
+    $html = $html . '<div class="descriptionArea">';
+    $html = $html . '<a href="#">' . $student->student_id . '</a>';
+    $html = $html . '<p>'. getHtmlForStudentTechnologies($student) .'</p>';
+    $html = $html . '<a class="linkedInImg" target="_blank" href="' . $student->profile_url . '"></a></div>';
+    $html = $html . '</h3>';
+    $html = $html . '<div class="contentData clearfix">';
+    $html = $html . '<img height="79" width="65" src="img/unknown-member.gif"/>';
+    $html = $html . '<p>';  
+    $html = $html .  $student->description;
+    $html = $html . '</p>';  
+    $html = $html . '</div>';
+    
+    return $html;
     }
-    $color = $student->course === "CSE" ? 'yellowColor' : 'orangeColor'; //else ICE
+    $color = 'orangeColor'; 
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
     $html = $html . '<a href="#">' . $student->getUser()->name . '</a>';

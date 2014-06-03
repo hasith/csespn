@@ -6,6 +6,7 @@ require_once ROOT_DIR . '/classes/Technology.class.php';
 class Student {
     
     public $id;
+    public $student_id;
     public $batch;
     public $linkedin_id;
     public $profile_url;
@@ -20,6 +21,7 @@ class Student {
     //Takes an associative array with the DB row as an argument.
     function __construct($data) {
         $this->id = (isset($data[0]['id'])) ? $data[0]['id'] : "";
+        $this->student_id = (isset($data[0]['student_id']))? $data[0]['student_id'] : "";
         $this->batch = (isset($data[0]['batch'])) ? $data[0]['batch'] : "";
         $this->linkedin_id = (isset($data[0]['linkedin_id'])) ? $data[0]['linkedin_id'] : "";
         $this->profile_url = (isset($data[0]['profile_url'])) ? $data[0]['profile_url'] : "";
@@ -39,6 +41,7 @@ class Student {
         if (!$isNewStudent) {
             //set the data array
             $data = array(
+                "student_id"=>"'$this->student_id'",
                 "batch" => "'$this->batch'",
                 "linkedin_id" => "'$this->linkedin_id'",
                 "profile_url" => "'$this->profile_url'",
@@ -53,6 +56,8 @@ class Student {
         } else {
             //if the user is being registered for the first time.
             $data = array(
+                
+                "student_id"=>"'$this->student_id'",
                 "batch" => "'$this->batch'",
                 "linkedin_id" => "'$this->linkedin_id'",
                 "profile_url" => "'$this->profile_url'",
@@ -74,11 +79,11 @@ class Student {
     public static function getStudent($profile_url) {
         
         //lets take the last part of the URL for a LIKE comparison
-       // $profile_url = substr($profile_url, strrpos($profile_url, "linkedin.com"));
+        $profile_url = substr($profile_url, strrpos($profile_url, "linkedin.com"));
         
         $db = new DB();
-        //$result = $db->select('students', "profile_url LIKE '%$profile_url'");
-        $result = $db->select('students', "profile_url = '$profile_url'");
+        $result = $db->select('students', "profile_url LIKE '%$profile_url'");
+        //$result = $db->select('students', "profile_url = '$profile_url'");
         if (!$result) {   
             //die();
             return null;

@@ -21,7 +21,7 @@ class StudentTools {
 
     
     public function getStudents($batchId) {
-        $results = $this->db->leftJoin("students.id as id, batch, gpa, linkedin_id, profile_url, oauth_token, oauth_token_secret, description, course", "students", "batches" ,"`batch` = $batchId","batch","id");
+        $results = $this->db->leftJoin("students.id as id, student_id,batch, gpa, linkedin_id, profile_url, oauth_token, oauth_token_secret, description, course", "students", "batches" ,"`batch` = $batchId","batch","id");
         $students = array();
         foreach ($results as $result){
             array_push($students, new Student(array($result)));

@@ -181,7 +181,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                         </tr>
                         <tr>
                             <td><label for="description">Description</label></td>
-                            <td><textarea form="create_form" id="description" name="description" minlength="100" maxlength="256" rows="4" cols="70" required></textarea><br/></td>
+                            <td><textarea form="create_form" id="description" name="description" minlength="50" maxlength="256" rows="4" cols="70" required></textarea><br/></td>
                         </tr>
                         <tr>
                             <td><label for="datepicker">Date</label></td>
@@ -189,14 +189,10 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                         </tr>
                         <tr>
                             <td><label for="start_time">Start Time</label></td>
-                            <td>
-                                <select id="start_time" name="start_time">
-                                    <option value="7:00 am">7:00 am</option>
-                                    <option value="7:30 am">7:30 am</option>
-                                    <option value="8:00 am">8:00 am</option>
-                                    <option value="8:30 am">8:30 am</option>
-                                </select>
-                            </td>
+                            
+                            <td><input id="session-time" type="text" name="start_time"> </td>
+                            
+                            
                         </tr>
                         <tr>
                             <td><label for="duration">Duration</label></td>

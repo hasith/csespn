@@ -13,6 +13,7 @@ class Research {
     public $description;
     public $technologies = array();
     public $category;
+    public $resp_contact;
 
     function __construct($data) {
         $this->id = (isset($data['id'])) ? $data['id'] : "";
@@ -23,6 +24,9 @@ class Research {
         $this->author_id = (isset($data['author_id'])) ? $data['author_id'] : "";
         $this->company_id = (isset($data['company_id'])) ? $data['company_id'] : "";
         $this->category = (isset($data['category'])) ? $data['category'] : "";
+        
+        $this->resp_contact = (isset($data['resp_contact'])) ? $data['resp_contact'] : "5";// error is data is not setting into isest
+        
         if (isset($data['technologies'])) {
             $techIdArray=explode(",", $data['technologies']);
             foreach ($techIdArray as $techId) {
@@ -67,6 +71,7 @@ class Research {
             "time" => "'$this->time'",
             "description" => "'$this->description'",
             "category" => "'$this->category'",
+            "resp_contact" =>"'$this->resp_contact'"
         );
         $this->id=$db->insert($data, "research");
 

@@ -28,6 +28,15 @@ $(document).ready(function(){
 	});
 	
 	$("#datepicker").datepicker({ dateFormat: "yy-mm-dd" });
+        
+        
+    $('#session-time').timepicker({
+        'minTime': '7:30am',
+        'maxTime': '7:30pm',
+        'timeFormat': 'H:i'
+    });
+        
+        
 	$("#create_form").validate();
 	
 	$(".session_edit").click(function(){

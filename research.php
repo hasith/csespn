@@ -17,6 +17,8 @@ if (isset($_POST['valid'])) {
     $technos = $_POST['technologies'];
     $description = $_POST['description'];
     $category = $_POST['category'];
+    $resp_contact = $_POST['resp_contact'];
+    
     $data = array(
         "title" => $title,
         "author_id" => $userId,
@@ -25,7 +27,8 @@ if (isset($_POST['valid'])) {
         "time" => $estimation,
         "description" => $description,
         "category" => $category,
-        "technologies" => $technos
+        "technologies" => $technos,
+        "resp_contact" => $resp_contact
     );
 
     $research = new Research($data);
@@ -105,7 +108,7 @@ if (isset($_POST['valid'])) {
                                                             echo $company->name
                                                             ?></li>
                                                         <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
-                                                        <li class="linkedLink"><span>Lead :</span> <a href="asd.html"><?php
+                                                        <li class="linkedLink"><span>Contact person :</span> <a href="asd.html"><?php
                                                                 $leader = User::get($research->lead_id);
                                                                 echo $leader->name;
                                                                 ?></a></li>
@@ -153,7 +156,7 @@ if (isset($_POST['valid'])) {
                                                             echo $company->name
                                                             ?></li>
                                                         <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
-                                                        <li class="linkedLink"><span>Lead :</span> <a href="asd.html"><?php
+                                                        <li class="linkedLink"><span>Contact Person :</span> <a href="asd.html"><?php
                                                                 $leader = User::get($research->lead_id);
                                                                 echo $leader->name;
                                                                 ?></a></li>
@@ -295,8 +298,8 @@ if (isset($_POST['valid'])) {
                             </td>
                             <td class="formInput">
                                 <select name="category" id="categoryCombo">
-                                    <option value="0">3rd year project</option>
-                                    <option value="1">final year project</option>
+                                    <option value="3">3rd year project</option>
+                                    <option value="4">final year project</option>
 
                                 </select>
                             </td>
@@ -349,11 +352,11 @@ if (isset($_POST['valid'])) {
                         <tr>
                             <td>
 
-                                <label for="leadCombo">Lead</label>
+                                <label for="leadCombo">Contact Person</label>
                             </td>
                             <td class="formInput">
 
-                                <select name="lead" id="leadCombo">
+                                <select name="leadCombo" id="leadCombo">
                                     <?php
                                     $userTools = new UserTools();
                                     $users = $userTools->getAllLeads();
@@ -364,6 +367,14 @@ if (isset($_POST['valid'])) {
                                     }
                                     ?>
                                 </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Contact No</label>
+                            </td>
+                            <td class="formInput">
+                                <input name="resp_contact" type="text" id="contactNo">
                             </td>
                         </tr>
                         <tr>

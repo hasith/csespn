@@ -103,7 +103,8 @@ function submit() {
         lead = $('#leadCombo').find(":selected").val();
         description = $('#descriptionTxt').val();
         category = $('#categoryCombo').find(":selected").val();
-        sendRequest(title, partner, estimation, lead, technologiesVal, description, category);
+        resp_contact = $('#contactNo').find(":selected").val();
+        sendRequest(title, partner, estimation, lead, technologiesVal, description, category,resp_contact);
         hideForm();
         location.reload();
     }
@@ -122,6 +123,7 @@ function validate() {
     leadInput = $('#leadCombo');
     descriptionInput = $('#descriptionTxt');
     titleInput = $("#titleTxt");
+    contactInput = $("#contactNo");
 
     var validated = true;
 
@@ -167,6 +169,17 @@ function validate() {
     } else {
         highlightElement(technologiesInput, 'green');
     }
+    
+    //contact number
+     if (contactInput.val() === "") {
+        highlightElement(contactInput, 'red');
+        validated = false;
+    } else if (isNaN(contactInput.val())) {
+        highlightElement(contactInput, 'red');
+        validated = false;
+    } else {
+        highlightElement(contactInput, 'green');
+    }
 
     return validated;
 }
@@ -206,11 +219,11 @@ $(function() {
 
 
 //send post request
-function sendRequest(title, partner, estimation, lead, technos, description, category) {
+function sendRequest(title, partner, estimation, lead, technos, description, category , resp_contact) {
     $.ajax({
         url: "./research.php",
         type: 'POST',
-        data: {valid: true, title: title, partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description, category: category},
+        data: {valid: true, title: title, partner: partner, estimation: estimation, lead: lead, technologies: technos, description: description, category: category,resp_contact:resp_contact},
         success: function(data) {
             if (data === 'true') {
                 return true;
