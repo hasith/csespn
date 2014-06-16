@@ -58,27 +58,27 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
                             <?php
                                 
                                     if($batch =="level_4"){
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" class="current">Pending Graduation</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Pending Internship</a></li>';
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" class="current">Level 4</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Level 3</a></li>';
                                     echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
                                     echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
                                     }
                                     
                                     else if($batch =="level_3"){
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Pending Graduation</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" class="current">Pending Internship</a></li>';
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Level 4</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" class="current">Level 3</a></li>';
                                     echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
                                     echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
                                     }
                                     else if($batch =="level_2"){
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Pending Graduation</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Pending Internship</a></li>';
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Level 4</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Level 3</a></li>';
                                     echo '<li class="nav-three"><a href="./students.php?batch=level_2" class="current">Level 2</a></li>';
                                     echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
                                     }
                                     else if($batch =="level_1"){
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Pending Graduation</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Pending Internship</a></li>';
+                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Level 4</a></li>';
+                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Level 3</a></li>';
                                     echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
                                     echo '<li class="nav-two"><a href="./students.php?batch=level_1" class="current">Level 1</a></li>';
                                }
@@ -168,7 +168,8 @@ function getHtmlForStudents($students) {
 }
 
 function getHtmlForStudent($student) {
-    if($student->getUser() == null){
+    $user = $student->getUser();
+    if($user == null){
         
        
     $color = 'orangeColor'; 
@@ -180,9 +181,9 @@ function getHtmlForStudent($student) {
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
     $html = $html . '<img height="79" width="65" src="img/unknown-member.gif"/>';
-    $html = $html . '<p>';  
-    $html = $html .  $student->description;
-    $html = $html . '</p>';  
+    //$html = $html . '<p>';  
+    $html = $html .  'No data available. Student with id '. $student->student_id .' has not signed-in to the application yet.';
+    //$html = $html . '</p>';  
     $html = $html . '</div>';
     
     return $html;
@@ -190,12 +191,12 @@ function getHtmlForStudent($student) {
     $color = 'orangeColor'; 
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
-    $html = $html . '<a href="#">' . $student->getUser()->name . '</a>';
+    $html = $html . '<a href="#">' . $user->name .'  ('. $student->student_id.')</a>';
     $html = $html . '<p>'. getHtmlForStudentTechnologies($student) .'</p>';
-    $html = $html . '<a class="linkedInImg" target="_blank" href="' . $student->getUser()->profile_url . '"></a></div>';
+    $html = $html . '<a class="linkedInImg" target="_blank" href="' . $user->profile_url . '"></a></div>';
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
-    $html = $html . '<img height="79" width="65" src="'. $student->getUser()->pic_url .'"/>';
+    $html = $html . '<img height="79" width="65" src="'. $user->pic_url .'"/>';
     $html = $html . '<p>';  
     $html = $html .  $student->description;
     $html = $html . '</p>';  

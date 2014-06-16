@@ -8,10 +8,10 @@ INSERT INTO `roles` (`id`, `name`) VALUES
 (3, 'Admin');
 
 INSERT INTO `batches` (`id`, `display_name`, `course`, `year`) VALUES
-(1, 'Batch 10', 'CSE', '2010'),
-(2, 'Batch 11', 'ICE', '2011'),
-(3, 'Batch 12', 'CSE', '2012'),
-(4, 'Batch 13', 'CSE', '2013');
+(10, 'Batch 10', 'CSE', '2010'),
+(11, 'Batch 11', 'ICE', '2011'),
+(12, 'Batch 12', 'CSE', '2012'),
+(13, 'Batch 13', 'CSE', '2013');
 
 
 INSERT INTO `companies` (`id`, `name`, `access_level`) VALUES
@@ -20,7 +20,7 @@ INSERT INTO `companies` (`id`, `name`, `access_level`) VALUES
 (3, 'CSES Admin', 5);
 
 INSERT INTO `settings` (`id`, `key`, `value`) VALUES
-(1, 'level_1', '4'),
-(2, 'level_2', '3'),
-(3, 'level_3', '2'),
-(4, 'level_4', '1');
+(1, 'level_1', '13'),
+(2, 'level_2', '12'),
+(3, 'level_3', '11'),
+(4, 'level_4', '10');

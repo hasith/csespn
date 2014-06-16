@@ -69,7 +69,6 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   `resp_name` varchar(50) DEFAULT NULL,
   `resp_contact` varchar(10) DEFAULT NULL,
   `org_id` int(11) DEFAULT NULL,
-  `created` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   `updated` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `session_org_idx` (`org_id`)
@@ -97,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `sponsorships` (
 
 CREATE TABLE IF NOT EXISTS `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(255),
   `batch` int(11) NOT NULL,
   `linkedin_id` varchar(255) NOT NULL,
   `profile_url` varchar(255) NOT NULL,

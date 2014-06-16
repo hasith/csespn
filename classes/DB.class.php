@@ -4,7 +4,7 @@ class DB {
 
     protected $db_name = 'csespn';
     protected $db_user = 'root';
-    protected $db_pass = '';
+    protected $db_pass = 'Jewelcase';
     protected $db_host = 'localhost';
 
 	
@@ -242,6 +242,7 @@ class DB {
         
 		
 		$sql = "SELECT $columns  FROM $table1 LEFT JOIN $table2 ON $table1.$leftCol= $table2.$rightCol WHERE $where";
+        echo $sql;
         $result = mysqli_query($this->getConnection(),$sql);
         if (!$result) {
             return false;

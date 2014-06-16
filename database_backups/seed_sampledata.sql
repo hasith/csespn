@@ -7,13 +7,6 @@
 INSERT INTO `users` (`id`, `name`, `linkedin_id`, `pic_url`, `company_id`, `profile_url`) VALUES
 (22, 'Supun Nakandala', '0I2andtpA7', 'http://m.c.lnkd.licdn.com/mpr/mprx/0_RSNOt_wXpvHGdz6AM2BDt34vYKg7WK9AME8TthWzT9Wxnq3lBwk-p8jRKgjKoBcjVmnhgbBssJ2A', 1, 'http://www.linkedin.com/pub/supun-nakandala/58/210/36');
 
---
--- Dumping data for table `students`
---
-
-INSERT INTO `students` (`id`, `batch`, `linkedin_id`, `profile_url`, `oauth_token`, `oauth_token_secret`, `gpa`, `description`) VALUES
-(1, 2, '0I2andtpA7', 'http://www.linkedin.com/pub/supun-nakandala/58/210/36', '35d96ddb-dd9b-4961-8a12-b59462dafb5e', '9f383855-0a0f-40a7-8f29-321a99f65509', '0.0', 'I am a third year undergraduate from the Department of Computer Science & Engineering, University of Moratuwa. My goal is to develop knowledge and competence in the field of information technology, share my knowledge and to provide the leadership.');
-
 
 --
 -- Dumping data for table `technologies`
@@ -264,7 +257,7 @@ INSERT INTO `research_tech__map` (`research_id`, `technology_id`) VALUES
 (5, 40);
 
 INSERT INTO `students` (`id`, `student_id`, `batch`, `linkedin_id`, `profile_url`, `oauth_token`, `oauth_token_secret`, `gpa`, `description`) VALUES
-(1, '', 10, '0I2andtpA7', 'http://www.linkedin.com/pub/supun-nakandala/58/210/36', '35d96ddb-dd9b-4961-8a12-b59462dafb5e', '9f383855-0a0f-40a7-8f29-321a99f65509', '0.0', 'I am a third year undergraduate from the Department of Computer Science & Engineering, University of Moratuwa. My goal is to develop knowledge and competence in the field of information technology, share my knowledge and to provide the leadership.'),
+(1, '100196E', 10, '0I2andtpA7', 'http://www.linkedin.com/pub/supun-nakandala/58/210/36', '35d96ddb-dd9b-4961-8a12-b59462dafb5e', '9f383855-0a0f-40a7-8f29-321a99f65509', '0.0', 'I am a third year undergraduate from the Department of Computer Science & Engineering, University of Moratuwa. My goal is to develop knowledge and competence in the field of information technology, share my knowledge and to provide the leadership.'),
 (3, '', 10, 'RtFUYF616x', 'http://lk.linkedin.com/in/hasith', 'dc4ad0e6-7f03-4624-a49a-18417cc44044', 'ad99bcf5-2cb7-470f-9400-04c6a1c41661', '', 'My pride is to see my contributions helping lives of IT industry as well as communities. I do organize many coaching and trainings activities mainly targeting Sri Lankan youth in IT.\n\nAs the Technology Manager in 99X, my work is just to enable my colleagues to achieve their own ambitions. In development, I''m a very pragmatic developer who believe in just ''right'' software for my users! \n\nI live in the wonderful island of Sri Lanka, working with a set of very smart colleagues. Search for ''Hasith'' on Google to get to know me better!'),
 (4, '100006B', 10, '', 'http://www.linkedin.com/pub/sameera-rukshan/64/8b4/745', '', '', '', ''),
 (5, '100020L', 10, '', 'http://www.linkedin.com/pub/hasitha-dhananjaya/46/816/136', '', '', '', ''),
