@@ -11,7 +11,7 @@
                 ?>
                         <li class="<?php if($pageName=='students'){echo 'active';}?>"><a href="./students.php">Students</a></li>
                         <li class="<?php if($pageName=='sessions'){echo 'active';}?>"><a href="./sessions.php">Sessions</a></li>
-                        <li class="<?php if($pageName=='research'){echo 'active';}?>"><a href="./research.php">Research</a></li>
+                        <li class="<?php if($pageName=='research'){echo 'active';}?>"><a href="./projects.php">Research</a></li>
                         <li class="<?php if($pageName=='events'){echo 'active';}?>"><a href="./events.php">Events</a></li>  
                         <li class="<?php if($pageName== 'admin') {echo 'active';}?>"><a href="./admin.users.php">Admin</a></li>                     
                 <?php     

@@ -45,9 +45,9 @@ class Technology {
         $db = new DB();
         $result = $db->select("technologies", "name = '$tech'");
         if ($result == false || sizeof($result) == 0) {
-            return false;
+            return 0;
         } else {
-            return true;
+            return $result[0]['id'];
         }
     }
 

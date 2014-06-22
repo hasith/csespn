@@ -10,6 +10,12 @@
 
 }
 
+.page-title {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 15px;
+    color: #666666;
+}
+
 #footer  {
     padding-bottom: 30px;
     text-align: center;
@@ -23,6 +29,10 @@
 
 #benefits div.topic {
     padding-bottom: 10px;
+}
+
+#benefits div a {
+    width: 100%;
 }
 
 #benefits div {
@@ -114,7 +124,7 @@
 
 #bannerArea{
     width:1200px;
-    margin-top:35px;
+    margin-top:15px;
 }
 #bannerLeft{
     width:820px;
@@ -175,8 +185,8 @@ p.bjqs-caption{
 }
 .signInArea a{
     display:block;
-    float:left;
-    text-decoration:none;
+    
+    
     margin-top:10px;
 }
 .buttonEffect{
@@ -271,7 +281,7 @@ p.bjqs-caption{
 #example-two ul li:last-child a { border: none; }
 
 #example-two .nav { overflow: hidden; }
-#example-two .nav li {  float: left; margin: 0 10px 0 0; }
+#example-two .nav li {  float: left; margin: 0 10px 0 0; width: 200px}
 #example-two .nav li.last { margin-right: 0; }
 #example-two .nav li a { display: block; padding: 10px 20px; color: #5b9bd5; font-size:18px; text-align: center; border: 0; }
 
@@ -285,14 +295,14 @@ p.bjqs-caption{
     margin: 10px 0 0px;
     outline:none;
 }
-#accordion .ui-accordion-header a,#accordion2 .ui-accordion-header a {
+#accordion .ui-accordion-header .title,#accordion2 .ui-accordion-header a {
     color: #1f4e79;
     display: block;
     font-size: 12pt;
     width: 100%;
     text-decoration:none;
     outline:none;
-
+    margin-top: 12px;
 }
 #accordion .ui-accordion-content,#accordion2 .ui-accordion-content {
     width: 759px;
@@ -320,6 +330,7 @@ p.bjqs-caption{
 #accordion .ui-accordion-header,#accordion2 .ui-accordion-header {
     background-color: #f2f2f2;
 }
+
 
 .orangeColor{
     border-left:10px solid #ed7d31 !important;
@@ -349,7 +360,7 @@ p.bjqs-caption{
 
 .sessionDescription{
 	float:left;
-	width:690px;
+	width:710px;
 }
 .sessionDescription a{
 	margin-bottom:8px;
@@ -363,6 +374,15 @@ p.bjqs-caption{
 .sessionDetails{
 	margin-top:20px;
 }
+
+.userIcon{
+	background:url(../img/creative8.png) left center no-repeat;
+	padding-left:10px;
+	line-height:35px;
+	display:inline-block;
+	min-width:100px;
+}
+
 .dateIcon{
 	background:url(../img/calendar2.png) left center no-repeat;
 	padding-left:30px;
@@ -372,13 +392,14 @@ p.bjqs-caption{
 }
 .companyIcon, .endGPA{
 	display:inline-block;
+    padding-left: 20px;
 }
 
 .companyIcon{
 	background:url(../img/factory.png) left center no-repeat;
 	padding-left:30px;
 	line-height:35px;
-	margin-left:50px;
+	margin-left:30px;
 }
 
 
@@ -422,7 +443,6 @@ p.bjqs-caption{
     font-size:15px !important;
     padding:0 !important;
     line-height:normal !important;
-    color: #385723 !important;
 }
 .linkedLink a:hover{
     text-decoration:underline !important;
@@ -723,7 +743,7 @@ border-bottom-left-radius: 4px;
 }
 
 .lastListWithScroll{
-    max-height:320px;
+    max-height:520px;
     overflow-y:auto;
 }
 
@@ -1018,4 +1038,62 @@ label.error{
 }
 #sessionsList .darkGray .company-name{
 	padding:0 !important;	
+}
+
+/* research-page */
+
+.research-page .descriptionArea{
+	padding-left:8px;
+	padding-right:8px;
+	padding-bottom:8px;
+}
+.research-page .darkGray{
+	float:none;
+	padding-top:0;
+}
+
+#bannerLeft .research-page .ui-accordion-header{
+	background:#f2f2f2  !important;
+	
+}
+#bannerLeft .research-page .ui-widget-content{
+	border-left: 10px solid #70ad47 !important;
+	border-right:0;
+	border-bottom:1px solid #f3f3f3 !important;
+}
+
+.research-page .ui-accordion-content, #accordion2 .ui-accordion-content{
+	height:auto !important;
+	min-height:inherit !important;
+}
+#bannerLeft .research-page .ui-accordion-header .descriptionArea a{
+	margin-top:20px;
+}
+.research-page .linkedLink{
+	margin-top: 3px;
+	font-size:13px !important;
+}
+.research-page .linkedLink span{
+	margin-top:2px !important;
+}
+#bannerLeft #example-two .research-page .darkGray .linkedLink span a{
+	margin-top:2px !important;
+}
+.research-page .estimations{
+	margin-left:20px;
+}
+#bannerLeft .research-page .ui-accordion-header{
+	padding-bottom:15px;
+}
+
+
+
+#bannerLeft .student-page .ui-widget-content{
+	border-left: 10px solid #ed7d31  !important;
+	border-right:0;
+	border-bottom:1px solid #FFFFFF !important;
+}
+#bannerLeft .student-page .descriptionArea{
+	padding-top:5px;
+	padding-bottom:15px;
 }

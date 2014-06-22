@@ -11,7 +11,7 @@ class TechnologyTools {
     }
 
     public function getAlltechnologies() {
-        $results = $this->db->select("technologies", "true");
+        $results = $this->db->query("select distinct * from technologies where name<>'' order by name");
         $technologies = array();
         foreach ($results as $result) {
             array_push($technologies, new Technology($result));

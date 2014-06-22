@@ -8,24 +8,26 @@ if (!oauth_session_exists()) {
 $studentTools = new StudentTools();
 $settingsTools = new SettingsTools();
 
-if (isset($_GET['batch']) && $_GET['batch'] == "level_1") {
-    $students = $studentTools->getStudents($settingsTools->getLevelOneId());
-    $batch = "level_1";
-} else if (isset($_GET['batch']) && $_GET['batch'] == "level_2") {
-    $students = $studentTools->getStudents($settingsTools->getLevelTwoId());
-	
+$sort = 'name';
+if(isset($_GET['sort'])) $sort = $_GET['sort'];
+
+$technology = $_GET['technology'];
+
+$batch = "level_4";
+
+if (isset($_GET['batch']) && $_GET['batch'] == "level_2") {
+    $students = $studentTools->getStudents($settingsTools->getLevelTwoId(), $sort, $technology);	
     $batch = "level_2";
 } else if (isset($_GET['batch']) && $_GET['batch'] == "level_3") {
-    $students = $studentTools->getStudents($settingsTools->getLevelThreeId());
+    $students = $studentTools->getStudents($settingsTools->getLevelThreeId(), $sort, $technology);
     $batch = "level_3";
 } else {
-    $students = $studentTools->getStudents($settingsTools->getLevelFourId());
-    $batch = "level_4";
+    $students = $studentTools->getStudents($settingsTools->getLevelFourId(), $sort, $technology);   
 }
 
 
 /* * *********************Sorting Students*********************************** */
-if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
+if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
     usort($students, "gpa_sort");
 } else if (isset($_GET['sort_by']) && $_GET['order_by'] == "endorsements") {
     usort($students, "endorsements_sort");
@@ -52,44 +54,35 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
 <?php require_once './nav.inc.php'; ?>    
         <div class="container clearfix">        	
             <div id="bannerArea" class="clearfix">
-                <div id="bannerLeft">					
+                <p class="page-title">A vibrant pool of CSE students who are keen to be part of cross functional activities is our greatest strength. The organizations are able to collaborate with the students in their organizational activities by forming teams according to their preference. Such initiatives help the students to engage with the corporate sector during their academic life.</p>
+                <div id="bannerLeft">	
+                    
                     <div id="example-two">					
                         <ul class="nav">
                             <?php
                                 
-                                    if($batch =="level_4"){
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" class="current">Level 4</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Level 3</a></li>';
-                                    echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
-                                    }
+                                if($batch =="level_4"){
+                                    echo '<li class="nav-one"><a class="batch-tab current" data-batch="level_4" href="#">Level 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="#" class="batch-tab" data-batch="level_3" >Level 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="#" class="batch-tab" data-batch="level_2">Level 2 students</a></li>';
+                                }
                                     
-                                    else if($batch =="level_3"){
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Level 4</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" class="current">Level 3</a></li>';
-                                    echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
-                                    }
-                                    else if($batch =="level_2"){
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Level 4</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Level 3</a></li>';
-                                    echo '<li class="nav-three"><a href="./students.php?batch=level_2" class="current">Level 2</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_1" >Level 1</a></li>';
-                                    }
-                                    else if($batch =="level_1"){
-                                    echo '<li class="nav-one"><a href="./students.php?batch=level_4" >Level 4</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_3" >Level 3</a></li>';
-                                    echo '<li class="nav-three"><a href="./students.php?batch=level_2">Level 2</a></li>';
-                                    echo '<li class="nav-two"><a href="./students.php?batch=level_1" class="current">Level 1</a></li>';
-                               }
+                                else if($batch =="level_3"){
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="#">Level 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="#" class="batch-tab current" data-batch="level_3" >Level 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="#" class="batch-tab" data-batch="level_2">Level 2 students</a></li>';
+                                }
+                                else if($batch =="level_2"){
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="#">Level 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="#" class="batch-tab" data-batch="level_3" >Level 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="#" class="batch-tab current" data-batch="level_2">Level 2 students</a></li>';
+                                }
                             ?>                                                        
                         </ul>                        
                         <div class="list-wrap">                        	
                             <div id="featured2">                           		
-                                <p class="descriptionTab">
-                                    Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                                </p>                                
-                                <div id="accordion">
+                                <p class="descriptionTab"></p>                                
+                                <div id="accordion" class="student-page">
                                     <?php echo getHtmlForStudents($students);
 										  
 									?>
@@ -98,52 +91,137 @@ if (isset($_GET['order_by']) && $_GET['order_by'] == "gpa") {
                         </div> <!-- END List Wrap -->                     
                     </div>                       
                 </div>
-               <!--<div id="rightSide">	
-                    <ul id="legend">
-                        <li class="cse clearfix">
-                            <span></span>
-                            <p>Student Specialty - CSE</p>
-                        </li>
-                        <li class="ice clearfix">
-                            <span></span>
-                            <p>Student Specialty - ICE</p>
-                        </li>
-                    </ul>
+                
+               <div id="rightSide">	
+                    <?php if (User::currentUser()->getOrganization()->access_level >= 3) { ?>
+                        <div id="addProject">
+                            <a href="" id="assemble-team" >
+                                Assemble a Team
+                            </a>
+                        </div>
+                    <?php } ?>
                     <div class="componentContainer">
                         <div class="heading">
                             <p>Sort Students</p>
                         </div>                        
                         <div class="ccContainer">
                             <ul>
-                                <!--<li><a href="./students.php?batch=<?php //echo $batch ?>&order_by=gpa">By GPA</a></li>
-                                <!--<li><a href="./students.php?batch=<?php // echo $batch ?>&order_by=endorsements">By Endorsements</a></li>
-                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=speciality">By Specialty</a></li>
-                                <li><a href="./students.php?batch=<?php echo $batch ?>&order_by=name">By First Name</a></li>
+                                
+                                <li><label><input type="radio" name="sort" value="users.name" checked="true"> By Name</label></li>
+                                <li><label><input type="radio" name="sort" value="students.student_id"> By Student Id</label></li>
                             </ul>
                         </div>                                                
-                    </div>                                                        
-               d </div> -->
+                    </div>    
+
+                    <div style="display: none" id="team-dialog" title="We are still developing...">
+                        <input type="hidden" id="sp-dialog-id"/>
+                        <input type="hidden" id="user-level" value="<?php echo User::currentUser()->getOrganization()->access_level; ?>"/>
+
+                        <p>Thanks for your interest on this feature, currently we are busy developing it :). <br/></br/>Once complete it will let you  assemble a team of students to assist you in your organizational activities such as events, promotions, CSR, etc.</p>
+                    </div> 
+                   
+                    <form action="" method="GET" id="sortForm">
+                        <input name="sorter" type="hidden" id="sorterHiddenInput" value="<?php echo $orderBy; ?>">
+                        <input name="techFilter" type="hidden" id="techFilterHiddenInput" value="0">                        
+                    </form>
+                    <div class="componentContainer">
+                        <div class="heading">
+                            <p>Filter by Technology</p>
+                        </div>
+
+                        <div class="ccContainer">
+                            <!--<div class="cloudArea"><img src="img/cloud.jpg" /></div>-->
+                            <div class="cloudArea">
+
+                                <select name="technology" id="technoFilterCombo" size="15">
+                                    <option value="0">Any Technology</option>
+                                    <?php
+                                    $tecs = new TechnologyTools();
+                                    $arr = $tecs->getAlltechnologies();
+                                    foreach ($arr as $value) {
+                                        $selected = $techoFilter == $value->id ? "selected" : "";
+                                        echo "<option value='$value->id' $selected>$value->name</option>";
+                                    }
+                                    ?>
+                                </select>
+                                </form>
+                            </div>
+                        </div>
+
+
+                    </div>                  
+               </div>
+                
             </div>                                                                        
         </div>
 <?php include_once 'scripts.inc.php'; ?>
 <script>
+    
+    $(".batch-tab").click(function(){
+        updateQueryString("batch", $(this).data('batch'));	
+    });
+    
+    
+    $('#technoFilterCombo').change(function() {
+        var tech = $('#technoFilterCombo').find(":selected").val();
+        updateQueryString("technology", tech);	
+    });
+    
+    
+    $('#technoFilterCombo').val(qs['technology'])
+    
     $(function() {
         $("#example-two").organicTabs({
             "speed": 200
         });
         $("#accordion").accordion({
-            autoHeight: false,
-            navigation: true
+            autoHeight: true,
+            navigation: true,
+            collapsible: true,
+            heightStyle: "content" 
         });
-        $("#accordion2").accordion({
-            autoHeight: false,
-            navigation: true
-        });
+        
     });
-    $(document).on("click", ".linkedLink a", function(e) {
-        e.preventDefault();
-        window.open($(this).attr("href"), '_blank');;
+    
+   $("#accordion a").click(function() {
+      window.open($(this).attr("href"), '_blank');
+      return false;
+   });
+    
+   $("#team-dialog").dialog({
+        autoOpen: false,
+        width: 600,
+        modal: true,
+        buttons: {
+            Close: function() {
+                $(this).dialog("close");
+            }
+        },
+        show: {
+            effect: "fade",
+            duration: 200
+        },
+        hide: {
+            effect: "fade",
+            duration: 200
+        }
     });
+    
+    $( "#assemble-team" )
+	  .button()
+	  .click(function() {
+	    $( "#team-dialog" ).dialog( "open" );
+	    return false;
+	  });
+	    
+
+	$("input[name='sort'][value='" + qs['sort'] + "']").prop('checked', true);
+
+	$("input[name='sort']").change(function(){
+		var filter = $("input[name='sort']:checked").val();
+		updateQueryString("sort", filter);	
+	});
+	    
 </script>
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 <!--<script>
@@ -168,11 +246,11 @@ function getHtmlForStudents($students) {
 }
 
 function getHtmlForStudent($student) {
-    $user = $student->getUser();
-    if($user == null){
+    //$user = $student->getUser();
+    if($student->user_id == null){
         
        
-    $color = 'orangeColor'; 
+    $color = 'grayColor'; 
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
     $html = $html . '<a href="#">' . $student->student_id . '</a>';
@@ -191,14 +269,15 @@ function getHtmlForStudent($student) {
     $color = 'orangeColor'; 
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
-    $html = $html . '<a href="#">' . $user->name .'  ('. $student->student_id.')</a>';
-    $html = $html . '<p>'. getHtmlForStudentTechnologies($student) .'</p>';
-    $html = $html . '<a class="linkedInImg" target="_blank" href="' . $user->profile_url . '"></a></div>';
+    $html = $html . '<img style="margin-top:10px" height="79" width="65" src="'. $student->pic_url .'"/>';
+    $html = $html . '<div style="margin-left:100px; margin-top:-95px"><span class="title">' . $student->name .'  <span style="font-size:10px">('. $student->student_id.')</span></span>';    
+    $html = $html . '<p>'. $student->description.'</p>';
+    $html = $html . '<a class="linkedInImg" target="_blank" href="' . $student->profile_url . '"></a></div></div>';
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
-    $html = $html . '<img height="79" width="65" src="'. $user->pic_url .'"/>';
+    //$html = $html . '<img height="79" width="65" src="'. $user->pic_url .'"/>';
     $html = $html . '<p>';  
-    $html = $html .  $student->description;
+    $html = $html .  getHtmlForStudentTechnologies($student) ;
     $html = $html . '</p>';  
     $html = $html . '</div>';
     
@@ -211,7 +290,7 @@ function getHtmlForStudentTechnologies($student) {
     $count = 0;
     foreach ($technologies as $key => $value) {        
         //max display is 3 - should come from a config file
-        if ($count == count($technologies) || $count == 10) {
+        if ($count == count($technologies) ) {
             $html = $html . " " . $value[0]->name ;//. " " . "(" . $value[1] . ")";
             break;
         }

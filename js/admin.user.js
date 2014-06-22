@@ -20,12 +20,12 @@ $(document).ready(function(){
 	  }
 	});
 	
-	$(".companylink").click(function() {		
+    $("#usertable").on('click','.companylink',function() {
 		var userId = $(this).data("id");
 		var companyId = $(this).data("companyid");
 		$("#userId").val(userId);
 		$("#companylist").val(companyId);
 		$("#dialog-form").dialog( "open" );
 		return false;
-	});
+    });
 });

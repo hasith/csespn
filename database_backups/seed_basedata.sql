@@ -1,11 +1,4 @@
---
--- Dumping data for table `roles`
---
 
-INSERT INTO `roles` (`id`, `name`) VALUES
-(1, 'Company'),
-(2, 'Student'),
-(3, 'Admin');
 
 INSERT INTO `batches` (`id`, `display_name`, `course`, `year`) VALUES
 (10, 'Batch 10', 'CSE', '2010'),
@@ -24,3 +17,6 @@ INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 (2, 'level_2', '12'),
 (3, 'level_3', '11'),
 (4, 'level_4', '10');
+
+INSERT INTO `users` (`id`, `name`, `linkedin_id`, `pic_url`, `company_id`) VALUES
+(1, 'Hasith Yaggahavita', 'rTKDOUnzCR ', 'http://m.c.lnkd.licdn.com/mpr/mprx/0_jbmxXtdKs7vacLWn05phXrx14d-_vQMnPishXrMfFo6PEGm9lTYPEKD39Tty9TZspkuTIBIoQzlh','3'),

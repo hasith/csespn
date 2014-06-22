@@ -13,6 +13,9 @@ class Student {
     public $oauth_token;
     public $gpa;
     public $description;
+    public $name;
+    public $pic_url;
+    public $user_id;
     
     //This is fetched from the batches table.course
     public $course;
@@ -21,6 +24,9 @@ class Student {
     //Takes an associative array with the DB row as an argument.
     function __construct($data) {
         $this->id = (isset($data[0]['id'])) ? $data[0]['id'] : "";
+        $this->name = (isset($data[0]['name'])) ? $data[0]['name'] : "";
+        $this->pic_url = (isset($data[0]['pic_url'])) ? $data[0]['pic_url'] : "";
+        $this->user_id = (isset($data[0]['user_id'])) ? $data[0]['user_id'] : "";
         $this->student_id = (isset($data[0]['student_id']))? $data[0]['student_id'] : "";
         $this->batch = (isset($data[0]['batch'])) ? $data[0]['batch'] : "";
         $this->linkedin_id = (isset($data[0]['linkedin_id'])) ? $data[0]['linkedin_id'] : "";

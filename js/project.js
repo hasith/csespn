@@ -1,6 +1,6 @@
 $(document).ready(function(){
 		
-	$( "#propose-session" )
+	$( "#propose-project" )
 	  .button()
 	  .click(function() {
 	  	$('#create_form').populate({});
@@ -10,7 +10,7 @@ $(document).ready(function(){
 	
 	$( "#dialog-form" ).dialog({
 	  autoOpen: false,
-	  height: 620,
+	  height: 700,
 	  width: 850,
 	  modal: true,
 	  buttons: {
@@ -30,7 +30,7 @@ $(document).ready(function(){
 	$("#datepicker").datepicker({ dateFormat: "yy-mm-dd" });
         
         
-    $('#session-time').timepicker({
+    $('#project-time').timepicker({
         'minTime': '7:30am',
         'maxTime': '7:30pm',
         'timeFormat': 'H:i'
@@ -39,9 +39,9 @@ $(document).ready(function(){
         
 	$("#create_form").validate();
 	
-	$(".session_edit").click(function(){
-		var sessionId = $(this).data("id");
-		$.getJSON( "./sessions.get.php?id=" + sessionId, function( data ) {
+	$(".project_edit").click(function(){
+		var projectId = $(this).data("id");
+		$.getJSON( "./projects.get.php?id=" + projectId, function( data ) {
   			$('#create_form').populate(data);
   			$( "#dialog-form" ).dialog( "open" );
 	    	return false;
@@ -64,8 +64,8 @@ $(document).ready(function(){
 	  }
 	});
 	
-	$(".takeSession").click(function(){
-		$("#confirmation_form :input[name='sessionId']").val($(this).data("id"));
+	$(".takeProject").click(function(){
+		$("#confirmation_form :input[name='projectId']").val($(this).data("id"));
 		$("#dialog-confirmation").dialog( "open" );
 		return false;
 	});

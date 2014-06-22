@@ -1803,6 +1803,7 @@ class LinkedIn {
 	 *    The Linkedin OAuth/http response, in array format.      	 
 	 */
 	public function retrieveTokenAccess($token, $secret, $verifier) {
+       
 	  // check passed data
     if(!is_string($token) || !is_string($secret) || !is_string($verifier)) {
       // nothing passed, raise an exception
@@ -1872,6 +1873,10 @@ class LinkedIn {
       
       // set the response
       $return_data = $response;
+      
+        echo "---";
+        print_r($return_data);
+        
       if((array_key_exists('oauth_callback_confirmed', $response['linkedin'])) && ($response['linkedin']['oauth_callback_confirmed'] == 'true')) {
         $return_data['error'] = 'HTTP response from LinkedIn end-point was not code 200';
       } else {

@@ -22,6 +22,8 @@ require_once ROOT_DIR . '/classes/SponsorshipTools.class.php';
 require_once ROOT_DIR . '/classes/SettingsTools.class.php';
 require_once ROOT_DIR . '/classes/Research.class.php';
 require_once ROOT_DIR . '/classes/ResearchTools.class.php';
+require_once ROOT_DIR . '/classes/Project.class.php';
+require_once ROOT_DIR . '/classes/ProjectTools.class.php';
 
 date_default_timezone_set('Asia/Colombo');
 

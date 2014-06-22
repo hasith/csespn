@@ -42,7 +42,7 @@ session_start();
                           <li><img src="img/banner/global_presence.jpg" title="Make a global impression through student achievements"></li>
                           <li><img src="img/banner/helpstudents.jpg" title="Help Sri Lankan undergraduates to be participative and competitive"></li>
                           <li><img src="img/banner/share.jpg" title="Promote the culture of giving back, through sharing and socializing"></li>
-                          <li><img src="img/banner/achivers.jpg" title="Recognize the accomplishments of high achievers of the IT industry"></li>
+                          <li><img src="img/banner/achivers.jpg" title="Recognize the accomplishments of high achievers of the industry"></li>
                           <li><img src="img/banner/curriculum.jpg" title="Shape-up the uni curriculum to cater to the modern IT industry"></li>
                           <li><img src="img/banner/gettoknow.jpg" title="Help the industry and students to collaborate through engagement"></li>
 
@@ -53,18 +53,18 @@ session_start();
                 <div id="bannerRight">
                 	<div class="clearfix signInArea">
                     	<p>We are Open!</p><p id="signMessage">
-                    	CSE Partner Network is a program that helps organizations to grow with an effective affiliation with the department 
-                    	of Computer Science & Engineering at <span></span>University of Moratuwa.</span>
-                    	<?php if(oauth_session_exists()){
-                                 echo '<a class="buttonEffect" href="./landing.php">Access the Portal</a>';
+                    	'CSE Partner Network' helps organizations to grow with an effective affiliation with the department of Computer Science & Engineering at <span></span>University of Moratuwa.</span>
+                    <br/><br/>	
+                    <?php if(oauth_session_exists()){
+                                 echo '<a class="buttonEffect" style="text-decoration:none" href="./landing.php">Access the Portal</a>';
                              }else{
-                             	 echo '<a class="buttonEffect" href="./login.php?lType=initiate">Connect with LinkedIn</a>';
+                             	 echo '<a class="buttonEffect" style="text-decoration:none" href="./login.php?lType=initiate">Connect with LinkedIn</a>';
                              }
                         ?>
-                    	<br/><br/><br/><br/>
-                    	We are an open network, simply sign-in to connect us. 
-                    	<br/><br/>To fully embrase the portal functionality you need a premium 
-                    	corporate account which can be obtained by contacting us.
+                    	<br/><br/>
+                        
+                    	We are an open network, simply sign-in to connect. 
+                    	<br/><br/>Contact us to obtain a corporate account to fully embrace the portal functionality.
                     	</p>                      
                     </div>
                     <div id="contactUs" class="clearfix">
@@ -84,24 +84,21 @@ session_start();
             		<img src="./img/benefits/profiles.jpeg" />
             		<div class="topic details_topic">Access Student Profiles</div>
             		<div class="text">
-            			CSE premium partners will get access to the student registry of all batches. 
-            			The student profiles will comprise of brief introductions about the student, competencies, LinkedIn profiles, etc.
+            			Access to the student registry of all batches. The student profiles will comprise of brief introductions about the students and their competencies. 
 					</div>
             </div>                                              
             <div id="benefits">
             		<img src="./img/benefits/team.png" />
             		<div class="topic details_topic">Assemble a Team</div>
             		<div class="text">
-            			Premium partners are able to assemble a team of students to engage them 
-            			in organizational activities such as event planning, CSR, 
-            			software development, etc.
+            			Collaborate with students to engage them in organizational activities such as event planning, CSR, software development, etc. by forming teams according to your preference
 					</div>
             </div>  
             <div id="benefits">
             		<img src="./img/benefits/research.png" />
             		<div class="topic details_topic">Participate in Research </div>
             		<div class="text">
-            			Partner companies can propose research projects (for Final Year and 3rd Year Projects) to be carried out by the students. 
+            			Propose research projects (for Final Year and 3rd Year Projects) to be carried out by the students. 
             			In addition, partners will be able to follow the research work being carried out in the 
             			department to make use of such.
 					</div>
@@ -110,10 +107,7 @@ session_start();
             		<img src="./img/benefits/sessions.jpeg" />
             		<div class="topic details_topic">Conduct University Sessions</div>
             		<div class="text">
-            			Students needs for external sessions (technical as well as soft skills) are listed through this portal. 
-            			Partners get the opportunity to facilitate sessions of their interests, which in turn will be an opening
-            			 to enhance the collaboration with the students. In addition, partners can also propose new 
-            			 sessions which they think will be useful to students.
+            			Needs for external uni-sessions (technical and soft-skill) are listed through this portal. Partners get the opportunity to facilitate sessions of their interests, which in turn will be an opening to enhance the collaboration with the students. 
             		</div>
             		
             </div>                          
@@ -122,7 +116,7 @@ session_start();
             		<img src="./img/benefits/events.jpg" />
             		<div class="topic details_topic">Plan for Events</div>
             		<div class="text">
-            			Partners will get access to the department's event calandar. This will help the organizations to pre-plan 
+            			Access to the department's event calandar. This will help the organizations to pre-plan 
             			participation to the events and offer sponsorships to recieve the optimum benefits through engagement activities.
 					</div>
             </div>  
@@ -132,7 +126,7 @@ session_start();
             		<div class="text">
             			Partners will be invited for planning meetings of the department activities. 
             			This is an oppotunity for the organizations to make a positive impact to the academic 
-            			curriculum and other event lineup of the department.
+            			curriculum and other events of the department.
 					</div>
             </div> 
         <div id="footer">

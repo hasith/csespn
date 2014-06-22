@@ -39,22 +39,45 @@ if (!oauth_session_exists()) {
                     ?>
 
                 </div>
-                <img src="./img/cse_logo_shirt.png" width="600px"/>
-                <div style="position: relative; top: -350px; left: 650px; width: 40%; text-align: justify;">
-                    Public users and students may view university-sessions, research-projects and department-events through this portal. 
-                    In order to contribute with content (suggest sessions, suggest projects, assemble teams, sponsor events, etc.), 
-                    you need to have a corporate account with us. <br/><br/>
+                <div style="font-size:15px">
+                
+                
+                    <div id="benefits">
+                            <img src="./img/benefits/profiles.jpeg" />
+                            <div ><a href="./students.php"  class="topic details_topic" style="margin-bottom: 5px;">Student Profiles</a></div>
+                            <div class="text">
+                                The student profiles will comprise of brief introductions about the students, their competencies and LinkedIn profile. Portal allows you to filter students with given competencies. Also you may collaborate with students to engage them in organizational activities such as event planning, CSR, software development, etc. by forming teams according to your preference
+                            
+                            </div>
+                    </div>  
+                    <div id="benefits">
+                            <img src="./img/benefits/research.png" />
+                            <div ><a href="./projects.php"  class="topic details_topic" style="margin-bottom: 5px;">Research Projects</a></div>
+                            <div class="text">
+                                Through this portal you may propose research projects (for Final Year and 3rd Year Projects) to be carried out by the students. In addition, partners will be able to follow the research work being carried out in the department to make use of such.
+                            </div>
+                    </div>  
+                    <div id="benefits">
+                            <img src="./img/benefits/sessions.jpeg" />
+                            <div ><a href="./sessions.php"  class="topic details_topic" style="margin-bottom: 5px;">University Sessions</a></div>
+                            <div class="text">
+                                Needs for external uni-sessions (technical and soft-skill) are listed through this portal. Partners get the opportunity to facilitate sessions of their interests, which in turn will be an opening to enhance the collaboration with the students. 
+                            </div>
 
-                    If your company has no corporate account but wish to open a one, please contact the department of Computer Science and Engineering 
-                    (CSE), University of Moratuwa. <br/><br/>
+                    </div>                          
 
-                    Now it's time to use the navigation menu above to explore the partner portal !
+                    <div id="benefits">
+                            <img src="./img/benefits/events.jpg" />
+                            <div ><a href="./events.php"  class="topic details_topic" style="margin-bottom: 5px;">Event Calandar</a></div>
+                            <div class="text">
+                                You may gain access to the department's event calandar via this portal. This will help the organizations to pre-plan the participation to the events and offer sponsorships to recieve the optimum benefits through engagement activities.
+                            </div>
+                    </div>  
+
+                
                 </div>
-                <div id="">
-
-
-
-                </div>
+                
+                
             </div>
 
 

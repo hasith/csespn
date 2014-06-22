@@ -72,7 +72,7 @@ if (isset($_POST['valid'])) {
                                 </p>
 
 
-                                <div id="accordion">  
+                                <div id="accordion" class="research-page">  
                                     <?php
                                     $orderBy = "published";
                                     $techoFilter = 0;
@@ -96,18 +96,18 @@ if (isset($_POST['valid'])) {
                                                     <p> 
                                                         <?php
                                                         foreach ($research->technologies as $researchTechId) {
-                                                            echo Technology::get($researchTechId)->name . ",";
+                                                            echo Technology::get($researchTechId)->name . ", ";
                                                         }
                                                         ?>
                                                     </p>
                                                 </div>
                                                 <div class="darkGray">
                                                     <ul>
-                                                        <li class="endGPA"><span>Partner :</span><?php
+                                                        <li class="endGPA"><span>Partner : </span><?php
                                                             $company = Company::get($research->company_id);
-                                                            echo $company->name
+                                                            echo '<strong>'. $company->name.'</strong>'
                                                             ?></li>
-                                                        <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
+                                                        <li class="endGPA estimations"><span>Estimation :</span><?php echo $research->time ?> hours</li>
                                                         <li class="linkedLink"><span>Contact person :</span> <a href="asd.html"><?php
                                                                 $leader = User::get($research->lead_id);
                                                                 echo $leader->name;
@@ -133,7 +133,7 @@ if (isset($_POST['valid'])) {
                             </div>
 
                             <div id="finalYear" class="hide">
-                                <div id="accordion2"> 
+                                <div id="accordion2" class="research-page"> 
                                     <?php
                                     foreach ($allResearches as $research) {
                                         if ($research->category == 4) {
@@ -144,18 +144,18 @@ if (isset($_POST['valid'])) {
                                                     <p> 
                                                         <?php
                                                         foreach ($research->technologies as $researchTechId) {
-                                                            echo Technology::get($researchTechId)->name . ",";
+                                                            echo Technology::get($researchTechId)->name . ", ";
                                                         }
                                                         ?>
                                                     </p>
                                                 </div>
                                                 <div class="darkGray">
                                                     <ul>
-                                                        <li class="endGPA"><span>Partner :</span><?php
+                                                        <li class="endGPA"><span>Partner : </span><?php
                                                             $company = Company::get($research->company_id);
-                                                            echo $company->name
+                                                             echo '<strong>'.$company->name.'</strong>'
                                                             ?></li>
-                                                        <li class="endGPA"><span>Estimation :</span><?php echo $research->time ?> hours</li>
+                                                        <li class="endGPA estimations"><span>Estimation :</span><?php echo $research->time ?> hours</li>
                                                         <li class="linkedLink"><span>Contact Person :</span> <a href="asd.html"><?php
                                                                 $leader = User::get($research->lead_id);
                                                                 echo $leader->name;

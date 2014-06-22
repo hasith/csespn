@@ -2,12 +2,12 @@
 
 class DB {
 
-    protected $db_name = 'csespn';
+   
+
+	/*protected $db_name = 'csespn';
     protected $db_user = 'root';
     protected $db_pass = 'Jewelcase';
-    protected $db_host = 'localhost';
-
-	
+    protected $db_host = 'localhost';*/
 	
     function __construct() {
         $this->connect();
@@ -42,7 +42,14 @@ class DB {
         return $resultArray;
     }
 	
-	
+
+	public function stringify($value) {
+		if(isset($value) && !is_null($value) && !empty($value)) {
+			return "'".mysqli_real_escape_string($this->getConnection(), $value)."'";
+		} else {
+			return "NULL";
+		}		
+	}	
 
     //Select rows from the database.
     //returns a full row or rows from $table using $where as the where clause.
@@ -67,6 +74,7 @@ class DB {
         $order_by != "" ? $order_by = ' ORDER BY ' . $order_by : $order_by = "";
         $sql = "SELECT $columns FROM $table WHERE $where $group_by $order_by";
 
+        //echo $sql;
         $result = mysqli_query($this->getConnection(),$sql);
         //if (mysql_num_rows($result) == 1)
         //    return $this->processRowSet($result, true);
@@ -222,10 +230,7 @@ class DB {
      * @param string $table2
      * @param string $where
      */
-    public function naturalJoin($columns,$table1,$table2,$where){
-        
-		
-		
+    public function naturalJoin($columns,$table1,$table2,$where){	
 		$sql = "SELECT $columns  FROM $table1 LEFT JOIN $table2 WHERE $where";
         $result = mysqli_query($this->getConnection(),$sql);
         if (!$result) {
@@ -238,11 +243,9 @@ class DB {
         }
     }
     
-    public function leftJoin($columns,$table1,$table2,$where,$leftCol, $rightCol){
-        
-		
+    public function leftJoin($columns,$table1,$table2,$where,$leftCol, $rightCol){		
 		$sql = "SELECT $columns  FROM $table1 LEFT JOIN $table2 ON $table1.$leftCol= $table2.$rightCol WHERE $where";
-        echo $sql;
+        
         $result = mysqli_query($this->getConnection(),$sql);
         if (!$result) {
             return false;

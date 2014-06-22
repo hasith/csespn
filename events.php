@@ -21,11 +21,11 @@ if (!oauth_session_exists()) {
         <div class="container clearfix">
 
             <div id="bannerArea" class="clearfix">
-                <div id="bannerLeft">
 
-                    <p class="descriptionTab">
-                        Passionate in dynamic field of Computer Science & Engineering and to explore new technology, new perceptions and diverse thinking patterns. Yet, not restricted as a computer science geek, but passionate in experiencing diverse fields and people. Proven myself to be successful in team work and leadership.
-                    </p>
+                <p class="page-title">
+                    Our calendar is kept busy with diverse events for creating all rounded graduates who work hand-in-hand with the industry. This page let you to plan your sponsorships to maximise the return of your investment.
+                </p>
+                <div id="bannerLeft">
                     <div id="calendar">
                         <div style="display: none" id="event-dialog" title="">
                             <p id="event-dialog-desc"></p>
@@ -44,7 +44,7 @@ if (!oauth_session_exists()) {
                                 <span id="event-dialog-venue"></span>
                             </p>
                             <p id="more-info">
-                                <span id="event-dialog-url-label"><b>More info: </b></span>
+                                <span id="event-dialog-url-label"><b>Related Links: </b></span>
                                 <a id="event-dialog-url" href="" target='_blank'></a>
                             </p>
                             <div id="sponsor-ship">
@@ -146,16 +146,20 @@ if (!oauth_session_exists()) {
                         </ul>
                     </div>
                 </div>
-                <div id="rightSide">
-
-                    <ul id="legend">
+                <div id="rightSide" style="font-family: Arial, Helvetica, sans-serif;">
+                    Sponsorship Oppotunities
+                    <ul id="legend" style="margin-left: 20px; margin-top: 10px; font-size:15px">
                         <li class="greenBox clearfix">
                             <span></span>
-                            <p>Sponsorship Opportunity Available</p>
+                            <p>Available</p>
                         </li>
                         <li class="cse clearfix">
                             <span></span>
-                            <p>All Sponsorship Opportunities Taken</p>
+                            <p>Already Taken</p>
+                        </li>
+                        <li class="grayBox clearfix">
+                            <span></span>
+                            <p>Past Event</p>
                         </li>
                     </ul>
 
