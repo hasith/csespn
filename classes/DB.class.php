@@ -2,14 +2,21 @@
 
 class DB {
 
-   
-
-	/*protected $db_name = 'csespn';
+	protected $db_name = 'csespn';
     protected $db_user = 'root';
     protected $db_pass = 'Jewelcase';
-    protected $db_host = 'localhost';*/
+    protected $db_host = 'localhost';
 	
     function __construct() {
+        if(!is_null($GLOBALS['prodconfigurations'])->database) {
+           
+            $dbconf = $GLOBALS['prodconfigurations']['database'];
+            
+            $this->db_host = $dbconf['db_host'];
+            $this->db_user = $dbconf['db_user'];
+            $this->db_pass = $dbconf['db_pass'];
+            $this->db_name = $dbconf['db_name'];
+        }
         $this->connect();
     }
 

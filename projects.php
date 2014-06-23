@@ -1,12 +1,17 @@
 <?php
 require_once './global.inc.php';
 session_start();
-if (!oauth_session_exists()) {
-    header('Location: ' . '404.php');
+verify_oauth_session_exists();
+
+function haveEditAccess($project) {
+    if (User::currentUser()->getOrganization()->access_level > 4 || $project->get("org_id") === User::currentUser()->company_id) {
+        return true;
+    }
+    return false;
 }
 
-function haveAccess($project) {
-    if (User::currentUser()->getOrganization()->access_level > 4 || $project->get("org_id") === User::currentUser()->company_id) {
+function haveViewAccess($project) {
+    if (User::currentUser()->getOrganization()->access_level == 2 || User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $project->get("org_id")) {
         return true;
     }
     return false;
@@ -37,7 +42,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                 <p class="page-title">
                     Organisations are welcome to collaborate with the students in assisting their research projects. 
                     You may propose your research work through this portal where interested students would pick such as their academic 
-                    research projects. Your projects can be viewed only by your organization and students to .
+                    research projects. <br/><br/>Details of your research can be viewed only by your organization and by the students.
                 </p>
                 <div id="bannerLeft">
 
@@ -59,13 +64,13 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 
                                     foreach ($projects as $project) {
                                         
-                                        if (User::currentUser()->getOrganization()->access_level == 2 || User::currentUser()->getOrganization()->access_level == 5 || User::currentUser()->company_id === $project->get("org_id")) {
+                                        
                                             $dataAvailable = true;
-                                            $project_date = strtotime($project->get("date"));
+                                            
                                             $color = 'greenColor';
                                             if ($project->get("org_id") === User::currentUser()->company_id) {
                                                 $color = 'orangeColor';
-                                            } else if(!is_null($project->get("date")) && $project_date < time()) {
+                                            } else {
                                                 $color = 'grayColor';
                                             } 
 
@@ -75,14 +80,24 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                             <h3 class="<?php echo $color ?> clearfix">
                                                 <div class="descriptionArea sessionDescription">
 
-                                                    <a href="#" ><?php echo $project->get("title"); ?></a>
-                                                    <p ><pre style="font-weight: normal; font-size: 15px;"><?php echo $project->get("description"); ?></pre></p>
+                                                    <a href="javascript:void(0)" ><?php echo $project->get("title"); ?></a>
+                                                    <p >
+                                                    <?php 
+                                                    if (haveViewAccess($project)) {
+                                                        echo '<pre style="font-weight: normal; font-size: 15px;">'.$project->get("description").'</pre>'; 
+                                                    } else {
+                                                        echo '<span style="margin-left:20px;">- Research details are only accessible to CSE students - </span>';
+                                                    }
+                                                    ?>
+                                                    </p>
 
                                                     <div class="sessionDetails">
+                                                        <?php if (haveViewAccess($project)) { ?>
                                                         <div class="userIcon">
                                                             <div class="endGPA"><?php echo $project->get("resp_name").' ('.$project->get("resp_contact").')' ?></div>
 
                                                         </div>  
+                                                        <?php } ?>
                                                         <div class="companyIcon">
                                                             <?php
                                                             if (!is_null($project->get("org_id"))) {
@@ -118,15 +133,15 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                 <div class="darkGray">
                                                     <?php
                                                     // edit available only for user's projects OR by the admin
-                                                    if (haveAccess($project)) {
-                                                        echo '<a href="#" class="session_edit project_edit" data-id="' . $project->get("id") . '"></a>';
+                                                    if (haveEditAccess($project)) {
+                                                        echo '<a href="javascript:void(0)" class="session_edit project_edit" data-id="' . $project->get("id") . '"></a>';
                                                     }
                                                     ?>
                                                 </div>
                                             </h3>  
 
                                             <?php
-                                        }
+                                        
                                     }
 
                                     if(!$dataAvailable) {
@@ -149,13 +164,11 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 
                 </div>
                 <div id="rightSide">
-                    <?php if (User::currentUser()->getOrganization()->access_level >= 3) { ?>
-                        <div id="addProject">
-                            <a href="" id="propose-project" >
-                                Propose a New Research
-                            </a>
-                        </div>
-                    <?php } ?>
+                    <div id="addProject">
+                        <a data-access="<?php echo User::currentUser()->getOrganization()->access_level ?>" href="javascript:void(0)" id="propose-project" >
+                            Propose a New Research
+                        </a>
+                    </div>
 
                     <div class="componentContainer">
                         <div class="heading">
@@ -206,11 +219,11 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                     <table>
                         <tr>
                             <td><label for="title" class="input-label">Research Title</label></td>
-                            <td><input type="text" id="title" name="title" size="60" minlength="10" maxlength="80" required><br/></td>
+                            <td><input type="text" id="title" placeholder="title is publicly visible" name="title" size="60" minlength="10" maxlength="80" required><br/></td>
                         </tr>
                         <tr>
                             <td><label for="description">Description</label></td>
-                            <td><textarea form="create_form" id="description" name="description" minlength="50" maxlength="2000" rows="15" cols="80" required></textarea><br/></td>
+                            <td><textarea form="create_form" id="description" placeholder="description is only visble to CSE students " name="description" minlength="50" maxlength="2000" rows="15" cols="80" required></textarea><br/></td>
                         </tr>                       
                         
                         <tr>
@@ -269,6 +282,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 
 
         <?php include_once 'scripts.inc.php'; ?>
+        <?php require_once './common.inc.php'; ?>
         <script type="text/javascript" src="js/project.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

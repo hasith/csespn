@@ -19,4 +19,4 @@ INSERT INTO `settings` (`id`, `key`, `value`) VALUES
 (4, 'level_4', '10');
 
 INSERT INTO `users` (`id`, `name`, `linkedin_id`, `pic_url`, `company_id`) VALUES
-(1, 'Hasith Yaggahavita', 'rTKDOUnzCR ', 'http://m.c.lnkd.licdn.com/mpr/mprx/0_jbmxXtdKs7vacLWn05phXrx14d-_vQMnPishXrMfFo6PEGm9lTYPEKD39Tty9TZspkuTIBIoQzlh','3'),
+(1, 'Hasith Yaggahavita', 'j36gDBzREQ ', 'http://m.c.lnkd.licdn.com/mpr/mprx/0_jbmxXtdKs7vacLWn05phXrx14d-_vQMnPishXrMfFo6PEGm9lTYPEKD39Tty9TZspkuTIBIoQzlh','3'),

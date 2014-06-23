@@ -9,6 +9,12 @@
     font-style: normal;
 
 }
+.message-text {
+    font-size: 15px;
+    font-style: italic;
+    color: gray;
+    padding-left: 20px;
+}
 
 .page-title {
     font-family: Verdana,Arial,sans-serif;
@@ -336,7 +342,7 @@ p.bjqs-caption{
     border-left:10px solid #ed7d31 !important;
 }
 .yellowColor{
-    border-left:10px solid #ffd966 !important;
+    border-left:10px solid #D5A003 !important;
 }
 .greenColor{
     border-left:10px solid #70ad47 !important;
@@ -381,6 +387,7 @@ p.bjqs-caption{
 	line-height:35px;
 	display:inline-block;
 	min-width:100px;
+    margin-left:20px;
 }
 
 .dateIcon{
@@ -399,7 +406,7 @@ p.bjqs-caption{
 	background:url(../img/factory.png) left center no-repeat;
 	padding-left:30px;
 	line-height:35px;
-	margin-left:30px;
+	margin-left:20px;
 }
 
 
@@ -891,9 +898,7 @@ border-bottom-left-radius: 4px;
     font-size:14px;
     font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
     width:564px;
-    text-align: justify;
     text-overflow: ellipsis;
-    /*word-break:break-all;*/
     line-height:24px;
 }
 #date-details p{

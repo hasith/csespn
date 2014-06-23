@@ -11,8 +11,6 @@
                 <li><a href="http://www.cse.mrt.ac.lk/" target="_blank">Department Website</a></li>
                          <?php
                              if(oauth_session_exists()){
-                                 //echo '<li><a href="./events.php">' . 'Portal' . '</a></li>';
-                                 //echo '<li><a href=' . "./logout.php" . ">Logout</a></li>";
                                  echo '<li><a href=' . "./landing.php" . ">Access the Portal</a></li>";
                              }else{
                                  echo '<li><a href=' . "./login.php?lType=initiate" . ">Connect with LinkedIn</a></li>";

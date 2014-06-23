@@ -1,6 +1,8 @@
 <?php
-
 require_once './global.inc.php';
+session_start();
+verify_oauth_session_exists();
+
 
 $event_id = $_POST["event_id"];
 $event_details = Event::get($event_id);

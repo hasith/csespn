@@ -10,13 +10,21 @@ try {
     if (!session_start()) {
         throw new LinkedInException('This script requires session support, which appears to be disabled according to session_start().');
     }
-
+    
     // display constants
     $API_CONFIG = array(
         'appKey' => '75fno7hvkbmq7y',
         'appSecret' => 'pEl89XNWnH05vuRG',
         'callbackUrl' => NULL
     );
+
+    if(isset($GLOBALS['prodconfigurations'])) {
+        $lnconf = $GLOBALS['prodconfigurations']['linkedin'];
+        
+        $API_CONFIG['appKey'] = $lnconf['appKey'];
+        $API_CONFIG['appSecret'] = $lnconf['appSecret'];
+    } 
+  
 
     // set index
     $_REQUEST[LINKEDIN::_GET_TYPE] = (isset($_REQUEST[LINKEDIN::_GET_TYPE])) ? $_REQUEST[LINKEDIN::_GET_TYPE] : '';
@@ -62,12 +70,14 @@ try {
             } else {
                 // LinkedIn has sent a response, user has granted permission, take the temp access token, the user's secret and the verifier to request the user's real secret key   
                 $response = $OBJ_linkedin->retrieveTokenAccess($_SESSION['oauth']['linkedin']['request']['oauth_token'], $_SESSION['oauth']['linkedin']['request']['oauth_token_secret'], $_GET['oauth_verifier']);
+                
                 if ($response['success'] === TRUE) {
                     // the request went through without an error, gather user's 'access' tokens
                     $_SESSION['oauth']['linkedin']['access'] = $response['linkedin'];
 
                     // set the user as authorized for future quick reference
                     $_SESSION['oauth']['linkedin']['authorized'] = TRUE;
+                    
 
                     $OBJ_linkedin = new LinkedIn($API_CONFIG);
                     $OBJ_linkedin->setTokenAccess($_SESSION['oauth']['linkedin']['access']);
@@ -75,6 +85,7 @@ try {
                     $response = $OBJ_linkedin->profile('~:(id,first-name,last-name,picture-url,skills,summary,languages,public-profile-url)');
 
                     $result = new SimpleXMLElement($response['linkedin']);
+                    
                     
                     if (Student::getStudent($result->{'public-profile-url'}) !== null) {
                         //User is a student
@@ -124,7 +135,8 @@ try {
                             $user->company_id = Company::getPublicUserCompanyId();
                             $user->save(TRUE);
                         }
-                    }                    
+                    }     
+                    
                     User::login($result->{'id'});
                     // redirect the user back to the demo page
                     header('Location: ./landing.php');

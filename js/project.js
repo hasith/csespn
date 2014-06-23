@@ -1,10 +1,13 @@
 $(document).ready(function(){
 		
-	$( "#propose-project" )
-	  .button()
-	  .click(function() {
-	  	$('#create_form').populate({});
-	    $( "#dialog-form" ).dialog( "open" );
+	$( "#propose-project" ).button().click(function() {
+        if($(this).data("access") > 2) {
+            $('#create_form').populate({});
+	       $( "#dialog-form" ).dialog( "open" );
+        } else {
+            premiumFeature();
+        }
+	  	
 	    return false;
 	  });
 	

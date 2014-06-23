@@ -271,10 +271,11 @@ $(document).ready(function() {
 
     function showTakeSposorshipDialog(id, access_level) {
         if (access_level < 3) {
-            $("#reload-at-ok").val(false);
-            $("#message-dialog").dialog('option', 'title', 'Sorry');
-            $("#message-dialog-content").html("Only Basic and Premium Partners can apply for sponsorships.");
-            $("#message-dialog").dialog("open");
+            //$("#reload-at-ok").val(false);
+            //$("#message-dialog").dialog('option', 'title', 'Sorry');
+            //$("#message-dialog-content").html("Only Basic and Premium Partners can apply for sponsorships...");
+            //$("#message-dialog").dialog("open");
+            premiumFeature();
         }
         else {
             $("#sp-apply-form").find("#sp-id").val(id);

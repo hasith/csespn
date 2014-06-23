@@ -1,9 +1,8 @@
 <?php
 require_once './global.inc.php';
 session_start();
-if (!oauth_session_exists()) {
-    header('Location: ' . '404.php');
-}
+verify_oauth_session_exists();
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -229,6 +228,7 @@ if (!oauth_session_exists()) {
 
 
         <?php include_once 'scripts.inc.php'; ?>
+        <?php require_once './common.inc.php'; ?>
         <script type="text/javascript" src="js/event.js"></script>
         ]
 

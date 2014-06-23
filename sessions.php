@@ -1,9 +1,7 @@
 <?php
 require_once './global.inc.php';
 session_start();
-if (!oauth_session_exists()) {
-    header('Location: ' . '404.php');
-}
+verify_oauth_session_exists();
 
 function haveAccess($session) {
     if (User::currentUser()->getOrganization()->access_level > 4 || $session->get("org_id") === User::currentUser()->company_id) {
@@ -63,7 +61,9 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                             $color = 'orangeColor';
                                         } else if(!is_null($session->get("date")) && $session_date < time()) {
                                             $color = 'grayColor';
-                                        } 
+                                        } else if(is_null($session->get("date"))){
+                                            $color = 'yellowColor';
+                                        }
                                         
                                         
                                         ?>
@@ -77,23 +77,26 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                     }
                                                 ?>
                                                 <img style="margin-top:10px" height="100" width="100" src="<?php echo $pic_url; ?>"/>
-                                                <a href="#" style="margin-top: -95px; margin-left: 140px;"><?php echo $session->get("title"); ?></a>
+                                                <a href="javascript:void(0)" style="margin-top: -95px; margin-left: 140px;"><?php echo $session->get("title"); ?></a>
                                                 <p style="margin-left: 140px;"><?php echo $session->get("description"); ?></p>
                                                 
                                                 <div class="sessionDetails">
                                                 	<div class="dateIcon">
                                                     	<?php
                                                             $datestyle = "";
-                                                            if(!is_null($session->get("date")) && $session_date < time()) {
+                                                            
+                                                            if (!is_null($session->get("date")) && $session_date < time()) {
                                                                 $datestyle = 'style="color:#7f7f7f   !important"';
-                                                            } else {
+                                                            } else if(!is_null($session->get("date")) ) {
                                                                 $datestyle = 'style="color:#70ad47  !important"';
-                                                            }
+                                                            } else if (is_null($session->get("date")) && $session->get("org_id") !== User::currentUser()->company_id){
+                                                                $datestyle = 'style="color:#D5A003   !important"';
+                                                            }  
                                         
                                                             if (!is_null($session->get("date"))) {
                                                                 echo '<div class="endGPA" '.$datestyle.'>' . date("j F Y", strtotime($session->get("date"))) . '</div>';
                                                             } else {
-                                                                echo '<div class="endGPA">Date not agreed</div>';
+                                                                echo '<div class="endGPA" '.$datestyle.'>Date not agreed</div>';
                                                             } 
 														?> 
                                                     </div>  
@@ -106,13 +109,12 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                                 $style = 'style="color:#ed7d31 !important"';
                                                             }
 															echo '<div class="linkedLink company-name" '.$style.' >' . $company->name . '</div>';
-														} else if (User::currentUser()->getOrganization()->access_level >= 3) {
+														} else {
                                                             if(!is_null($session->get("date")) && $session_date < time()) {
-                                                                echo'<div data-id="' . $session->id . '" class="linkedLink" style="font-size:12px !important">(No Facilitator)</div>';
+                                                                echo'<div class="linkedLink" style="font-size:12px !important">(No Facilitator)</div>';
                                                             } else {
-                                                                echo'<div data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Take this Session</a></div>';
-                                                            }
-															
+                                                                echo'<div data-access="'.User::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Take this Session</a></div>';
+                                                            }		
 														}
 														?>
                                                     </div>
@@ -140,7 +142,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                 <?php
                                                 // edit available only for user's sessions OR by the admin
                                                 if (haveAccess($session)) {
-                                                    echo '<a href="#" class="session_edit" data-id="' . $session->get("id") . '"></a>';
+                                                    echo '<a href="javascript:void(0)" class="session_edit" data-id="' . $session->get("id") . '"></a>';
                                                 }
                                                 ?>
                                             </div>
@@ -165,13 +167,12 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 
                 </div>
                 <div id="rightSide">
-                    <?php if (User::currentUser()->getOrganization()->access_level >= 3) { ?>
+                    
                         <div id="addProject">
-                            <a href="" id="propose-session" >
+                            <a href="" data-access="<?php echo User::currentUser()->getOrganization()->access_level; ?>" id="propose-session" >
                                 Propose a New Session
                             </a>
                         </div>
-                    <?php } ?>
 
                     <div class="componentContainer">
                         <div class="heading">
@@ -307,6 +308,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 
 
         <?php include_once 'scripts.inc.php'; ?>
+        <?php require_once './common.inc.php'; ?>
         <script type="text/javascript" src="js/session.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->

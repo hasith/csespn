@@ -1,9 +1,15 @@
-<?php header( 'Content-type: text/html; charset=utf-8' ); ?>
-<?php require_once 'global.inc.php'; ?>
-<?php require_once 'simple_html_dom.php'; ?>
-
-
 <?php
+header( 'Content-type: text/html; charset=utf-8' );
+require_once './global.inc.php';
+require_once 'simple_html_dom.php';
+
+session_start();
+verify_oauth_session_exists();
+
+if (User::currentUser()->getOrganization()->access_level < 4) {
+    echo "Access denied";
+    die();
+}
 
 $start_index = 0;
 if(isset($_GET['start_index'])) $start_index = $_GET['start_index'];

@@ -1,9 +1,7 @@
 <?php
 require_once './global.inc.php';
 session_start();
-if (!oauth_session_exists()) {
-    header('Location: ' . '404.php');
-}
+verify_oauth_session_exists();
 
 $studentTools = new StudentTools();
 $settingsTools = new SettingsTools();
@@ -11,7 +9,11 @@ $settingsTools = new SettingsTools();
 $sort = 'name';
 if(isset($_GET['sort'])) $sort = $_GET['sort'];
 
-$technology = $_GET['technology'];
+if(User::currentUser()->getOrganization()->access_level > 2) {
+    $technology = $_GET['technology'];
+}
+
+
 
 $batch = "level_4";
 
@@ -47,6 +49,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 <?php require_once './head.inc.php'; ?>
 <body>
+
 <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->  
@@ -62,31 +65,35 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                             <?php
                                 
                                 if($batch =="level_4"){
-                                    echo '<li class="nav-one"><a class="batch-tab current" data-batch="level_4" href="#">Level 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="#" class="batch-tab" data-batch="level_3" >Level 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="#" class="batch-tab" data-batch="level_2">Level 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab current" data-batch="level_4" href="javascript:void(0)">Level 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Level 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Level 2 students</a></li>';
                                 }
                                     
                                 else if($batch =="level_3"){
-                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="#">Level 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="#" class="batch-tab current" data-batch="level_3" >Level 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="#" class="batch-tab" data-batch="level_2">Level 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Level 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_3" >Level 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Level 2 students</a></li>';
                                 }
                                 else if($batch =="level_2"){
-                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="#">Level 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="#" class="batch-tab" data-batch="level_3" >Level 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="#" class="batch-tab current" data-batch="level_2">Level 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Level 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Level 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_2">Level 2 students</a></li>';
                                 }
                             ?>                                                        
                         </ul>                        
                         <div class="list-wrap">                        	
                             <div id="featured2">                           		
                                 <p class="descriptionTab"></p>                                
-                                <div id="accordion" class="student-page">
-                                    <?php echo getHtmlForStudents($students);
-										  
+                                
+                                    <?php 
+                                        if (count($students) > 0) {
+                                            echo '<div id="accordion" class="student-page">'.getHtmlForStudents($students).'</div>';
+                                        } else {
+                                            echo '<p class="message-text">-- no student with the given criteria is available in this batch --</p>';
+                                        }
 									?>
-                                </div>                                   
+                                                                   
                             </div>                             
                         </div> <!-- END List Wrap -->                     
                     </div>                       
@@ -133,8 +140,8 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                             <!--<div class="cloudArea"><img src="img/cloud.jpg" /></div>-->
                             <div class="cloudArea">
 
-                                <select name="technology" id="technoFilterCombo" size="15">
-                                    <option value="0">Any Technology</option>
+                                <select name="technology" id="technoFilterCombo" size="20">
+                                    <option value="0" > -- ANY TECHNOLOGY --</option>
                                     <?php
                                     $tecs = new TechnologyTools();
                                     $arr = $tecs->getAlltechnologies();
@@ -155,6 +162,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
             </div>                                                                        
         </div>
 <?php include_once 'scripts.inc.php'; ?>
+<?php require_once './common.inc.php'; ?>
 <script>
     
     $(".batch-tab").click(function(){
@@ -163,8 +171,12 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
     
     
     $('#technoFilterCombo').change(function() {
-        var tech = $('#technoFilterCombo').find(":selected").val();
-        updateQueryString("technology", tech);	
+        <?php if (User::currentUser()->getOrganization()->access_level > 2) { ?>
+            var tech = $('#technoFilterCombo').find(":selected").val();
+            updateQueryString("technology", tech);	
+        <?php } else { ?>
+            premiumFeature();
+        <?php } ?>
     });
     
     
@@ -184,8 +196,14 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
     });
     
    $("#accordion a").click(function() {
-      window.open($(this).attr("href"), '_blank');
-      return false;
+        var href = $(this).attr("href");
+        if(href && href !== '') {
+            window.open(href, '_blank');
+        } else {
+            premiumFeature();
+        }
+        
+        return false;
    });
     
    $("#team-dialog").dialog({
@@ -253,9 +271,9 @@ function getHtmlForStudent($student) {
     $color = 'grayColor'; 
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
-    $html = $html . '<a href="#">' . $student->student_id . '</a>';
+    $html = $html . '<a href="javascript:void(0)">' . $student->student_id . '</a>';
     $html = $html . '<p>'. getHtmlForStudentTechnologies($student) .'</p>';
-    $html = $html . '<a class="linkedInImg" target="_blank" href="' . $student->profile_url . '"></a></div>';
+    $html = $html . getLinkedInProfile($student).'</div>';
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
     $html = $html . '<img height="79" width="65" src="img/unknown-member.gif"/>';
@@ -272,7 +290,7 @@ function getHtmlForStudent($student) {
     $html = $html . '<img style="margin-top:10px" height="79" width="65" src="'. $student->pic_url .'"/>';
     $html = $html . '<div style="margin-left:100px; margin-top:-95px"><span class="title">' . $student->name .'  <span style="font-size:10px">('. $student->student_id.')</span></span>';    
     $html = $html . '<p>'. $student->description.'</p>';
-    $html = $html . '<a class="linkedInImg" target="_blank" href="' . $student->profile_url . '"></a></div></div>';
+    $html = $html . getLinkedInProfile($student).'</div></div>';
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
     //$html = $html . '<img height="79" width="65" src="'. $user->pic_url .'"/>';
@@ -284,20 +302,31 @@ function getHtmlForStudent($student) {
     return $html;
 }
 
-function getHtmlForStudentTechnologies($student) {
-    $technologies = $student->getCompetentTechnologies();
-    $html = "";
-    $count = 0;
-    foreach ($technologies as $key => $value) {        
-        //max display is 3 - should come from a config file
-        if ($count == count($technologies) ) {
-            $html = $html . " " . $value[0]->name ;//. " " . "(" . $value[1] . ")";
-            break;
-        }
-        $html = $html . " " . $value[0]->name . ", ";// . "(" . $value[1] . "),";
-        $count++;
+function getLinkedInProfile($student){
+    if(User::currentUser()->getOrganization()->access_level > 1) {
+        return '<a class="linkedInImg" href="' . $student->profile_url . '"></a>';
+    } else {
+        return '<a class="linkedInImg" href="" ></a>';
     }
-    return $html;
+}
+
+function getHtmlForStudentTechnologies($student) {
+    if(User::currentUser()->getOrganization()->access_level > 1) {
+        $technologies = $student->getCompetentTechnologies();
+        $html = "";
+        $count = 0;
+        foreach ($technologies as $key => $value) {  
+            if ($count == count($technologies) ) {
+                $html = $html . " " . $value[0]->name ;//. " " . "(" . $value[1] . ")";
+                break;
+            }
+            $html = $html . " " . $value[0]->name . ", ";// . "(" . $value[1] . "),";
+            $count++;
+        }
+        return $html;
+    } else {
+        return '-- student competency information is available only to the corporate users --';
+    }    
 }
 
 

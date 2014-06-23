@@ -1,9 +1,8 @@
 <?php
 require_once './global.inc.php';
 session_start();
-if (!oauth_session_exists()) {
-    header('Location: ' . '404.php');
-}
+verify_oauth_session_exists();
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -24,9 +23,15 @@ if (!oauth_session_exists()) {
                 <p style="font-size: 30px">Welcome to the CSE Partner Portal</p>
                 <div style="padding-bottom: 30px;color: #888;">You have signed-in as  
                     <?php
+                    if(User::currentUser()) {
                     $org = User::currentUser()->getOrganization();
+                    
                     if ($org->access_level == 1) {
-                        echo "a Public User";
+                        echo "a Public User 
+                        <br/><div style='color:rgb(177, 8, 8); margin-top:10px; font-size:15px'>
+                        <b>IMPORTANT NOTE:</b> Some functionality of this portan is only available to corporate users. 
+                        If your organization would like to obtain a partnership with CSE department of UoM, 
+                        please contact Dr. Chandana Gamage (chandag@cse.mrt.ac.lk) for details. </div>";
                     } else if ($org->access_level == 2) {
                         echo "a Student";
                     } else if ($org->access_level == 3) {
@@ -36,6 +41,8 @@ if (!oauth_session_exists()) {
                     } else if ($org->access_level == 5) {
                         echo "an Admin User";
                     }
+                    }
+                    
                     ?>
 
                 </div>

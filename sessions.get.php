@@ -1,7 +1,7 @@
 <?php
-	require_once './global.inc.php';	
-?>
-<?php 
+    require_once './global.inc.php';
+    session_start();
+    verify_oauth_session_exists();
 
 	$id = $_GET['id'];
 	$session = Session::fetch($id);

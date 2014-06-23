@@ -1,6 +1,6 @@
 <?php
 // Init vars
-$LOCAL_ROOT         = "/var/www/";
+/*$LOCAL_ROOT         = "/var/www/";
 $LOCAL_REPO_NAME    = "csespn";
 $LOCAL_REPO         = "{$LOCAL_ROOT}/{$LOCAL_REPO_NAME}";
 $REMOTE_REPO        = "https://github.com/scnakandala/csespn.git";
@@ -18,4 +18,4 @@ echo shell_exec("cd {$LOCAL_ROOT} && git pull");
 // Updating database
 echo shell_exec("cd {$LOCAL_REPO} && cd database_backups && bash ./db_update.sh");
 
-die("done " . mktime());
+die("done " . mktime());*/

@@ -1,10 +1,13 @@
 $(document).ready(function(){
 		
-	$( "#propose-session" )
-	  .button()
-	  .click(function() {
-	  	$('#create_form').populate({});
-	    $( "#dialog-form" ).dialog( "open" );
+	$( "#propose-session" ).button().click(function() {
+        if($(this).data("access") > 2) {
+            $('#create_form').populate({});
+	        $( "#dialog-form" ).dialog( "open" );
+        } else {
+            premiumFeature();
+        }
+	  	
 	    return false;
 	  });
 	
@@ -65,8 +68,13 @@ $(document).ready(function(){
 	});
 	
 	$(".takeSession").click(function(){
-		$("#confirmation_form :input[name='sessionId']").val($(this).data("id"));
-		$("#dialog-confirmation").dialog( "open" );
+        if($(this).data("access") > 2) {
+            $("#confirmation_form :input[name='sessionId']").val($(this).data("id"));
+		    $("#dialog-confirmation").dialog( "open" );
+        } else {
+            premiumFeature();
+        }
+		
 		return false;
 	});
 

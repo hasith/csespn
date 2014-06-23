@@ -1,9 +1,13 @@
 <?php
 require_once './global.inc.php';
 session_start();
-if (!oauth_session_exists()) {
-    header('Location: ' . '404.php');
+verify_oauth_session_exists();
+
+if (User::currentUser()->getOrganization()->access_level < 4) {
+    echo "Access denied";
+    die();
 }
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -72,7 +76,7 @@ if (!oauth_session_exists()) {
 
                     <ul id="legend">
                         <li class=" clearfix">
-                            <a href="#">Manage Users</a>
+                            <a href="admin.users.php">Manage Users</a>
                         </li>
                         <li class=" clearfix">
                             <a href="admin.company.php">Manage Companies</a>

@@ -1,2 +1,4 @@
 /nbproject/private/
 **/.DS_Store
+server_conf.php
+seed_initialproddata.sql
