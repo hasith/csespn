@@ -1,6 +1,5 @@
 <?php
 require_once './global.inc.php';
-session_start();
 verify_oauth_session_exists();
 
 

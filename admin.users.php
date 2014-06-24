@@ -1,9 +1,8 @@
 <?php
 require_once './global.inc.php';
-session_start();
 verify_oauth_session_exists();
 
-if (User::currentUser()->getOrganization()->access_level < 4) {
+if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
     echo "Access denied";
     die();
 }
@@ -54,10 +53,10 @@ if (User::currentUser()->getOrganization()->access_level < 4) {
 									{
 									?>
                                            <tr>
-                                                <td><?= $user->id ?></td>
-                                                <td><?= $user->name ?></td>
-                                                <td><?= $user->linkedin_id ?></td>
-                                                <td><a href="" class="companylink" data-companyid="<?= $user->company_id ?>" data-id="<?= $user->id ?>" ><?= $user->getOrganization()->name ?></a></td>
+                                                <td><?= $user['id'] ?></td>
+                                                <td><?= $user['name'] ?></td>
+                                                <td><?= $user['linkedin_id'] ?></td>
+                                                <td><a href="" class="companylink" data-companyid="<?= $user['company_id'] ?>" data-id="<?= $user['id'] ?>" ><?= $user['company_name'] ?></a></td>
                                             </tr>						
     <?php
 }

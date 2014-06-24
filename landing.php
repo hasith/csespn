@@ -1,6 +1,5 @@
 <?php
 require_once './global.inc.php';
-session_start();
 verify_oauth_session_exists();
 
 ?>
@@ -23,8 +22,8 @@ verify_oauth_session_exists();
                 <p style="font-size: 30px">Welcome to the CSE Partner Portal</p>
                 <div style="padding-bottom: 30px;color: #888;">You have signed-in as  
                     <?php
-                    if(User::currentUser()) {
-                    $org = User::currentUser()->getOrganization();
+                    if(HttpSession::currentUser()) {
+                    $org = HttpSession::currentUser()->getOrganization();
                     
                     if ($org->access_level == 1) {
                         echo "a Public User 
@@ -87,27 +86,10 @@ verify_oauth_session_exists();
                 
             </div>
 
-
-
-
-
-
-
         </div>
 
 
         <?php include_once 'scripts.inc.php'; ?>
         <script type="text/javascript" src="js/event.js"></script>
-        ]
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <!--<script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>-->
     </body>
 </html>

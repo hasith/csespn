@@ -146,7 +146,7 @@ class Session {
 		$filters = array(
 			"past" => "date < now()", 
 			"future" => "date IS NULL OR date > now()", 
-			"my" => "org_id = ".User::currentUser()->getOrganization()->id, 
+			"my" => "org_id = ".HttpSession::currentUser()->getOrganization()->id, 
 			"open" =>"org_id IS NULL");
 		$where = isset($filters[$filterStr])?$filters[$filterStr]:$filters["future"];
 		

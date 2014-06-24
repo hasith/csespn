@@ -7,24 +7,10 @@ class UserTools{
         $this->db = new DB();
     }
     
-    function getAllLeads(){
-        $results = $this->db->innerJoin("users","companies","company_id","id","companies.access_level=4",1);
-        $leads = array();
-        foreach ($results as $result) {
-            array_push($leads, new User($result));
-        }
-        
-        return $leads;
-    }
-	
 	function getAll(){
-        $results = $this->db->select("users", "1=1");
-        $users = array();
-        foreach ($results as $result) {
-            array_push($users, new User($result));
-        }
+        $results = $this->db->query("select users.*, companies.access_level, companies.name as company_name, companies.id as company_id  from users left outer join companies on (users.company_id = companies.id)");
         
-        return $users;
+        return $results;
     }
 }
 

@@ -8,7 +8,7 @@ class DB {
     protected $db_host = 'localhost';
 	
     function __construct() {
-        if(!is_null($GLOBALS['prodconfigurations'])->database) {
+        if($GLOBALS['prodconfigurations']) {
            
             $dbconf = $GLOBALS['prodconfigurations']['database'];
             

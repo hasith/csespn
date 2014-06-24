@@ -1,6 +1,5 @@
 <?php
     require_once './global.inc.php';
-    session_start();
     verify_oauth_session_exists();
 
     $sponsorship_id = $_POST["sponsorship_id"];

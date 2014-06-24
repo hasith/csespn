@@ -3,10 +3,9 @@ header( 'Content-type: text/html; charset=utf-8' );
 require_once './global.inc.php';
 require_once 'simple_html_dom.php';
 
-session_start();
 verify_oauth_session_exists();
 
-if (User::currentUser()->getOrganization()->access_level < 4) {
+if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
     echo "Access denied";
     die();
 }

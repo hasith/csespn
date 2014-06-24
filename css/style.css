@@ -20,6 +20,7 @@
     font-family: Verdana,Arial,sans-serif;
     font-size: 15px;
     color: #666666;
+    margin-bottom: 0px;
 }
 
 #footer  {
@@ -116,7 +117,8 @@
     padding:17px 25px !important;
 }
 #nav ul li:last-child a{
-    background:#2e75b6;
+    /*background:#2e75b6;*/
+    color: #E4D8D8;
 }
 #nav ul li:last-child a:hover{
     text-decoration:none !important;
@@ -125,7 +127,8 @@
     text-shadow: 3px 3px 3px #FFFFFF;
 }
 #nav ul li.active{
-    text-decoration: underline;
+    /*text-decoration: underline;*/
+    background:#2e75b6;
 }
 
 #bannerArea{
@@ -562,6 +565,7 @@ p.bjqs-caption{
     width:100%;
 	border:none;
 	line-height:25px;
+    font-size: 15px;
 }
 .ccContainer ul {
     margin:0;
@@ -586,6 +590,7 @@ p.bjqs-caption{
 }
 .ccContainer ul li label{
     margin-left:10px;
+    font-size: 14px;
 }
 #addProject{
     margin-bottom:25px;
@@ -785,7 +790,7 @@ border-bottom-left-radius: 4px;
     font-family:open_sansregular;
     font-weight:normal;
     font-size:14px;
-    color:#1f4e79;
+    color:#7f7f7f;
     text-align:left;
     margin:0;
     padding:0;

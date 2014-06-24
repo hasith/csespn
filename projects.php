@@ -1,17 +1,16 @@
 <?php
 require_once './global.inc.php';
-session_start();
 verify_oauth_session_exists();
 
 function haveEditAccess($project) {
-    if (User::currentUser()->getOrganization()->access_level > 4 || $project->get("org_id") === User::currentUser()->company_id) {
+    if (HttpSession::currentUser()->getOrganization()->access_level > 4 || $project->get("org_id") === HttpSession::currentUser()->company_id) {
         return true;
     }
     return false;
 }
 
 function haveViewAccess($project) {
-    if (User::currentUser()->getOrganization()->access_level == 2 || User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $project->get("org_id")) {
+    if (HttpSession::currentUser()->getOrganization()->access_level == 2 || HttpSession::currentUser()->getOrganization()->access_level > 4 || HttpSession::currentUser()->company_id === $project->get("org_id")) {
         return true;
     }
     return false;
@@ -40,9 +39,9 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
             <div id="bannerArea" class="clearfix">
 
                 <p class="page-title">
-                    Organisations are welcome to collaborate with the students in assisting their research projects. 
+                    You are welcome to collaborate with the university by partnering student research projects. 
                     You may propose your research work through this portal where interested students would pick such as their academic 
-                    research projects. <br/><br/>Details of your research can be viewed only by your organization and by the students.
+                    research projects. <br/><br/>NOTE: Details of your research can be viewed only by your organization and the students.
                 </p>
                 <div id="bannerLeft">
 
@@ -68,7 +67,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                             $dataAvailable = true;
                                             
                                             $color = 'greenColor';
-                                            if ($project->get("org_id") === User::currentUser()->company_id) {
+                                            if ($project->get("org_id") === HttpSession::currentUser()->company_id) {
                                                 $color = 'orangeColor';
                                             } else {
                                                 $color = 'grayColor';
@@ -103,7 +102,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                             if (!is_null($project->get("org_id"))) {
                                                                 $company = Company::get($project->get("org_id"));
                                                                 $style = "";
-                                                                if($project->get("org_id") === User::currentUser()->company_id) {
+                                                                if($project->get("org_id") === HttpSession::currentUser()->company_id) {
                                                                     $style = 'style="color:#ed7d31 !important"';
                                                                 }
                                                                 echo '<div class="linkedLink company-name" '.$style.' >' . $company->name . '</div>';
@@ -165,7 +164,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                 </div>
                 <div id="rightSide">
                     <div id="addProject">
-                        <a data-access="<?php echo User::currentUser()->getOrganization()->access_level ?>" href="javascript:void(0)" id="propose-project" >
+                        <a data-access="<?php echo HttpSession::currentUser()->getOrganization()->access_level ?>" href="javascript:void(0)" id="propose-project" >
                             Propose a New Research
                         </a>
                     </div>
@@ -257,7 +256,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                     $companyTools = new CompanyTools();
                                     $companies = $companyTools->getAllCompanies();
                                     foreach ($companies as $company) {
-                                        if (User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $company->id) {
+                                        if (HttpSession::currentUser()->getOrganization()->access_level > 4 || HttpSession::currentUser()->company_id === $company->id) {
                                             echo '<option value="' . $company->id . '">' . $company->name . '</option>';
                                         }
                                     }
@@ -285,14 +284,5 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
         <?php require_once './common.inc.php'; ?>
         <script type="text/javascript" src="js/project.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <!--<script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>-->
     </body>
 </html>

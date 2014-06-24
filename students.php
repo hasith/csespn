@@ -1,6 +1,5 @@
 <?php
 require_once './global.inc.php';
-session_start();
 verify_oauth_session_exists();
 
 $studentTools = new StudentTools();
@@ -9,7 +8,7 @@ $settingsTools = new SettingsTools();
 $sort = 'name';
 if(isset($_GET['sort'])) $sort = $_GET['sort'];
 
-if(User::currentUser()->getOrganization()->access_level > 2) {
+if(HttpSession::currentUser()->getOrganization()->access_level > 2) {
     $technology = $_GET['technology'];
 }
 
@@ -57,7 +56,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
 <?php require_once './nav.inc.php'; ?>    
         <div class="container clearfix">        	
             <div id="bannerArea" class="clearfix">
-                <p class="page-title">A vibrant pool of CSE students who are keen to be part of cross functional activities is our greatest strength. The organizations are able to collaborate with the students in their organizational activities by forming teams according to their preference. Such initiatives help the students to engage with the corporate sector during their academic life.</p>
+                <p class="page-title" style="margin-bottom:20px">The vibrant pool of students who are keen of cross functional activities is our greatest strength. You are able to collaborate with the students in your organizational activities by forming teams according to your preference. </p>
                 <div id="bannerLeft">	
                     
                     <div id="example-two">					
@@ -83,7 +82,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                             ?>                                                        
                         </ul>                        
                         <div class="list-wrap">                        	
-                            <div id="featured2">                           		
+                            <div id="featured2" style="margin-top: -30px;">                           		
                                 <p class="descriptionTab"></p>                                
                                 
                                     <?php 
@@ -100,7 +99,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                 </div>
                 
                <div id="rightSide">	
-                    <?php if (User::currentUser()->getOrganization()->access_level >= 3) { ?>
+                    <?php if (HttpSession::currentUser()->getOrganization()->access_level >= 3) { ?>
                         <div id="addProject">
                             <a href="" id="assemble-team" >
                                 Assemble a Team
@@ -122,7 +121,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
 
                     <div style="display: none" id="team-dialog" title="We are still developing...">
                         <input type="hidden" id="sp-dialog-id"/>
-                        <input type="hidden" id="user-level" value="<?php echo User::currentUser()->getOrganization()->access_level; ?>"/>
+                        <input type="hidden" id="user-level" value="<?php echo HttpSession::currentUser()->getOrganization()->access_level; ?>"/>
 
                         <p>Thanks for your interest on this feature, currently we are busy developing it :). <br/></br/>Once complete it will let you  assemble a team of students to assist you in your organizational activities such as events, promotions, CSR, etc.</p>
                     </div> 
@@ -171,7 +170,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
     
     
     $('#technoFilterCombo').change(function() {
-        <?php if (User::currentUser()->getOrganization()->access_level > 2) { ?>
+        <?php if (HttpSession::currentUser()->getOrganization()->access_level > 2) { ?>
             var tech = $('#technoFilterCombo').find(":selected").val();
             updateQueryString("technology", tech);	
         <?php } else { ?>
@@ -241,15 +240,6 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
 	});
 	    
 </script>
-<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-<!--<script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X');ga('send','pageview');
-</script>-->
     </body>
 </html>
 
@@ -303,7 +293,7 @@ function getHtmlForStudent($student) {
 }
 
 function getLinkedInProfile($student){
-    if(User::currentUser()->getOrganization()->access_level > 1) {
+    if(HttpSession::currentUser()->getOrganization()->access_level > 1) {
         return '<a class="linkedInImg" href="' . $student->profile_url . '"></a>';
     } else {
         return '<a class="linkedInImg" href="" ></a>';
@@ -311,7 +301,7 @@ function getLinkedInProfile($student){
 }
 
 function getHtmlForStudentTechnologies($student) {
-    if(User::currentUser()->getOrganization()->access_level > 1) {
+    if(HttpSession::currentUser()->getOrganization()->access_level > 1) {
         $technologies = $student->getCompetentTechnologies();
         $html = "";
         $count = 0;

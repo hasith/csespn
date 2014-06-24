@@ -7,9 +7,9 @@ try {
     require_once('linkedin_3.2.0.class.php');
 
     // start the session
-    if (!session_start()) {
-        throw new LinkedInException('This script requires session support, which appears to be disabled according to session_start().');
-    }
+    //if (!session_start()) {
+    //    throw new LinkedInException('This script requires session support, which appears to be disabled according to session_start().');
+    //}
     
     // display constants
     $API_CONFIG = array(
@@ -18,7 +18,7 @@ try {
         'callbackUrl' => NULL
     );
 
-    if(isset($GLOBALS['prodconfigurations'])) {
+    if($GLOBALS['prodconfigurations']) {
         $lnconf = $GLOBALS['prodconfigurations']['linkedin'];
         
         $API_CONFIG['appKey'] = $lnconf['appKey'];
@@ -137,7 +137,7 @@ try {
                         }
                     }     
                     
-                    User::login($result->{'id'});
+                    HttpSession::login($result->{'id'});
                     // redirect the user back to the demo page
                     header('Location: ./landing.php');
                 } else {

@@ -1,10 +1,9 @@
 <?php
 require_once './global.inc.php';
-session_start();
 verify_oauth_session_exists();
 
 function haveAccess($session) {
-    if (User::currentUser()->getOrganization()->access_level > 4 || $session->get("org_id") === User::currentUser()->company_id) {
+    if (HttpSession::currentUser()->getOrganization()->access_level > 4 || $session->get("org_id") === HttpSession::currentUser()->company_id) {
         return true;
     }
     return false;
@@ -32,7 +31,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
             <div id="bannerArea" class="clearfix">
 
                 <p class="page-title">
-                   Below we are listing the needs for external uni-sessions (technical and soft-skill). We would like to invite you to facilitate sessions of of your interest, which in turn will be an opening to enhance the collaboration with the students. In addition, you may also propose new sessions which you think would be useful to students.
+                   Below we are listing the needs for external uni-sessions (technical and soft-skill). We would like to invite you to facilitate sessions of your interest, which in turn will be an opening to enhance the collaboration with the students. In addition, you may also propose new sessions which you think would be useful to the students.
                 </p>
                 <div id="bannerLeft">
 
@@ -57,7 +56,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                     foreach ($sessions as $session) {
                                         $session_date = strtotime($session->get("date"));
                                         $color = 'greenColor';
-                                        if ($session->get("org_id") === User::currentUser()->company_id) {
+                                        if ($session->get("org_id") === HttpSession::currentUser()->company_id) {
                                             $color = 'orangeColor';
                                         } else if(!is_null($session->get("date")) && $session_date < time()) {
                                             $color = 'grayColor';
@@ -89,7 +88,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                                 $datestyle = 'style="color:#7f7f7f   !important"';
                                                             } else if(!is_null($session->get("date")) ) {
                                                                 $datestyle = 'style="color:#70ad47  !important"';
-                                                            } else if (is_null($session->get("date")) && $session->get("org_id") !== User::currentUser()->company_id){
+                                                            } else if (is_null($session->get("date")) && $session->get("org_id") !== HttpSession::currentUser()->company_id){
                                                                 $datestyle = 'style="color:#D5A003   !important"';
                                                             }  
                                         
@@ -105,7 +104,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 														if (!is_null($session->get("org_id"))) {
 															$company = Company::get($session->get("org_id"));
                                                             $style = "";
-                                                            if($session->get("org_id") === User::currentUser()->company_id) {
+                                                            if($session->get("org_id") === HttpSession::currentUser()->company_id) {
                                                                 $style = 'style="color:#ed7d31 !important"';
                                                             }
 															echo '<div class="linkedLink company-name" '.$style.' >' . $company->name . '</div>';
@@ -113,7 +112,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                             if(!is_null($session->get("date")) && $session_date < time()) {
                                                                 echo'<div class="linkedLink" style="font-size:12px !important">(No Facilitator)</div>';
                                                             } else {
-                                                                echo'<div data-access="'.User::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Take this Session</a></div>';
+                                                                echo'<div data-access="'.HttpSession::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Take this Session</a></div>';
                                                             }		
 														}
 														?>
@@ -169,7 +168,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                 <div id="rightSide">
                     
                         <div id="addProject">
-                            <a href="" data-access="<?php echo User::currentUser()->getOrganization()->access_level; ?>" id="propose-session" >
+                            <a href="" data-access="<?php echo HttpSession::currentUser()->getOrganization()->access_level; ?>" id="propose-session" >
                                 Propose a New Session
                             </a>
                         </div>
@@ -201,7 +200,6 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                 <li><label><input type="radio" name="sortby" value="updated" checked="true"> Recently modified</label></input></li>
                                 <li><label><input type="radio" name="sortby" value="date"> Session date</label></input></li>
                                 <li><label><input type="radio" name="sortby" value="title"> Session title</label></input></li>
-                                <li><label><input type="radio" name="sortby" value="duration"> Session longest duration</label></input></li>
                             </ul>
                         </div>
 
@@ -279,7 +277,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                     $companyTools = new CompanyTools();
                                     $companies = $companyTools->getAllCompanies();
                                     foreach ($companies as $company) {
-                                        if (User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $company->id) {
+                                        if (HttpSession::currentUser()->getOrganization()->access_level > 4 || HttpSession::currentUser()->company_id === $company->id) {
                                             echo '<option value="' . $company->id . '">' . $company->name . '</option>';
                                         }
                                     }
@@ -299,7 +297,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                     <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
                         session details where you may fill in contact person details, etc. 
                         We will get in touch with you soon.</p>
-                    <input type="hidden" name="orgId" value="<?= User::currentUser()->company_id ?>" />
+                    <input type="hidden" name="orgId" value="<?= HttpSession::currentUser()->company_id ?>" />
                     <input type="hidden" name="sessionId" />
                     <input type="hidden" name="queryString"/>
                 </fieldset>
@@ -311,14 +309,5 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
         <?php require_once './common.inc.php'; ?>
         <script type="text/javascript" src="js/session.js"></script>
 
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <!--<script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>-->
     </body>
 </html>

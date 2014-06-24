@@ -1,6 +1,5 @@
 <?php
 require_once './global.inc.php';
-session_start();
 verify_oauth_session_exists();
 
 ?>
@@ -22,7 +21,7 @@ verify_oauth_session_exists();
             <div id="bannerArea" class="clearfix">
 
                 <p class="page-title">
-                    Our calendar is kept busy with diverse events for creating all rounded graduates who work hand-in-hand with the industry. This page let you to plan your sponsorships to maximise the return of your investment.
+                    Our calendar is kept busy with diverse events for creating all rounded graduates who work hand-in-hand with the industry. This page lets you to plan your sponsorships to maximise the return on your investment.
                 </p>
                 <div id="bannerLeft">
                     <div id="calendar">
@@ -53,7 +52,7 @@ verify_oauth_session_exists();
                         </div>
                         <div style="display: none" id="sponsorships-dialog" title="">
                             <input type="hidden" id="sp-dialog-id"/>
-                            <input type="hidden" id="user-level" value="<?php echo User::currentUser()->getOrganization()->access_level; ?>"/>
+                            <input type="hidden" id="user-level" value="<?php echo HttpSession::currentUser()->getOrganization()->access_level; ?>"/>
                            
                             <p id="amount-details">
                                 <b>Amount: </b>Rs.<span id="sp-dialog-amount"></span>
@@ -71,7 +70,7 @@ verify_oauth_session_exists();
                                             $companyTools = new CompanyTools();
                                             $companies = $companyTools->getAllCompanies();
                                             foreach ($companies as $company) {
-                                                if (User::currentUser()->getOrganization()->access_level > 4 || User::currentUser()->company_id === $company->id) {
+                                                if (HttpSession::currentUser()->getOrganization()->access_level > 4 || HttpSession::currentUser()->company_id === $company->id) {
                                                     echo '<option value="' . $company->id . '">' . $company->name . '</option>';
                                                 }
                                             }
@@ -218,28 +217,12 @@ verify_oauth_session_exists();
                 </div>
             </div>
 
-
-
-
-
-
-
         </div>
 
 
         <?php include_once 'scripts.inc.php'; ?>
         <?php require_once './common.inc.php'; ?>
         <script type="text/javascript" src="js/event.js"></script>
-        ]
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <!--<script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>-->
+        
     </body>
 </html>

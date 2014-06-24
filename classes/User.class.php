@@ -13,7 +13,7 @@ class User {
     public $profile_url;
 	
 	//related entities
-	protected $organization;
+	public $organization;
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
@@ -62,13 +62,6 @@ class User {
         return true;
     }
 
-    //Log the user out. Destroy the session variables.
-    public function logout() {
-        unset($_SESSION['user']);
-        unset($_SESSION['login_time']);
-        unset($_SESSION['logged_in']);
-        session_destroy();
-    }
 
     public function getOrganization() {
     	if ($this->company_id === null) {
@@ -96,7 +89,8 @@ class User {
     public static function get($id) {
         $db = new DB();
         $result = $db->select('users', "id = $id");
-        return new User($result[0]);
+        $newUser = new User($result[0]);
+        return $newUser;
     }
     
     //get a user from linkedin id
@@ -109,24 +103,6 @@ class User {
         return new User($result[0]);
     }
 
-    public static function login($linkedin_id) {
-        $db = new DB();
-        $result = $db->select('users', "linkedin_id = '$linkedin_id'");
-        if (!empty($result)) {
-            $user = new User($result[0]);
-			$user->organization = $user->getOrganization();
-            $_SESSION["user"] = $user;
-
-            $_SESSION["login_time"] = time();
-            $_SESSION["logged_in"] = 1;
-            return $_SESSION['user'];
-        } else {
-            return null;
-        }
-    }
 	
-	public static function currentUser(){
-		return $_SESSION['user'];
-	}
 
 }
