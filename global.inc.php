@@ -2,6 +2,8 @@
 
 define('ROOT_DIR', dirname(__FILE__));
 
+error_reporting(E_ALL ^ E_NOTICE);
+ini_set('max_execution_time', 0); 
 
 if(file_exists('./server_conf.php')){
     require_once('./server_conf.php');
