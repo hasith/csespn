@@ -19,5 +19,23 @@ class TechnologyTools {
         
         return $technologies;
     }
+    
+    public function getTechnologiesForBatch($batchId) {
+        
+        $sql = "Select distinct technologies.* from students 
+                left outer join batches on batches.id = students.batch
+                left outer join endorsements on endorsements.student_id = students.id
+                left outer join technologies on endorsements.technology_id = technologies.id
+                where batches.id = ".$batchId.
+                " and technologies.name<>'' order by technologies.name";
+        //echo $sql;
+        $results = $this->db->query($sql);
+        $technologies = array();
+        foreach ($results as $result) {
+            array_push($technologies, new Technology($result));
+        }
+        
+        return $technologies;
+    }
 
 }

@@ -2,6 +2,7 @@
 
 require_once ROOT_DIR . '/classes/DB.class.php';
 require_once ROOT_DIR . '/classes/Technology.class.php';
+require_once ROOT_DIR . '/classes/UniScore.class.php';
 
 class Student {
     
@@ -19,6 +20,8 @@ class Student {
     
     //This is fetched from the batches table.course
     public $course;
+    //from uni_score table
+    public $uni_score;
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
@@ -36,6 +39,7 @@ class Student {
         $this->gpa = (isset($data[0]['gpa'])) ? $data[0]['gpa'] : "";
         $this->description = (isset($data[0]['description'])) ? $data[0]['description'] : "";
         $this->course = (isset($data[0]['course'])) ? $data[0]['course'] : "";
+        $this->uni_score = new UniScore($data);
     }
 
     public function save($isNewStudent = false) {

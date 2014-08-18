@@ -72,7 +72,13 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
 
                 </div>
                 <div id="rightSide">
+<?php 
+    echo "We are learning PHP here";
 
+    for($i = 0; $i<5; $i++) {
+        echo $i." ";
+    };
+             ?>
                     <ul id="legend">
                         <li class=" clearfix">
                             <a href="admin.users.php">Manage Users</a>
@@ -101,6 +107,7 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
                 <fieldset>
                     <input id="userId" name="userId" type="hidden" />
     	 <select name="companyId" id="companylist" size="10" style="width:100%" > 
+
 		 
 
 <?php

@@ -65,6 +65,7 @@ class DB {
         
 		
 		$sql = "SELECT * FROM $table WHERE $where";
+        //echo $sql;
         $result = mysqli_query($this->getConnection(),$sql);
 		if(!$result) {
 			die(mysqli_error($this->getConnection()));

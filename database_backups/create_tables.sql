@@ -21,6 +21,7 @@ DROP TABLE IF EXISTS `project_batches`;
 DROP TABLE IF EXISTS `batches`;
 DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `companies`;
+DROP TABLE IF EXISTS `uni_score`;
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -256,3 +257,14 @@ CREATE TABLE `projects` (
   KEY `session_org_idx` (`org_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+CREATE TABLE `uni_score` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(45) NOT NULL,
+  `event_organizing` varchar(45) DEFAULT NULL,
+  `tech_contribution` varchar(45) DEFAULT NULL,
+  `mentoring_program` varchar(45) DEFAULT NULL,
+  `lecture_attendence` varchar(45) DEFAULT NULL,
+  `social_engagement` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

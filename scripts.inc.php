@@ -17,10 +17,22 @@
 		  		var newUri = uri;
 			  	var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
 			  	var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+                
+                var paramStr = '';
+                if(value instanceof Array) {
+                    var newvalue = ''
+                    for(var i=0; i < value.length; i++) {
+                        newvalue = newvalue + '_' + value[i];
+                    }
+                    value = newvalue;
+                } 
+                
+                paramStr = key + "=" + value;
+                
 			  	if (uri.match(re)) {
-			    	newUri = uri.replace(re, '$1' + key + "=" + value + '$2');
+			    	newUri = uri.replace(re, '$1' + paramStr + '$2');
 			  	} else {
-			    	newUri = uri + separator + key + "=" + value;
+			    	newUri = uri + separator + paramStr;
 			  	}
 			  	window.location.href = newUri;
 			}

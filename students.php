@@ -8,23 +8,25 @@ $settingsTools = new SettingsTools();
 $sort = 'name';
 if(isset($_GET['sort'])) $sort = $_GET['sort'];
 
+
+
 if(HttpSession::currentUser()->getOrganization()->access_level > 2) {
-    $technology = $_GET['technology'];
+    $technology = explode('_', $_GET['technology']);
 }
-
-
-
-$batch = "level_4";
+//print_r($technology);
 
 if (isset($_GET['batch']) && $_GET['batch'] == "level_2") {
-    $students = $studentTools->getStudents($settingsTools->getLevelTwoId(), $sort, $technology);	
     $batch = "level_2";
+    $batchId = $settingsTools->getLevelTwoId();
 } else if (isset($_GET['batch']) && $_GET['batch'] == "level_3") {
-    $students = $studentTools->getStudents($settingsTools->getLevelThreeId(), $sort, $technology);
     $batch = "level_3";
+    $batchId = $settingsTools->getLevelThreeId();
 } else {
-    $students = $studentTools->getStudents($settingsTools->getLevelFourId(), $sort, $technology);   
+    $batch = "level_4";
+    $batchId = $settingsTools->getLevelFourId();
 }
+
+$students = $studentTools->getStudents($batchId, $sort, $technology);  
 
 
 /* * *********************Sorting Students*********************************** */
@@ -124,6 +126,8 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                         <input type="hidden" id="user-level" value="<?php echo HttpSession::currentUser()->getOrganization()->access_level; ?>"/>
 
                         <p>Thanks for your interest on this feature, currently we are busy developing it :). <br/></br/>Once complete it will let you  assemble a team of students to assist you in your organizational activities such as events, promotions, CSR, etc.</p>
+                        How likely you are to use this feature?
+                        
                     </div> 
                    
                     <form action="" method="GET" id="sortForm">
@@ -132,20 +136,20 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                     </form>
                     <div class="componentContainer">
                         <div class="heading">
-                            <p>Filter by Technology</p>
+                            <p>Filter by Technology<a href="" id="tech-filter"> Filter </a><a href="" id="tech-clear"> Clear </a></p>
+                            
                         </div>
 
                         <div class="ccContainer">
                             <!--<div class="cloudArea"><img src="img/cloud.jpg" /></div>-->
                             <div class="cloudArea">
-
-                                <select name="technology" id="technoFilterCombo" size="20">
+                                <select name="technology" id="technoFilterCombo" size="20" multiple="multiple">
                                     <option value="0" > -- ANY TECHNOLOGY --</option>
                                     <?php
                                     $tecs = new TechnologyTools();
-                                    $arr = $tecs->getAlltechnologies();
+                                    $arr = $tecs->getTechnologiesForBatch($batchId);
                                     foreach ($arr as $value) {
-                                        $selected = $techoFilter == $value->id ? "selected" : "";
+                                        $selected = in_array($value->id, $technology) ? "selected" : "";
                                         echo "<option value='$value->id' $selected>$value->name</option>";
                                     }
                                     ?>
@@ -160,86 +164,70 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                 
             </div>                                                                        
         </div>
-<?php include_once 'scripts.inc.php'; ?>
-<?php require_once './common.inc.php'; ?>
-<script>
-    
-    $(".batch-tab").click(function(){
-        updateQueryString("batch", $(this).data('batch'));	
-    });
-    
-    
-    $('#technoFilterCombo').change(function() {
-        <?php if (HttpSession::currentUser()->getOrganization()->access_level > 2) { ?>
-            var tech = $('#technoFilterCombo').find(":selected").val();
-            updateQueryString("technology", tech);	
-        <?php } else { ?>
-            premiumFeature();
-        <?php } ?>
-    });
-    
-    
-    $('#technoFilterCombo').val(qs['technology'])
-    
-    $(function() {
-        $("#example-two").organicTabs({
-            "speed": 200
-        });
-        $("#accordion").accordion({
-            autoHeight: true,
-            navigation: true,
-            collapsible: true,
-            heightStyle: "content" 
-        });
-        
-    });
-    
-   $("#accordion a").click(function() {
-        var href = $(this).attr("href");
-        if(href && href !== '') {
-            window.open(href, '_blank');
-        } else {
-            premiumFeature();
-        }
-        
-        return false;
-   });
-    
-   $("#team-dialog").dialog({
-        autoOpen: false,
-        width: 600,
-        modal: true,
-        buttons: {
-            Close: function() {
-                $(this).dialog("close");
-            }
-        },
-        show: {
-            effect: "fade",
-            duration: 200
-        },
-        hide: {
-            effect: "fade",
-            duration: 200
-        }
-    });
-    
-    $( "#assemble-team" )
-	  .button()
-	  .click(function() {
-	    $( "#team-dialog" ).dialog( "open" );
-	    return false;
-	  });
-	    
 
-	$("input[name='sort'][value='" + qs['sort'] + "']").prop('checked', true);
+        <div id="dialog-form" title="University Scorecard">
+            <p style="padding-top: 10px;" class="validateTips">Following is a subjective scorecard given by the CSE academia to this student.</p>
 
-	$("input[name='sort']").change(function(){
-		var filter = $("input[name='sort']:checked").val();
-		updateQueryString("sort", filter);	
-	});
-	    
-</script>
+            <form id="create_form" method="post" action="">
+                <fieldset>
+                    <table>
+                        <tr>
+                            <td><label for="event_organizing" class="input-label">Contribution in Event Organizing </label></td>
+                            <td><label id="event_organizing" name="event_organizing" ><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="tech_contribution" class="input-label">Technical Contribution for University Activities </label></td>
+                            <td><label id="tech_contribution" name="tech_contribution" ><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="mentoring_program" class="input-label">Attendence and Passion in Mentoring Program </label></td>
+                            <td><label id="mentoring_program" name="mentoring_program" ><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="lecture_attendence" class="input-label">Attendence for Lectures </label></td>
+                            <td><label id="lecture_attendence" name="lecture_attendence" ><br/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="social_engagement" class="input-label">Social Engagement with Peers and Community </label></td>
+                            <td><label id="social_engagement" name="social_engagement" ><br/></td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+            </form>
+        </div> 
+
+    <?php include_once 'scripts.inc.php'; ?>
+    <?php require_once './common.inc.php'; ?>
+    <script type="text/javascript" src="js/students.js"></script>
+    <script>
+        $('#tech-filter').click(function() {
+            <?php if (HttpSession::currentUser()->getOrganization()->access_level > 2) { ?>
+                techFilter();
+            <?php } else { ?>
+                premiumFeature();
+            <?php } ?>
+            return false;
+        });
+
+        $('#tech-clear').click(function() {
+            <?php if (HttpSession::currentUser()->getOrganization()->access_level > 2) { ?>
+                techClear();
+            <?php } else { ?>
+                premiumFeature();
+            <?php } ?>
+            return false;
+        });
+
+        $(".uniScoreCard").click(function(){
+            <?php if (HttpSession::currentUser()->getOrganization()->access_level > 2) { ?>
+                showUniScorecard($(this));
+            <?php } else { ?>
+                premiumFeature();
+            <?php } ?>
+            return false;
+        });
+    </script>
     </body>
 </html>
 
@@ -263,7 +251,7 @@ function getHtmlForStudent($student) {
     $html = $html . '<div class="descriptionArea">';
     $html = $html . '<a href="javascript:void(0)">' . $student->student_id . '</a>';
     $html = $html . '<p>'. getHtmlForStudentTechnologies($student) .'</p>';
-    $html = $html . getLinkedInProfile($student).'</div>';
+    $html = $html . getLinkedInProfile($student).getUniScorecard($student).'</div>';
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
     $html = $html . '<img height="79" width="65" src="img/unknown-member.gif"/>';
@@ -277,10 +265,10 @@ function getHtmlForStudent($student) {
     $color = 'orangeColor'; 
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
-    $html = $html . '<img style="margin-top:10px" height="79" width="65" src="'. $student->pic_url .'"/>';
+    $html = $html . '<img style="margin-top:10px" height="79" width="65" src="'. getProfileUrl($student) .'"/>';
     $html = $html . '<div style="margin-left:100px; margin-top:-95px"><span class="title">' . $student->name .'  <span style="font-size:10px">('. $student->student_id.')</span></span>';    
     $html = $html . '<p>'. $student->description.'</p>';
-    $html = $html . getLinkedInProfile($student).'</div></div>';
+    $html = $html . getLinkedInProfile($student).getUniScorecard($student).'</div></div>';
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
     //$html = $html . '<img height="79" width="65" src="'. $user->pic_url .'"/>';
@@ -292,12 +280,21 @@ function getHtmlForStudent($student) {
     return $html;
 }
 
-function getLinkedInProfile($student){
-    if(HttpSession::currentUser()->getOrganization()->access_level > 1) {
-        return '<a class="linkedInImg" href="' . $student->profile_url . '"></a>';
+function getProfileUrl($student){
+    if($student->pic_url) {
+        return $student->pic_url;
     } else {
-        return '<a class="linkedInImg" href="" ></a>';
+        return './img/no_photo.png';
     }
+}
+
+
+function getUniScorecard($student){
+    return '<a class="uniScoreCard" href="" data-student_id="'.$student->id.'">Uni Scorecard</a>';
+}
+
+function getLinkedInProfile($student){
+    return '<a class="linkedInImg" href="' . $student->profile_url . '"></a>';
 }
 
 function getHtmlForStudentTechnologies($student) {
