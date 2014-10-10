@@ -11,7 +11,9 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
 }
 
 $start_index = 0;
+$batch_id;
 if(isset($_GET['start_index'])) $start_index = $_GET['start_index'];
+if(isset($_GET['batch_id'])) $batch_id = $_GET['batch_id'];
 
 
 function getSkills($html) {
@@ -52,8 +54,11 @@ function insertSkills($skills, $student_id) {
 <?php
 
 $studentTools = new StudentTools();
-$students = $studentTools->getAllStudents($start_index);
-
+if(isset($batch_id)) {
+    $students = $studentTools->getStudents($batch_id, 'students.id', null);
+} else {
+    $students = $studentTools->getAllStudents($start_index);
+}
 
 echo 'Begining the processing ...<br />';
 foreach($students as $student){

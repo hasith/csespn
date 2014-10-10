@@ -30,7 +30,7 @@ verify_oauth_session_exists();
                         <br/><div style='color:rgb(177, 8, 8); margin-top:10px; font-size:15px'>
                         <b>IMPORTANT NOTE:</b> Some functionality of this portan is only available to corporate users. 
                         If your organization would like to obtain a partnership with CSE department of UoM, 
-                        please contact Dr. Chandana Gamage (chandag@cse.mrt.ac.lk) for details. </div>";
+                        please contact CSE Office (0112640381) for details. </div>";
                     } else if ($org->access_level == 2) {
                         echo "a Student";
                     } else if ($org->access_level == 3) {

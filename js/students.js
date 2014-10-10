@@ -1,4 +1,5 @@
 //$(document).ready(function(){
+
     
     function techFilter() {
         var techs = $('#technoFilterCombo').find(":selected").map( function() { return this.value; }).get();
@@ -14,7 +15,7 @@
     $("#dialog-form").dialog({
       autoOpen: false,
       height: 420,
-      width: 550,
+      width: 600,
       modal: true,
       buttons: {
         Close: function() {
@@ -26,7 +27,13 @@
     function showUniScorecard(el) {
         var studentId = el.data("student_id");
 		$.getJSON( "./uniscore.get.php?student_id=" + studentId, function( data ) {
-  			$('#create_form').populate(data);
+            for (var name in data) {
+                if(name !== 'id' && name !== 'student_id') {
+                    $('#' + name).rateit('value', data[name]);
+                }
+                
+            }
+  			//$('#create_form').populate(data);
   			$( "#dialog-form" ).dialog( "open" );
 	    	return false;
 		});
@@ -39,8 +46,14 @@
     
     
     
+    $(function() {
+        if(qs['technology']) {
+            var techs = qs['technology'].split('_');
+            $('#technoFilterCombo').val(techs)
+        }
+        
+    });
     
-    $('#technoFilterCombo').val(qs['technology'])
     
     $(function() {
         $("#example-two").organicTabs({

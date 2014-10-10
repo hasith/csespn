@@ -12,8 +12,8 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
 $id = mysql_real_escape_string($_POST['id']);
 $title = mysql_real_escape_string($_POST['title']);
 $description = mysql_real_escape_string($_POST['description']);
-$date = mysql_real_escape_string($_POST['date']);
-$date_confirmed = (isset($_POST['date_confirmed']) && ($_POST['date_confirmed'] == 'on'));
+$date = mysql_real_escape_string($_POST ['date']);
+$date_confirmed = (is_numeric ($_POST['date_confirmed']) && ($_POST['date_confirmed'] == 'on'))? 1 : 0;
 $time = mysql_real_escape_string($_POST['time']);
 $venue = mysql_real_escape_string($_POST['venue']);
 $url = mysql_real_escape_string($_POST['url']);
@@ -28,7 +28,7 @@ if ($id >= 0) {
     $data['time'] = "'" . $time . "'";
     $data['venue'] = "'" . $venue . "'";
     $data['url'] = "'" . $url . "'";
-
+    
     $result = $db->update($data, "events", "id='$id'");
 } else {
     $data['title'] = "'" . $title . "'";

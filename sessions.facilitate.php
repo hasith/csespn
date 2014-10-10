@@ -5,13 +5,14 @@
     if (HttpSession::currentUser()->getOrganization()->access_level > 2) {
         $sessionId = $_POST["sessionId"];
         $orgId = $_POST["orgId"];
+        $respName = $_POST["resp_name"];
+        $respContact = $_POST["resp_contact"];
+        
         $queryString = $_POST["queryString"];
+        
+        //echo $sessionId . $orgId . $respName . $respContact;
 
-        $session = Session::fetch($sessionId);
-
-        $session->org_id = $orgId;
-
-        $session->save(false);
+        Session::addInterest($sessionId, $orgId, $respName, $respContact);
 
         header("Location: sessions.php".$queryString);
         die();

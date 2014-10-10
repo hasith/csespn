@@ -66,20 +66,20 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                             <?php
                                 
                                 if($batch =="level_4"){
-                                    echo '<li class="nav-one"><a class="batch-tab current" data-batch="level_4" href="javascript:void(0)">Level 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Level 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Level 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab current" data-batch="level_4" href="javascript:void(0)">Year 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Year 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Year 2 students</a></li>';
                                 }
                                     
                                 else if($batch =="level_3"){
-                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Level 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_3" >Level 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Level 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Year 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_3" >Year 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Year 2 students</a></li>';
                                 }
                                 else if($batch =="level_2"){
-                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Level 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Level 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_2">Level 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Year 4 students</a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Year 3 students</a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_2">Year 2 students</a></li>';
                                 }
                             ?>                                                        
                         </ul>                        
@@ -136,7 +136,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                     </form>
                     <div class="componentContainer">
                         <div class="heading">
-                            <p>Filter by Technology<a href="" id="tech-filter"> Filter </a><a href="" id="tech-clear"> Clear </a></p>
+                            <p>Filter by Technology<a href="" id="tech-filter" class="filterbtn"> Filter </a><a href="" id="tech-clear" class="filterbtn"> Clear </a></p>
                             
                         </div>
 
@@ -144,13 +144,12 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                             <!--<div class="cloudArea"><img src="img/cloud.jpg" /></div>-->
                             <div class="cloudArea">
                                 <select name="technology" id="technoFilterCombo" size="20" multiple="multiple">
-                                    <option value="0" > -- ANY TECHNOLOGY --</option>
                                     <?php
                                     $tecs = new TechnologyTools();
                                     $arr = $tecs->getTechnologiesForBatch($batchId);
                                     foreach ($arr as $value) {
                                         $selected = in_array($value->id, $technology) ? "selected" : "";
-                                        echo "<option value='$value->id' $selected>$value->name</option>";
+                                        echo "<option value='$value->id' $selected>$value->name</option>\n\r";
                                     }
                                     ?>
                                 </select>
@@ -170,27 +169,48 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
 
             <form id="create_form" method="post" action="">
                 <fieldset>
-                    <table>
+                    <table width='100%'>
                         <tr>
-                            <td><label for="event_organizing" class="input-label">Contribution in Event Organizing </label></td>
-                            <td><label id="event_organizing" name="event_organizing" ><br/></td>
+                            <td>
+                                <label for="event_organizing" class="input-label">Contribution in Organizing and Management</label>
+                            </td>
+                            <td>
+                                <div id="event_organizing" class="rateit" data-rateit-readonly="true" ></div><br/>
+                            </td>
                         </tr>
                         <tr>
-                            <td><label for="tech_contribution" class="input-label">Technical Contribution for University Activities </label></td>
-                            <td><label id="tech_contribution" name="tech_contribution" ><br/></td>
+                            <td>
+                                <label for="tech_contribution" class="input-label">Technological Contribution at the Department </label>
+                            </td>
+                            <td>
+                                <div id="tech_contribution" class="rateit" data-rateit-readonly="true" ></div><br/>
+                            </td>
                         </tr>
                         <tr>
-                            <td><label for="mentoring_program" class="input-label">Attendence and Passion in Mentoring Program </label></td>
-                            <td><label id="mentoring_program" name="mentoring_program" ><br/></td>
+                            <td>
+                                <label for="social_engagement" class="input-label">Social and Community Engagement </label>
+                            </td>
+                            <td>
+                                <div id="social_engagement" class="rateit" data-rateit-readonly="true" ></div><br/>
+                            </td>
                         </tr>
                         <tr>
-                            <td><label for="lecture_attendence" class="input-label">Attendence for Lectures </label></td>
-                            <td><label id="lecture_attendence" name="lecture_attendence" ><br/></td>
+                            <td>
+                                <label for="mentoring_program" class="input-label">Attendence and Passion in Mentoring Program </label>
+                            </td>
+                            <td>
+                                <div id="mentoring_program" class="rateit" data-rateit-readonly="true" ></div><br/>
+                            </td>
                         </tr>
                         <tr>
-                            <td><label for="social_engagement" class="input-label">Social Engagement with Peers and Community </label></td>
-                            <td><label id="social_engagement" name="social_engagement" ><br/></td>
+                            <td>
+                                <label for="lecture_attendence" class="input-label">Attendence for Lectures and Classes </label>
+                            </td>
+                            <td>
+                                <div id="lecture_attendence" class="rateit" data-rateit-readonly="true" ></div><br/>
+                            </td>
                         </tr>
+                        
                     </table>
 
                 </fieldset>
@@ -266,7 +286,10 @@ function getHtmlForStudent($student) {
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
     $html = $html . '<img style="margin-top:10px" height="79" width="65" src="'. getProfileUrl($student) .'"/>';
-    $html = $html . '<div style="margin-left:100px; margin-top:-95px"><span class="title">' . $student->name .'  <span style="font-size:10px">('. $student->student_id.')</span></span>';    
+    $html = $html . '<div style="margin-left:100px; margin-top:-95px"><span class="title">' . $student->name;  
+    if (HttpSession::currentUser()->getOrganization()->access_level > 4) {
+        $html = $html . '  <span style="font-size:10px">( '. $student->student_id.' )</span></span>';  
+    }
     $html = $html . '<p>'. $student->description.'</p>';
     $html = $html . getLinkedInProfile($student).getUniScorecard($student).'</div></div>';
     $html = $html . '</h3>';
@@ -290,7 +313,7 @@ function getProfileUrl($student){
 
 
 function getUniScorecard($student){
-    return '<a class="uniScoreCard" href="" data-student_id="'.$student->id.'">Uni Scorecard</a>';
+    return '<a class="uniScoreCard" href="" data-student_id="'.$student->id.'">Uni Scorecard<img class="uniScoreCardImg" src="img/blue_star.png"/></a> ';
 }
 
 function getLinkedInProfile($student){

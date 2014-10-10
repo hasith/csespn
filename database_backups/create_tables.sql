@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS `endorsements`;
 DROP TABLE IF EXISTS `students`;
 DROP TABLE IF EXISTS `sponsorships`;
 DROP TABLE IF EXISTS `events`;
+DROP TABLE IF EXISTS `session_interest`;
 DROP TABLE IF EXISTS `sessions`;
 DROP TABLE IF EXISTS `project_batches`;
 DROP TABLE IF EXISTS `batches`;
@@ -268,3 +269,15 @@ CREATE TABLE `uni_score` (
   `social_engagement` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `session_interest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `session_id` int(11) NOT NULL,
+  `org_id` int(11) NOT NULL,
+  `resp_name` varchar(45) DEFAULT NULL,
+  `resp_contact` varchar(45) DEFAULT NULL,
+  `comment` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+SELECT * FROM csespn.batches;

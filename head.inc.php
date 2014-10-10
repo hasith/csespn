@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/modernizr-2.6.2.min.js"></script>
         <link rel="stylesheet" href="css/style.css">
-        
+        <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/rateit.css">
         
     </head>

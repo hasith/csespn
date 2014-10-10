@@ -149,7 +149,7 @@ class DB {
         $sql = "insert into $table ($columns) values ($values)";
         $conn = $this->getConnection();
         mysqli_query($conn,$sql) or die($sql." : ".mysqli_error($conn));
-
+        echo 'sql:'.$sql;
         //return the ID of the user in the database.
         return mysqli_insert_id($conn);
     }

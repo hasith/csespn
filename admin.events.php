@@ -132,7 +132,7 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
                         </p>
                         <p id="more-info">
                             <label for="event-dialog-url" id="event-dialog-url-label"><b>More info </b></label>
-                            <input id="event-dialog-url" size="80" type="url" name="url"/>
+                            <input id="event-dialog-url" size="80" type="text" name="url"/>
                         </p>
                         <p id="error-message">Event title and date cannot be empty</p>
                     </form>

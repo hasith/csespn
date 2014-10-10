@@ -51,6 +51,12 @@ class Session {
 	public function get($key) {
 		return $this->$key;
 	}
+    
+    public static function addInterest($session_id, $org_id, $resp_name, $resp_contact) {
+        $db = new DB();
+        $sql = "insert into session_interest (session_id, org_id, resp_name, resp_contact) values ($session_id, $org_id, '$resp_name', '$resp_contact')";
+        $db->execute($sql);
+	}
 	
 	public function setBatches($batches) {
 		if (is_array($batches)) {

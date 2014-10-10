@@ -22,7 +22,6 @@ class StudentTools {
 
     
      public function getStudents($batchId, $sort, $technologies) {
-        //print_r($technologies);
         $techCount = 0;
         $sql = null;
         if($technologies) {

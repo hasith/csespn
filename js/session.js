@@ -13,7 +13,7 @@ $(document).ready(function(){
 	
 	$( "#dialog-form" ).dialog({
 	  autoOpen: false,
-	  height: 620,
+	  height: 520,
 	  width: 850,
 	  modal: true,
 	  buttons: {
@@ -53,8 +53,8 @@ $(document).ready(function(){
 	
 	$("#dialog-confirmation").dialog({
 	  autoOpen: false,
-	  height: 250,
-	  width: 650,
+	  height: 450,
+	  width: 850,
 	  modal: true,
 	  buttons: {
 	    "Confirm Facilitation": function() {

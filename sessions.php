@@ -78,7 +78,19 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                 <img style="margin-top:10px" height="100" width="100" src="<?php echo $pic_url; ?>"/>
                                                 <a href="javascript:void(0)" style="margin-top: -95px; margin-left: 140px;"><?php echo $session->get("title"); ?></a>
                                                 <p style="margin-left: 140px;"><?php echo $session->get("description"); ?></p>
-                                                
+                                                <p style="margin-left: 140px; font-weight: bold;"><?php
+                                                        $batches = $session->getBatches();
+                                                        if(count($batches) > 0) {
+                                                            echo "(";
+                                                            for ($i = 0; $i < count($batches); $i++) {
+                                                                echo $batches[$i]["display_name"] ;
+                                                                if($i !== count($batches) - 1) {
+                                                                    echo ", ";
+                                                                }
+                                                            }
+                                                            echo ")";
+                                                        }
+                                                ?></p>
                                                 <div class="sessionDetails">
                                                 	<div class="dateIcon">
                                                     	<?php
@@ -112,29 +124,16 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                             if(!is_null($session->get("date")) && $session_date < time()) {
                                                                 echo'<div class="linkedLink" style="font-size:12px !important">(No Facilitator)</div>';
                                                             } else {
-                                                                echo'<div data-access="'.HttpSession::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Take this Session</a></div>';
+                                                                echo'<div data-access="'.HttpSession::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Express Interest to take this Session</a></div>';
                                                             }		
 														}
 														?>
                                                     </div>
-                                                                                		
-                                                    <div class="endGPA">
-                                                        <?php
-                                                        $batches = $session->getBatches();
-                                                        if(count($batches) > 0) {
-                                                            echo "(";
-                                                            for ($i = 0; $i < count($batches); $i++) {
-                                                                echo $batches[$i]["display_name"] ;
-                                                                if($i !== count($batches) - 1) {
-                                                                    echo ", ";
-                                                                }
-                                                            }
-                                                            echo ")";
-                                                        }
-                                                        ?>
-                                                    </div>
+                                                          
 
                                                 </div>
+                                                
+                                                
                                                 
                                             </div>
                                             <div class="darkGray">
@@ -245,17 +244,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                             <td><label for="duration">Duration</label></td>
                             <td><input type="text"  size="6" id="duration" name="duration"> mins<br/></td>
                         </tr>
-                        <tr>
-                            <td><label for="resp_name">Responsible Person</label></td>
-                        </tr>
-                        <tr>
-                            <td><label for="resp_name">&nbsp;&nbsp;&nbsp;&nbsp;Name</label></td>
-                            <td><input type="text" maxlength="50" name="resp_name" id="resp_name"></td>
-                        </tr>
-                        <tr>
-                            <td><label for="resp_contact">&nbsp;&nbsp;&nbsp;&nbsp;Phone</label></td>
-                            <td><input type="text" maxlength="10" size="12" id="resp_contact" name="resp_contact"><br/></td>
-                        </tr>
+                        
                         <tr>
                             <td><label for="batch">Target Batches: </label></td>
                             <td>
@@ -291,8 +280,41 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
             </form>
         </div> 
 
-        <div id="dialog-confirmation" title="Confirm Facilitation of this Session">
+        <div id="dialog-confirmation" title="Express Interest to Conduct the Session">
+            <p style="padding-top: 10px;" class="validateTips">Propose a session you would like to carryout to CSE students. We will get back to you regarding the possible dates for that.</p>
+
             <form id="confirmation_form" method="post" action="sessions.facilitate.php">
+                <fieldset>
+                    <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
+                        session details where you may fill in contact person details, etc. 
+                        We will get in touch with you soon.</p>
+                    
+                    <input type="hidden" name="id" />
+                    <input type="hidden" name="queryString"/>
+                    <input type="hidden" name="orgId" value="<?= HttpSession::currentUser()->company_id ?>" />
+                    <input type="hidden" name="sessionId" />
+                    <table>
+                        
+                        <tr>
+                            <td><label for="resp_name">Responsible Person</label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="resp_name">&nbsp;&nbsp;&nbsp;&nbsp;Name</label></td>
+                            <td><input type="text" maxlength="50" name="resp_name" id="resp_name"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="resp_contact">&nbsp;&nbsp;&nbsp;&nbsp;Phone</label></td>
+                            <td><input type="text" maxlength="10" size="12" id="resp_contact" name="resp_contact"><br/></td>
+                        </tr>
+                        
+                    </table>
+
+                </fieldset>
+            </form>
+        </div> 
+
+        <div id="dialog-confirmation1" title="Confirm Facilitation of this Session">
+            <form id="confirmation_form1" method="post" action="sessions.facilitate.php">
                 <fieldset>
                     <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
                         session details where you may fill in contact person details, etc. 

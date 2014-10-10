@@ -73,11 +73,10 @@ require_once('global.inc.php');
                     	</p>                      
                     </div>
                     <div id="contactUs" class="clearfix">
-                    	<img src="img/contactUs.jpg" />
+                    	<img src="img/CSE.jpg" class="details_image" />
                         <div id="contactDetails">
-                            <h6 class="details_topic">Contact Us</h6>
                             <p>	
-                            	Dr. Gamage<br/>Tel: 0112640381-3101
+                            	CSE Office<br/>University of Moratuwa<br/>Tel: 0112640381
                             </p>
                         </div>
                     </div>                     
