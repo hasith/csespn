@@ -281,3 +281,25 @@ CREATE TABLE `session_interest` (
   UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 SELECT * FROM csespn.batches;
+
+
+CREATE TABLE `audit_trail` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `entity_type` varchar(100) NOT NULL,
+  `entity_id` int(11) NOT NULL,
+  `topic` varchar(50) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `notified` boolean DEFAULT false,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `trail_user_idx` (`user_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
+
+CREATE TABLE IF NOT EXISTS `project_interest` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `project_id` int(11) NOT NULL,
+  `linkedin_id` varchar(255) NOT NULL,
+  `stu_contact` varchar(45) DEFAULT NULL,
+  `comment` varchar(256) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;

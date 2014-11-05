@@ -9,6 +9,7 @@ if(file_exists('./server_conf.php')){
     require_once('./server_conf.php');
 }
 
+require_once ROOT_DIR . '/classes/AuditTrail.class.php';
 require_once ROOT_DIR . '/classes/User.class.php';
 require_once ROOT_DIR . '/classes/UserTools.class.php';
 require_once ROOT_DIR . '/classes/Company.class.php';
@@ -30,6 +31,7 @@ require_once ROOT_DIR . '/classes/SettingsTools.class.php';
 require_once ROOT_DIR . '/classes/Project.class.php';
 require_once ROOT_DIR . '/classes/ProjectTools.class.php';
 require_once ROOT_DIR . '/classes/HttpSession.class.php';
+require_once ROOT_DIR . '/classes/Mail.class.php';
 
 session_name('CSESPORTAL');
 session_start();

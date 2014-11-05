@@ -18,8 +18,11 @@ $(document).ready(function(){
 	  modal: true,
 	  buttons: {
 	    "Save": function() {
-	      $("input[name='queryString']").val(location.search);
+		 $("input[name='queryString']").val(location.search);
 	      $('#create_form').submit();
+		  
+		  
+		  
 	    },
 	    Cancel: function() {
 	      $( this ).dialog( "close" );
@@ -53,13 +56,15 @@ $(document).ready(function(){
 	
 	$("#dialog-confirmation").dialog({
 	  autoOpen: false,
-	  height: 250,
+	  height: 700,
 	  width: 650,
 	  modal: true,
 	  buttons: {
-	    "Confirm Facilitation": function() {
+	    "Confirm Acceptance": function() {
+		  
 	    	$("input[name='queryString']").val(location.search);
 	    	$("#confirmation_form").submit();
+			
 	    },
 	    "No, May be Later": function() {
 	      $( this ).dialog( "close" );
@@ -67,10 +72,41 @@ $(document).ready(function(){
 	  }
 	});
 	
-	$(".takeProject").click(function(){
-		$("#confirmation_form :input[name='projectId']").val($(this).data("id"));
-		$("#dialog-confirmation").dialog( "open" );
+	$(".takeSession").click(function(){
+	if($(this).data("access") == 2) {
+            var projectId = $(this).data("id");
+            var orgId = $(this).data("orgid");
+            $("#confirmation_form :input[name='projectId']").val(projectId);
+			
+			var url =  "projects.facilitate.get.php?projectId=" + projectId;
+            //get data on who else is interested
+            $.ajax({
+                dataType: "json",
+                url: url
+            }).done(function(data) {
+                $("#facilitators tr").remove();
+				for(var i=0; i<data.length; i++) {
+                    $('#facilitators').append('<table border = "1"><tr><td>' + data[i].name + '</td><td><a href='+data[i].profile_url+' target=_"blank"> <img src = "img/linkedin.png" /></a></td></tr></table>');
+					//var btn = $('#dialog-confirmation').dialog('widget').find('.ui-dialog-buttonpane .ui-button:first');
+                    //var table = $("#resp_person");
+                    //if(orgId == data[i].id) {
+                        //btn.hide();
+                        //table.hide();
+                    //} else {
+                        //table.show();
+                        //btn.show();
+                    //}
+					
+                }
+            });
+			
+            $("#dialog-confirmation").dialog( "open" );
+        } else {
+            premiumFeature();
+        }
+		
 		return false;
+		
 	});
 
 	$("input[name='filterby'][value=" + qs['filter'] + "]").prop('checked', true);

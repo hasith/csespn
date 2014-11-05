@@ -1,7 +1,9 @@
 $(document).ready(function(){
+    
+ $('#usertable').dataTable();   
 		
 	$( "#propose-session" ).button().click(function() {
-        if($(this).data("access") > 2) {
+        if($(this).data("access")== 2) {
             $('#create_form').populate({});
 	        $( "#dialog-form" ).dialog( "open" );
         } else {
@@ -53,7 +55,7 @@ $(document).ready(function(){
 	
 	$("#dialog-confirmation").dialog({
 	  autoOpen: false,
-	  height: 450,
+	  height: 600,
 	  width: 850,
 	  modal: true,
 	  buttons: {
@@ -61,16 +63,39 @@ $(document).ready(function(){
 	    	$("input[name='queryString']").val(location.search);
 	    	$("#confirmation_form").submit();
 	    },
-	    "No, May be Later": function() {
+	    "Cancel": function() {
 	      $( this ).dialog( "close" );
 	    }
 	  }
 	});
 	
 	$(".takeSession").click(function(){
-        if($(this).data("access") > 2) {
-            $("#confirmation_form :input[name='sessionId']").val($(this).data("id"));
-		    $("#dialog-confirmation").dialog( "open" );
+        if(($(this).data("access")==3) || ($(this).data("access")==4)){
+            var sessionId = $(this).data("id");
+            var orgId = $(this).data("orgid");
+            $("#confirmation_form :input[name='sessionId']").val(sessionId);
+            var url =  "sessions.facilitate.get.php?sessionId=" + sessionId;
+            //get data on who else is interested
+            $.ajax({
+                dataType: "json",
+                url: url
+            }).done(function(data) {
+                $("#facilitators tr").remove();
+				for(var i=0; i<data.length; i++) { 
+                    $('#facilitators').append('<table border= "1"><tr><td>' + data[i].name + '</td></tr></table>');
+                    //var btn = $('#dialog-confirmation').dialog('widget').find('.ui-dialog-buttonpane .ui-button:first');
+                    //var table = $("#resp_person");
+                    //if(orgId == data[i].id) {
+                        //btn.hide();
+                        //table.hide();
+                    //} else {
+                        //table.show();
+                        //btn.show();
+                    //}
+                }
+            });
+            
+            $("#dialog-confirmation").dialog( "open" );
         } else {
             premiumFeature();
         }

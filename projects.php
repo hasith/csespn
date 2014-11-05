@@ -1,6 +1,9 @@
 <?php
 require_once './global.inc.php';
 verify_oauth_session_exists();
+$projectID = new Project();
+
+
 
 function haveEditAccess($project) {
     if (HttpSession::currentUser()->getOrganization()->access_level > 4 || $project->get("org_id") === HttpSession::currentUser()->company_id) {
@@ -27,6 +30,17 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <?php require_once './head.inc.php'; ?>
+	<head> 
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+
+
+
+<script type="text/javascript"> $(document).ready(function(){ $("#confirmation_form").validate(); }); </script>
+</head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -106,7 +120,12 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                                     $style = 'style="color:#ed7d31 !important"';
                                                                 }
                                                                 echo '<div class="linkedLink company-name" '.$style.' >' . $company->name . '</div>';
-                                                            } 
+                                                            }
+
+                                                             else {
+                                                                echo'<div data-orgId="'.HttpSession::currentUser()->company_id.'" data-access="'.HttpSession::currentUser()->getOrganization()->access_level.'" data-id="' . $project->id . '" class="linkedLink takeSession"><a href="">Express Interest to pick the Research Work</a></div>';
+                                                            }		
+																													
                                                             ?>
                                                         </div>
 
@@ -215,6 +234,9 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                 <fieldset>
                     <input type="hidden" name="id" />
                     <input type="hidden" name="queryString"/>
+					<input type="hidden" name="idUser" value="<?= HttpSession::currentUser()->id?>" />
+					 
+					
                     <table>
                         <tr>
                             <td><label for="title" class="input-label">Research Title</label></td>
@@ -252,6 +274,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                             <td><label for="company">Assigned To: </label></td>
                             <td>
                                 <select name="org_id" id="company" >
+								<option value="-1"> - Unassign - </option>
                                     <?php
                                     $companyTools = new CompanyTools();
                                     $companies = $companyTools->getAllCompanies();
@@ -278,6 +301,56 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                 </fieldset>
             </form>
         </div> 
+		
+		<!-- new code for display form when clicking the link -->
+		<div id="dialog-confirmation" title="Express Interest to pick the Research Projects">
+            <p style="padding-top: 10px;" class="validateTips">Choose a research work that you would like to carryout as your academic research project. </p>
+
+            <form id="confirmation_form" method="post" action="projects.facilitate.php">
+                <fieldset>
+                    <p class="validateTips">Thank you for collaborating with the research work <br/><br/> You can get to know the other students who were interested to 
+					take this as their academic research projects.</p>
+                    
+                    <input type="hidden" name="id" />
+					<input type="hidden" name="queryString"/>
+                    <input type="hidden" name="linkedinId" value="<?= HttpSession::currentUser()->linkedin_id?>" />
+                    <input type="hidden" name="projectId" />
+					<input type="hidden" name="idUser" value="<?= HttpSession::currentUser()->id?>" />
+					
+                    <table id="facilitators">
+                 					
+                    <table id="resp_person">
+                        
+                        <tr>
+                            <td><label for="resp_name">Student Details</label></td>
+                        </tr>
+                        <tr>
+                            <td><label for="title">&nbsp;&nbsp;&nbsp;&nbsp;Phone</label></td>
+                            <td><input type="text" maxlength="50" name="stu_phone" id="stu_phone" class="required"/></td>
+                        </tr>
+                        <tr>
+                            <td><label for="title">&nbsp;&nbsp;&nbsp;&nbsp;Comment</label></td>
+                            <td><textarea style="width: 400px; height: 200px" maxlength="10" size="12" id="stu_comment" name="stu_comment" class="required"/></textarea><br/></td>
+                        </tr>
+                        
+                    </table>
+
+                </fieldset>
+            </form>
+            </div> 
+
+        <div id="dialog-confirmation1" title="Confirm Facilitation of this Session">
+            <form id="confirmation_form1" method="post" action="projects.facilitate.php">
+                <fieldset>
+                    <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
+                        session details where you may fill in contact person details, etc. 
+                        We will get in touch with you soon.</p>
+                    <input type="hidden" name="linkedinId" value="<?= HttpSession::currentUser()->linkedin_id?>" />
+                    <input type="hidden" name="projectId" />
+                    <input type="hidden" name="queryString"/>
+                </fieldset>
+            </form>
+        </div>
 
 
         <?php include_once 'scripts.inc.php'; ?>

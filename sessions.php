@@ -1,5 +1,8 @@
 <?php
 require_once './global.inc.php';
+require_once ROOT_DIR . '/classes/DB.class.php';
+require_once ROOT_DIR . '/classes/Session.class.php';
+
 verify_oauth_session_exists();
 
 function haveAccess($session) {
@@ -19,6 +22,17 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <?php require_once './head.inc.php'; ?>
+	<head> 
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+
+
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.8/jquery.validate.min.js"></script>
+
+
+
+<script type="text/javascript"> $(document).ready(function(){ $("#confirmation_form").validate(); }); </script>
+</head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
@@ -124,7 +138,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                             if(!is_null($session->get("date")) && $session_date < time()) {
                                                                 echo'<div class="linkedLink" style="font-size:12px !important">(No Facilitator)</div>';
                                                             } else {
-                                                                echo'<div data-access="'.HttpSession::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Express Interest to take this Session</a></div>';
+                                                                echo'<div data-orgId="'.HttpSession::currentUser()->company_id.'" data-access="'.HttpSession::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Express Interest to take this Session</a></div>';
                                                             }		
 														}
 														?>
@@ -216,6 +230,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                 <fieldset>
                     <input type="hidden" name="id" />
                     <input type="hidden" name="queryString"/>
+					<input type="hidden" name="idUser" value="<?= HttpSession::currentUser()->id?>" />
                     <table>
                         <tr>
                             <td><label for="title" class="input-label">Title</label></td>
@@ -287,31 +302,38 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                 <fieldset>
                     <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
                         session details where you may fill in contact person details, etc. 
-                        We will get in touch with you soon.</p>
+                        We will get in touch with you soon.
+						<br/><br/>
+						 You can get to know the other companies who were interested to facilitate for this session.
+						</p>
                     
                     <input type="hidden" name="id" />
                     <input type="hidden" name="queryString"/>
                     <input type="hidden" name="orgId" value="<?= HttpSession::currentUser()->company_id ?>" />
                     <input type="hidden" name="sessionId" />
-                    <table>
+					<input type="hidden" name="idUser" value="<?= HttpSession::currentUser()->id?>" />
+					<h5> Name of the interested Companies </h5>
+                    <table id="facilitators"></table>
+                    					
+                    <table id="resp_person">
                         
                         <tr>
                             <td><label for="resp_name">Responsible Person</label></td>
                         </tr>
                         <tr>
                             <td><label for="resp_name">&nbsp;&nbsp;&nbsp;&nbsp;Name</label></td>
-                            <td><input type="text" maxlength="50" name="resp_name" id="resp_name"></td>
+                            <td><input type="text" maxlength="50" name="resp_name" id="resp_name" class="required"/></td>
                         </tr>
                         <tr>
                             <td><label for="resp_contact">&nbsp;&nbsp;&nbsp;&nbsp;Phone</label></td>
-                            <td><input type="text" maxlength="10" size="12" id="resp_contact" name="resp_contact"><br/></td>
+                            <td><input type="text" maxlength="10" size="12" id="resp_contact" name="resp_contact" class="required"/><br/></td>
                         </tr>
                         
                     </table>
 
                 </fieldset>
             </form>
-        </div> 
+            </div> 
 
         <div id="dialog-confirmation1" title="Confirm Facilitation of this Session">
             <form id="confirmation_form1" method="post" action="sessions.facilitate.php">

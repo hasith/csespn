@@ -52,6 +52,22 @@ class Session {
 		return $this->$key;
 	}
     
+    
+    public static function getInterestedFacilitators($session_id) {
+        $db = new DB();
+        $sql = "SELECT distinct companies.* FROM session_interest LEFT OUTER JOIN ".
+            "companies ON session_interest.org_id=companies.id WHERE session_id=$session_id";
+        $results = $db->query($sql);
+        
+        $companies = array();
+        foreach ($results as $result){
+            array_push($companies, new Company($result));
+        }
+        return $companies;
+    }
+	
+	
+    
     public static function addInterest($session_id, $org_id, $resp_name, $resp_contact) {
         $db = new DB();
         $sql = "insert into session_interest (session_id, org_id, resp_name, resp_contact) values ($session_id, $org_id, '$resp_name', '$resp_contact')";
@@ -108,7 +124,7 @@ class Session {
 	}
 		
 	public function save($isNew = false) {
-        
+        $idUser = $_POST["idUser"];
         //create a new database object.
         $db = new DB();
         
@@ -132,6 +148,7 @@ class Session {
         } else {
             //if the user is being registered for the first time.
             $this->id = $db->insert($data, 'sessions');
+			$mailSession = AuditTrail::createSession('session', $this->id,'add new',$idUser, false);
         }
         return true;
     }

@@ -31,6 +31,26 @@ class Project {
 		return $this->$key;
 	}
 	
+	    public static function getInterestedFacilitatorsProject($project_id) {
+        $db = new DB();
+        $sql = "SELECT distinct users.* FROM users LEFT OUTER JOIN ".
+            "project_interest ON project_interest.linkedin_id = users.linkedin_id where project_id=$project_id";
+        $results = $db->query($sql);
+        
+        $users = array();
+        foreach ($results as $result){
+            array_push($users, new User($result));
+        }
+        return $users;
+    }
+	
+	public static function addInterestStudents($project_id, $linkedin_id, $stu_contact, $comment) {
+        $db = new DB();
+        $sql = "insert into project_interest (project_id, linkedin_id, stu_contact, comment) values ($project_id, '$linkedin_id', '$stu_contact', '$comment')";
+        $db->execute($sql);
+	}
+	
+	
 	public function setBatches($batches) {
 		if (is_array($batches)) {
 			$db = new DB();
@@ -88,6 +108,7 @@ class Project {
 	}
 		
 	public function save($isNew = false) {
+	    $idUser = $_POST["idUser"];
         $data = array(
             "title" => $this->stringify(trim($this->title)),
             "description" => $this->stringify($this->description),
@@ -107,6 +128,7 @@ class Project {
         } else {
             //if the user is being registered for the first time.
             $this->id = $db->insert($data, 'projects');
+			$mails = AuditTrail::createEvent('project', $this->id,'add new',$idUser, false);
         }
         return true;
     }
