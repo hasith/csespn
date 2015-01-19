@@ -32,6 +32,7 @@ require_once ROOT_DIR . '/classes/Project.class.php';
 require_once ROOT_DIR . '/classes/ProjectTools.class.php';
 require_once ROOT_DIR . '/classes/HttpSession.class.php';
 require_once ROOT_DIR . '/classes/Mail.class.php';
+require_once ROOT_DIR . '/classes/Linkedin.class.php';
 
 session_name('CSESPORTAL');
 session_start();
@@ -39,7 +40,8 @@ session_start();
 date_default_timezone_set('Asia/Colombo');
 
 function oauth_session_exists() {
-    if ((is_array($_SESSION)) && (array_key_exists('oauth', $_SESSION)) && !is_null(HttpSession::currentUser())) {
+    //if ((is_array($_SESSION)) && (array_key_exists('oauth', $_SESSION)) && !is_null(HttpSession::currentUser())) {
+	if ((is_array($_SESSION)) && (!is_null(HttpSession::currentUser()))) {
         return TRUE;
     } else {
         return FALSE;

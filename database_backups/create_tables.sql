@@ -3,6 +3,8 @@
 DROP DATABASE csespn;
 CREATE DATABASE csespn;
 USE csespn;
+
+mysql csespn < create_tables.sql
 */
 
 --
@@ -67,6 +69,28 @@ CREATE TABLE `users` (
   `pic_url` varchar(255) NOT NULL,
   `company_id` int(11) NOT NULL,
   `profile_url` varchar(255) NOT NULL,
+  `api_url` varchar(255) NOT NULL,
+  `linkedin_token` varchar(255) NOT NULL,
+  `linkedin_token_exp` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=302 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `alumni_reg`
+--
+
+
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `alumni_reg` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `regkey` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'mailsent',
+  `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=302 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -167,12 +191,9 @@ CREATE TABLE `sponsorships` (
 CREATE TABLE `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `student_id` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `batch` int(11) NOT NULL,
-  `linkedin_id` varchar(255) NOT NULL,
-  `profile_url` varchar(255) NOT NULL,
-  `oauth_token` varchar(255) NOT NULL,
-  `oauth_token_secret` varchar(255) NOT NULL,
-  `gpa` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=283 DEFAULT CHARSET=latin1;

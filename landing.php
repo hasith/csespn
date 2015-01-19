@@ -28,9 +28,9 @@ verify_oauth_session_exists();
                     if ($org->access_level == 1) {
                         echo "a Public User 
                         <br/><div style='color:rgb(177, 8, 8); margin-top:10px; font-size:15px'>
-                        <b>IMPORTANT NOTE:</b> Some functionality of this portan is only available to corporate users. 
-                        If your organization would like to obtain a partnership with CSE department of UoM, 
-                        please contact CSE Office (0112640381) for details. </div>";
+                        <b>IMPORTANT NOTE:</b> Some functionality of this portal is only available to corporate users. 
+                        If your organization would like to obtain a corporate partnership, 
+                        please contact the CSE Office (0112640381) for details. ";
                     } else if ($org->access_level == 2) {
                         echo "a Student";
                     } else if ($org->access_level == 3) {
@@ -80,7 +80,10 @@ verify_oauth_session_exists();
                             </div>
                     </div>  
 
-                
+   				 	<div style='color:rgb(177, 8, 8); margin-top:10px; font-size:15px'>
+   							<b>If you are a CSE Student, you may add your profile to the student lists by accessing below link:
+							<a href='./student_reg.php' class="topic details_topic" style="font-size:15px"> Student Registration</a>
+					</div>             
                 </div>
                 
                 

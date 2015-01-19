@@ -8,23 +8,14 @@ class HttpSession {
   
     //Log the user out. Destroy the session variables.
     public static function logout() {
-        unset($_SESSION['user']);
+        unset($_SESSION['currentuser']);
         session_destroy();
     }
     
-    
-    public static function login($linkedin_id) {
-        $db = new DB();
-        $result = $db->select('users', "linkedin_id = '$linkedin_id'");
-        if (!empty($result)) {
-            $user = new User($result[0]);
-			$user->organization = $user->getOrganization();
-            $_SESSION['currentuser'] = $user;
-            return $_SESSION['currentuser'];
-        } else {
-            return null;
-        }
-    }
+	public static function setUser($user) {
+		$user->organization = $user->getOrganization(true);
+		$_SESSION['currentuser'] = $user;
+	}
     
     
 	public static function currentUser(){
