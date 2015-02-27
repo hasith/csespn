@@ -37,7 +37,7 @@ class User {
 	
 	public static function login($result, $token, $token_exp) {
 		if($result->id) {
-			$user = User::checkUserExists($result->id);
+			$user = User::checkUserExists$result->id);
 			if (!$user) {  
 	            $user = new User();
 		
@@ -195,6 +195,16 @@ class User {
         }
     }
 
+    public static function checkUserExistsByProfileUrl($profile_url) {
+        $db = new DB();
+        $result = $db->select("users", "profile_url='$profile_url'");
+        if ($result === false || sizeof($result) == 0) {
+            return null;
+        } else {
+            return new User($result[0]);
+        }
+    }
+	
     //get a user
     //returns a User object. Takes the users id as an input
     public static function get($id) {

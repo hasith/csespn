@@ -43,6 +43,8 @@ if (isset($_GET['error'])) {
 	$linkedin = new Linkedin();
 	$linkedinUser = $linkedin->fetch('GET','/v1/people/~:(id,firstName,lastName,picture-url,public-profile-url,api-standard-profile-request:(url))');
 	
+	//print_r($linkedinUser);
+	
 	if(User::login($linkedinUser, $_SESSION['access_token'], $_SESSION['expires_at'])) {
 		header('Location: ./landing.php');
 	}

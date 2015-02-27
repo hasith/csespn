@@ -7,8 +7,8 @@
 
 class Config {
 	//linkedin api settings 
-    const Linkedin_api_key    	= '';
-	const Linkedin_api_secret  	= '';
+    const Linkedin_api_key    	= '75fno7hvkbmq7y';
+	const Linkedin_api_secret  	= 'pEl89XNWnH05vuRG';
 	
 	//Database settings
 	const Db_server 			= '127.0.0.1';
@@ -17,10 +17,10 @@ class Config {
 	const Db_name				= 'csespn';
 	
 	//Email settings
-	const Email_server			= 'localhost';
+	const Email_server			= 'smtp.gmail.com';
 	const Email_port			= '587';
-	const Email_username		= 'admin@csepartnerportal.net';
-	const Email_password		= '';
+	const Email_username		= 'testcses@gmail.com';
+	const Email_password		= 'Cs3partn3rp0rtal';
 	
 }
 	
