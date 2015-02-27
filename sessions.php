@@ -127,6 +127,11 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                     </div>  
                                                     <div class="companyIcon">
                                                     	<?php
+															echo'<div data-orgId="'.HttpSession::currentUser()->company_id.'" data-access="'.HttpSession::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Express Interest to take this Session</a></div>';
+														?>
+                                                    </div>
+                                                    <div class="proposedIcon">
+                                                    	<?php
 														if (!is_null($session->get("org_id"))) {
 															$company = Company::get($session->get("org_id"));
                                                             $style = "";
@@ -134,16 +139,9 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                                                 $style = 'style="color:#ed7d31 !important"';
                                                             }
 															echo '<div class="linkedLink company-name" '.$style.' >' . $company->name . '</div>';
-														} else {
-                                                            if(!is_null($session->get("date")) && $session_date < time()) {
-                                                                echo'<div class="linkedLink" style="font-size:12px !important">(No Facilitator)</div>';
-                                                            } else {
-                                                                echo'<div data-orgId="'.HttpSession::currentUser()->company_id.'" data-access="'.HttpSession::currentUser()->getOrganization()->access_level.'" data-id="' . $session->id . '" class="linkedLink takeSession"><a href="">Express Interest to take this Session</a></div>';
-                                                            }		
-														}
+														} 
 														?>
-                                                    </div>
-                                                          
+                                                    </div>      
 
                                                 </div>
                                                 
@@ -196,7 +194,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                 <li><label><input type="radio" name="filterby" value="future" checked="true"> Sessions planned for future</label></li>
                                 <li><label><input type="radio" name="filterby" value="past"> Sessions happned in past</label></li>
                                 <li><label><input type="radio" name="filterby" value="my"> Sessions by my company</label></li>
-                                <li><label><input type="radio" name="filterby" value="open"> Sessions open to take</label></li>
+                                <!--li><label><input type="radio" name="filterby" value="open"> Sessions open to take</label></li-->
                             </ul>
                         </div>
 
@@ -224,7 +222,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
         </div>
 
         <div id="dialog-form" title="Session Details">
-            <p style="padding-top: 10px;" class="validateTips">Propose a session you would like to carryout to CSE students. We will get back to you regarding the possible dates for that.</p>
+            <p style="padding-top: 10px;" class="validateTips">Propose a session you think would be helpful for CSE students. If the department is able to facilitate your organization to carryout the session, we will get back to you.</p>
 
             <form id="create_form" method="post" action="sessions.create.php">
                 <fieldset>
@@ -238,7 +236,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                         </tr>
                         <tr>
                             <td><label for="description">Description</label></td>
-                            <td><textarea form="create_form" id="description" name="description" minlength="50" maxlength="256" rows="4" cols="70" required></textarea><br/></td>
+                            <td><textarea form="create_form" id="description" name="description" minlength="50" maxlength="255" rows="4" cols="70" required></textarea><br/></td>
                         </tr>
                         <tr>
                             <td><label for="pic_url">Image Url</label></td>
@@ -246,18 +244,18 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                         </tr>                        
                         <tr>
                             <td><label for="datepicker">Date</label></td>
-                            <td><input type="text" id="datepicker" name="date"><br/></td>
+                            <td><input type="text" id="datepicker" name="date" placeholder="Optional"><br/></td>
                         </tr>
                         <tr>
                             <td><label for="start_time">Start Time</label></td>
                             
-                            <td><input id="session-time" type="text" name="start_time"> </td>
+                            <td><input id="session-time" type="text" name="start_time" placeholder="Optional"> </td>
                             
                             
                         </tr>
                         <tr>
                             <td><label for="duration">Duration</label></td>
-                            <td><input type="text"  size="6" id="duration" name="duration"> mins<br/></td>
+                            <td><input type="text"  size="10" id="duration" name="duration" placeholder="Optional"> mins<br/></td>
                         </tr>
                         
                         <tr>
@@ -272,6 +270,7 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                 <input type="checkbox" name="batch[]" value="<?php echo $settingsTools->getLevelOneId() ?>"> Level 1</input>&nbsp;&nbsp;
                             </td>
                         </tr>
+						<?php if (HttpSession::currentUser()->getOrganization()->access_level > 4) { ?>
                         <tr>
                             <td><label for="company">Assigned To: </label></td>
                             <td>
@@ -289,65 +288,49 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
                                 </select> 
                             </td>
                         </tr>
+						<?php } ?>
                     </table>
 
                 </fieldset>
             </form>
         </div> 
 
-        <div id="dialog-confirmation" title="Express Interest to Conduct the Session">
-            <p style="padding-top: 10px;" class="validateTips">Propose a session you would like to carryout to CSE students. We will get back to you regarding the possible dates for that.</p>
+        <div id="dialog-confirmation" title="Express Your Interest to Conduct this Session">
 
             <form id="confirmation_form" method="post" action="sessions.facilitate.php">
                 <fieldset>
-                    <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
-                        session details where you may fill in contact person details, etc. 
-                        We will get in touch with you soon.
-						<br/><br/>
-						 You can get to know the other companies who were interested to facilitate for this session.
-						</p>
-                    
+                    <p class="validateTips">Thank you for volunteering to facilitate this session. Please note that 
+						multiple organizations are able to express interest to conduct sessions at CSE. </p>
+                    <div id="other_orgs" class="validateTips">Organizations who expressed the interest to conduct this session are:
+						 <table class="mytable" id="facilitators">
+							 <thead><tr><th>Company</th><th>Person</th><th>Contact</th><th>Details</th></tr></thead>
+							<col width="100">
+							<col width="100">
+							<col width="100">
+							<col width="330">
+						 </table>
+						 <div id="facilitatorsdiv" style="font-weight: bold;"></div>
+					</div>
+                    <p class="validateTips">Soon a CSE representative may get in touch with you if we decide to award 
+						this session to your organization. Please provide us with below information:</p>
+                   
+                    <label for="resp_name" class="validateTips">&nbsp;&nbsp;&nbsp;&nbsp;Contact Person Name</label>
+					<input type="text" maxlength="50" name="resp_name" id="resp_name" class="required" required/>
+					<label for="resp_contact" class="validateTips">&nbsp;&nbsp;&nbsp;&nbsp;Phone</label>
+					<input type="text" maxlength="10" size="12" id="resp_contact" name="resp_contact" class="required" required/>
+					<br/><br/><label for="comment" class="validateTips">&nbsp;&nbsp;&nbsp;&nbsp;Comment</label>
+					<textarea name="comment" rows="4" cols="54" maxlength="255" class="required" placeholder="Mention why your organization is the best fit for this session. E.g. Profiles of the resource personal, experience, etc." required></textarea>
+					
                     <input type="hidden" name="id" />
                     <input type="hidden" name="queryString"/>
                     <input type="hidden" name="orgId" value="<?= HttpSession::currentUser()->company_id ?>" />
+					<input type="hidden" name="access_level" value="<?= HttpSession::currentUser()->getOrganization()->access_level ?>" />
                     <input type="hidden" name="sessionId" />
 					<input type="hidden" name="idUser" value="<?= HttpSession::currentUser()->id?>" />
-					<h5> Name of the interested Companies </h5>
-                    <table id="facilitators"></table>
-                    					
-                    <table id="resp_person">
-                        
-                        <tr>
-                            <td><label for="resp_name">Responsible Person</label></td>
-                        </tr>
-                        <tr>
-                            <td><label for="resp_name">&nbsp;&nbsp;&nbsp;&nbsp;Name</label></td>
-                            <td><input type="text" maxlength="50" name="resp_name" id="resp_name" class="required"/></td>
-                        </tr>
-                        <tr>
-                            <td><label for="resp_contact">&nbsp;&nbsp;&nbsp;&nbsp;Phone</label></td>
-                            <td><input type="text" maxlength="10" size="12" id="resp_contact" name="resp_contact" class="required"/><br/></td>
-                        </tr>
-                        
-                    </table>
 
                 </fieldset>
             </form>
             </div> 
-
-        <div id="dialog-confirmation1" title="Confirm Facilitation of this Session">
-            <form id="confirmation_form1" method="post" action="sessions.facilitate.php">
-                <fieldset>
-                    <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
-                        session details where you may fill in contact person details, etc. 
-                        We will get in touch with you soon.</p>
-                    <input type="hidden" name="orgId" value="<?= HttpSession::currentUser()->company_id ?>" />
-                    <input type="hidden" name="sessionId" />
-                    <input type="hidden" name="queryString"/>
-                </fieldset>
-            </form>
-        </div>      
-
 
         <?php include_once 'scripts.inc.php'; ?>
         <?php require_once './common.inc.php'; ?>

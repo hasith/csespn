@@ -21,13 +21,15 @@ if (isset($_GET['batch']) && $_GET['batch'] == "level_2") {
 } else if (isset($_GET['batch']) && $_GET['batch'] == "level_3") {
     $batch = "level_3";
     $batchId = $settingsTools->getLevelThreeId();
+} else if (isset($_GET['batch']) && $_GET['batch'] == "level_1"){
+    $batch = "level_1";
+    $batchId = $settingsTools->getLevelOneId();
 } else {
     $batch = "level_4";
     $batchId = $settingsTools->getLevelFourId();
 }
 
-$students = $studentTools->getStudents($batchId, $sort, $technology);  
-
+$students = $studentTools->getStudentViewModels($batchId, $sort, $technology);  
 
 /* * *********************Sorting Students*********************************** */
 if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
@@ -58,7 +60,9 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
 <?php require_once './nav.inc.php'; ?>    
         <div class="container clearfix">        	
             <div id="bannerArea" class="clearfix">
-                <p class="page-title" style="margin-bottom:20px">The vibrant pool of students who are keen of cross functional activities is our greatest strength. You are able to collaborate with the students in your organizational activities by forming teams according to your preference. </p>
+                <p class="page-title" style="margin-bottom:20px">The vibrant pool of students, keen of cross functional activities is our greatest strength. 
+					You are able to access student profiles and collaborate for your organizational activities. On this page, corporate users will be able to search and filter for students 
+					having specific technology competencies.</p>
                 <div id="bannerLeft">	
                     
                     <div id="example-two">					
@@ -66,20 +70,29 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                             <?php
                                 
                                 if($batch =="level_4"){
-                                    echo '<li class="nav-one"><a class="batch-tab current" data-batch="level_4" href="javascript:void(0)">Year 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Year 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Year 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab current" data-batch="level_4" href="javascript:void(0)">Level 4</a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Level 3</a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Level 2</a></li>';
+									echo '<li class="nav-four"><a href="javascript:void(0)" class="batch-tab" data-batch="level_1">Level 1</a></li>';
                                 }
                                     
                                 else if($batch =="level_3"){
-                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Year 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_3" >Year 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Year 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Level 4 </a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_3" >Level 3 </a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Level 2 </a></li>';
+									echo '<li class="nav-four"><a href="javascript:void(0)" class="batch-tab" data-batch="level_1">Level 1 </a></li>';
                                 }
                                 else if($batch =="level_2"){
-                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Year 4 students</a></li>';
-                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Year 3 students</a></li>';
-                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_2">Year 2 students</a></li>';
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Level 4 </a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Level 3 </a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_2">Level 2 </a></li>';
+									echo '<li class="nav-four"><a href="javascript:void(0)" class="batch-tab" data-batch="level_1">Level 1 </a></li>';
+                                }
+                                else if($batch =="level_1"){
+                                    echo '<li class="nav-one"><a class="batch-tab" data-batch="level_4" href="javascript:void(0)">Level 4 </a></li>';
+                                    echo '<li class="nav-two"><a href="javascript:void(0)" class="batch-tab" data-batch="level_3" >Level 3 </a></li>';
+                                    echo '<li class="nav-three"><a href="javascript:void(0)" class="batch-tab" data-batch="level_2">Level 2 </a></li>';
+									echo '<li class="nav-four"><a href="javascript:void(0)" class="batch-tab current" data-batch="level_1">Level 1 </a></li>';
                                 }
                             ?>                                                        
                         </ul>                        
@@ -90,6 +103,7 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                                     <?php 
                                         if (count($students) > 0) {
                                             echo '<div id="accordion" class="student-page">'.getHtmlForStudents($students).'</div>';
+											echo '<p class="message-text">Number of student records: '.count($students).'</p>';
                                         } else {
                                             echo '<p class="message-text">-- no student with the given criteria is available in this batch --</p>';
                                         }
@@ -262,36 +276,17 @@ function getHtmlForStudents($students) {
 }
 
 function getHtmlForStudent($student) {
-    //$user = $student->getUser();
-    if($student->user_id == null){
-        
-       
-    $color = 'grayColor'; 
-    $html = '<h3 class="'.$color.' clearfix">';
-    $html = $html . '<div class="descriptionArea">';
-    $html = $html . '<a href="javascript:void(0)">' . $student->student_id . '</a>';
-    $html = $html . '<p>'. getHtmlForStudentTechnologies($student) .'</p>';
-    $html = $html . getLinkedInProfile($student).getUniScorecard($student).'</div>';
-    $html = $html . '</h3>';
-    $html = $html . '<div class="contentData clearfix">';
-    $html = $html . '<img height="79" width="65" src="img/unknown-member.gif"/>';
-    //$html = $html . '<p>';  
-    $html = $html .  'No data available. Student with id '. $student->student_id .' has not signed-in to the application yet.';
-    //$html = $html . '</p>';  
-    $html = $html . '</div>';
-    
-    return $html;
-    }
+    $description = strlen($student->description) > 1 ? $student->description.'...' : '-description not available -';
     $color = 'orangeColor'; 
     $html = '<h3 class="'.$color.' clearfix">';
     $html = $html . '<div class="descriptionArea">';
-    $html = $html . '<img style="margin-top:10px" height="79" width="65" src="'. getProfileUrl($student) .'"/>';
-    $html = $html . '<div style="margin-left:100px; margin-top:-95px"><span class="title">' . $student->name;  
+    $html = $html . '<img style="margin-top:10px;height: 80px;width: 80px;" src="'. getProfileUrl($student) .'"/>';
+    $html = $html . '<div style="margin-left:100px; margin-top:-95px"><span class="title">' . $student->getUser()->name;  
     if (HttpSession::currentUser()->getOrganization()->access_level > 4) {
         $html = $html . '  <span style="font-size:10px">( '. $student->student_id.' )</span></span>';  
     }
-    $html = $html . '<p>'. $student->description.'</p>';
-    $html = $html . getLinkedInProfile($student).getUniScorecard($student).'</div></div>';
+    $html = $html . '<p>'. $description.'</p>';
+    $html = $html . getLinkedInProfile($student).'</div></div>'; //.getUniScorecard($student)
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
     //$html = $html . '<img height="79" width="65" src="'. $user->pic_url .'"/>';
@@ -304,8 +299,9 @@ function getHtmlForStudent($student) {
 }
 
 function getProfileUrl($student){
-    if($student->pic_url) {
-        return $student->pic_url;
+	$pic_url = $student->getUser()->pic_url;
+    if($pic_url) {
+        return $pic_url;
     } else {
         return './img/no_photo.png';
     }
@@ -317,7 +313,7 @@ function getUniScorecard($student){
 }
 
 function getLinkedInProfile($student){
-    return '<a class="linkedInImg" href="' . $student->profile_url . '"></a>';
+    return '<a class="linkedInImg" href="' . $student->getUser()->profile_url . '"></a>';
 }
 
 function getHtmlForStudentTechnologies($student) {
@@ -343,9 +339,6 @@ function getHtmlForStudentTechnologies($student) {
 /**
  * Helper functions for different sort operations
  */
-function gpa_sort($student1, $student2) {
-    return doubleval($student1->gpa) - doubleval($student2->gpa);
-}
 
 function endorsements_sort($student1, $student2) {
     return intval($student2->getEndorsements()) - intval($student1->getEndorsements());

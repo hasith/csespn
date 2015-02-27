@@ -8,13 +8,13 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
 }
 
 
-$id = mysql_real_escape_string($_POST['id']);
-$display_name = mysql_real_escape_string($_POST['title']);
-$course = mysql_real_escape_string($_POST['course']);
-$year = mysql_real_escape_string($_POST['year']);
-
-
 $db = new DB();
+
+$id = mysqli_real_escape_string($db->getConnection(), $_POST['id']);
+$display_name = mysqli_real_escape_string($db->getConnection(), $_POST['title']);
+$course = mysqli_real_escape_string($db->getConnection(), $_POST['course']);
+$year = mysqli_real_escape_string($db->getConnection(), $_POST['year']);
+
 
 if ($id >= 0) {
 

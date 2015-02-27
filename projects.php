@@ -339,19 +339,6 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
             </form>
             </div> 
 
-        <div id="dialog-confirmation1" title="Confirm Facilitation of this Session">
-            <form id="confirmation_form1" method="post" action="projects.facilitate.php">
-                <fieldset>
-                    <p class="validateTips">Thank you for volunteering to facilitate this session! <br/><br/> After confirmation, you will be able to edit 
-                        session details where you may fill in contact person details, etc. 
-                        We will get in touch with you soon.</p>
-                    <input type="hidden" name="linkedinId" value="<?= HttpSession::currentUser()->linkedin_id?>" />
-                    <input type="hidden" name="projectId" />
-                    <input type="hidden" name="queryString"/>
-                </fieldset>
-            </form>
-        </div>
-
 
         <?php include_once 'scripts.inc.php'; ?>
         <?php require_once './common.inc.php'; ?>

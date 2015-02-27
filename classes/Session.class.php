@@ -15,6 +15,7 @@ class Session {
 	public $resp_name;
 	public $resp_contact;
 	public $org_id;
+	public $proposed_org_id;
     public $pic_url;
 	
     //Constructor is called whenever a new object is created.
@@ -31,21 +32,8 @@ class Session {
 		$this->resp_name = isset($data["resp_name"])? $data["resp_name"]: null;
 		$this->resp_contact = isset($data["resp_contact"])? $data["resp_contact"]: null;
 		$this->org_id = isset($data["org_id"]) && is_numeric($data["org_id"]) && $data["org_id"] >0? $data["org_id"]: null;
-		/*
-    	if($this->notEmpty($data['id'])) {
-    		$this->id = $data['id'];
-    	}
+		$this->proposed_org_id = isset($data["proposed_org_id"]) && is_numeric($data["proposed_org_id"]) && $data["proposed_org_id"] >0? $data["proposed_org_id"]: null;
 		
-        $this->entity["title"] = ($this->notEmpty($data['title'])) ? $this->stringify($data['title']) : "NULL";
-        $this->entity["description"] = ($this->notEmpty($data['description'])) ? $this->stringify($data['description']) : "NULL";
-        $this->entity["date"] = ($this->notEmpty($data['date'])) ? $this->stringify($data['date']) : "NULL";
-		$this->entity["start_time"] = ($this->notEmpty($data['start_time'])) ? $this->stringify($data['start_time']) : "NULL";
-		$this->entity["duration"] = ($this->notEmpty($data['duration'])) ? $data['duration'] : "NULL";
-		$this->entity["resp_name"] = ($this->notEmpty($data['resp_name'])) ? $this->stringify($data['resp_name']) : "NULL";
-		$this->entity["resp_contact"] = ($this->notEmpty($data['resp_contact'])) ? $this->stringify($data['resp_contact']) : "NULL";
-        $this->entity["org_id"] = ($this->notEmpty($data['org_id'])) ? $data['org_id'] : "NULL";
-		 
-		 */
     }
 	
 	public function get($key) {
@@ -55,22 +43,30 @@ class Session {
     
     public static function getInterestedFacilitators($session_id) {
         $db = new DB();
-        $sql = "SELECT distinct companies.* FROM session_interest LEFT OUTER JOIN ".
+        $sql = "SELECT distinct companies.name company_name, session_interest.resp_name, session_interest.resp_contact, 
+		session_interest.comment FROM session_interest LEFT OUTER JOIN ".
             "companies ON session_interest.org_id=companies.id WHERE session_id=$session_id";
         $results = $db->query($sql);
-        
+		
+		return $results;
+        /*
         $companies = array();
         foreach ($results as $result){
             array_push($companies, new Company($result));
         }
         return $companies;
+		*/
     }
 	
 	
     
-    public static function addInterest($session_id, $org_id, $resp_name, $resp_contact) {
+    public static function addInterest($session_id, $org_id, $resp_name, $resp_contact, $comment) {
         $db = new DB();
-        $sql = "insert into session_interest (session_id, org_id, resp_name, resp_contact) values ($session_id, $org_id, '$resp_name', '$resp_contact')";
+		$resp_name = mysqli_real_escape_string($db->getConnection(), $resp_name);
+		$resp_contact = mysqli_real_escape_string($db->getConnection(), $resp_contact);
+		$comment = mysqli_real_escape_string($db->getConnection(), $comment);
+		
+        $sql = "insert into session_interest (session_id, org_id, resp_name, resp_contact, comment) values ($session_id, $org_id, '$resp_name', '$resp_contact', '$comment')";
         $db->execute($sql);
 	}
 	
@@ -138,6 +134,7 @@ class Session {
             "resp_name" => $db->stringify($this->resp_name),
             "resp_contact" => $db->stringify($this->resp_contact),
             "org_id" => $this->numeric($this->org_id),
+			"proposed_org_id" => $this->numeric($this->proposed_org_id)
         );
 		
         //if object is already registered and we're

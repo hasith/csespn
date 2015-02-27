@@ -5,8 +5,10 @@ define('ROOT_DIR', dirname(__FILE__));
 error_reporting(E_ALL ^ E_NOTICE);
 ini_set('max_execution_time', 0); 
 
-if(file_exists('./server_conf.php')){
-    require_once('./server_conf.php');
+if(file_exists('./conf/production_conf.php')){
+    require_once('./conf/production_conf.php');
+} else {
+	require_once('./conf/developer_conf.php');
 }
 
 require_once ROOT_DIR . '/classes/AuditTrail.class.php';

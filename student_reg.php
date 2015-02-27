@@ -94,7 +94,6 @@ verify_oauth_session_exists();
 						 }
 								 
 					}
-					print_r( HttpSession::currentUser());
 					?>
                 </div>
           

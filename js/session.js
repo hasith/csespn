@@ -3,7 +3,7 @@ $(document).ready(function(){
  $('#usertable').dataTable();   
 		
 	$( "#propose-session" ).button().click(function() {
-        if($(this).data("access")== 2) {
+        if($(this).data("access") >= 2) {
             $('#create_form').populate({});
 	        $( "#dialog-form" ).dialog( "open" );
         } else {
@@ -55,8 +55,8 @@ $(document).ready(function(){
 	
 	$("#dialog-confirmation").dialog({
 	  autoOpen: false,
-	  height: 600,
-	  width: 850,
+	  height: 470,
+	  width: 750,
 	  modal: true,
 	  buttons: {
 	    "Confirm Facilitation": function() {
@@ -70,9 +70,11 @@ $(document).ready(function(){
 	});
 	
 	$(".takeSession").click(function(){
-        if(($(this).data("access")==3) || ($(this).data("access")==4)){
+		var access_level = $(this).data("access");
+        if(access_level > 2){
             var sessionId = $(this).data("id");
             var orgId = $(this).data("orgid");
+			
             $("#confirmation_form :input[name='sessionId']").val(sessionId);
             var url =  "sessions.facilitate.get.php?sessionId=" + sessionId;
             //get data on who else is interested
@@ -80,19 +82,27 @@ $(document).ready(function(){
                 dataType: "json",
                 url: url
             }).done(function(data) {
-                $("#facilitators tr").remove();
-				for(var i=0; i<data.length; i++) { 
-                    $('#facilitators').append('<table border= "1"><tr><td>' + data[i].name + '</td></tr></table>');
-                    //var btn = $('#dialog-confirmation').dialog('widget').find('.ui-dialog-buttonpane .ui-button:first');
-                    //var table = $("#resp_person");
-                    //if(orgId == data[i].id) {
-                        //btn.hide();
-                        //table.hide();
-                    //} else {
-                        //table.show();
-                        //btn.show();
-                    //}
-                }
+				
+				(data.length > 0)? $('#other_orgs').css({'display':'block'}) : $('#other_orgs').css({'display':'none'}) ;
+				if(access_level > 4) {
+					$('#facilitators').css({'display':'block'}) ;
+					$('#facilitatorsdiv').css({'display':'none'}) ;
+					
+	                $("#facilitators tbody tr").remove();
+					for(var i=0; i<data.length; i++) { 
+	                    $('#facilitators').append(
+							'<tbody><tr><td>' + data[i].company_name + '</td><td>' + data[i].resp_name + '</td><td>' + data[i].resp_contact + '</td><td>' + data[i].comment + '</td></tr></tbody>');
+	                }
+				} else {
+					$('#facilitators').css({'display':'none'}) ;
+					$('#facilitatorsdiv').css({'display':'block'}) ;
+					var orgList = '&nbsp;&nbsp;&nbsp;&nbsp;';
+					for(var i=0; i<data.length; i++) { 
+	                    orgList = orgList + data[i] + ', ';
+	                }
+					$('#facilitatorsdiv').html(orgList.substring(0, orgList.length - 2));
+				}
+                
             });
             
             $("#dialog-confirmation").dialog( "open" );

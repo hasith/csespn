@@ -17,6 +17,9 @@ class Student {
     public $course;
     //from uni_score table
     public $uni_score;
+	//reference to user
+	public $user;
+	
 
     //Constructor is called whenever a new object is created.
     //Takes an associative array with the DB row as an argument.
@@ -68,9 +71,13 @@ class Student {
     }
 
     public function getUser() {
-        return User::getFromLinkedinId($this->linkedin_id);
+		if(!$user) {
+			$user = User::get($this->user_id);
+		}
+        return $user;
     }
 
+	/*
     public static function getStudent($profile_url) {
         
         //lets take the last part of the URL for a LIKE comparison
@@ -85,7 +92,7 @@ class Student {
         }else{
             return new Student($result);
         }
-    }
+    }*/
 
     public function getCompetentTechnologies() {
         $db = new DB();
@@ -123,31 +130,39 @@ class Student {
 		//extract skill details
 		$skillsResult = $linkedin->fetch('GET','/v1/people/~/skills');
 		$this->insertSkills($skillsResult->values);
+		
 	}
 	
 	
 	
 	private function insertSkills($skillsList) {
-	    foreach($skillsList as $record){   
+		
+		if (is_array($skillsList)) {
 			
-			$tech = $record->skill->name;
+		    foreach($skillsList as $record){   
+			
+				$tech = $record->skill->name;
 
-	        $techId = Technology::checkTechnologyExists(trim($tech));
-	        if($techId <= 0){
-	            $technology = new Technology();                                
-	            $technology->name = trim($tech);
-	            $technology->save(TRUE);
-				$techId = $technology->id;
-	        }
+		        $techId = Technology::checkTechnologyExists(trim($tech));
+		        if($techId <= 0){
+		            $technology = new Technology();                                
+		            $technology->name = trim($tech);
+		            $technology->save(TRUE);
+					$techId = $technology->id;
+		        }
 
-	        if(!Endorsement::checkEndorsementExists($techId, $this->id)){
-	            $endorsement = new Endorsement();
-	            $endorsement->student_id = $this->id;
-	            $endorsement->technology_id = $techId;
-	            $endorsement->count = 1;
-	            $endorsement->save(TRUE);
-	        }
-	    }
+		        if(!Endorsement::checkEndorsementExists($techId, $this->id)){
+		            $endorsement = new Endorsement();
+		            $endorsement->student_id = $this->id;
+		            $endorsement->technology_id = $techId;
+		            $endorsement->count = 1;
+		            $endorsement->save(TRUE);
+		        }
+				
+		    }
+			
+		}
+	    
 	}
 	
     

@@ -7,18 +7,17 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
     echo "Access denied";
     die();
 }
-
-
-$id = mysql_real_escape_string($_POST['id']);
-$title = mysql_real_escape_string($_POST['title']);
-$description = mysql_real_escape_string($_POST['description']);
-$date = mysql_real_escape_string($_POST ['date']);
-$date_confirmed = (is_numeric ($_POST['date_confirmed']) && ($_POST['date_confirmed'] == 'on'))? 1 : 0;
-$time = mysql_real_escape_string($_POST['time']);
-$venue = mysql_real_escape_string($_POST['venue']);
-$url = mysql_real_escape_string($_POST['url']);
-
 $db = new DB();
+
+$id = mysqli_real_escape_string($db->getConnection(), $_POST['id']);
+$title = mysqli_real_escape_string($db->getConnection(), $_POST['title']);
+$description = mysqli_real_escape_string($db->getConnection(), $_POST['description']);
+$date = mysqli_real_escape_string($db->getConnection(), $_POST ['date']);
+$date_confirmed = (is_numeric ($_POST['date_confirmed']) && ($_POST['date_confirmed'] == 'on'))? 1 : 0;
+$time = mysqli_real_escape_string($db->getConnection(), $_POST['time']);
+$venue = mysqli_real_escape_string($db->getConnection(), $_POST['venue']);
+$url = mysqli_real_escape_string($db->getConnection(), $_POST['url']);
+
 
 if ($id >= 0) {
     $data['title'] = "'" . $title . "'";

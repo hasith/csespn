@@ -92,8 +92,9 @@ class Project {
 	}
 	
 	protected function stringify($value) {
+		$db = new DB();
 		if(isset($value) && !is_null($value) && !empty($value)) {
-			return "'".mysql_real_escape_string($value)."'";
+			return "'".mysqli_real_escape_string($db->getConnection(), $value)."'";
 		} else {
 			return "NULL";
 		}		

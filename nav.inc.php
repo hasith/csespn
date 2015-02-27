@@ -4,9 +4,16 @@
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-52213235-1', 'cses.lk');
+  ga('create', 'UA-52213235-1', 'auto');
   ga('send', 'pageview');
-
+<?php
+    if(oauth_session_exists()){ 
+        $user = HttpSession::currentUser();  
+        if($user && is_object($user)) {
+			echo "ga(‘set’, ‘&uid’, {{".$user->id."}});";
+	  	}
+	}
+?>
 </script>
 <div id="header">
     <div class="container clearfix">

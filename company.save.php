@@ -7,10 +7,11 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
     die();
 }
 
+$db = new DB();
 
-$id = mysql_real_escape_string($_POST['id']);
-$name = mysql_real_escape_string($_POST['name']);
-$accesslevel = mysql_real_escape_string($_POST['accesslevel']);
+$id = mysqli_real_escape_string($db->getConnection(), $_POST['id']);
+$name = mysqli_real_escape_string($db->getConnection(), $_POST['name']);
+$accesslevel = mysqli_real_escape_string($db->getConnection(), $_POST['accesslevel']);
 
 $db = new DB();
 

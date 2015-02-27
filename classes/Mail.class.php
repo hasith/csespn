@@ -51,10 +51,10 @@ class Mailer {
 		$mail->Debugoutput = 'html';
 
 		//Set the hostname of the mail server
-		$mail->Host = 'smtp.gmail.com';
+		$mail->Host = Config::Email_server;
 
 		//Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-		$mail->Port = 587;
+		$mail->Port = Config::Email_port;
 
 		//Set the encryption system to use - ssl (deprecated) or tls
 		$mail->SMTPSecure = 'tls';
@@ -63,16 +63,13 @@ class Mailer {
 		$mail->SMTPAuth = true;
 
 		//Username to use for SMTP authentication - use full email address for gmail
-		$mail->Username = "csepartnerportal@gmail.com";
+		$mail->Username = Config::Email_username;
 
 		//Password to use for SMTP authentication
-		$mail->Password = "cs3partn3rp0rta1";
+		$mail->Password = Config::Email_password;
 
 		//Set who the message is to be sent from
 		$mail->setFrom('csepartnerportal@gmail.com', 'CSE Partner Portal');
-
-		//Set an alternative reply-to address
-		//$mail->addReplyTo('hasith@example.com', 'First Last');
 		
 		return $mail;
 		

@@ -4,11 +4,11 @@ require_once('global.inc.php');
 
 //$_SESSION['access_token'] = null;
 // Change these
-define('API_KEY',      '75fno7hvkbmq7y'                                          );
-define('API_SECRET',   'pEl89XNWnH05vuRG'                                       );
+define('API_KEY', Config::Linkedin_api_key);
+define('API_SECRET', Config::Linkedin_api_secret);
 // You must pre-register your redirect_uri at https://www.linkedin.com/secure/developer
 define('REDIRECT_URI', 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME']);
-define('SCOPE',        'r_contactinfo r_emailaddress r_fullprofile'                              );
+define('SCOPE', 'r_contactinfo r_emailaddress r_fullprofile');
  
 // You'll probably use a database
 //session_name('linkedin');
