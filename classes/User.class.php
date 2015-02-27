@@ -37,7 +37,7 @@ class User {
 	
 	public static function login($result, $token, $token_exp) {
 		if($result->id) {
-			$user = User::checkUserExists$result->id);
+			$user = User::checkUserExists($result->id);
 			if (!$user) {  
 	            $user = new User();
 		
