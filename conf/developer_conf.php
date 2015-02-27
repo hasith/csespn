@@ -7,8 +7,8 @@
 
 class Config {
 	//linkedin api settings 
-    const Linkedin_api_key    	= '75fno7hvkbmq7y';
-	const Linkedin_api_secret  	= 'pEl89XNWnH05vuRG';
+    const Linkedin_api_key    	= '';
+	const Linkedin_api_secret  	= '';
 	
 	//Database settings
 	const Db_server 			= '127.0.0.1';
