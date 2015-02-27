@@ -102,6 +102,7 @@ try {
                         $student = Student::getStudent($result->{'public-profile-url'});
                         $student->description = $result->{'summary'};
                         $student->linkedin_id = $result->{'id'};
+                        $student->pic_url = $result->{'picture-url'};
                         $student->oauth_token = $_SESSION['oauth']['linkedin']['access']['oauth_token'];
                         $student->oauth_token_secret = $_SESSION['oauth']['linkedin']['access']['oauth_token_secret'];
                         $student->save();
