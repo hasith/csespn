@@ -100,7 +100,7 @@ verify_oauth_session_exists();
             </div>
 
         </div>
-
+		<?php require_once './footer.php'; ?>
 
         <?php include_once 'scripts.inc.php'; ?>
         <script type="text/javascript" src="js/event.js"></script>

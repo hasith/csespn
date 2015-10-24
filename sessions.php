@@ -330,8 +330,8 @@ $sort = (isset($_GET['sort']))? $_GET['sort']: "updated";
 
                 </fieldset>
             </form>
-            </div> 
-
+            </div>
+        <?php require_once './footer.php'; ?>
         <?php include_once 'scripts.inc.php'; ?>
         <?php require_once './common.inc.php'; ?>
         <script type="text/javascript" src="js/session.js"></script>

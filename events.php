@@ -218,7 +218,7 @@ verify_oauth_session_exists();
             </div>
 
         </div>
-
+        <?php require_once './footer.php'; ?>
 
         <?php include_once 'scripts.inc.php'; ?>
         <?php require_once './common.inc.php'; ?>

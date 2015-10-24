@@ -10,7 +10,6 @@
 
 }
 
-
 .filterbtn {
     font-size: 17px;
     margin-left: 15px;
@@ -54,7 +53,8 @@
 
 #benefits {
     margin-left: 20px;
-
+    margin-bottom: -15px;
+    font-family: 'Roboto', sans-serif;
 }
 
 #benefits div.topic {
@@ -81,7 +81,8 @@
 
 .hd {
     margin-top: 55px;
-    font-family:open_sansregular;
+    /*font-family:open_sansregular;*/
+    font-family: 'Roboto', sans-serif;
 }
 
 .hd hr {
@@ -208,12 +209,14 @@ p.bjqs-caption{
     margin-bottom:25px;
 }
 .signInArea p{
-    font-family:open_sansregular;
+    /*font-family:open_sansregular;*/
+    font-family: 'Roboto', sans-serif;
     font-size:22px;
     color:#203864;
     margin:0;
     padding:0;
     font-weight:bold;
+    text-align: justify;
 }
 .signInArea a{
     display:block;
@@ -228,6 +231,17 @@ p.bjqs-caption{
     color:#FFF;
     width:180px;
     text-align:center;
+    -o-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+.buttonEffect:hover {
+    -o-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+    background:#2b6ba5;
 }
 .linkNormal{
     color:#2e75c0;
@@ -247,12 +261,20 @@ p.bjqs-caption{
     float:left;
     width:160px;
     padding-left:10px;
-    padding-top: 20px;
 }
 
 #contactDetails h6,#contactDetails p{
     margin:0;
     padding:0;
+}
+
+#contactDetails p img{
+    margin-right: 5px;
+}
+
+#contactDetails p span {
+    margin-top: 2px;
+    display: inline-block;
 }
 
 .details_image {
@@ -263,17 +285,28 @@ p.bjqs-caption{
     font-size:18px;
     font-weight:bold;
     color:#203864;
-    font-family:open_sansregular;
-    padding-left:10px;
+    /*font-family:open_sansregular;*/
+    font-family: 'Roboto', sans-serif;
+    /*padding-left:10px;*/
 }
+
+.details_sub_topic {
+    font-weight: 300;
+    font-style: italic;
+    color: #555;
+    font-size: 16px;
+}
+
 #contactDetails p{
     font-family:open_sansregular;
     font-size:14px;
-    line-height:25px;
+    line-height:35px;
     
 }
 #signMessage{
-    font-family:open_sansregular;
+    /*font-family:open_sansregular;*/
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
     font-size:14px;
     line-height:20px;
     margin-top:15px !important;
@@ -550,7 +583,7 @@ p.bjqs-caption{
     width:320px;
     float:right;
     padding:20px;
-    height:478px;
+    /*height:478px;*/
 }
 
 #legend{
@@ -641,6 +674,18 @@ p.bjqs-caption{
     color:#FFF;
     text-align:center;
     text-decoration:none;
+    -o-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+#addProject a:hover {
+    background:#2b6ba5;
+    -o-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
 }
 
 .researchPopUp .heading{
@@ -1253,3 +1298,48 @@ label.error{
 	background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0);	
 }
 /****** table end *******/
+/****** footer start ******/
+table.company_logos {
+    width: 100%;
+}
+table.company_logos tr td img {
+    padding-bottom: 15px;
+    padding-top: 5px;
+}
+
+table.company_logos tr td .sponsor_type {
+    color: #555;
+}
+table.company_logos .logo_left {
+    float: right;
+}
+table.company_logos .logo_right {
+    float: left;
+}
+/****** footer end ******/
+#student_reg_link {
+    margin-bottom: 20px;
+    text-align: right;
+    font-size: 14px;
+    color: #555;
+    margin-right: 20px;
+}
+
+#student_reg_link a {
+    background-color: #90cd67;
+    padding: 8px;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    -o-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+#student_reg_link a:hover {
+    background-color: #70ad47;
+    -o-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
