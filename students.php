@@ -121,11 +121,11 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                 
                <div id="rightSide">	
                     <?php if (HttpSession::currentUser()->getOrganization()->access_level >= 3) { ?>
-                        <div id="addProject">
+                        <!--div id="addProject">
                             <a href="" id="assemble-team" >
                                 Assemble a Team
                             </a>
-                        </div>
+                        </div-->
                     <?php } ?>
                     <div class="componentContainer">
                         <div class="heading">
