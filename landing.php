@@ -75,9 +75,9 @@ verify_oauth_session_exists();
 
                     <div id="benefits">
                             <img src="./img/benefits/events.jpg" />
-                            <div ><a href="./events.php"  class="topic details_topic" style="margin-bottom: 5px;">Event Calandar</a></div>
+                            <div ><a href="./events.php"  class="topic details_topic" style="margin-bottom: 5px;">Event Calendar</a></div>
                             <div class="text">
-                                You may gain access to the department's event calandar via this portal. This will help the organizations to pre-plan the participation to the events and offer sponsorships to recieve the optimum benefits through engagement activities.
+                                You may gain access to the department's event calendar via this portal. This will help the organizations to pre-plan the participation to the events and offer sponsorships to recieve the optimum benefits through engagement activities.
                             </div>
                     </div>
                 </div>
