@@ -45,6 +45,18 @@ class SponsorshipTools {
 
         return $sponsorships;
     }
+	
+    function getAllSponsorships(){
+        $sponsorships = array();
+        
+        $results = $this->db->query("SELECT * FROM sponsorships");
+        
+        foreach($results as $result){
+            array_push($sponsorships, new Sponsorship($result));
+        }
+
+        return $sponsorships;
+    }
     
     function getAllOpenSponsorships(){
         $sponsorships = array();

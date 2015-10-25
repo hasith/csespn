@@ -57,7 +57,8 @@ verify_oauth_session_exists();
                             <p id="amount-details">
                                 <b>Amount: </b>Rs.<span id="sp-dialog-amount"></span>
                             </p>
-                            <p id="sp-dialog-desc"></p>
+                            <p id="sp-dialog-desc"></p><br/>
+							<div style="font-size: 14px;">Please contact the head of the department for confirmations: <div style="padding-left:4em">Tel: 0112640381 <br/>Email: chathura@cse.mrt.ac.lk</div></div>
                         </div>
                         <div  style="display: none" id="sp-confirm-dialog" title="Confirm">                            
                             <form id="sp-apply-form" method="post" action="sponsorships.take.php">
@@ -145,7 +146,7 @@ verify_oauth_session_exists();
                     </div>
                 </div>
                 <div id="rightSide" style="font-family: Arial, Helvetica, sans-serif;">
-                    Sponsorship Oppotunities
+                    <!--Sponsorship Oppotunities
                     <ul id="legend" style="margin-left: 20px; margin-top: 10px; font-size:15px">
                         <li class="greenBox clearfix">
                             <span></span>
@@ -159,7 +160,7 @@ verify_oauth_session_exists();
                             <span></span>
                             <p>Past Event</p>
                         </li>
-                    </ul>
+                    </ul>-->
 
                     <!-- Following component is excluded from first release -->
                     <!--                    <div class="componentContainer">
@@ -183,25 +184,25 @@ verify_oauth_session_exists();
 
                     <div class="componentContainer">
                         <div class="heading">
-                            <p>Sponsorships open to take</p>
+                            <p>Oppotunities to Partner with CSE</p>
                         </div>
 
                         <div class="ccContainer lastList lastListWithScroll eventListArea">
                             <ul>
                                 <?php
-                                $openSponsorships = $sponsorshipTools->getAllOpenSponsorships();
+                                $openSponsorships = $sponsorshipTools->getAllSponsorships();
 
                                 foreach ($openSponsorships as $openS) {
-                                    $event = Event::get($openS->event_id);
-                                    $event_date = new DateTime($event->date);
+                                    //$event = Event::get($openS->event_id);
+                                    //$event_date = new DateTime($event->date);
 
                                     echo "<li class='clickable-li open-sponsorship-entry'>";
                                     echo "<input id='sponsorship-id' type='hidden' value='" . $openS->id . "'/>";
                                     echo "<h3>";
-                                    echo $event->title;
-                                    echo "</h3>"."<span>" . $event_date->format("dS M") . "</span>";
+                                    echo $openS->name;
+                                    //echo "</h3>"."<span>" . $event_date->format("dS M") . "</span>";
                                     echo "<p>";
-                                    echo $openS->name . " (Rs." . $openS->amount . ")";
+                                    echo $openS->short_desc . " (Rs." . $openS->amount . ")";
                                     echo "</p>";
                                     echo "</li>";
                                 }

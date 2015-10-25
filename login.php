@@ -8,8 +8,10 @@ define('API_KEY', Config::Linkedin_api_key);
 define('API_SECRET', Config::Linkedin_api_secret);
 // You must pre-register your redirect_uri at https://www.linkedin.com/secure/developer
 define('REDIRECT_URI', 'http://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME']);
-define('SCOPE', 'r_contactinfo r_emailaddress r_fullprofile');
- 
+
+//define('SCOPE', 'r_contactinfo r_emailaddress r_fullprofile');
+define('SCOPE', 'r_emailaddress r_basicprofile');
+
 // You'll probably use a database
 //session_name('linkedin');
 //session_start();

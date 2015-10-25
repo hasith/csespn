@@ -72,13 +72,6 @@ if (HttpSession::currentUser()->getOrganization()->access_level < 4) {
 
                 </div>
                 <div id="rightSide">
-<?php 
-    echo "We are learning PHP here";
-
-    for($i = 0; $i<5; $i++) {
-        echo $i." ";
-    };
-             ?>
                     <ul id="legend">
                         <li class=" clearfix">
                             <a href="admin.users.php">Manage Users</a>

@@ -127,7 +127,6 @@ CREATE TABLE `sessions` (
   `duration` int(5) DEFAULT NULL,
   `resp_name` varchar(50) DEFAULT NULL,
   `resp_contact` varchar(10) DEFAULT NULL,
-  `proposed_org_id` int(11) DEFAULT NULL,
   `org_id` int(11) DEFAULT NULL,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `pic_url` varchar(256) DEFAULT NULL,

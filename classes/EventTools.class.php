@@ -55,11 +55,11 @@ class EventTools {
             array_push($eventsByMonth, array($monthKey => $events));
         }
         //comming Year
-        for ($m = 1; $m <= 12; $m++) {
+        /*for ($m = 1; $m <= 12; $m++) {
             $events = $this->getEventsByMonth($currentYear + 1, $m);
             $monthKey = $months[$m].' '.($currentYear + 1);
             array_push($eventsByMonth, array($monthKey => $events));
-        }
+        }*/
         return $eventsByMonth;
     }
 

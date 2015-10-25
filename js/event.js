@@ -20,15 +20,15 @@ $(document).ready(function() {
 
     $("#sponsorships-dialog").dialog({
         autoOpen: false,
-        width: 600,
+        width: 800,
         modal: true,
         buttons: {
-            "Take Sponsorship": function() {
+            /*"Take Sponsorship": function() {
                 var id = $("#sp-dialog-id").val();
                 var access_level = $("#user-level").val();
                 $(this).dialog("close");
                 showTakeSposorshipDialog(id, access_level);
-            },
+            },*/
             Close: function() {
                 $(this).dialog("close");
             }
