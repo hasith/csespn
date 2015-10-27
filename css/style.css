@@ -1302,19 +1302,22 @@ label.error{
 table.company_logos {
     width: 100%;
 }
-table.company_logos tr td img {
-    padding-bottom: 15px;
-    padding-top: 5px;
+
+table.company_logos tr td {
+    padding-bottom: 20px;
 }
 
 table.company_logos tr td .sponsor_type {
     color: #555;
 }
-table.company_logos .logo_left {
-    float: right;
+.sponsor_logo_lg {
+    height: 40px;
+    margin: 10px 30px;
 }
-table.company_logos .logo_right {
-    float: left;
+
+.sponsor_logo_sm {
+    height: 25px;
+    margin: 10px 20px;
 }
 /****** footer end ******/
 #student_reg_link {

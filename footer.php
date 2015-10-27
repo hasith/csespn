@@ -2,42 +2,58 @@
     <hr/>
     <table class="company_logos">
         <tr>
-            <td colspan="3">
+            <td>
                 <div class="sponsor_type">
                     Strategic Partner
                 </div>
-                <img src="img/company_logos/mit_logo.png" alt="MIT" />
+                <?php
+                    $files = glob('img/company_logos/strategic/*.{jpg,png,gif}', GLOB_BRACE);
+                    foreach($files as $file) {
+                        echo '<img class="sponsor_logo_lg" src="'.$file.'" />';
+                    }
+                ?>
             </td>
         </tr>
         <tr>
-            <td colspan="3">
+            <td>
                 <div class="sponsor_type">
                     Platinum Partner
                 </div>
-                <img src="img/company_logos/wso2_logo.png" alt="WSO2" />
+                <?php
+                    $files = glob('img/company_logos/platinum/*.{jpg,png,gif}', GLOB_BRACE);
+                    foreach($files as $file) {
+                        echo '<img class="sponsor_logo_lg" src="'.$file.'" />';
+                    }
+                ?>
             </td>
         </tr>
         <tr>
             <td>
-                <div class="logo_left">
+                <div>
                     <div class="sponsor_type">
-                        Gold Partner
+                        Gold Partners
                     </div>
-                    <img src="img/company_logos/brandix_logo.png" alt="Brandix-i3" />
+                    <?php
+                        $files = glob('img/company_logos/gold/*.{jpg,png,gif}', GLOB_BRACE);
+                            foreach($files as $file) {
+                                echo '<img class="sponsor_logo_lg" src="'.$file.'" />';
+                        }
+                    ?>
                 </div>
             </td>
+        </tr>
+        <tr>
             <td>
-                <div class="sponsor_type">
-                    Gold Partner
-                </div>
-                <img src="img/company_logos/99x_logo.png" alt="99X Technology" />
-            </td>
-            <td>
-                <div class="logo_right">
+                <div>
                     <div class="sponsor_type">
-                        Gold Partner
+                        Standard Partners
                     </div>
-                    <img src="img/company_logos/proavos_logo.png" alt="Proavos" />
+                    <?php
+                    $files = glob('img/company_logos/standard/*.{jpg,png,gif}', GLOB_BRACE);
+                    foreach($files as $file) {
+                        echo '<img class="sponsor_logo_sm" src="'.$file.'" />';
+                    }
+                    ?>
                 </div>
             </td>
         </tr>
