@@ -133,7 +133,7 @@ $(document).ready(function() {
 
     function showAddDialog() {
         $("#event-dialog").dialog("option", "title", "Add New Event");
-        $("#event-dialog").find("#event-id").val("");
+        $("#event-dialog").find("#event-id").val("-1");
         $("#event-dialog").find("#event-dialog-title").val("");
         $("#event-dialog").find("#event-dialog-description").html("");
         $("#event-dialog").find("#event-dialog-date").val("");
@@ -164,7 +164,6 @@ $(document).ready(function() {
                     },
                     success: function(data, textStatus, jqXHR)
                     {
-                        console.log(data);
                         if (JSON.parse(data)) {
                             $("#result-dialog").find("#op-result").html("Event Saved Successfully");
                         }

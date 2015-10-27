@@ -13,7 +13,7 @@ $id = mysqli_real_escape_string($db->getConnection(), $_POST['id']);
 $title = mysqli_real_escape_string($db->getConnection(), $_POST['title']);
 $description = mysqli_real_escape_string($db->getConnection(), $_POST['description']);
 $date = mysqli_real_escape_string($db->getConnection(), $_POST ['date']);
-$date_confirmed = (is_numeric ($_POST['date_confirmed']) && ($_POST['date_confirmed'] == 'on'))? 1 : 0;
+$date_confirmed = ($_POST['date_confirmed'] == 'on')? 1 : 0;
 $time = mysqli_real_escape_string($db->getConnection(), $_POST['time']);
 $venue = mysqli_real_escape_string($db->getConnection(), $_POST['venue']);
 $url = mysqli_real_escape_string($db->getConnection(), $_POST['url']);

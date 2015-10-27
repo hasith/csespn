@@ -15,7 +15,7 @@ class Session {
 	public $resp_name;
 	public $resp_contact;
 	public $org_id;
-	public $proposed_org_id;
+//	public $proposed_org_id;
     public $pic_url;
 	
     //Constructor is called whenever a new object is created.
@@ -32,7 +32,7 @@ class Session {
 		$this->resp_name = isset($data["resp_name"])? $data["resp_name"]: null;
 		$this->resp_contact = isset($data["resp_contact"])? $data["resp_contact"]: null;
 		$this->org_id = isset($data["org_id"]) && is_numeric($data["org_id"]) && $data["org_id"] >0? $data["org_id"]: null;
-		$this->proposed_org_id = isset($data["proposed_org_id"]) && is_numeric($data["proposed_org_id"]) && $data["proposed_org_id"] >0? $data["proposed_org_id"]: null;
+//		$this->proposed_org_id = isset($data["proposed_org_id"]) && is_numeric($data["proposed_org_id"]) && $data["proposed_org_id"] >0? $data["proposed_org_id"]: null;
 		
     }
 	
@@ -134,7 +134,7 @@ class Session {
             "resp_name" => $db->stringify($this->resp_name),
             "resp_contact" => $db->stringify($this->resp_contact),
             "org_id" => $this->numeric($this->org_id),
-			"proposed_org_id" => $this->numeric($this->proposed_org_id)
+//			"proposed_org_id" => $this->numeric($this->proposed_org_id)
         );
 		
         //if object is already registered and we're
