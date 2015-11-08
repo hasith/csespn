@@ -2,6 +2,14 @@
 require_once './global.inc.php';
 verify_oauth_session_exists();
 
+$currentYear = date("Y");
+if(isset($_GET['year'])) {
+    $yearParam = $_GET['year'];
+    if (!is_numeric($yearParam) || ($yearParam < ($currentYear - 5))  || ($yearParam > ($currentYear + 5))) {
+        header('Location: ./events.php');
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -23,7 +31,24 @@ verify_oauth_session_exists();
                 <p class="page-title">
                     Our calendar is kept busy with diverse events for creating all rounded graduates who work hand-in-hand with the industry. This page lets you to plan your sponsorships to maximise the return on your investment.
                 </p>
+
                 <div id="calendar">
+                    <div id="year-selector-div">
+                        <label for="year-selector">Select Year</label>
+                        <select id="year-selector" name="year-selector">
+                            <?php
+                            for ($year = $currentYear - 5; $year <= ($currentYear + 5); $year++) {
+                                if (isset($_GET['year']) && ($_GET['year'] == $year)) {
+                                    echo '<option value="' . $year . '" selected>' . $year . '</option>';
+                                } else if (!isset($_GET['year']) && ($currentYear == $year)) {
+                                    echo '<option value="' . $year . '" selected>' . $year . '</option>';
+                                } else {
+                                    echo '<option value="' . $year . '">' . $year . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
                         <div style="display: none" id="event-dialog" title="">
                             <p id="event-dialog-desc"></p>
                             <div id="date-details" class="clearfix">
@@ -100,11 +125,15 @@ verify_oauth_session_exists();
                             <?php
                             $eventTools = new EventTools();
                             $sponsorshipTools = new SponsorshipTools();
-                            $months = $eventTools->getGroupedEvents();
+                            if (isset($_GET['year'])) {
+                                $months = $eventTools->getGroupedEventsOfYear($_GET['year']);
+                            } else {
+                                $months = $eventTools->getGroupedEvents();
+                            }
                             $currentDate = new DateTime();
 
                             foreach ($months as $month) {
-                                echo "<li>";
+                                echo "<li class='month-item'>";
 								echo "<div class='curl'></div>";
                                 echo "<h4>" . key($month) . "</h4>";
 

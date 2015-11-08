@@ -1346,3 +1346,30 @@ table.company_logos tr td .sponsor_type {
     -webkit-transition: .5s;
     transition: .5s;
 }
+
+#year-selector-div {
+    margin: 20px 30px;
+    font-size: 18px;
+}
+
+#year-selector-div > label {
+    color: #555555;
+    font-weight: bold;
+}
+
+#year-selector {
+    padding: 5px 8px;
+    width: 100px;
+    background: #fafafa;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 0px #DDD inset;
+    font-size: 16px;
+}
+
+#year-selector:focus {
+    outline: none;
+}
+
+.month-item {
+    display: none;
+}

@@ -39,27 +39,27 @@ class EventTools {
 
     //get events grouped by month
     function getGroupedEvents() {
+        $currentYear = date("Y");
+        $eventsByMonth = array();
+        //curent Year
+        return $this->getGroupedEventsOfYear($currentYear);
+    }
+
+    function getGroupedEventsOfYear($year)
+    {
         $months = array(
             1 => "Jan", 2 => "Feb", 3 => "Mar", 4 => "Apr",
             5 => "May", 6 => "Jun", 7 => "Jul", 8 => "Aug",
             9 => "Sep", 10 => "Oct", 11 => "Nov", 12 => "Dec"
         );
-        $currentYear = date("Y");
-        
+
         $eventsByMonth = array();
 
-        //curent Year
         for ($m = 1; $m <= 12; $m++) {
-            $events = $this->getEventsByMonth($currentYear,$m);
-            $monthKey = $months[$m].' '.$currentYear;
+            $events = $this->getEventsByMonth($year, $m);
+            $monthKey = $months[$m] . ' ' . $year;
             array_push($eventsByMonth, array($monthKey => $events));
         }
-        //comming Year
-        /*for ($m = 1; $m <= 12; $m++) {
-            $events = $this->getEventsByMonth($currentYear + 1, $m);
-            $monthKey = $months[$m].' '.($currentYear + 1);
-            array_push($eventsByMonth, array($monthKey => $events));
-        }*/
         return $eventsByMonth;
     }
 
