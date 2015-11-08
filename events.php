@@ -23,8 +23,7 @@ verify_oauth_session_exists();
                 <p class="page-title">
                     Our calendar is kept busy with diverse events for creating all rounded graduates who work hand-in-hand with the industry. This page lets you to plan your sponsorships to maximise the return on your investment.
                 </p>
-                <div id="bannerLeft">
-                    <div id="calendar">
+                <div id="calendar">
                         <div style="display: none" id="event-dialog" title="">
                             <p id="event-dialog-desc"></p>
                             <div id="date-details" class="clearfix">
@@ -144,78 +143,6 @@ verify_oauth_session_exists();
                             ?>
                         </ul>
                     </div>
-                </div>
-                <div id="rightSide" style="font-family: Arial, Helvetica, sans-serif;">
-                    <!--Sponsorship Oppotunities
-                    <ul id="legend" style="margin-left: 20px; margin-top: 10px; font-size:15px">
-                        <li class="greenBox clearfix">
-                            <span></span>
-                            <p>Available</p>
-                        </li>
-                        <li class="cse clearfix">
-                            <span></span>
-                            <p>Already Taken</p>
-                        </li>
-                        <li class="grayBox clearfix">
-                            <span></span>
-                            <p>Past Event</p>
-                        </li>
-                    </ul>-->
-
-                    <!-- Following component is excluded from first release -->
-                    <!--                    <div class="componentContainer">
-                                            <div class="heading">
-                                                <p>CodeGen sponsorships</p>
-                                            </div>
-                    
-                                            <div class="ccContainer lastList">
-                                                <ul>
-                                                    <li>
-                                                        <h3>Robotic Challenge – <span>27th Mar</span></h3>
-                                                        <p>Silver Sponsorship (50,000)</p>
-                                                    </li>
-                                                    <li>
-                                                        <h3>Go Festival - <span>17th Sep</span></h3>
-                                                        <p>T-shirt Sponsorship (150,000)</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>-->
-
-                    <div class="componentContainer">
-                        <div class="heading">
-                            <p>Oppotunities to Partner with CSE</p>
-                        </div>
-
-                        <div class="ccContainer lastList lastListWithScroll eventListArea">
-                            <ul>
-                                <?php
-                                $openSponsorships = $sponsorshipTools->getAllSponsorships();
-
-                                foreach ($openSponsorships as $openS) {
-                                    //$event = Event::get($openS->event_id);
-                                    //$event_date = new DateTime($event->date);
-
-                                    echo "<li class='clickable-li open-sponsorship-entry'>";
-                                    echo "<input id='sponsorship-id' type='hidden' value='" . $openS->id . "'/>";
-                                    echo "<h3>";
-                                    echo $openS->name;
-                                    //echo "</h3>"."<span>" . $event_date->format("dS M") . "</span>";
-                                    echo "<p>";
-                                    echo $openS->short_desc . " (Rs." . $openS->amount . ")";
-                                    echo "</p>";
-                                    echo "</li>";
-                                }
-                                ?>                                
-                            </ul>
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
             </div>
 
         </div>

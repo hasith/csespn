@@ -31,7 +31,8 @@
                         <li class="<?php if($pageName=='students'){echo 'active';}?>"><a href="./students.php">Students</a></li>
                         <li class="<?php if($pageName=='sessions'){echo 'active';}?>"><a href="./sessions.php">Sessions</a></li>
                         <li class="<?php if($pageName=='projects'){echo 'active';}?>"><a href="./projects.php">Research</a></li>
-                        <li class="<?php if($pageName=='events'){echo 'active';}?>"><a href="./events.php">Events</a></li>  
+                        <li class="<?php if($pageName=='events'){echo 'active';}?>"><a href="./events.php">Events</a></li>
+                        <li class="<?php if($pageName=='partnerships'){echo 'active';}?>"><a href="./partnerships.php">Partnerships</a></li>
                         <?php if ($user->getOrganization()->access_level > 4) { ?>
                         <li class="<?php if($pageName== 'admin') {echo 'active';}?>"><a href="./admin.users.php">Admin</a></li> 
                         <?php } ?>
