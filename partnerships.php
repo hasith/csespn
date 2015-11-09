@@ -36,6 +36,36 @@ $partnerships = (new SponsorshipTools())->getAllSponsorships();
             #contact-hod p {
                 text-align: justify;
             }
+
+            .descriptionArea {
+                height: 100px;
+            }
+
+            #featured2 .descriptionArea > img {
+                margin-top: 5px;
+                height: 100px;
+                width: 100px;
+            }
+
+            #featured2 .descriptionArea > .text-content {
+                margin-left: 120px;
+                margin-top: -100px;
+            }
+
+            #featured2 .descriptionArea > .text-content > .title {
+                font-weight: bold;
+            }
+
+            #featured2 .descriptionArea > .text-content > p.short-desc {
+                font-size: 14px;
+                margin-top: 5px !important;
+            }
+
+            #featured2 .descriptionArea > .text-content > p.amount {
+                font-size: 16px;
+                margin-top: 5px !important;
+                font-weight: bold;
+            }
         </style>
 
 </head>
@@ -123,10 +153,11 @@ $partnerships = (new SponsorshipTools())->getAllSponsorships();
 function getHtmlForPartnership($partnership) {
     $color = 'orangeColor';
     $html = '<h3 class="'.$color.' clearfix">';
-    $html = $html . '<div class="descriptionArea" style="height:90px;">';
-    $html = $html . '<img style="margin-top:10px;height: 80px;width: 80px;" src="img/partnership.png"/>';
-    $html = $html . '<div style="margin-left:100px;margin-top:-80px;"><span class="title" style="font-weight: bold;">' . $partnership->name.'</span>';
-    $html = $html . '<p style="font-size: 14px; margin-top: 5px !important;">'. $partnership->short_desc .'</p>';
+    $html = $html . '<div class="descriptionArea">';
+    $html = $html . '<img src="img/partnership.png"/>';
+    $html = $html . '<div class="text-content"><span class="title">' . $partnership->name.'</span>';
+    $html = $html . '<p class="short-desc">'. $partnership->short_desc .'</p>';
+    $html = $html . '<p class="amount">Rs. '. number_format($partnership->amount, 2, ".", ",") . '</p>';
     $html = $html . '</div></div>';
     $html = $html . '</h3>';
     $html = $html . '<div class="contentData clearfix">';
