@@ -127,7 +127,6 @@ CREATE TABLE `sessions` (
   `duration` int(5) DEFAULT NULL,
   `resp_name` varchar(50) DEFAULT NULL,
   `resp_contact` varchar(10) DEFAULT NULL,
-  `proposed_org_id` int(11) DEFAULT NULL,
   `org_id` int(11) DEFAULT NULL,
   `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `pic_url` varchar(256) DEFAULT NULL,
@@ -167,13 +166,14 @@ CREATE TABLE `events` (
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sponsorships` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_id` int(11) NOT NULL,
+  `event_id` int(11) NULL,
   `name` varchar(100) NOT NULL,
   `amount` decimal(10,2) NOT NULL,
   `description` text,
   `taken_by` int(11) DEFAULT NULL,
   `contact_name` varchar(255) DEFAULT NULL,
   `contact_phone` varchar(11) DEFAULT NULL,
+  `short_desc` text,
   PRIMARY KEY (`id`),
   KEY `event_id` (`event_id`),
   KEY `taken_by` (`taken_by`),

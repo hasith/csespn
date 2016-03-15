@@ -20,7 +20,7 @@ class Config {
 	const Email_server			= 'smtp.gmail.com';
 	const Email_port			= '587';
 	const Email_username		= 'testcses@gmail.com';
-	const Email_password		= 'Cs3partn3rp0rtal';
+	const Email_password		= 'Testcses3';
 	
 }
 	

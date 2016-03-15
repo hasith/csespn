@@ -13,13 +13,16 @@ verify_oauth_session_exists();
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+        <style type="text/css">
+            @import url(https://fonts.googleapis.com/css?family=Roboto:400,300,500,700,300italic);
+        </style>
 
         <?php require_once './nav.inc.php'; ?>
 
         <div class="container clearfix">
 
             <div id="bannerArea" class="clearfix signInArea">
-                <p style="font-size: 30px">Welcome to the CSE Partner Portal</p>
+                <p style="font-size: 30px">Welcome to CSE Partner Portal</p>
                 <div style="padding-bottom: 30px;color: #888;">You have signed-in as  
                     <?php
                     if(HttpSession::currentUser()) {
@@ -46,13 +49,11 @@ verify_oauth_session_exists();
 
                 </div>
                 <div style="font-size:15px">
-                
-                
                     <div id="benefits">
                             <img src="./img/benefits/profiles.jpeg" />
                             <div ><a href="./students.php"  class="topic details_topic" style="margin-bottom: 5px;">Student Profiles</a></div>
                             <div class="text">
-                                The student profiles will comprise of brief introductions about the students, their competencies and LinkedIn profile. Portal allows you to filter students with given competencies. Also you may collaborate with students to engage them in organizational activities such as event planning, CSR, software development, etc. by forming teams according to your preference
+                                The student profiles will comprise of brief introductions about the students, their competencies and LinkedIn profile. Portal allows you to filter students with given competencies. Also you may collaborate with students to engage them in organizational activities such as event planning, CSR, software development, etc. by forming teams according to your preference.
                             
                             </div>
                     </div>  
@@ -74,23 +75,15 @@ verify_oauth_session_exists();
 
                     <div id="benefits">
                             <img src="./img/benefits/events.jpg" />
-                            <div ><a href="./events.php"  class="topic details_topic" style="margin-bottom: 5px;">Event Calandar</a></div>
+                            <div ><a href="./events.php"  class="topic details_topic" style="margin-bottom: 5px;">Event Calendar</a></div>
                             <div class="text">
-                                You may gain access to the department's event calandar via this portal. This will help the organizations to pre-plan the participation to the events and offer sponsorships to recieve the optimum benefits through engagement activities.
+                                You may gain access to the department's event calendar via this portal. This will help the organizations to pre-plan the participation to the events and offer sponsorships to recieve the optimum benefits through engagement activities.
                             </div>
-                    </div>  
-
-   				 	<div style='color:rgb(177, 8, 8); margin-top:10px; font-size:15px'>
-   							<b>If you are a CSE Student, you may add your profile to the student lists by accessing below link:
-							<a href='./student_reg.php' class="topic details_topic" style="font-size:15px"> Student Registration</a>
-					</div>             
+                    </div>
                 </div>
-                
-                
             </div>
-
         </div>
-
+        <?php require_once './footer.php'; ?>
 
         <?php include_once 'scripts.inc.php'; ?>
         <script type="text/javascript" src="js/event.js"></script>

@@ -1,4 +1,8 @@
 $(document).ready(function() {
+    $(".month-item").first().show( "fast", function showNext() {
+        $( this ).next( ".month-item" ).show( 50, showNext );
+    });
+
     $("#event-dialog").dialog({
         autoOpen: false,
         width: 600,
@@ -20,15 +24,15 @@ $(document).ready(function() {
 
     $("#sponsorships-dialog").dialog({
         autoOpen: false,
-        width: 600,
+        width: 800,
         modal: true,
         buttons: {
-            "Take Sponsorship": function() {
+            /*"Take Sponsorship": function() {
                 var id = $("#sp-dialog-id").val();
                 var access_level = $("#user-level").val();
                 $(this).dialog("close");
                 showTakeSposorshipDialog(id, access_level);
-            },
+            },*/
             Close: function() {
                 $(this).dialog("close");
             }
@@ -120,6 +124,11 @@ $(document).ready(function() {
         var id = $(this).val();
 //        $("#event-dialog").dialog("close");
         showSponsorshipDetails(id);
+    });
+
+    $(document).on("change", "#year-selector", function(e) {
+        e.preventDefault();
+        onYearChange(this);
     });
 
     function showEventDetails(id) {
@@ -326,5 +335,10 @@ $(document).ready(function() {
                         $("#message-dialog").dialog("open");
                     }
                 });
+    }
+
+    function onYearChange(selector) {
+        var selectedYear = selector.options[selector.selectedIndex].value;
+        location.replace(location.pathname + "?year=" + selectedYear);
     }
 });

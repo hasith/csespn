@@ -51,6 +51,9 @@ class User {
 				$user->company_id = Company::getPublicUserCompanyId();
 		        $user->save(TRUE);
 	        } else {
+				$user->pic_url = $result->pictureUrl;
+				$user->profile_url = $result->publicProfileUrl;
+				$user->api_url = $result->apiStandardProfileRequest->url;
 				$user->linkedin_token = $token;
 				$user->linkedin_token_exp = date("Y-m-d H:i:s", $token_exp);
 		        $user->save(FALSE);

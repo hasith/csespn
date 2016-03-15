@@ -2,6 +2,14 @@
 require_once './global.inc.php';
 verify_oauth_session_exists();
 
+$currentYear = date("Y");
+if(isset($_GET['year'])) {
+    $yearParam = $_GET['year'];
+    if (!is_numeric($yearParam) || ($yearParam < ($currentYear - 5))  || ($yearParam > ($currentYear + 5))) {
+        header('Location: ./events.php');
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -23,8 +31,24 @@ verify_oauth_session_exists();
                 <p class="page-title">
                     Our calendar is kept busy with diverse events for creating all rounded graduates who work hand-in-hand with the industry. This page lets you to plan your sponsorships to maximise the return on your investment.
                 </p>
-                <div id="bannerLeft">
-                    <div id="calendar">
+
+                <div id="calendar">
+                    <div id="year-selector-div">
+                        <label for="year-selector">Select Year</label>
+                        <select id="year-selector" name="year-selector">
+                            <?php
+                            for ($year = $currentYear - 5; $year <= ($currentYear + 5); $year++) {
+                                if (isset($_GET['year']) && ($_GET['year'] == $year)) {
+                                    echo '<option value="' . $year . '" selected>' . $year . '</option>';
+                                } else if (!isset($_GET['year']) && ($currentYear == $year)) {
+                                    echo '<option value="' . $year . '" selected>' . $year . '</option>';
+                                } else {
+                                    echo '<option value="' . $year . '">' . $year . '</option>';
+                                }
+                            }
+                            ?>
+                        </select>
+                    </div>
                         <div style="display: none" id="event-dialog" title="">
                             <p id="event-dialog-desc"></p>
                             <div id="date-details" class="clearfix">
@@ -57,7 +81,8 @@ verify_oauth_session_exists();
                             <p id="amount-details">
                                 <b>Amount: </b>Rs.<span id="sp-dialog-amount"></span>
                             </p>
-                            <p id="sp-dialog-desc"></p>
+                            <p id="sp-dialog-desc"></p><br/>
+							<div style="font-size: 14px;">Please contact the head of the department for confirmations: <div style="padding-left:4em">Tel: 0112640381 <br/>Email: chathura@cse.mrt.ac.lk</div></div>
                         </div>
                         <div  style="display: none" id="sp-confirm-dialog" title="Confirm">                            
                             <form id="sp-apply-form" method="post" action="sponsorships.take.php">
@@ -100,11 +125,15 @@ verify_oauth_session_exists();
                             <?php
                             $eventTools = new EventTools();
                             $sponsorshipTools = new SponsorshipTools();
-                            $months = $eventTools->getGroupedEvents();
+                            if (isset($_GET['year'])) {
+                                $months = $eventTools->getGroupedEventsOfYear($_GET['year']);
+                            } else {
+                                $months = $eventTools->getGroupedEvents();
+                            }
                             $currentDate = new DateTime();
 
                             foreach ($months as $month) {
-                                echo "<li>";
+                                echo "<li class='month-item'>";
 								echo "<div class='curl'></div>";
                                 echo "<h4>" . key($month) . "</h4>";
 
@@ -143,82 +172,10 @@ verify_oauth_session_exists();
                             ?>
                         </ul>
                     </div>
-                </div>
-                <div id="rightSide" style="font-family: Arial, Helvetica, sans-serif;">
-                    Sponsorship Oppotunities
-                    <ul id="legend" style="margin-left: 20px; margin-top: 10px; font-size:15px">
-                        <li class="greenBox clearfix">
-                            <span></span>
-                            <p>Available</p>
-                        </li>
-                        <li class="cse clearfix">
-                            <span></span>
-                            <p>Already Taken</p>
-                        </li>
-                        <li class="grayBox clearfix">
-                            <span></span>
-                            <p>Past Event</p>
-                        </li>
-                    </ul>
-
-                    <!-- Following component is excluded from first release -->
-                    <!--                    <div class="componentContainer">
-                                            <div class="heading">
-                                                <p>CodeGen sponsorships</p>
-                                            </div>
-                    
-                                            <div class="ccContainer lastList">
-                                                <ul>
-                                                    <li>
-                                                        <h3>Robotic Challenge – <span>27th Mar</span></h3>
-                                                        <p>Silver Sponsorship (50,000)</p>
-                                                    </li>
-                                                    <li>
-                                                        <h3>Go Festival - <span>17th Sep</span></h3>
-                                                        <p>T-shirt Sponsorship (150,000)</p>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>-->
-
-                    <div class="componentContainer">
-                        <div class="heading">
-                            <p>Sponsorships open to take</p>
-                        </div>
-
-                        <div class="ccContainer lastList lastListWithScroll eventListArea">
-                            <ul>
-                                <?php
-                                $openSponsorships = $sponsorshipTools->getAllOpenSponsorships();
-
-                                foreach ($openSponsorships as $openS) {
-                                    $event = Event::get($openS->event_id);
-                                    $event_date = new DateTime($event->date);
-
-                                    echo "<li class='clickable-li open-sponsorship-entry'>";
-                                    echo "<input id='sponsorship-id' type='hidden' value='" . $openS->id . "'/>";
-                                    echo "<h3>";
-                                    echo $event->title;
-                                    echo "</h3>"."<span>" . $event_date->format("dS M") . "</span>";
-                                    echo "<p>";
-                                    echo $openS->name . " (Rs." . $openS->amount . ")";
-                                    echo "</p>";
-                                    echo "</li>";
-                                }
-                                ?>                                
-                            </ul>
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
             </div>
 
         </div>
-
+        <?php require_once './footer.php'; ?>
 
         <?php include_once 'scripts.inc.php'; ?>
         <?php require_once './common.inc.php'; ?>

@@ -127,9 +127,11 @@ class Student {
 		$descResult = $linkedin->fetch('GET','/v1/people/~:(summary)');
 		$this->description = $descResult->summary;
 		$this->save();
+
+                //FIXME
 		//extract skill details
-		$skillsResult = $linkedin->fetch('GET','/v1/people/~/skills');
-		$this->insertSkills($skillsResult->values);
+		//$skillsResult = $linkedin->fetch('GET','/v1/people/~/skills');
+		//$this->insertSkills($skillsResult->values);
 		
 	}
 	

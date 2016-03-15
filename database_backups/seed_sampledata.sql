@@ -484,16 +484,26 @@ INSERT INTO `sponsorships` (`id`, `event_id`, `name`, `amount`, `description`, `
 (66, 23, 'Bronze Sponsorship', '50000.00', 'CSE department web site will recognize them as a sponsor for the event. CSE Resurgenz official Facebook page and the official project banners will display the logo of the sponsor and recognize them a sponsor. Display a promotional banner of the company around University Premises. Distribute promotional materials.', 31);
 
 
-INSERT INTO `sessions` VALUES (10, 'MySQL Workshop ', 'This Workshop introduces MySQL, explains a bit about conventions and starts constructing DML, DDL statements. This will also cover the Normalisations and Administrations.', NULL, '14:00', 120, NULL, NULL, NULL, '2014-06-28 10:05:47', 'http://www.mysql.com/common/logos/logo-mysql-170x115.png'),
-(11, 'Get Started with .NET', 'This Workshop covers whatâ€™s New in .NET and provides a deep dive into the next generation of Microsoftâ€™s most advanced platform for developing applications. Learn to build modern apps using the principle pillars of .Net.', NULL, NULL, 180, NULL, NULL, NULL, '2014-06-22 04:55:34', 'http://www.idrsolutions.com/wp-content/uploads/2014/05/dotnet-logo.jpg'),
-(12, 'Development tools Workshop (IDEs, etc)', 'This workshop covers the basics of IDEs, short cuts and developer productivity power enhancements, including compiling, packging and deployments.', '2014-06-01 00:00:00', NULL, NULL, NULL, NULL, NULL, '2014-06-23 08:02:45', 'http://www.syntellect.com/pages/images/SYN09_4CToolsIcon_NoType.gif'),
-(13, 'Testing tools Workshop', 'The tools required to perform unit testings will be covered in this tools with the understanding of the the TDD.', NULL, '09:00', 60, 'Kishan', '878635353', NULL, '2014-06-28 10:05:33', 'http://www.feathersoft.com/assets/images/level4/software_testing.png'),
-(14, 'GIT SCM Tutorial', 'This workshop covers the basics of GIT, including basic Git commands and the concepts behind the distributed version controling systems.', NULL, NULL, NULL, NULL, NULL, NULL, '2014-06-28 10:09:31', 'http://blog.novatec-gmbh.de/wp-content/uploads/2013/07/logo-git.png'),
-(15, 'Java Development with ANT & Maven', 'This workshop covers the usage of ANT/Maven in enterprice scale Java projects. Students will also learn standard build environment setup practices of Java projects.', NULL, NULL, NULL, NULL, NULL, NULL, '2014-06-28 10:07:39', 'http://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Apache-Ant-logo.svg/554px-Apache-Ant-logo.svg.png'),
-(16, 'Security architecture for modern Web Applications', 'Single-sign-on with existing web platforms (such as Google, Facebook, LinkedIn, etc.) is a need for most of the modern web applications. This session will be focused of OpenIdConnect and OAuth standards.', NULL, NULL, NULL, NULL, NULL, NULL, '2014-06-28 10:08:33', 'http://openid.net/images/logo/openid-icon-1000x1000.png'),
-(17, 'Logging and Tracing Tools', 'Logging/tracing is mandotory for creating maintainable software. This workshop covers the usage of logging/tracing tools in Industrial projects.', NULL, NULL, NULL, NULL, NULL, NULL, '2014-09-11 00:02:56', 'http://www.iconhot.com/icon/png/file-icons-vs-2/256/log-2.png'),
-(18, 'Design Patterns - Inversion of Control', 'The Inversion of Control (IoC) and Dependency Injection (DI) patterns are all about organizing dependencies in your code. During this workshop students will learn to the practical usage of a standard IoC framework.', NULL, NULL, NULL, NULL, NULL, NULL, '2014-06-28 10:06:36', 'http://i.msdn.microsoft.com/dynimg/IC245731.png'),
-(21, 'Agile Workshop', 'Propose a session you would like to carryout to CSE students. We will get back to you regarding the possible dates for that.', '2014-05-07 00:00:00', '09:30', 180, 'Shan', NULL, NULL, '2014-06-24 01:31:02', NULL);
+
+INSERT INTO `sessions` 
+(`id`,
+`title`,
+`description`,
+`date`,
+`start_time`,
+`duration`,
+`resp_name`,
+`resp_contact`,
+`org_id`) VALUES
+(1,'brand new session for asp.net','on you would like to carryout to CSE syudents. We will get back to you regarding the posson you would like to carryout to CSE syudents. We will get back to you regarding the poss',NULL,'7:30 am',133,'wsfsf','13331',5),
+(2,'Has a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.','2014-04-20 00:00:00','7:00 am',NULL,NULL,NULL,5),
+(3,'ws02 a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.',NULL,'7:00 am',NULL,NULL,NULL,4),
+(4,'new e a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.','2014-05-14 00:00:00','7:00 am',NULL,NULL,NULL,NULL),
+(5,'11new e a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.',NULL,'7:00 am',NULL,NULL,NULL,NULL),
+(6,'bbbbose a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possib',NULL,'7:00 am',NULL,NULL,NULL,NULL),
+(7,'Test  a session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible daPropose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible daPropose a session you would like t','2014-04-06 00:00:00','8:00 am',150,'Udith','9489028490',NULL),
+(8,'new new session you would like to carryout to CS','Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.Propose a session you would like to carryout to CSE syudents. We will get back to you regarding the possible dates for that.','2014-04-28 00:00:00','8:00 am',124,NULL,NULL,NULL),
+(9,'Session for testing the functionality','session you would like to carryout to CSE syudents. We will get back to you regarding the possible session you would like to carryout to CSE syudents. We will get back to you regarding the possible','2014-06-07 00:00:00','8:30 am',120,'Hasith','0714819556',11);
 
 --
 -- Dumping data for table `project_batches`

@@ -63,6 +63,11 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                 <p class="page-title" style="margin-bottom:20px">The vibrant pool of students, keen of cross functional activities is our greatest strength. 
 					You are able to access student profiles and collaborate for your organizational activities. On this page, corporate users will be able to search and filter for students 
 					having specific technology competencies.</p>
+
+                <div id="student_reg_link">
+                    <b>If you are a CSE Student, you may add your profile to the student lists by accessing
+                        <a href='./student_reg.php'> Student Registration</a>
+                </div>
                 <div id="bannerLeft">	
                     
                     <div id="example-two">					
@@ -116,11 +121,11 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
                 
                <div id="rightSide">	
                     <?php if (HttpSession::currentUser()->getOrganization()->access_level >= 3) { ?>
-                        <div id="addProject">
+                        <!--div id="addProject">
                             <a href="" id="assemble-team" >
                                 Assemble a Team
                             </a>
-                        </div>
+                        </div-->
                     <?php } ?>
                     <div class="componentContainer">
                         <div class="heading">
@@ -229,8 +234,8 @@ if (isset($_GET['sort']) && $_GET['order_by'] == "gpa") {
 
                 </fieldset>
             </form>
-        </div> 
-
+        </div>
+        <?php require_once './footer.php'; ?>
     <?php include_once 'scripts.inc.php'; ?>
     <?php require_once './common.inc.php'; ?>
     <script type="text/javascript" src="js/students.js"></script>
